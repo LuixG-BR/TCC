@@ -8,6 +8,13 @@ app = FastAPI()
 
 Base.metadata.create_all(bind=engine)
 
+@app.get("/")
+def home():
+    return {
+        "projeto": "EMPS",
+        "status": "online"
+    }
+
 # dependência do banco
 def get_db():
     db = SessionLocal()
