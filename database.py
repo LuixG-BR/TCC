@@ -1,10 +1,7 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+import sqlite3
 
-DATABASE_URL = "sqlite:///./dados.db"
+def conectar():
 
-engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
+    conn = sqlite3.connect("dados.db")
 
-SessionLocal = sessionmaker(bind=engine)
-
-Base = declarative_base()
+    return conn

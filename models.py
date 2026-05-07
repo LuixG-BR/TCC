@@ -1,13 +1,7 @@
-from sqlalchemy import Column, Integer, Float, String
-from database import Base
+from pydantic import BaseModel
 
-class DadoSaude(Base):
-    __tablename__ = "dados"
+class Monitoramento(BaseModel):
 
-    id = Column(Integer, primary_key=True, index=True)
-    bpm = Column(Integer)
-    spo2 = Column(Integer)
-    ax = Column(Float)
-    ay = Column(Float)
-    az = Column(Float)
-    status = Column(String)
+    bpm: int
+    movimento: int
+    status: str

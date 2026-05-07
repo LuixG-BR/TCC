@@ -1,46 +1,89 @@
-from fastapi import FastAPI, Depends
-from sqlalchemy.orm import Session
-from database import SessionLocal, engine, Base
-from models import DadoSaude
-from simulator import gerar_dados
+from fastapi import FastAPI
+from models import Monitoramento
+from database import conectar
 
 app = FastAPI()
 
-Base.metadata.create_all(bind=engine)
+# ==========================
+# CRIAR TABELA
+# ==========================
+
+conn = conectar()
+
+cursor = conn.cursor()
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS monitoramento (
+
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    bpm INTEGER,
+    movimento INTEGER,
+    status TEXT
+)
+""")
+
+conn.commit()
+
+conn.close()
+
+# ==========================
+# ROTA TESTE
+# ==========================
 
 @app.get("/")
 def home():
+
     return {
         "projeto": "EMPS",
         "status": "online"
     }
+    
+@app.get("/ocorrencias")
+def listar_ocorrencias():
 
-# dependência do banco
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+    conn = conectar()
 
-# 🔹 rota para gerar e salvar dados
-@app.post("/simular")
-def simular(db: Session = Depends(get_db)):
-    dados = gerar_dados()
+    cursor = conn.cursor()
 
-    novo = DadoSaude(**dados)
-    db.add(novo)
-    db.commit()
-    db.refresh(novo)
+    cursor.execute("""
+    SELECT * FROM monitoramento
+    """)
 
-    return novo
+    dados = cursor.fetchall()
 
-# 🔹 listar dados
-@app.get("/dados")
-def listar(db: Session = Depends(get_db)):
-    return db.query(DadoSaude).all()
+    conn.close()
 
-# 🔹 último dado
-@app.get("/dados/ultimo")
-def ultimo(db: Session = Depends(get_db)):
-    return db.query(DadoSaude).order_by(DadoSaude.id.desc()).first()
+    return dados
+
+# ==========================
+# RECEBER DADOS
+# ==========================
+
+@app.post("/dados")
+def receber_dados(dados: Monitoramento):
+
+    conn = conectar()
+
+    cursor = conn.cursor()
+
+    cursor.execute("""
+    INSERT INTO monitoramento (
+        bpm,
+        movimento,
+        status
+    )
+
+    VALUES (?, ?, ?)
+    """, (
+        dados.bpm,
+        dados.movimento,
+        dados.status
+    ))
+
+    conn.commit()
+
+    conn.close()
+
+    return {
+        "mensagem": "Dados salvos"
+    }
