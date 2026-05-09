@@ -313,3 +313,13 @@ __pycache__/
 - O `simulator.py` é utilizado apenas para testes locais.
 - Caso utilize hardware real, o simulador pode ser desativado.
 - As portas COM podem variar entre computadores.
+
+- As funcionalidades documentadas neste README estão disponíveis na branch:
+```bash
+feature/teste-api
+```
+
+- Antes de iniciar o ambiente, certifique-se de estar nessa branch:
+```git
+git checkout feature/teste-api
+```
