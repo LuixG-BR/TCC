@@ -27,7 +27,7 @@ conn.commit()
 conn.close()
 
 # ==========================
-# ROTA TESTE
+# ROTAS
 # ==========================
 
 @app.get("/")

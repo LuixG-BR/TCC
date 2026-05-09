@@ -2,7 +2,7 @@ import serial
 import requests
 import time
 
-arduino = serial.Serial('COM3', 9600)
+arduino = serial.Serial('COM10', 9600)
 
 time.sleep(2)
 
@@ -19,18 +19,33 @@ while True:
         bpm = int(partes[0].split(":")[1])
         movimento = int(partes[1].split(":")[1])
 
-        # ==========================
+
         # DEFINIR STATUS
-        # ==========================
 
-        if bpm >= 150 or movimento >= 700:
-            status = "Emergencia"
-
-        elif bpm >= 120 or movimento >= 400:
-            status = "Alerta"
-
-        else:
+        # status Normal
+        if bpm <= 119 and movimento <= 399:
             status = "Normal"
+
+        # status Alerta
+        elif bpm >= 120 and movimento >= 400:
+            status = "Alerta em BPM | Alerta em Movimento"
+
+        elif bpm >= 120:
+            status = "Alerta em BPM"
+        
+        elif movimento >= 400:
+            status += "Alerta em Movimento"
+
+        # status Emergencia
+        elif bpm >= 150 and movimento >= 700:
+            status = "Emergencia em BPM | Emergencia em Movimento"
+
+        elif bpm >= 150:
+            status = "Emergencia em BPM"
+        
+        elif movimento >= 700:
+            status = "Emergencia em Movimento"
+        
 
         print(f"Status: {status}")
 
