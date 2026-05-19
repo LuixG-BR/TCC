@@ -79,3 +79,5 @@ htmlcov/
 # =========================================
 ehthumbs.db
 Desktop.ini
+
+*.lock
