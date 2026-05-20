@@ -16,7 +16,7 @@ def listar_medicos():
     return medicos
 
 @router.post("/medicos/cadastro")
-def cadastrar_medicos(medico: MedicoCreate):
+def cadastrar_medico(medico: MedicoCreate):
 
     db = SessionLocal()
 
@@ -43,7 +43,7 @@ def cadastrar_medicos(medico: MedicoCreate):
     }
 
 @router.post("/medicos/login")
-def login_medicos(medico: MedicoLogin):
+def login_medico(medico: MedicoLogin):
 
     db = SessionLocal()
 
@@ -61,4 +61,50 @@ def login_medicos(medico: MedicoLogin):
     return {
         "mensagem": "Login realizado",
         "login": True
+    }
+    
+@router.get("/medicos/{id}")
+def buscar_medico(id: int):
+
+    db = SessionLocal()
+
+    medico = db.query(Medico).filter(
+        Medico.idMedico == id
+    ).first()
+
+    if not medico:
+        return {
+            "mensagem": "Médico não encontrado"
+        }
+
+    return medico
+    
+@router.put("/medicos/{id}")
+def atualizar_medico(id: int, medico: MedicoCreate):
+
+    db = SessionLocal()
+
+    medico_db = db.query(Medico).filter(
+        Medico.idMedico == id
+    ).first()
+
+    if not medico_db:
+        return {
+            "mensagem": "Médico não encontrado"
+        }
+
+    medico_db.nome = medico.nome
+    medico_db.cpf = medico.cpf
+    medico_db.crm = medico.crm
+    medico_db.dataNasc = medico.dataNasc
+    medico_db.sexo = medico.sexo
+    medico_db.telMedico = medico.telMedico
+    medico_db.email = medico.email
+    medico_db.especialidade = medico.especialidade
+    medico_db.senha = medico.senha
+
+    db.commit()
+
+    return {
+        "mensagem": "Dados atualizados"
     }
