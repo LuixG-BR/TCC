@@ -64,7 +64,7 @@ def login_medico(medico: MedicoLogin):
     }
     
 @router.get("/medicos/{id}")
-def buscar_medico(id: int):
+def visualizar_medico(id: int):
 
     db = SessionLocal()
 
