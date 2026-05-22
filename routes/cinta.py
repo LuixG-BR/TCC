@@ -1,12 +1,12 @@
 from fastapi import APIRouter
 from schemas.cinta import CintaCreate
-from models.cinta import Cinta
+from models.cinta import Cinta, CintaResponse
 from typing import List
 from database import SessionLocal
 
 router = APIRouter()
 
-@router.get("/cintas", response_model=List[Cinta])
+@router.get("/cintas", response_model=List[CintaResponse])
 def listar_cintas():
     
     db = SessionLocal()

@@ -1,5 +1,6 @@
 from sqlalchemy import Column, Integer, String, Date, Boolean
 from database import Base
+from pydantic import BaseModel
 
 class Cinta(Base):
     __tablename__ = "cinta"
@@ -12,3 +13,8 @@ class Cinta(Base):
     sensorCardiaco = Column(String)
     sensorEDA = Column(String)
 
+class CintaResponse(BaseModel):
+    idCinta: int
+    numeroSerie: str
+    modelo: str
+    statusConexao: bool
