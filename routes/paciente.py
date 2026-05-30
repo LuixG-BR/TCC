@@ -74,7 +74,7 @@ def visualizar_paciente(id: int):
 
     if not paciente:
         return {
-            "mensagem": "Médico não encontrado"
+            "mensagem": "Paciente não encontrado"
         }
 
     return paciente
@@ -90,7 +90,7 @@ def atualizar_paciente(id: int, paciente: PacienteCreate):
 
     if not paciente_db:
         return {
-            "mensagem": "Médico não encontrado"
+            "mensagem": "Paciente não encontrado"
         }
 
     paciente_db.nome = paciente.nome
@@ -109,26 +109,3 @@ def atualizar_paciente(id: int, paciente: PacienteCreate):
     return {
         "mensagem": "Dados atualizados"
     }
-    
-@router.delete("/pacientes/{id}")
-def deletar_paciente(id: int):
-
-    db = SessionLocal()
-
-    paciente = db.query(Paciente).filter(
-        Paciente.idPaciente == id
-    ).first()
-
-    if not paciente:
-        return {
-            "mensagem": "Médico não encontrado"
-        }
-
-    db.delete(paciente)
-
-    db.commit()
-
-    return {
-        "mensagem": "Paciente deletado com sucesso"
-    }
-    
