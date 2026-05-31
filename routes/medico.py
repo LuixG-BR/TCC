@@ -6,7 +6,7 @@ from database import SessionLocal
 
 router = APIRouter()
 
-@router.get("/medicos",response_model=List[MedicoResponse])
+@router.get("/medicos",response_model=List[MedicoResponse], tags=["Médicos"])
 def listar_medicos():
 
     db = SessionLocal()
@@ -15,7 +15,7 @@ def listar_medicos():
 
     return medicos
 
-@router.post("/medicos/cadastro")
+@router.post("/medicos/cadastro", tags=["Médicos"])
 def cadastrar_medico(medico: MedicoCreate):
 
     db = SessionLocal()
@@ -42,7 +42,7 @@ def cadastrar_medico(medico: MedicoCreate):
         "id": novo_medico.idMedico
     }
 
-@router.post("/medicos/login")
+@router.post("/medicos/login", tags=["Médicos"])
 def login_medico(medico: MedicoLogin):
 
     db = SessionLocal()
@@ -63,7 +63,7 @@ def login_medico(medico: MedicoLogin):
         "login": True
     }
     
-@router.get("/medicos/{id}")
+@router.get("/medicos/{id}", tags=["Médicos"])
 def visualizar_medico(id: int):
 
     db = SessionLocal()
@@ -79,7 +79,7 @@ def visualizar_medico(id: int):
 
     return medico
     
-@router.put("/medicos/{id}")
+@router.put("/medicos/{id}", tags=["Médicos"])
 def atualizar_medico(id: int, medico: MedicoCreate):
 
     db = SessionLocal()

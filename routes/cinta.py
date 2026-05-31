@@ -6,7 +6,7 @@ from database import SessionLocal
 
 router = APIRouter()
 
-@router.get("/cintas", response_model=List[CintaResponse])
+@router.get("/cintas", response_model=List[CintaResponse], tags=["Cinta"])
 def listar_cintas():
     
     db = SessionLocal()
@@ -15,7 +15,7 @@ def listar_cintas():
 
     return cintas
 
-@router.post("/cinta/cadastro")
+@router.post("/cinta/cadastro", tags=["Cinta"])
 def cadastro_cinta(cinta: CintaCreate):
 
     db = SessionLocal()
@@ -39,7 +39,7 @@ def cadastro_cinta(cinta: CintaCreate):
         "id": novo_cinta.idCinta
     }
 
-@router.get("/cintas/{id}")
+@router.get("/cintas/{id}", tags=["Cinta"])
 def visualizar_cinta(id: int):
 
     db = SessionLocal()
@@ -55,7 +55,7 @@ def visualizar_cinta(id: int):
 
     return cinta
 
-@router.put("/cintas/{id}")
+@router.put("/cintas/{id}", tags=["Cinta"])
 def atualizar_cinta(id: int, cinta: CintaCreate):
 
     db = SessionLocal()
