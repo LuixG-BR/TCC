@@ -23,29 +23,22 @@ while True:
         # DEFINIR STATUS
 
         # status Normal
-        if bpm <= 119 and movimento <= 399:
+        # Emergência primeiro
+
+        if bpm >= 150 and movimento >= 700:
+
+            status = "Emergencia"
+
+
+        elif bpm >= 120 or movimento >= 400:
+
+            status = "Alerta"
+
+
+        else:
+
             status = "Normal"
-
-        # status Alerta
-        elif bpm >= 120 and movimento >= 400:
-            status = "Alerta em BPM | Alerta em Movimento"
-
-        elif bpm >= 120:
-            status = "Alerta em BPM"
-        
-        elif movimento >= 400:
-            status += "Alerta em Movimento"
-
-        # status Emergencia
-        elif bpm >= 150 and movimento >= 700:
-            status = "Emergencia em BPM | Emergencia em Movimento"
-
-        elif bpm >= 150:
-            status = "Emergencia em BPM"
-        
-        elif movimento >= 700:
-            status = "Emergencia em Movimento"
-        
+                
 
         print(f"Status: {status}")
 
