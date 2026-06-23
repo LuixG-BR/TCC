@@ -22,3 +22,15 @@ SessionLocal = sessionmaker(
 )
 
 Base = declarative_base()
+
+def conectar():
+
+    db = SessionLocal()
+
+    try:
+
+        return db
+
+    finally:
+
+        pass
