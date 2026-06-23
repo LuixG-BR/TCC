@@ -1,22 +1,22 @@
 from fastapi import FastAPI
 
-from database import Base, engine
+# from database import Base, engine
 
-from models.medico import Medico
-from models.paciente import Paciente
-from models.cinta import Cinta
+# from models.medico import Medico
+# from models.paciente import Paciente
+# from models.cinta import Cinta
 
-from routes.medico import router as medico_router
-from routes.paciente import router as paciente_router
-from routes.cinta import router as cinta_router
+# from routes.medico import router as medico_router
+# from routes.paciente import router as paciente_router
+# from routes.cinta import router as cinta_router
 
 app = FastAPI()
 
-Base.metadata.create_all(bind=engine)
+# Base.metadata.create_all(bind=engine)
 
-app.include_router(medico_router)
-app.include_router(paciente_router)
-app.include_router(cinta_router)
+# app.include_router(medico_router)
+# app.include_router(paciente_router)
+# app.include_router(cinta_router)
 
 @app.get("/")
 def Home():
@@ -24,3 +24,10 @@ def Home():
         "Mensagem": "API medicos e pacientes",
         "Status": "Online"
     }
+
+from database import Base, engine
+
+import models
+
+
+Base.metadata.create_all(bind=engine)
