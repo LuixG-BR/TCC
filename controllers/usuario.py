@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from core.security import criar_hash
 
 from models.usuario import Usuario
 from schemas.usuario import UsuarioCreate
@@ -13,7 +14,7 @@ def criar_usuario(
 
         nome=usuario.nome,
         email=usuario.email,
-        senha=usuario.senha,
+        senha=criar_hash(usuario.senha),
         telefone=usuario.telefone,
         id_perfil=usuario.id_perfil
     )
