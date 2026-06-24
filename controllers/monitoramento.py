@@ -4,14 +4,26 @@ from schemas.monitoramento import MonitoramentoCreate
 
 def analisar_risco(bpm, movimento):
 
-    if bpm >= 150 and movimento >= 700:
-        return "Emergencia"
-
-    elif bpm >= 120 or movimento >= 400:
-        return "Alerta"
-
-    else:
-        return "Normal"
+    if bpm >= 120 and movimento >= 400:
+            status = "Alerta em BPM | Alerta em Movimento"
+        
+    elif bpm >= 120:
+            status = "Alerta em BPM"
+                
+    elif movimento >= 400:
+            status += "Alerta em Movimento"
+        
+    elif bpm >= 150 and movimento >= 700:
+            status = "Emergencia em BPM | Emergencia em Movimento"
+        
+    elif bpm >= 150:
+            status = "Emergencia em BPM"
+                
+    elif movimento >= 700:
+            status = "Emergencia em Movimento"
+        
+    else: 
+            status = "Normal"
 
 
 def registrar_monitoramento(db, dados: MonitoramentoCreate):
@@ -20,8 +32,6 @@ def registrar_monitoramento(db, dados: MonitoramentoCreate):
         dados.frequencia_cardiaca,
         dados.movimento
     )
-
-    # se for normal não salva
 
     if status == "Normal":
 

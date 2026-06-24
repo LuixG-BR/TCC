@@ -11,19 +11,32 @@ while True:
     bpm = random.randint(60,170)
     movimento = random.randint(100,800)
 
-    if bpm >= 150 and movimento >=700:
-        status = "Emergencia"
+    if bpm >= 120 and movimento >= 400:
+        status = "Alerta em BPM | Alerta em Movimento"
 
-    elif bpm >=120 or movimento >=400:
-        status = "Alerta"
+    elif bpm >= 120:
+        status = "Alerta em BPM"
+        
+    elif movimento >= 400:
+        status += "Alerta em Movimento"
 
-    else:
+        # status Emergencia
+    elif bpm >= 150 and movimento >= 700:
+        status = "Emergencia em BPM | Emergencia em Movimento"
+
+    elif bpm >= 150:
+        status = "Emergencia em BPM"
+        
+    elif movimento >= 700:
+        status = "Emergencia em Movimento"
+
+    else: 
         status = "Normal"
 
     dados = {
         "id_paciente":1,
         "id_dispositivo":1,
-        "frequencia_cardiaca":bpm,
+        "bpm":bpm,
         "movimento":movimento,
         "status":status
     }
