@@ -4,3 +4,4 @@ from models.paciente import Paciente
 from models.medico import Medico
 from models.paciente_medico import PacienteMedico
 from models.dispositivo import Dispositivo
+from models.monitoramento import Monitoramento
