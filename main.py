@@ -7,6 +7,7 @@ from routers import usuario
 from routers import paciente
 from routers import medico
 from routers import paciente_medico
+from routers import dispositivo
 
 
 Base.metadata.create_all(bind=engine)
@@ -19,6 +20,7 @@ app.include_router(usuario.router)
 app.include_router(paciente.router)
 app.include_router(medico.router)
 app.include_router(paciente_medico.router)
+app.include_router(dispositivo.router)
 
 @app.get("/")
 def Home():
