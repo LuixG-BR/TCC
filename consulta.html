@@ -1,0 +1,365 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agenda</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    display:flex;
+    background:#f5f5f5;
+}
+
+/* MENU */
+
+.sidebar{
+    width:170px;
+    background:#d8f1f8;
+    height:100vh;
+    padding-top:20px;
+}
+
+.menu{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    align-items:center;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#000;
+    font-size:18px;
+    padding:12px 20px;
+    border-radius:20px;
+    transition:.3s;
+}
+
+.menu a:hover,
+.menu a.active{
+    background:#fff;
+}
+
+/* CONTEÚDO */
+
+.content{
+    flex:1;
+    padding:30px;
+}
+
+/* TOPO */
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.input-profissional{
+    border:none;
+    background:transparent;
+    font-size:34px;
+    font-weight:bold;
+    outline:none;
+}
+
+.user-area{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.search{
+    width:220px;
+    padding:10px;
+    border:none;
+    border-radius:20px;
+    background:#d9e6ea;
+}
+
+.user-img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background:#ccc;
+}
+
+/* BOTÕES */
+
+.tabs{
+    margin-top:30px;
+    display:flex;
+    gap:10px;
+    background:#fff;
+    width:250px;
+    padding:10px;
+    border-radius:10px;
+    box-shadow:0 2px 5px rgba(0,0,0,.1);
+}
+
+.tabs button{
+    border:none;
+    background:none;
+    padding:8px 15px;
+    cursor:pointer;
+    border-radius:8px;
+}
+
+.tabs .active{
+    background:#bfeaf3;
+}
+
+/* HEADER */
+
+.calendar-header{
+    margin-top:30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.input-mes{
+    width:auto;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.add-btn{
+    background:#bfeaf3;
+    border:none;
+    padding:12px 25px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    margin-top: 30px;
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+.main{
+    margin-top:20px;
+    display:flex;
+    gap:20px;
+}
+
+/* FORM CONSULTA */
+
+.calendar{
+    width:300%;
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    margin-left: 40px;
+    margin-top: -30px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.form-consulta{
+    display:flex;
+    flex-direction:column;
+}
+
+.form-consulta h2{
+    margin-bottom:20px;
+}
+
+.form-consulta label{
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+textarea{
+    min-height:120px;
+    resize:none;
+}
+
+/* PAINEL LATERAL */
+
+.info-panel{
+    width:30%;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+.card{
+    background:#fff;
+    border-radius:15px;
+    padding:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.card h3{
+    color:#6bbfd1;
+    margin-bottom:15px;
+}
+
+.info-item{
+    margin-bottom:10px;
+}
+
+.bottom-icons{
+    display:flex;
+    justify-content:space-around;
+    font-size:24px;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:1000px){
+
+    .main{
+        flex-direction:column;
+    }
+
+    .calendar,
+    .info-panel{
+        width:100%;
+    }
+
+    .sidebar{
+        display:none;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<!-- MENU -->
+
+<div class="sidebar">
+
+    <div class="menu">
+        <a href="agenda.html">Agenda</a>
+    </div>
+
+</div>
+
+<!-- CONTEÚDO -->
+
+<div class="content">
+
+    <!-- TOPO -->
+
+    <div class="top">
+
+        <form>
+            <input
+                type="text"
+                name="nome_profissional"
+                placeholder="Nome do Profissional"
+                class="input-profissional">
+        </form>
+
+
+    </div>
+
+    <!-- HEADER -->
+
+    <div class="calendar-header">
+
+        <form>
+         
+        </form>
+
+
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <div class="main">
+
+        <!-- AGENDAR CONSULTA -->
+
+        <div class="calendar">
+
+            <form class="form-consulta">
+
+                <h2>Agendar Consulta</h2>
+
+                <label>Nome do Paciente</label>
+                <input
+                    type="text"
+                    name="paciente"
+                    required>
+
+                <label>Data da Consulta</label>
+                <input
+                    type="date"
+                    name="data_consulta"
+                    required>
+
+                <label>Horário</label>
+                <input
+                    type="time"
+                    name="hora_consulta"
+                    required>
+
+                <label>Tipo de Atendimento</label>
+
+                <select name="tipo_atendimento">
+
+                    <option value="">
+                        Selecione
+                    </option>
+
+                    <option value="presencial">
+                        Presencial
+                    </option>
+
+                    <option value="online">
+                        Online
+                    </option>
+
+                </select>
+
+                <button
+                    type="submit"
+                    class="add-btn">
+
+                    Agendar Consulta
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- PAINEL LATERAL -->
+
+        <div class="info-panel">
+
+
+            </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

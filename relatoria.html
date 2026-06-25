@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anotações da Consulta</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, sans-serif;
+}
+
+body{
+    background:#f4f7fc;
+    padding:20px;
+}
+
+/* CONTAINER PRINCIPAL */
+.container{
+    background:#fff;
+    border-radius:15px;
+    padding:25px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* TOPO */
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:30px;
+}
+
+.header-left{
+    display:flex;
+    align-items:flex-start;
+    gap:15px;
+}
+
+.icon{
+    width:45px;
+    height:45px;
+    border-radius:12px;
+    background:#eaf1ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    color:#4c7dff;
+}
+
+.header-text h1{
+    font-size:28px;
+    color:#24324a;
+}
+
+.header-text p{
+    color:#7c8ba1;
+    margin-top:5px;
+}
+
+.close{
+    font-size:30px;
+    color:#9ca8bb;
+    cursor:pointer;
+}
+
+/* CONTEÚDO */
+.content{
+    display:flex;
+    gap:30px;
+}
+
+/* LADO ESQUERDO */
+.left{
+    flex:1;
+}
+
+label{
+    display:block;
+    margin-bottom:10px;
+    font-size:14px;
+    font-weight:bold;
+    color:#344054;
+}
+
+/* INPUT */
+.input-box{
+    width:100%;
+    height:50px;
+    border:1px solid #dde3ee;
+    border-radius:10px;
+    padding:0 15px;
+    margin-bottom:25px;
+    outline:none;
+    font-size:15px;
+}
+
+/* EDITOR */
+.editor{
+    border:1px solid #dde3ee;
+    border-radius:12px;
+    overflow:hidden;
+    margin-bottom:25px;
+}
+
+.toolbar{
+    background:#f8f9fc;
+    border-bottom:1px solid #dde3ee;
+    padding:15px;
+    display:flex;
+    gap:20px;
+    color:#6d7890;
+    font-size:18px;
+}
+
+.textarea{
+    width:100%;
+    height:180px;
+    border:none;
+    padding:20px;
+    resize:none;
+    outline:none;
+    font-size:15px;
+}
+
+/* STATUS */
+.status-box{
+    display:flex;
+    gap:15px;
+    margin-bottom:25px;
+}
+
+.card-status{
+    flex:1;
+    border:1px solid #dde3ee;
+    border-radius:12px;
+    padding:18px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.green{
+    border:1px solid #8ee0b0;
+}
+
+.red{
+    border:1px solid #f2c4c4;
+}
+
+.circle{
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:#fff;
+    font-weight:bold;
+}
+
+.green .circle{
+    background:#4bc47b;
+}
+
+.red .circle{
+    background:#ea5d5d;
+}
+
+.status-title{
+    font-weight:bold;
+    color:#344054;
+}
+
+.status-sub{
+    color:#7d8798;
+    font-size:13px;
+}
+
+/* AVISO */
+.notice{
+    background:#eef4ff;
+    padding:18px;
+    border-radius:12px;
+    color:#5070c9;
+    font-size:14px;
+    line-height:1.5;
+}
+
+/* LADO DIREITO */
+.right{
+    width:350px;
+}
+
+.example-card{
+    background:#f9fbff;
+    border:1px solid #e1e8f5;
+    border-radius:20px;
+    padding:20px;
+}
+
+.example-title{
+    margin-bottom:15px;
+    font-weight:bold;
+    color:#475467;
+}
+
+.paper{
+    background:#fff;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 3px 8px rgba(0,0,0,0.08);
+    color:#5f6b84;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.paper strong{
+    color:#4c7dff;
+}
+
+/* RODAPÉ */
+.footer{
+    display:flex;
+    justify-content:flex-end;
+    gap:15px;
+    margin-top:30px;
+}
+
+.cancel-btn{
+    border:1px solid #d0d7e5;
+    background:#fff;
+    color:#475467;
+    width:140px;
+    height:50px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.save-btn{
+    background:#4c7dff;
+    border:none;
+    color:#fff;
+    width:180px;
+    height:50px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* RESPONSIVO */
+@media(max-width:1000px){
+    .content{
+        flex-direction:column;
+    }
+
+    .right{
+        width:100%;
+    }
+
+    .status-box{
+        flex-direction:column;
+    }
+
+    .footer{
+        flex-direction:column;
+    }
+
+    .cancel-btn,
+    .save-btn{
+        width:100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- TOPO -->
+    <div class="header">
+
+        <div class="header-left">
+            <div class="icon">📝</div>
+
+            <div class="header-text">
+                <h1>Anotações da Consulta</h1>
+                <p>Registre as informações da consulta de forma organizada</p>
+            </div>
+        </div>
+
+        <div class="close">✕</div>
+    </div>
+
+    <div class="content">
+
+        <!-- ESQUERDA -->
+        <div class="left">
+
+            <label>Nome do paciente</label>
+            <input type="text"
+            class="input-box"
+            placeholder="Digite o nome do paciente">
+
+            <label>Observação de sintomas</label>
+
+            <div class="editor">
+                <div class="toolbar">
+                    <span>B</span>
+                    <span>/</span>
+                    <span>U</span>
+                    <span>A</span>
+                    <span>☰</span>
+                    <span>🔗</span>
+                    <span>🖼</span>
+                </div>
+
+                <textarea class="textarea"
+                placeholder="Descreva os sintomas que o paciente vem sentindo..."></textarea>
+            </div>
+
+            <label>Andamento do paciente</label>
+
+            <div class="status-box">
+
+                <div class="card-status green">
+                    <div class="circle">✓</div>
+
+                    <div>
+                        <div class="status-title">
+                            Houve melhora
+                        </div>
+
+                        <div class="status-sub">
+                            O paciente apresentou evolução positiva
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-status red">
+                    <div class="circle">✕</div>
+
+                    <div>
+                        <div class="status-title">
+                            Não houve melhora
+                        </div>
+
+                        <div class="status-sub">
+                            O paciente não apresentou evolução
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="notice">
+                ℹ️ Mantenha as anotações sempre atualizadas
+                para garantir um acompanhamento seguro e eficaz
+                do paciente com epilepsia.
+            </div>
+
+        </div>
+
+        <!-- DIREITA -->
+        <div class="right">
+
+            <div class="example-card">
+
+                <div class="example-title">
+                    Exemplo de anotação médica
+                </div>
+
+                <div class="paper">
+                    Paciente com epilepsia em acompanhamento regular.
+                    Relata episódios convulsivos reduzidos em frequência.
+
+                    <br><br>
+
+                    Queixa-se de fadiga e sonolência excessiva ao longo do dia.
+
+                    <br><br>
+
+                    Mantém uso regular da medicação prescrita.
+
+                    <br><br>
+
+                    <strong>Plano:</strong><br>
+                    - Manter medicação atual.<br>
+                    - Retorno em 30 dias.<br>
+                    - Realizar exames de controle.
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
+    <div class="footer">
+        <button class="cancel-btn">
+            Cancelar
+        </button>
+
+        <button class="save-btn">
+            Salvar anotações
+        </button>
+    </div>
+
+</div>
+
+</body>
+</html>

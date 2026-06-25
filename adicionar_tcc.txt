@@ -1,0 +1,4 @@
+adcionar 
+- tela de compra da cinta
+- tela de carrinho
+- tela de pagamento 

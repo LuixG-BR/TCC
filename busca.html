@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iniciar Atendimento</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 50px;
+    overflow:hidden;
+
+    background:linear-gradient(
+        90deg,
+        #b8f0ff 0%,
+        #d0b3ff 40%,
+        #eafcff 100%
+    );
+}
+
+/* BOTÃO VOLTAR */
+
+.back{
+    position:absolute;
+    top:25px;
+    left:25px;
+    font-size:40px;
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
+
+.back:hover{
+    transform:translateX(-5px);
+}
+
+/* LADO ESQUERDO */
+
+.left{
+    width:40%;
+}
+
+.left h1{
+    font-size:48px;
+    line-height:1.2;
+    color:#111;
+    margin-bottom:30px;
+}
+
+.left p{
+    font-size:24px;
+    color:#222;
+    max-width:500px;
+    line-height:1.5;
+}
+
+/* CARD */
+
+.card{
+    width:450px;
+    background:white;
+    border-radius:25px;
+    padding:50px;
+    box-shadow:8px 8px 15px rgba(0,0,0,.15);
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* TITULOS */
+
+.card h2{
+    font-size:30px;
+    color:#222;
+    font-weight:normal;
+    text-align:center;
+}
+
+.subtitle{
+    margin-top:10px;
+    color:#666;
+    font-size:18px;
+    text-align:center;
+}
+
+/* FORM */
+
+form{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* INPUT */
+
+.input-box{
+    margin-top:50px;
+    width:100%;
+    height:75px;
+
+    border:none;
+    border-radius:20px;
+
+    padding:0 25px;
+
+    font-size:22px;
+
+    box-shadow:6px 8px 8px rgba(0,0,0,.12);
+
+    outline:none;
+}
+
+/* BOTÃO */
+
+.start-btn{
+    margin-top:40px;
+
+    width:220px;
+    height:70px;
+
+    border:none;
+    border-radius:18px;
+
+    background:#c6edf7;
+
+    font-size:28px;
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+}
+
+.start-btn:hover{
+    transform:scale(1.03);
+    background:#b0e6f3;
+}
+
+/* RESPONSIVO */
+
+@media(max-width:1100px){
+
+    body{
+        flex-direction:column;
+        justify-content:center;
+        gap:40px;
+        padding:30px;
+        text-align:center;
+    }
+
+    .left{
+        width:100%;
+    }
+
+    .card{
+        width:100%;
+        max-width:500px;
+    }
+
+    .left h1{
+        font-size:38px;
+    }
+
+    .left p{
+        font-size:20px;
+        margin:auto;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- BOTÃO VOLTAR -->
+<a href="perfil.html" class="back">◀</a>
+
+<!-- TEXTO LATERAL -->
+<div class="left">
+
+    <h1>
+        Inicie o Atendimento<br>
+        do Paciente
+    </h1>
+
+    <p>
+        Digite o ID do paciente para acessar o histórico clínico,
+        exames e demais informações relacionadas ao atendimento.
+    </p>
+
+</div>
+
+<!-- CARD -->
+<div class="card">
+
+    <h2>Insira o ID do Paciente</h2>
+
+    <div class="subtitle">
+        Central de Atendimento Neurológico
+    </div>
+
+    <form action="paciente.htmlxz" method="POST">
+
+        <input
+            type="text"
+            name="id_paciente"
+            class="input-box"
+            placeholder="Digite o ID do paciente"
+            required>
+
+        <button type="submit" class="start-btn">
+            Iniciar
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>
