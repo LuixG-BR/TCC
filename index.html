@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>EMPS</title>
   <link rel="stylesheet" href="style.css">
+  <script src="js/api.js"></script>
+  <script src="js/login.js"></script>
 </head>
 
 <body>
@@ -13,7 +16,7 @@
   <header class="navbar">
     <div class="logo">EMPS</div>
 
-    
+
     <nav class="menu">
       <a href="#">CINTA</a>
       <a href="#">PROFISSIONAIS</a>
@@ -86,132 +89,131 @@
     </div>
   </section>
 
- <section class="app">
+  <section class="app">
 
     <div class="phone-app">
-        <img src="img/phone-app.png" alt="">
+      <img src="img/phone-app.png" alt="">
     </div>
 
     <div class="app-text">
-        <h1>
-            Baixe o app EMPS <br>
-            e tenha o cuidado ao seu alcance.
-        </h1>
+      <h1>
+        Baixe o app EMPS <br>
+        e tenha o cuidado ao seu alcance.
+      </h1>
 
-        <p>
-            Com o app da EMPS, o cuidado acontece em tempo real.
-            Acompanhe sinais importantes, receba suporte especializado
-            e mantenha uma conexão rápida e segura entre paciente e médico.
-            Tudo isso em uma plataforma moderna, prática e desenvolvida
-            
-        </p>
+      <p>
+        Com o app da EMPS, o cuidado acontece em tempo real.
+        Acompanhe sinais importantes, receba suporte especializado
+        e mantenha uma conexão rápida e segura entre paciente e médico.
+        Tudo isso em uma plataforma moderna, prática e desenvolvida
 
-        <button class="btn-app">
-            Baixar
-        </button>
+      </p>
+
+      <button class="btn-app">
+        Baixar
+      </button>
     </div>
 
-</section>
+  </section>
 
-<!-- LOGIN / DASHBOARD -->
-<section class="emps-login">
+  <!-- LOGIN / DASHBOARD -->
+  <section class="emps-login">
 
     <!-- PAINEL -->
     <div class="dashboard">
 
-        <h2>Smart Sizing</h2>
+      <h2>Smart Sizing</h2>
 
-        <div class="data-box">
-            <span>Altura (cm)</span>
-            <strong>175</strong>
-        </div>
+      <div class="data-box">
+        <span>Altura (cm)</span>
+        <strong>175</strong>
+      </div>
 
-        <div class="data-box">
-            <span>Peso (kg)</span>
-            <strong>72.5</strong>
-        </div>
+      <div class="data-box">
+        <span>Peso (kg)</span>
+        <strong>72.5</strong>
+      </div>
 
-        <div class="data-box">
-            <span>Idade</span>
-            <strong>34</strong>
-        </div>
+      <div class="data-box">
+        <span>Idade</span>
+        <strong>34</strong>
+      </div>
 
-        <div class="data-box">
-            <span>IMC</span>
-            <strong>23.7</strong>
-        </div>
+      <div class="data-box">
+        <span>IMC</span>
+        <strong>23.7</strong>
+      </div>
 
-        <button class="btn-analisar">
-            ANALISAR DADOS
-        </button>
+      <button class="btn-analisar">
+        ANALISAR DADOS
+      </button>
 
     </div>
 
     <!-- PERSONAGEM -->
     <div class="character-section">
 
-        <div class="circle-glow"></div>
+      <div class="circle-glow"></div>
 
-        <div class="character">
+      <div class="character">
 
-            <div class="head"></div>
+        <div class="head"></div>
 
-            <div class="body-character"></div>
+        <div class="body-character"></div>
 
-            <div class="arm left-arm"></div>
-            <div class="arm right-arm"></div>
+        <div class="arm left-arm"></div>
+        <div class="arm right-arm"></div>
 
-            <div class="leg left-leg"></div>
-            <div class="leg right-leg"></div>
+        <div class="leg left-leg"></div>
+        <div class="leg right-leg"></div>
 
-        </div>
+      </div>
 
     </div>
 
     <!-- LOGIN -->
     <div class="login-card" id="loginCard">
 
-        <h1>EMPS</h1>
+      <h1>EMPS</h1>
 
-        <p class="subtitle">
-            Plataforma médica inteligente
-        </p>
+      <p class="subtitle">
+        Plataforma médica inteligente
+      </p>
 
-        <div class="input-group">
-            <label>CRM</label>
-            <input type="text" placeholder="Digite seu CRM">
-        </div>
+      <div class="input-group">
+        <label>CRM</label>
+        <input type="text" placeholder="Digite seu CRM" id="email">
+      </div>
 
-        <div class="input-group">
-            <label>Senha</label>
-            <input type="password" placeholder="Digite sua senha">
-        </div>
+      <div class="input-group">
+        <label>Senha</label>
+        <input type="password" placeholder="Digite sua senha" id="senha">
+      </div>
 
-        <button class="btn-login">
-          <a href="perfil.html">Entrar</a>
-       </button>
+      <button class="btn-login" onclick="login()">Entrar</button>
 
-        <button class="btn-login">
-          <a href="CadastroMedico.html">Criar conta</a>
-       </button>
+      <button class="btn-login">
+        <a href="CadastroMedico.html">Criar conta</a>
+      </button>
 
     </div>
 
-</section>
+  </section>
 
-<script>
+  <script>
 
-const loginCard = document.getElementById('loginCard')
+    const loginCard = document.getElementById('loginCard')
 
-loginCard.addEventListener('click', () => {
+    loginCard.addEventListener('click', () => {
 
-    loginCard.classList.toggle('active')
+      loginCard.classList.toggle('active')
 
-})
+    })
 
-</script>
+  </script>
 
 
 
 </body>
+
 </html>
