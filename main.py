@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.openapi.utils import get_openapi
 
 from database import Base, engine
 
@@ -10,12 +11,14 @@ from routers import medico
 from routers import paciente_medico
 from routers import dispositivo
 from routers import monitoramento
+from routers import login
 
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(
-    title="EMPS API"
+    title="EMPS API",
+    version="0.1.0"
 )
 
 app.add_middleware(
@@ -32,6 +35,7 @@ app.include_router(medico.router)
 app.include_router(paciente_medico.router)
 app.include_router(dispositivo.router)
 app.include_router(monitoramento.router)
+app.include_router(login.router)
 
 @app.get("/")
 def Home():
