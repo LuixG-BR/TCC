@@ -1,15 +1,19 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
 from database import conectar
 
 from schemas.usuario import UsuarioCreate
 
 from controllers.usuario import (criar_usuario, listar_usuarios)
+from core.security import verificar_token
+
 
 router = APIRouter(
     prefix="/usuarios",
     tags=["Usuários"]
 )
+
 
 @router.post("/")
 def cadastrar_usuario(
@@ -27,9 +31,8 @@ def cadastrar_usuario(
 
 
 @router.get("/")
-def buscar_usuarios():
-
-    db = conectar()
-    resultado = listar_usuarios(db)
-    db.close()
-    return resultado
+def buscar_usuarios(
+    db: Session = Depends(conectar),
+    usuario = Depends(verificar_token)
+):
+    return listar_usuarios(db)
