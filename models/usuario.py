@@ -33,7 +33,7 @@ class Usuario(Base):
     )
 
     telefone = Column(
-        String(20)
+        String(15)
     )
 
     status = Column(

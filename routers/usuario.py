@@ -15,6 +15,7 @@ router = APIRouter(
     tags=["Usuários"]
 )
 
+
 @router.post("/")
 def cadastrar_usuario(
     usuario: UsuarioCreate
