@@ -58,7 +58,7 @@ async function login() {
 
         // redireciona
         setTimeout(() => {
-            window.location.href = "CadastroMedico.html";
+            window.location.href = "perfil.html";
         }, 1000);
 
     }

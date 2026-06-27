@@ -1,73 +1,72 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dashboard EMPS</title>
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="emps-dashboard">
+  <div class="emps-dashboard">
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    
-    <a href="busca.html" class="btn-consulta">+</a>
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
 
-    <nav class="active">
-      <a class="active-perfil">Perfil</a>
-      <a href="ficha.html">Ficha de Pacientes</a>
-      <a href="agenda.html">Agenda</a>
-    </nav>
-  </aside>
+      <a href="busca.html" class="btn-consulta">+</a>
 
-  <!-- MAIN -->
-  <main class="main">
+      <nav class="active">
+        <a class="active-perfil">Perfil</a>
+        <a href="ficha.html">Ficha de Pacientes</a>
+        <a href="agenda.html">Agenda</a>
+      </nav>
+    </aside>
 
-    <!-- CARD PERFIL -->
-    <div class="profile-card">
-      <img src= "img/img03.jfif" alt="médica">
+    <!-- MAIN -->
+    <main class="main">
 
-      <div class="profile-info">
-        <h2>Laura Macedo</h2>
-        <p>CRM: 123456-SP</p>
-        <p>especialidade: neurologista</p>
-        <p>(13) 99608-1078</p>
-        <p>dr.lauramacedo@gmail.com</p>
+      <!-- CARD PERFIL -->
+      <div class="profile-card">
+        <img src="img/img03.jfif" alt="médica">
+
+        <div class="profile-info" id="perfil">
+          Carregando...
+        </div>
       </div>
-    </div>
 
-    <!-- CONSULTAS -->
-    <h3 class="title">Consultas Recentes</h3>
-    <div class="card">
-      <div class="icon">👤</div>
-      <div class="text">
-        <h4>João da Silva</h4>
-        <p>Paciente relatou melhora dos sintomas após início do tratamento. Orientado a manter medicação e retornar em 30 dias.</p>
+      <!-- CONSULTAS -->
+      <h3 class="title">Consultas Recentes</h3>
+      <div class="card">
+        <div class="icon">👤</div>
+        <div class="text">
+          <h4>João da Silva</h4>
+          <p>Paciente relatou melhora dos sintomas após início do tratamento. Orientado a manter medicação e retornar em
+            30 dias.</p>
+        </div>
+        <div class="arrow">↗</div>
       </div>
-      <div class="arrow">↗</div>
-    </div>
-    
 
-    <div class="card">
-      <div class="icon">👤</div>
-      <div class="text">
-        <h4>Maria Oliveira</h4>
-        <p>Consulta de rotina. Exames dentro dos parâmetros normais. Reforçadas orientações sobre alimentação e atividade física.</p>
+
+      <div class="card">
+        <div class="icon">👤</div>
+        <div class="text">
+          <h4>Maria Oliveira</h4>
+          <p>Consulta de rotina. Exames dentro dos parâmetros normais. Reforçadas orientações sobre alimentação e
+            atividade física.</p>
+        </div>
+        <div class="arrow">↗</div>
       </div>
-      <div class="arrow">↗</div>
-    </div>
-
-   
-    
-
-  </main>
-
-</div>
 
 
 
+
+    </main>
+
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/perfil.js"></script>
 </body>
+
 </html>
