@@ -20,3 +20,13 @@ class UsuarioResponse(BaseModel):
 
     class Config:
         from_attributes = True
+    
+class UsuarioMeResponse(BaseModel):
+
+    id_usuario: int
+    nome: str
+    email: str
+    perfil: int
+
+    class Config:
+        from_attributes = True
