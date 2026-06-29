@@ -40,56 +40,38 @@ def buscar_usuarios():
     return resultado
 
 
-@router.get("/me")
+@router.get("/usuarios/me")
 def usuario_logado(
-    db: Session = Depends(conectar),
-    token = Depends(verificar_token)
+usuario_token = Depends(verificar_token),
+db: Session = Depends(conectar)
 ):
-    id_usuario = token["sub"]
+    
+    id_usuario = int(usuario_token["sub"])
 
-    usuario = db.query(Usuario).filter(
-        Usuario.id_usuario == id_usuario
-    ).first()
-
-
-    if not usuario:
-        raise HTTPException(
-            status_code=404,
-            detail="Usuário não encontrado"
+    usuario = (
+        db.query(Usuario)
+        .filter(
+            Usuario.id_usuario == id_usuario
         )
+        .first()
+    )
 
     resposta = {
         "id_usuario": usuario.id_usuario,
         "nome": usuario.nome,
         "email": usuario.email,
-        "perfil": usuario.id_perfil.nome
+        "perfil": usuario.id_perfil
     }
 
-    if usuario.id_perfil.nome == "Medico":
+    if usuario.id_perfil == 2:
+        medico = (
+        db.query(Medico)
+        .filter(
+            Medico.id_usuario == id_usuario
+            ).first()
+        )
         
-        medico = db.query(Medico).filter(
-            Medico.id_usuario == usuario.id_usuario
-        ).first()
-
-        resposta["medico"] = {
-            "id_medico": medico.id_medico,
-            "nome": usuario.nome,
-            "crm": medico.crm,
-            "especialidade": medico.especialidade,
-            "telefone": usuario.telefone,
-            "email": usuario.email
-        }
-
-    elif usuario.id_perfil.nome == "Paciente":
-
-        paciente = db.query(Paciente).filter(
-            Paciente.id_usuario == usuario.id_usuario
-        ).first()
-        
-        resposta["paciente"] = {
-            "id_paciente": paciente.id_paciente,
-            "cpf": paciente.cpf,
-            "tipo_sanguineo": paciente.tipo_sanguineo
-        }
+        resposta["crm"] = medico.crm
+        resposta["especialidade"] = medico.especialidade
 
     return resposta
