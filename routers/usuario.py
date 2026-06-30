@@ -40,7 +40,7 @@ def buscar_usuarios():
     return resultado
 
 
-@router.get("/usuarios/me")
+@router.get("/me")
 def usuario_logado(
 usuario_token = Depends(verificar_token),
 db: Session = Depends(conectar)
