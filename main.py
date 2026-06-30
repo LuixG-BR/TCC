@@ -40,7 +40,7 @@ app.include_router(login.router)
 @app.get("/")
 def Home():
     return {
-        "Mensagem": "API medicos e pacientes",
+        "Mensagem": "Backend EMPS",
         "Status": "Online"
     }
 

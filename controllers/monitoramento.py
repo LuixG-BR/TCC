@@ -45,7 +45,7 @@ def registrar_monitoramento(db, dados: MonitoramentoCreate):
         id_dispositivo=dados.id_dispositivo,
         frequencia_cardiaca=dados.frequencia_cardiaca,
         movimento=dados.movimento,
-        status=status
+        status=dados.status
     )
 
     db.add(novo)

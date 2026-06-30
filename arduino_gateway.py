@@ -45,7 +45,7 @@ while True:
 
                 "id_paciente": 1,
                 "id_dispositivo": 1,
-                "bpm": bpm,
+                "frequencia_cardiaca": bpm,
                 "movimento": movimento,
                 "status": status
             }
@@ -54,10 +54,6 @@ while True:
                 API,
                 json=dados
             )
-
-            print("Resposta API:")
-            print(resposta.status_code)
-            print(resposta.text)
 
         else:
             print("Normal - não enviado")
