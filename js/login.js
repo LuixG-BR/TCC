@@ -9,8 +9,7 @@ async function login() {
     const dados = new URLSearchParams();
 
     dados.append("username", email);
-    dados.append("password", senha
-    );
+    dados.append("password", senha);
 
     try {
 

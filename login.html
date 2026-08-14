@@ -1,0 +1,1895 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EMPS - Login</title>
+
+    <!-- FONT AWESOME -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        /* =========================================
+           CORES
+        ========================================= */
+
+        :root {
+
+            --cor-principal: #6123b6;
+
+            --cor-principal-hover: #541ca6;
+
+            --cor-clara: #f4eef9;
+
+            --cor-icone: #6d35b8;
+
+            --cor-foco: #7132c3;
+
+        }
+
+
+        body {
+
+            font-family: Arial, Helvetica, sans-serif;
+
+            background: #ffffff;
+
+            color: #1f163d;
+
+            min-height: 100vh;
+
+            transition:
+                color 0.5s ease;
+
+        }
+
+
+        /* =========================================
+           PÁGINA
+        ========================================= */
+
+        .pagina {
+
+            width: 100%;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 30px 5%;
+
+            transition:
+                background 0.5s ease;
+
+        }
+
+
+        /* =========================================
+           CONTAINER
+        ========================================= */
+
+        .container {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            display: grid;
+
+            grid-template-columns: 430px 430px;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 70px;
+
+        }
+
+
+        /* =========================================
+           LOGIN
+        ========================================= */
+
+        .login-area {
+
+            width: 100%;
+
+            max-width: 430px;
+
+        }
+
+
+        /* =========================================
+           LOGO
+        ========================================= */
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            margin-bottom: 10px;
+
+            font-size: 27px;
+
+            font-weight: 800;
+
+            color: var(--cor-principal);
+
+            transition:
+                color 0.5s ease;
+
+        }
+
+
+        .logo-icon {
+
+            width: 32px;
+
+            height: 28px;
+
+            background: var(--cor-principal);
+
+            clip-path: polygon(
+                50% 0%,
+                63% 10%,
+                75% 27%,
+                87% 20%,
+                100% 33%,
+                95% 52%,
+                75% 70%,
+                50% 100%,
+                25% 70%,
+                5% 52%,
+                0% 33%,
+                13% 20%,
+                25% 27%,
+                37% 10%
+            );
+
+            transition:
+                background 0.5s ease;
+
+        }
+
+
+        /* =========================================
+           TÍTULO
+        ========================================= */
+
+        .titulo {
+
+            text-align: center;
+
+            font-size: 22px;
+
+            font-weight: 800;
+
+            color: #26194a;
+
+            margin-bottom: 6px;
+
+            transition:
+                color 0.5s ease;
+
+        }
+
+
+        .subtitulo {
+
+            text-align: center;
+
+            color: #7e778d;
+
+            font-size: 12px;
+
+            margin-bottom: 22px;
+
+        }
+
+
+        /* =========================================
+           PACIENTE / MÉDICO
+        ========================================= */
+
+        .tipo-login {
+
+            width: 100%;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            border: 1px solid #e2ddea;
+
+            border-radius: 7px;
+
+            overflow: hidden;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .tipo-btn {
+
+            border: none;
+
+            background: #ffffff;
+
+            padding: 12px 8px;
+
+            cursor: pointer;
+
+            color: #565064;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            transition:
+                background 0.5s ease,
+                color 0.5s ease;
+
+        }
+
+
+        .tipo-btn i {
+
+            font-size: 13px;
+
+        }
+
+
+        .tipo-btn.ativo {
+
+            background: var(--cor-principal);
+
+            color: white;
+
+        }
+
+
+        .tipo-btn:hover {
+
+            background: var(--cor-clara);
+
+        }
+
+
+        .tipo-btn.ativo:hover {
+
+            background: var(--cor-principal);
+
+        }
+
+
+        /* =========================================
+           CAMPOS
+        ========================================= */
+
+        .campo {
+
+            margin-bottom: 14px;
+
+        }
+
+
+        .campo label {
+
+            display: block;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            margin-bottom: 6px;
+
+            color: #3b3452;
+
+        }
+
+
+        .input-box {
+
+            position: relative;
+
+        }
+
+
+        .input-icon {
+
+            position: absolute;
+
+            left: 13px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            color: var(--cor-icone);
+
+            font-size: 13px;
+
+            z-index: 2;
+
+            transition:
+                color 0.5s ease;
+
+        }
+
+
+        .input-icon i {
+
+            font-size: 13px;
+
+        }
+
+
+        .input-box input {
+
+            width: 100%;
+
+            height: 42px;
+
+            padding: 0 40px;
+
+            border: 1px solid #ded8e8;
+
+            border-radius: 6px;
+
+            background: #faf9fd;
+
+            outline: none;
+
+            color: #312b3d;
+
+            font-size: 12px;
+
+            transition:
+                border-color 0.3s ease,
+                background 0.5s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .input-box input::placeholder {
+
+            color: #a7a1af;
+
+        }
+
+
+        .input-box input:focus {
+
+            border-color: var(--cor-foco);
+
+            box-shadow:
+                0 0 0 2px rgba(97, 35, 182, 0.08);
+
+        }
+
+
+        /* =========================================
+           ERRO / SUCESSO
+        ========================================= */
+
+        .input-box.erro input {
+
+            border-color: #d93025;
+
+            background: #fff8f8;
+
+            box-shadow:
+                0 0 0 2px rgba(217, 48, 37, 0.06);
+
+        }
+
+
+        .input-box.sucesso input {
+
+            border-color: #36a269;
+
+            background: #f7fffa;
+
+        }
+
+
+        /* =========================================
+           SENHA
+        ========================================= */
+
+        .mostrar-senha {
+
+            position: absolute;
+
+            right: 13px;
+
+            top: 50%;
+
+            transform: translateY(-50%);
+
+            cursor: pointer;
+
+            color: #777080;
+
+            font-size: 14px;
+
+        }
+
+
+        .mostrar-senha i {
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================
+           OPÇÕES
+        ========================================= */
+
+        .opcoes {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 16px;
+
+            font-size: 11px;
+
+        }
+
+
+        .lembrar {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: #7a7482;
+
+        }
+
+
+        .lembrar input {
+
+            accent-color: var(--cor-principal);
+
+        }
+
+
+        .esqueci {
+
+            color: var(--cor-principal);
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            transition:
+                color 0.5s ease;
+
+        }
+
+
+        .esqueci:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* =========================================
+           BOTÃO ENTRAR
+        ========================================= */
+
+        .btn-entrar {
+
+            width: 100%;
+
+            border: none;
+
+            padding: 12px;
+
+            border-radius: 6px;
+
+            background: var(--cor-principal);
+
+            color: white;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            transition:
+                background 0.5s ease,
+                transform 0.2s ease;
+
+        }
+
+
+        .btn-entrar:hover {
+
+            background: var(--cor-principal-hover);
+
+            transform: translateY(-1px);
+
+        }
+
+
+        /* =========================================
+           MENSAGEM DE ERRO
+        ========================================= */
+
+        .mensagem-erro {
+
+            display: none;
+
+            margin-top: 12px;
+
+            padding: 10px;
+
+            border-radius: 6px;
+
+            background: #fff1f1;
+
+            border: 1px solid #f1bcbc;
+
+            color: #c62828;
+
+            font-size: 11px;
+
+            text-align: center;
+
+        }
+
+
+        .mensagem-erro.mostrar {
+
+            display: block;
+
+        }
+
+
+        /* =========================================
+           DIVISOR
+        ========================================= */
+
+        .divisor {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            margin: 16px 0;
+
+            color: #9a94a3;
+
+            font-size: 11px;
+
+        }
+
+
+        .divisor::before,
+        .divisor::after {
+
+            content: "";
+
+            flex: 1;
+
+            height: 1px;
+
+            background: #e5e1e9;
+
+        }
+
+
+        /* =========================================
+           GOOGLE
+        ========================================= */
+
+        .btn-google {
+
+            width: 100%;
+
+            height: 42px;
+
+            background: #ffffff;
+
+            border: 1px solid #ddd8e5;
+
+            border-radius: 6px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 8px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            color: #554e5e;
+
+        }
+
+
+        .btn-google:hover {
+
+            background: #faf8fc;
+
+        }
+
+
+        .google-icon {
+
+            font-weight: 900;
+
+            font-size: 16px;
+
+            color: #4285f4;
+
+        }
+
+
+        /* =========================================
+           CADASTRO
+        ========================================= */
+
+        .cadastro {
+
+            text-align: center;
+
+            margin-top: 15px;
+
+            color: #827b8b;
+
+            font-size: 11px;
+
+        }
+
+
+        .cadastro a {
+
+            color: var(--cor-principal);
+
+            font-weight: 700;
+
+            text-decoration: none;
+
+            transition:
+                color 0.5s ease;
+
+        }
+
+
+        .cadastro a:hover {
+
+            text-decoration: underline;
+
+        }
+
+
+        /* =========================================
+           MASCOTE
+        ========================================= */
+
+        .mascote-area {
+
+            width: 100%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+        }
+
+
+        .mascote-area img {
+
+            width: 390px;
+
+            max-width: 100%;
+
+            object-fit: contain;
+
+            filter: none;
+
+            box-shadow: none;
+
+        }
+
+
+        /* =========================================
+           TRANSIÇÃO MÉDICO
+        ========================================= */
+
+        body.medico {
+
+            --cor-principal: #2997d8;
+
+            --cor-principal-hover: #2183bd;
+
+            --cor-clara: #eaf7ff;
+
+            --cor-icone: #2997d8;
+
+            --cor-foco: #2997d8;
+
+        }
+
+
+        body.medico .input-box input {
+
+            background: #f5fbff;
+
+        }
+
+
+        body.medico .titulo {
+
+            color: #193b50;
+
+        }
+
+
+        body.medico .input-box input:focus {
+
+            box-shadow:
+                0 0 0 2px rgba(41, 151, 216, 0.10);
+
+        }
+
+
+        /* =========================================
+           RESPONSIVO
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .container {
+
+                grid-template-columns: 1fr;
+
+                max-width: 500px;
+
+                gap: 35px;
+
+            }
+
+
+            .login-area {
+
+                margin: 0 auto;
+
+            }
+
+
+            .mascote-area {
+
+                order: -1;
+
+            }
+
+
+            .mascote-area img {
+
+                width: 280px;
+
+            }
+
+        }
+
+
+        @media (max-width: 520px) {
+
+            .pagina {
+
+                padding: 20px;
+
+            }
+
+
+            .login-area {
+
+                max-width: 100%;
+
+            }
+
+
+            .logo {
+
+                font-size: 24px;
+
+            }
+
+
+            .titulo {
+
+                font-size: 20px;
+
+            }
+
+
+            .subtitulo {
+
+                font-size: 11px;
+
+            }
+
+
+            .tipo-btn {
+
+                font-size: 12px;
+
+            }
+
+
+            .mascote-area img {
+
+                width: 230px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="pagina">
+
+
+    <div class="container">
+
+
+        <!-- =====================================
+             FORMULÁRIO
+        ====================================== -->
+
+        <div class="login-area">
+
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                <div class="logo-icon"></div>
+
+                EMPS
+
+            </div>
+
+
+            <h1 class="titulo">
+
+                BEM-VINDO DE VOLTA!
+
+            </h1>
+
+
+            <p class="subtitulo">
+
+                Entre com seus dados para acessar sua conta
+
+            </p>
+
+
+
+            <!-- =====================================
+                 TIPO DE USUÁRIO
+            ====================================== -->
+
+            <div class="tipo-login">
+
+
+                <button
+                    type="button"
+                    class="tipo-btn ativo"
+                    id="btnPaciente"
+                    onclick="selecionarTipo('paciente')"
+                >
+
+                    <i class="fa-solid fa-user"></i>
+
+                    Paciente
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="tipo-btn"
+                    id="btnMedico"
+                    onclick="selecionarTipo('medico')"
+                >
+
+                    <i class="fa-solid fa-user-doctor"></i>
+
+                    Médico
+
+                </button>
+
+
+            </div>
+
+
+
+            <!-- =====================================
+                 CAMPOS
+            ====================================== -->
+
+            <div id="campos">
+
+
+                <!-- NOME -->
+
+                <div class="campo">
+
+                    <label id="label1">
+
+                        Nome Completo
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <span
+                            class="input-icon"
+                            id="icone1"
+                        >
+
+                            <i class="fa-solid fa-user"></i>
+
+                        </span>
+
+
+                        <input
+                            type="text"
+                            id="campo1"
+                            placeholder="Digite seu nome completo"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- DATA / CRM -->
+
+                <div class="campo">
+
+                    <label id="label2">
+
+                        Data de Nascimento
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <span
+                            class="input-icon"
+                            id="icone2"
+                        >
+
+                            <i class="fa-solid fa-calendar"></i>
+
+                        </span>
+
+
+                        <input
+                            type="text"
+                            id="campo2"
+                            placeholder="DD / MM / AAAA"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- EMAIL -->
+
+                <div class="campo">
+
+                    <label id="label3">
+
+                        E-mail
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <span
+                            class="input-icon"
+                            id="icone3"
+                        >
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                        </span>
+
+
+                        <input
+                            type="email"
+                            id="campo3"
+                            placeholder="Digite seu e-mail"
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SENHA -->
+
+                <div class="campo">
+
+                    <label id="label4">
+
+                        Senha
+
+                    </label>
+
+
+                    <div class="input-box">
+
+                        <span class="input-icon">
+
+                            <i class="fa-solid fa-lock"></i>
+
+                        </span>
+
+
+                        <input
+                            type="password"
+                            placeholder="Digite sua senha"
+                            id="senha"
+                        >
+
+
+                        <span
+                            class="mostrar-senha"
+                            onclick="mostrarSenha()"
+                        >
+
+                            <i
+                                id="iconeSenha"
+                                class="fa-solid fa-eye"
+                            ></i>
+
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =====================================
+                 OPÇÕES
+            ====================================== -->
+
+            <div class="opcoes">
+
+
+                <label class="lembrar">
+
+                    <input type="checkbox">
+
+                    Lembrar de mim
+
+                </label>
+
+
+                <a
+                    href="#"
+                    class="esqueci"
+                >
+
+                    Esqueci minha senha
+
+                </a>
+
+
+            </div>
+
+
+
+            <!-- =====================================
+                 ENTRAR
+            ====================================== -->
+
+            <button
+                type="button"
+                class="btn-entrar"
+                onclick="entrar()"
+            >
+
+                Entrar
+
+            </button>
+
+
+            <!-- MENSAGEM DE ERRO -->
+
+            <p
+                id="mensagemErro"
+                class="mensagem-erro"
+            ></p>
+
+
+
+            <!-- =====================================
+                 DIVISOR
+            ====================================== -->
+
+            <div class="divisor">
+
+                ou
+
+            </div>
+
+
+
+            <!-- =====================================
+                 GOOGLE
+            ====================================== -->
+
+            <button
+                type="button"
+                class="btn-google"
+            >
+
+                <span class="google-icon">
+
+                    G
+
+                </span>
+
+                Entrar com Google
+
+            </button>
+
+
+
+            <!-- =====================================
+                 CADASTRO
+            ====================================== -->
+
+            <p class="cadastro">
+
+                Ainda não tem uma conta?
+
+                <a href="cadastro.html">
+
+                    Cadastre-se
+
+                </a>
+
+            </p>
+
+
+        </div>
+
+
+
+        <!-- =====================================
+             MASCOTE
+        ====================================== -->
+
+        <div class="mascote-area">
+
+            <img
+                src="img/mascote.jpeg"
+                alt="Mascote EMPS"
+            >
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+    /* =========================================
+       SELECIONAR PACIENTE / MÉDICO
+    ========================================= */
+
+    function selecionarTipo(tipo) {
+
+
+        const paciente =
+            document.getElementById("btnPaciente");
+
+
+        const medico =
+            document.getElementById("btnMedico");
+
+
+        const body =
+            document.body;
+
+
+        const label1 =
+            document.getElementById("label1");
+
+
+        const label2 =
+            document.getElementById("label2");
+
+
+        const label3 =
+            document.getElementById("label3");
+
+
+        const campo1 =
+            document.getElementById("campo1");
+
+
+        const campo2 =
+            document.getElementById("campo2");
+
+
+        const campo3 =
+            document.getElementById("campo3");
+
+
+        const icone1 =
+            document.getElementById("icone1");
+
+
+        const icone2 =
+            document.getElementById("icone2");
+
+
+        const icone3 =
+            document.getElementById("icone3");
+
+
+        /* Limpa os campos */
+
+        campo1.value = "";
+
+        campo2.value = "";
+
+        campo3.value = "";
+
+        document.getElementById("senha").value = "";
+
+
+        /* Limpa erros */
+
+        document
+            .querySelectorAll(".input-box")
+            .forEach(box => {
+
+                box.classList.remove("erro");
+
+                box.classList.remove("sucesso");
+
+            });
+
+
+        const mensagem =
+            document.getElementById("mensagemErro");
+
+        mensagem.innerText = "";
+
+        mensagem.classList.remove("mostrar");
+
+
+        /* =====================================
+           PACIENTE
+        ====================================== */
+
+        if (tipo === "paciente") {
+
+
+            paciente.classList.add("ativo");
+
+            medico.classList.remove("ativo");
+
+
+            body.classList.remove("medico");
+
+
+            label1.innerText =
+                "Nome Completo";
+
+
+            campo1.placeholder =
+                "Digite seu nome completo";
+
+
+            icone1.innerHTML =
+                '<i class="fa-solid fa-user"></i>';
+
+
+            label2.innerText =
+                "Data de Nascimento";
+
+
+            campo2.placeholder =
+                "DD / MM / AAAA";
+
+
+            icone2.innerHTML =
+                '<i class="fa-solid fa-calendar"></i>';
+
+
+            label3.innerText =
+                "E-mail";
+
+
+            campo3.placeholder =
+                "Digite seu e-mail";
+
+
+            icone3.innerHTML =
+                '<i class="fa-solid fa-envelope"></i>';
+
+        }
+
+
+        /* =====================================
+           MÉDICO
+        ====================================== */
+
+        else {
+
+
+            medico.classList.add("ativo");
+
+            paciente.classList.remove("ativo");
+
+
+            body.classList.add("medico");
+
+
+            label1.innerText =
+                "Nome do Médico";
+
+
+            campo1.placeholder =
+                "Digite seu nome completo";
+
+
+            icone1.innerHTML =
+                '<i class="fa-solid fa-user-doctor"></i>';
+
+
+            label2.innerText =
+                "CRM";
+
+
+            campo2.placeholder =
+                "Digite seu CRM";
+
+
+            icone2.innerHTML =
+                '<i class="fa-solid fa-id-card"></i>';
+
+
+            label3.innerText =
+                "E-mail profissional";
+
+
+            campo3.placeholder =
+                "Digite seu e-mail profissional";
+
+
+            icone3.innerHTML =
+                '<i class="fa-solid fa-envelope"></i>';
+
+        }
+
+    }
+
+
+
+    /* =========================================
+       VALIDAR LOGIN
+    ========================================= */
+
+    function entrar() {
+
+
+        const paciente =
+            document.getElementById("btnPaciente");
+
+
+        const medico =
+            document.getElementById("btnMedico");
+
+
+        const mensagem =
+            document.getElementById("mensagemErro");
+
+
+        const campo1 =
+            document.getElementById("campo1");
+
+
+        const campo2 =
+            document.getElementById("campo2");
+
+
+        const campo3 =
+            document.getElementById("campo3");
+
+
+        const senha =
+            document.getElementById("senha");
+
+
+        const valor1 =
+            campo1.value.trim();
+
+
+        const valor2 =
+            campo2.value.trim();
+
+
+        const valor3 =
+            campo3.value.trim();
+
+
+        const valorSenha =
+            senha.value.trim();
+
+
+        /* Limpa mensagens */
+
+        mensagem.innerText = "";
+
+        mensagem.classList.remove("mostrar");
+
+
+        /* Limpa estados */
+
+        document
+            .querySelectorAll(".input-box")
+            .forEach(box => {
+
+                box.classList.remove("erro");
+
+                box.classList.remove("sucesso");
+
+            });
+
+
+        /* =====================================
+           CAMPOS VAZIOS
+        ====================================== */
+
+        if (
+            valor1 === "" ||
+            valor2 === "" ||
+            valor3 === "" ||
+            valorSenha === ""
+        ) {
+
+
+            mostrarErro(
+                "Preencha todos os campos antes de entrar."
+            );
+
+
+            marcarCamposVazios();
+
+
+            return;
+
+        }
+
+
+        /* =====================================
+           E-MAIL
+        ====================================== */
+
+        const emailValido =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        if (!emailValido.test(valor3)) {
+
+
+            mostrarErro(
+                "Digite um e-mail válido."
+            );
+
+
+            campo3
+                .parentElement
+                .classList.add("erro");
+
+
+            campo3.focus();
+
+
+            return;
+
+        }
+
+
+        /* =====================================
+           SENHA
+        ====================================== */
+
+        if (valorSenha.length < 6) {
+
+
+            mostrarErro(
+                "A senha deve possuir pelo menos 6 caracteres."
+            );
+
+
+            senha
+                .parentElement
+                .classList.add("erro");
+
+
+            senha.focus();
+
+
+            return;
+
+        }
+
+
+        /* =====================================
+           PACIENTE
+        ====================================== */
+
+        if (paciente.classList.contains("ativo")) {
+
+
+            if (!validarData(valor2)) {
+
+
+                mostrarErro(
+                    "Digite uma data de nascimento válida. Exemplo: 10/05/2000."
+                );
+
+
+                campo2
+                    .parentElement
+                    .classList.add("erro");
+
+
+                campo2.focus();
+
+
+                return;
+
+            }
+
+
+            marcarCamposSucesso();
+
+
+            setTimeout(function() {
+
+        /* =====================================
+           ALTERAR AQUI A ENTRADA DO BOTAO DO PACIENTE APOS A CRIÇÃO DA TELA 
+        ====================================== */
+                window.location.href =
+                    "InterfacePac.html.html";
+
+
+            }, 400);
+
+
+        }
+
+
+        /* =====================================
+           MÉDICO
+        ====================================== */
+
+        else if (medico.classList.contains("ativo")) {
+
+
+            if (valor2.length < 4) {
+
+
+                mostrarErro(
+                    "Digite um CRM válido."
+                );
+
+
+                campo2
+                    .parentElement
+                    .classList.add("erro");
+
+
+                campo2.focus();
+
+
+                return;
+
+            }
+
+
+            marcarCamposSucesso();
+
+
+            setTimeout(function() {
+
+        /* =====================================
+           ALTERAR AQUI A ENTRADA DO BOTAO DO MEDICO APOS A CRIÇÃO DA TELA 
+        ====================================== */
+
+                window.location.href =
+                    ".html";
+
+
+            }, 400);
+
+        }
+
+    }
+
+
+
+    /* =========================================
+       MENSAGEM DE ERRO
+    ========================================= */
+
+    function mostrarErro(texto) {
+
+
+        const mensagem =
+            document.getElementById("mensagemErro");
+
+
+        mensagem.innerText = texto;
+
+
+        mensagem.classList.add("mostrar");
+
+    }
+
+
+
+    /* =========================================
+       CAMPOS VAZIOS
+    ========================================= */
+
+    function marcarCamposVazios() {
+
+
+        const campos =
+            document.querySelectorAll(
+                ".input-box input"
+            );
+
+
+        campos.forEach(function(campo) {
+
+
+            if (campo.value.trim() === "") {
+
+
+                campo.parentElement
+                    .classList.add("erro");
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =========================================
+       CAMPOS CORRETOS
+    ========================================= */
+
+    function marcarCamposSucesso() {
+
+
+        const campos =
+            document.querySelectorAll(
+                ".input-box input"
+            );
+
+
+        campos.forEach(function(campo) {
+
+
+            if (campo.value.trim() !== "") {
+
+
+                campo.parentElement
+                    .classList.add("sucesso");
+
+            }
+
+        });
+
+    }
+
+
+
+    /* =========================================
+       VALIDAR DATA
+    ========================================= */
+
+    function validarData(data) {
+
+
+        const formato =
+            /^(\d{2})\/(\d{2})\/(\d{4})$/;
+
+
+        const resultado =
+            data.match(formato);
+
+
+        if (!resultado) {
+
+            return false;
+
+        }
+
+
+        const dia =
+            parseInt(resultado[1]);
+
+
+        const mes =
+            parseInt(resultado[2]);
+
+
+        const ano =
+            parseInt(resultado[3]);
+
+
+        if (mes < 1 || mes > 12) {
+
+            return false;
+
+        }
+
+
+        const diasNoMes =
+            new Date(
+                ano,
+                mes,
+                0
+            ).getDate();
+
+
+        if (
+            dia < 1 ||
+            dia > diasNoMes
+        ) {
+
+            return false;
+
+        }
+
+
+        return true;
+
+    }
+
+
+
+    /* =========================================
+       MOSTRAR / OCULTAR SENHA
+    ========================================= */
+
+    function mostrarSenha() {
+
+
+        const senha =
+            document.getElementById("senha");
+
+
+        const iconeSenha =
+            document.getElementById("iconeSenha");
+
+
+        if (senha.type === "password") {
+
+
+            senha.type = "text";
+
+
+            iconeSenha.className =
+                "fa-solid fa-eye-slash";
+
+        }
+
+        else {
+
+
+            senha.type = "password";
+
+
+            iconeSenha.className =
+                "fa-solid fa-eye";
+
+        }
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>

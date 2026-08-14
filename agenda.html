@@ -1,52 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agenda Médica</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda Médica</title>
 
-<!-- FullCalendar -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css">
+    <!-- FullCalendar -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css">
 
-<style>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+        body {
+            display: flex;
+            background: #f5f5f5;
+        }
 
-body{
-    display:flex;
-    background:#f5f5f5;
-}
-
-/* MENU */
+       /* MENU */
 
 .sidebar{
-    width:170px;
-    background:#d8f1f8;
-    height:100vh;
-    padding-top:20px;
-    position:fixed;
-    left:0;
-    top:0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #d8f1f8;
+    padding: 30px 20px;
 }
 
 .menu{
     display:flex;
     flex-direction:column;
-    gap:20px;
-    align-items:center;
+    gap:15px;
 }
 
 .menu a{
+    display:block;
+    width:100%;
+    padding:12px 18px;
     text-decoration:none;
     color:#000;
-    font-size:18px;
-    padding:12px 20px;
-    border-radius:20px;
+    font-size:16px;
+    border-radius:12px;
     transition:.3s;
 }
 
@@ -55,369 +56,233 @@ body{
     background:#fff;
 }
 
-/* CONTEÚDO */
+        /* CONTEÚDO */
 
-.content{
-    margin-left:170px;
-    width:calc(100% - 170px);
-    padding:30px;
-}
+     .content{
+            margin-left: 250px;
+            width: calc(100% - 250px);
+            padding: 40px;
+        }
 
-/* TOPO */
+        /* TOPO */
 
-.top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+       .top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            gap:30px;
+        }
 
-.profissional{
-    font-size:34px;
-    font-weight:bold;
-}
+     .profissional{
+            font-size:52px;
+            font-weight:bold;
+            margin:0;
+        }
 
-.user-area{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
+        .user-area{
+            display:flex;
+            align-items:center;
+            gap:15px;
+        }
 
-.search{
-    width:220px;
-    padding:10px;
-    border:none;
-    border-radius:20px;
-    background:#d9e6ea;
-}
+        .search{
+            width:300px;
+            height:46px;
+            border:none;
+            border-radius:30px;
+            background:#d9e6ea;
+            padding:0 20px;
+            font-size:18px;
+        }
 
-.user-img{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:#ccc;
-}
+        .user-img{
+            width:65px;
+            height:65px;
+            border-radius:50%;
+            background:#ccc;
+        }
 
-/* TABS */
+        /* HEADER */
 
-.tabs{
-    margin-top:30px;
-    display:flex;
-    gap:10px;
-}
+        .calendar-header{
+            margin:40px 0 25px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+        }
 
-.tabs button{
-    background:#fff;
-    border:none;
-    padding:10px 20px;
-    border-radius:10px;
-    cursor:pointer;
-    box-shadow:0 2px 5px rgba(0,0,0,.1);
-}
+        .add-btn {
+            display: inline-block;
+            background: #bfeaf3;
+            color: #000;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: .3s;
+        }
 
-.tabs .active{
-    background:#bfeaf3;
-}
+        .add-btn:hover {
+            background: #9edce9;
+        }
 
-/* HEADER */
+        /* CONTEÚDO PRINCIPAL */
 
-.calendar-header{
-    margin-top:25px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+        .main {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+        }
 
-.add-btn{
-    background:#bfeaf3;
-    border:none;
-    padding:12px 25px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:16px;
-}
+        .calendar{
+            width:100%;
+            background:#fff;
+            padding:20px;
+            border-radius:20px;
+            box-shadow:0 2px 10px rgba(0,0,0,.1);
+        }
 
-/* CONTEÚDO PRINCIPAL */
+        #calendar {
+            min-height: 700px;
+        }
 
-.main{
-    margin-top:20px;
-    display:flex;
-    gap:20px;
-}
+        /* RESPONSIVO */
 
-.calendar{
-    width:70%;
-    background:#fff;
-    padding:20px;
-    border-radius:15px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
-}
+        @media (max-width:1100px) {
 
-#calendar{
-    min-height:700px;
-}
+            .sidebar{
+                width:260px;
+            }
 
-/* PAINEL DIREITO */
+            .content{
+                margin-left:260px;
+                width:calc(100% - 260px);
+            }
 
-.info-panel{
-    width:30%;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-}
+            .main {
+                flex-direction: column;
+            }
 
-.card{
-    background:#fff;
-    border-radius:15px;
-    padding:20px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
-}
-
-.card h3{
-    margin-bottom:15px;
-    color:#6bbfd1;
-}
-
-.info-item{
-    margin-bottom:10px;
-}
-
-.bottom-icons{
-    display:flex;
-    justify-content:space-around;
-    font-size:24px;
-}
-
-/* RESPONSIVO */
-
-@media(max-width:1000px){
-
-    .sidebar{
-        display:none;
-    }
-
-    .content{
-        margin-left:0;
-        width:100%;
-    }
-
-    .main{
-        flex-direction:column;
-    }
-
-    .calendar,
-    .info-panel{
-        width:100%;
-    }
-
-}
-</style>
+            .calendar {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<!-- MENU -->
+    <!-- MENU -->
 
-<div class="sidebar">
+    <div class="sidebar">
 
-    <div class="menu">
-        <a href="busca.html">Iniciar Consulta</a>
-        <a href="perfil.html">Perfil</a>
-        <a href="paciente.html">Paciente</a>
-        <a href="ficha.html">Ficha de Pacientes</a>
-        <a href="agenda.html" class="active">Agenda</a>
-    </div>
-
-</div>
-
-<!-- CONTEÚDO -->
-
-<div class="content">
-
-    <div class="top">
-
-        <h1 class="profissional">
-            Nome do Profissional
-        </h1>
-
-        <div class="user-area">
-
-            <input
-                type="text"
-                class="search"
-                placeholder="Pesquisar">
-
-            <div class="user-img"></div>
-
+        <div class="menu">
+            <a href="perfil.html">Perfil</a>
+            <a href="paciente.html">Paciente</a>
+            <a href="ficha.html">Ficha de Pacientes</a>
+            <a href="agenda.html" class="active">Agenda</a>
         </div>
 
     </div>
 
- 
+    <!-- CONTEÚDO -->
 
-    <div class="calendar-header">
+    <div class="content">
 
-        <h2>Agenda de Consultas</h2>
+        <div class="top">
 
-         <button class="add-btn">
-          <a href="consulta.html">+ Nova Consulta</a>
-       </button>
+            <h1 class="profissional">
+                Nome do Profissional
+            </h1>
 
-    </div>
+            <div class="user-area">
 
-    <div class="main">
+                <input type="text" class="search" placeholder="Pesquisar">
 
-        <!-- CALENDÁRIO -->
-
-        <div class="calendar">
-
-            <div id="calendar"></div>
-
-        </div>
-
-        <!-- PAINEL DIREITO -->
-
-     <div class="info-panel">
-
-    <div class="card">
-
-        <h3>Detalhes da Consulta</h3>
-
-        <div class="info-item" id="horario">
-            ⏰ Selecione uma consulta
-        </div>
-
-        <div class="info-item" id="data">
-            📅 ---
-        </div>
-
-        <div class="info-item" id="local">
-            📍 ---
-        </div>
-
-        <div class="info-item" id="paciente">
-            👤 ---
-        </div>
-
-        <button class="add-btn">
-            Reagendar
-        </button>
-
-    </div>
-
-</div>
+                <div class="user-img"></div>
 
             </div>
 
+        </div>
+
+        <div class="calendar-header">
+
+            <h2>Agenda de Consultas</h2>
+
+            <a href="consulta.html" class="add-btn">
+                + Nova Consulta
+            </a>
+
+        </div>
+
+        <div class="main">
+
+            <div class="calendar">
+                <div id="calendar"></div>
             </div>
 
         </div>
 
     </div>
 
-</div>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 
-```html
-<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
 
-<script>
+            const calendarEl = document.getElementById('calendar');
 
-document.addEventListener('DOMContentLoaded', function(){
+            const calendar = new FullCalendar.Calendar(calendarEl, {
 
-    const calendarEl = document.getElementById('calendar');
+                locale: 'pt-br',
 
-    const calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
 
-        locale:'pt-br',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
 
-        initialView:'dayGridMonth',
+                buttonText: {
+                    today: 'Hoje',
+                    month: 'Mês',
+                    week: 'Semana',
+                    day: 'Dia'
+                },
 
-        headerToolbar:{
-            left:'prev,next today',
-            center:'title',
-            right:'dayGridMonth,timeGridWeek,timeGridDay'
-        },
+                events: [
 
-        buttonText:{
-            today:'Hoje',
-            month:'Mês',
-            week:'Semana',
-            day:'Dia'
-        },
+                    {
+                        title: 'Consulta - Maria Silva',
+                        start: '2026-01-05T08:00:00'
+                    },
 
-        events:[
+                    {
+                        title: 'Consulta - João Souza',
+                        start: '2026-01-10T14:00:00'
+                    },
 
-            {
-                title:'Consulta - Maria Silva',
-                start:'2026-01-05T08:00:00',
-                extendedProps:{
-                    local:'Consultório 01',
-                    paciente:'Maria Silva'
-                }
-            },
+                    {
+                        title: 'Consulta - Ana Costa',
+                        start: '2026-01-15T16:00:00'
+                    },
 
-            {
-                title:'Consulta - João Souza',
-                start:'2026-01-10T14:00:00',
-                extendedProps:{
-                    local:'Consultório 02',
-                    paciente:'João Souza'
-                }
-            },
+                    {
+                        title: 'Retorno - Pedro Santos',
+                        start: '2026-01-20T10:00:00'
+                    }
 
-            {
-                title:'Consulta - Ana Costa',
-                start:'2026-01-15T16:00:00',
-                extendedProps:{
-                    local:'Consultório 03',
-                    paciente:'Ana Costa'
-                }
-            },
+                ]
 
-            {
-                title:'Retorno - Pedro Santos',
-                start:'2026-01-20T10:00:00',
-                extendedProps:{
-                    local:'Consultório 01',
-                    paciente:'Pedro Santos'
-                }
-            }
+            });
 
-        ],
+            calendar.render();
 
-        eventClick:function(info){
-
-            const dataConsulta = info.event.start;
-
-            document.getElementById('horario').innerHTML =
-                '⏰ ' +
-                dataConsulta.toLocaleTimeString('pt-BR',{
-                    hour:'2-digit',
-                    minute:'2-digit'
-                });
-
-            document.getElementById('data').innerHTML =
-                '📅 ' +
-                dataConsulta.toLocaleDateString('pt-BR');
-
-            document.getElementById('local').innerHTML =
-                '📍 ' +
-                info.event.extendedProps.local;
-
-            document.getElementById('paciente').innerHTML =
-                '👤 ' +
-                info.event.extendedProps.paciente;
-
-        }
-
-    });
-
-    calendar.render();
-
-});
-
-</script>
-
-
+        });
+    </script>
 
 </body>
+
 </html>
