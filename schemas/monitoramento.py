@@ -6,7 +6,7 @@ class MonitoramentoCreate(BaseModel):
     id_paciente: int
     id_dispositivo: int
     frequencia_cardiaca: int
-    movimento: int
+    movimento: float
     status: str
 
 
@@ -16,7 +16,7 @@ class MonitoramentoResponse(BaseModel):
     id_paciente: int
     id_dispositivo: int
     frequencia_cardiaca: int
-    movimento: int
+    movimento: float
     status: str
 
     class Config:

@@ -2,42 +2,63 @@ from models.monitoramento import Monitoramento
 from schemas.monitoramento import MonitoramentoCreate
 
 
+# LIMITES EXPERIMENTAIS DO MPU6050
+
+LIMITE_MOVIMENTO_ALERTA = 3.0
+LIMITE_MOVIMENTO_INTENSO = 7.0
+LIMITE_MOVIMENTO_MUITO_INTENSO = 10.0
+
+
 def analisar_risco(bpm, movimento):
 
-    if bpm >= 120 and movimento >= 400:
-        status = "Alerta em BPM | Alerta em Movimento"
-        
-    elif bpm >= 120:
-        status = "Alerta em BPM"
-                
-    elif movimento >= 400:
-        status = "Alerta em Movimento"
-        
-    elif bpm >= 150 and movimento >= 700:
-        status = "Emergencia em BPM | Emergencia em Movimento"
-        
+    if bpm >= 150 and movimento >= 10:
+        return "Emergencia em BPM | Emergencia em Movimento"
+
     elif bpm >= 150:
-        status = "Emergencia em BPM"
-                
-    elif movimento >= 700:
-        status = "Emergencia em Movimento"
-        
-    else: 
-        status = "Normal"
+        return "Emergencia em BPM"
+
+    elif movimento >= 10:
+        return "Emergencia em Movimento"
+
+    elif movimento >= LIMITE_MOVIMENTO_INTENSO:
+        return "Movimento Intenso"
+
+    elif bpm >= 120 and movimento >= LIMITE_MOVIMENTO_ALERTA:
+        return "Alerta em BPM | Alerta em Movimento"
+
+    elif bpm >= 120:
+        return "Alerta em BPM"
+
+    elif movimento >= LIMITE_MOVIMENTO_ALERTA:
+        return "Alerta em Movimento"
 
 
-def registrar_monitoramento(db, dados: MonitoramentoCreate):
+    else:
+        return "Normal"
+
+
+
+def registrar_monitoramento(
+    db,
+    dados: MonitoramentoCreate
+):
 
     status = analisar_risco(
         dados.frequencia_cardiaca,
         dados.movimento
     )
 
-    if status == "Normal":
+    print(
+        "Análise:",
+        "BPM =", dados.frequencia_cardiaca,
+        "| Movimento =", dados.movimento,
+        "| Status =", status
+    )
 
+    if status == "Normal":
         return {
-            "mensagem":"Dados normais",
-            "status":status
+            "mensagem": "Dados normais",
+            "status": status
         }
 
     novo = Monitoramento(
@@ -45,7 +66,7 @@ def registrar_monitoramento(db, dados: MonitoramentoCreate):
         id_dispositivo=dados.id_dispositivo,
         frequencia_cardiaca=dados.frequencia_cardiaca,
         movimento=dados.movimento,
-        status=dados.status
+        status=status
     )
 
     db.add(novo)
@@ -55,7 +76,10 @@ def registrar_monitoramento(db, dados: MonitoramentoCreate):
     return novo
 
 
-def listar_monitoramentos_paciente(db, id_paciente:int):
+def listar_monitoramentos_paciente(
+    db,
+    id_paciente: int
+):
 
     return db.query(
         Monitoramento
