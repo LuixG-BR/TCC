@@ -1,232 +1,1440 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Iniciar Atendimento</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>EMPS - Buscar Paciente</title>
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+    <style>
 
-body{
-    height:100vh;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:0 50px;
-    overflow:hidden;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-    background:linear-gradient(
-        90deg,
-        #b8f0ff 0%,
-        #d0b3ff 40%,
-        #eafcff 100%
-    );
-}
+        body {
+            min-height: 100vh;
+            background: #eef3ff;
+            color: #171a58;
+            overflow-x: hidden;
+        }
 
-/* BOTÃO VOLTAR */
+        /* =========================
+           ESTRUTURA
+        ========================= */
 
-.back{
-    position:absolute;
-    top:25px;
-    left:25px;
-    font-size:40px;
-    color:white;
-    text-decoration:none;
-    transition:.3s;
-}
+        .app {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
 
-.back:hover{
-    transform:translateX(-5px);
-}
+        .main-area {
+            display: flex;
+            flex: 1;
+            min-height: calc(100vh - 58px);
+        }
 
-/* LADO ESQUERDO */
+        /* =========================
+           MENU LATERAL
+        ========================= */
 
-.left{
-    width:40%;
-}
+        .sidebar {
+            width: 182px;
+            min-width: 182px;
+            background: #ffffff;
+            border-right: 1px solid #edf0f8;
+            display: flex;
+            flex-direction: column;
+            padding: 17px 13px;
+        }
 
-.left h1{
-    font-size:48px;
-    line-height:1.2;
-    color:#111;
-    margin-bottom:30px;
-}
+        /* LOGO */
 
-.left p{
-    font-size:24px;
-    color:#222;
-    max-width:500px;
-    line-height:1.5;
-}
+        .logo {
+            display: flex;
+            align-items: flex-start;
+            gap: 7px;
+            padding: 0 7px;
+            margin-bottom: 34px;
+        }
 
-/* CARD */
+        .logo-icon {
+            width: 30px;
+            height: 30px;
+            color: #6134d8;
+            flex-shrink: 0;
+        }
 
-.card{
-    width:450px;
-    background:white;
-    border-radius:25px;
-    padding:50px;
-    box-shadow:8px 8px 15px rgba(0,0,0,.15);
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
 
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
+        .logo-text strong {
+            color: #5b2bc7;
+            font-size: 20px;
+            line-height: 19px;
+            font-weight: 700;
+        }
 
-/* TITULOS */
+        .logo-text span {
+            color: #22255c;
+            font-size: 6.5px;
+            line-height: 8px;
+            margin-top: 4px;
+            max-width: 88px;
+        }
 
-.card h2{
-    font-size:30px;
-    color:#222;
-    font-weight:normal;
-    text-align:center;
-}
+        /* MENU */
 
-.subtitle{
-    margin-top:10px;
-    color:#666;
-    font-size:18px;
-    text-align:center;
-}
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
 
-/* FORM */
+        .menu-item {
+            height: 33px;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 0 9px;
+            border-radius: 8px;
+            color: #25265f;
+            text-decoration: none;
+            font-size: 10px;
+            transition: .25s;
+        }
 
-form{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-}
+        .menu-item svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 1.6;
+            flex-shrink: 0;
+        }
 
-/* INPUT */
+        .menu-item:hover {
+            background: #f2edff;
+            color: #5b2bd0;
+        }
 
-.input-box{
-    margin-top:50px;
-    width:100%;
-    height:75px;
+        .menu-item.active {
+            color: white;
+            background: linear-gradient(135deg, #6030cf, #5520bc);
+            box-shadow: 0 5px 12px rgba(91, 43, 207, .18);
+        }
 
-    border:none;
-    border-radius:20px;
+        .menu-item.active svg {
+            stroke: white;
+        }
 
-    padding:0 25px;
+        .menu-item .notification {
+            margin-left: auto;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #5d2bc9;
+            color: white;
+            font-size: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-    font-size:22px;
+        /* PARTE INFERIOR DA SIDEBAR */
 
-    box-shadow:6px 8px 8px rgba(0,0,0,.12);
+        .sidebar-bottom {
+            margin-top: auto;
+        }
 
-    outline:none;
-}
+        .help-box {
+            background: #f4efff;
+            border-radius: 8px;
+            padding: 10px 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
 
-/* BOTÃO */
+        .help-icon {
+            color: #6230d1;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
 
-.start-btn{
-    margin-top:40px;
+        .help-text {
+            flex: 1;
+        }
 
-    width:220px;
-    height:70px;
+        .help-text strong {
+            display: block;
+            color: #5b2ac8;
+            font-size: 8px;
+            margin-bottom: 3px;
+        }
 
-    border:none;
-    border-radius:18px;
+        .help-text span {
+            display: block;
+            color: #37386a;
+            font-size: 7px;
+            line-height: 10px;
+        }
 
-    background:#c6edf7;
+        .help-arrow {
+            color: #5b2bc9;
+            font-size: 16px;
+        }
 
-    font-size:28px;
-    font-weight:bold;
+        /* =========================
+           ÁREA DIREITA
+        ========================= */
 
-    cursor:pointer;
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
 
-    transition:.3s;
-}
+        /* =========================
+           HEADER
+        ========================= */
 
-.start-btn:hover{
-    transform:scale(1.03);
-    background:#b0e6f3;
-}
+        .topbar {
+            height: 52px;
+            min-height: 52px;
+            background: #ffffff;
+            border-bottom: 1px solid #edf0f7;
+            display: flex;
+            align-items: center;
+            padding: 0 15px 0 27px;
+            gap: 20px;
+        }
 
-/* RESPONSIVO */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 9px;
+            color: #52557b;
+            flex: 1;
+        }
 
-@media(max-width:1100px){
+        .breadcrumb span:last-child {
+            color: #5130bf;
+            font-weight: bold;
+        }
 
-    body{
-        flex-direction:column;
-        justify-content:center;
-        gap:40px;
-        padding:30px;
-        text-align:center;
-    }
+        .breadcrumb-arrow {
+            color: #a3a5b9;
+        }
 
-    .left{
-        width:100%;
-    }
+        /* BUSCA DO HEADER */
 
-    .card{
-        width:100%;
-        max-width:500px;
-    }
+        .top-search {
+            width: 165px;
+            height: 30px;
+            border: 1px solid #e1e3ef;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            gap: 7px;
+        }
 
-    .left h1{
-        font-size:38px;
-    }
+        .top-search input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 9px;
+            color: #444;
+        }
 
-    .left p{
-        font-size:20px;
-        margin:auto;
-    }
-}
+        .top-search input::placeholder {
+            color: #8588a5;
+        }
 
-</style>
+        .top-search svg {
+            width: 14px;
+            height: 14px;
+            color: #646b99;
+        }
+
+        /* NOTIFICAÇÕES */
+
+        .notification-area {
+            position: relative;
+            width: 25px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .notification-area svg {
+            width: 17px;
+            height: 17px;
+            color: #353866;
+        }
+
+        .notification-number {
+            position: absolute;
+            top: 1px;
+            right: 0;
+            background: #5b2bc9;
+            color: white;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 7px;
+        }
+
+        /* PERFIL */
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding-left: 3px;
+        }
+
+        .profile-info {
+            text-align: right;
+        }
+
+        .profile-info strong {
+            display: block;
+            font-size: 8px;
+            color: #26274e;
+        }
+
+        .profile-info span {
+            display: block;
+            font-size: 8px;
+            color: #5b31c9;
+            margin-top: 2px;
+        }
+
+        .profile-photo {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ddd, #aaa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            color: white;
+        }
+
+        .profile-photo svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        .profile-arrow {
+            width: 13px;
+            height: 13px;
+            color: #59608d;
+        }
+
+        /* =========================
+           CONTEÚDO PRINCIPAL
+        ========================= */
+
+        .main-content {
+            flex: 1;
+            position: relative;
+            overflow: hidden;
+
+            background:
+                radial-gradient(circle at 15% 15%, rgba(255,255,255,.8), transparent 25%),
+                linear-gradient(
+                    115deg,
+                    #f1efff 0%,
+                    #eef2ff 47%,
+                    #e6f0ff 100%
+                );
+        }
+
+        /* PONTINHOS DECORATIVOS */
+
+        .dots {
+            position: absolute;
+            top: 15px;
+            left: 25px;
+            width: 80px;
+            height: 60px;
+            opacity: .35;
+
+            background-image: radial-gradient(
+                #ffffff 1px,
+                transparent 1px
+            );
+
+            background-size: 8px 8px;
+        }
+
+        /* LINHA DE ECG */
+
+        .ecg {
+            position: absolute;
+            left: 26%;
+            bottom: 20px;
+            width: 65%;
+            height: 180px;
+            opacity: .25;
+            pointer-events: none;
+        }
+
+        .ecg svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* =========================
+           CONTEÚDO INTERNO
+        ========================= */
+
+        .page-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 30px 7%;
+            gap: 50px;
+        }
+
+        /* TEXTO ESQUERDO */
+
+        .intro {
+            width: 43%;
+            max-width: 420px;
+        }
+
+        .intro-label {
+            color: #5c2bd0;
+            font-size: 10px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .intro-line {
+            width: 26px;
+            height: 2px;
+            background: #6030d1;
+            margin-bottom: 14px;
+        }
+
+        .intro h1 {
+            color: #151b61;
+            font-size: 26px;
+            line-height: 1.17;
+            margin-bottom: 13px;
+        }
+
+        .intro p {
+            color: #303465;
+            font-size: 11px;
+            line-height: 1.55;
+            max-width: 360px;
+        }
+
+        /* BENEFÍCIOS */
+
+        .benefits {
+            margin-top: 23px;
+            display: flex;
+            flex-direction: column;
+            gap: 13px;
+        }
+
+        .benefit {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .benefit-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 9px;
+            background: linear-gradient(
+                145deg,
+                #e5dcff,
+                #f0edff
+            );
+            color: #6333d3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .benefit-icon svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        .benefit-text strong {
+            display: block;
+            font-size: 9px;
+            color: #22255e;
+            margin-bottom: 2px;
+        }
+
+        .benefit-text span {
+            display: block;
+            font-size: 7.5px;
+            line-height: 10px;
+            color: #575a7f;
+            max-width: 170px;
+        }
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+            width: 355px;
+            min-width: 355px;
+            background: rgba(255,255,255,.97);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow:
+                0 12px 35px rgba(52, 70, 130, .10);
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ÍCONE DO CARD */
+
+        .card-icon {
+            width: 67px;
+            height: 67px;
+            border-radius: 50%;
+            background: #f5f0ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6131d3;
+            margin-bottom: 12px;
+        }
+
+        .card-icon svg {
+            width: 37px;
+            height: 37px;
+            stroke-width: 1.5;
+        }
+
+        .card h2 {
+            color: #171b5e;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #5b38b9;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .divider {
+            width: 100%;
+            height: 1px;
+            background: #ececf3;
+            margin: 20px 0;
+        }
+
+        .instruction {
+            color: #55587b;
+            font-size: 8px;
+            text-align: center;
+            margin-bottom: 14px;
+        }
+
+        /* FORM */
+
+        form {
+            width: 100%;
+        }
+
+        .input-wrapper {
+            width: 100%;
+            height: 44px;
+            border: 1.5px solid #6835dc;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            padding: 0 11px;
+            gap: 8px;
+            transition: .25s;
+        }
+
+        .input-wrapper:focus-within {
+            box-shadow: 0 0 0 3px rgba(99, 49, 211, .10);
+        }
+
+        .input-wrapper svg {
+            width: 17px;
+            height: 17px;
+            color: #6835dc;
+            flex-shrink: 0;
+        }
+
+        .input-box {
+            width: 100%;
+            height: 100%;
+            border: none;
+            outline: none;
+            font-size: 11px;
+            color: #333;
+            background: transparent;
+        }
+
+        .input-box::placeholder {
+            color: #b0b2c3;
+        }
+
+        /* BOTÃO */
+
+        .start-btn {
+            width: 100%;
+            height: 42px;
+            margin-top: 20px;
+
+            border: none;
+            border-radius: 7px;
+
+            background: linear-gradient(
+                90deg,
+                #6330d7,
+                #497ef0
+            );
+
+            color: white;
+            font-size: 11px;
+            font-weight: bold;
+
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+
+            box-shadow: 0 6px 14px rgba(82, 52, 211, .20);
+
+            transition: .25s;
+        }
+
+        .start-btn svg {
+            width: 16px;
+            height: 16px;
+            transition: .25s;
+        }
+
+        .start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(82, 52, 211, .28);
+        }
+
+        .start-btn:hover svg {
+            transform: translateX(4px);
+        }
+
+        .start-btn:active {
+            transform: scale(.98);
+        }
+
+        /* SEGURANÇA */
+
+        .security {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            color: #696c88;
+            font-size: 8px;
+            margin-top: 18px;
+        }
+
+        .security::before,
+        .security::after {
+            content: "";
+            height: 1px;
+            background: #ececf3;
+            flex: 1;
+        }
+
+        .security svg {
+            width: 12px;
+            height: 12px;
+            color: #5c5f85;
+        }
+
+        /* =========================
+           RODAPÉ
+        ========================= */
+
+        .footer {
+            height: 58px;
+            min-height: 58px;
+            background: white;
+            border-top: 1px solid #edf0f7;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .footer-logo svg {
+            width: 28px;
+            height: 28px;
+            color: #6031d2;
+        }
+
+        .footer-logo-text strong {
+            display: block;
+            color: #5b2bc8;
+            font-size: 15px;
+        }
+
+        .footer-logo-text span {
+            display: block;
+            font-size: 6px;
+            color: #40436a;
+            margin-top: 2px;
+        }
+
+        .footer-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            color: #666a88;
+            font-size: 8px;
+        }
+
+        .footer-security {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .footer-security svg {
+            width: 11px;
+            height: 11px;
+        }
+
+        .footer-right {
+            width: 150px;
+        }
+
+        /* =========================
+           RESPONSIVO
+        ========================= */
+
+        @media (max-width: 950px) {
+
+            .sidebar {
+                width: 155px;
+                min-width: 155px;
+            }
+
+            .page-content {
+                padding: 25px;
+                gap: 25px;
+            }
+
+            .intro h1 {
+                font-size: 23px;
+            }
+
+            .card {
+                width: 330px;
+                min-width: 330px;
+            }
+
+            .profile-info {
+                display: none;
+            }
+        }
+
+        @media (max-width: 760px) {
+
+            .main-area {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                min-width: 100%;
+                height: auto;
+                padding: 10px 15px;
+            }
+
+            .logo {
+                margin-bottom: 10px;
+            }
+
+            .menu {
+                flex-direction: row;
+                overflow-x: auto;
+            }
+
+            .menu-item {
+                min-width: max-content;
+            }
+
+            .sidebar-bottom {
+                display: none;
+            }
+
+            .topbar {
+                padding: 0 15px;
+            }
+
+            .breadcrumb {
+                display: none;
+            }
+
+            .top-search {
+                margin-left: auto;
+            }
+
+            .page-content {
+                flex-direction: column;
+                justify-content: center;
+                padding: 35px 20px;
+                overflow-y: auto;
+            }
+
+            .intro {
+                width: 100%;
+                max-width: 500px;
+                text-align: center;
+            }
+
+            .intro-line {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .intro p {
+                margin: auto;
+            }
+
+            .benefits {
+                display: none;
+            }
+
+            .card {
+                width: 100%;
+                max-width: 355px;
+                min-width: 0;
+            }
+
+            .footer {
+                height: auto;
+                padding: 12px 20px;
+            }
+
+            .footer-right {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .topbar {
+                gap: 10px;
+            }
+
+            .top-search {
+                width: 140px;
+            }
+
+            .profile-arrow {
+                display: none;
+            }
+
+            .intro h1 {
+                font-size: 22px;
+            }
+
+            .card {
+                padding: 22px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
 
-<!-- BOTÃO VOLTAR -->
-<a href="perfil.html" class="back">◀</a>
+<div class="app">
 
-<!-- TEXTO LATERAL -->
-<div class="left">
+    <div class="main-area">
 
-    <h1>
-        Inicie o Atendimento<br>
-        do Paciente
-    </h1>
+        <!-- =========================
+             MENU LATERAL
+        ========================== -->
 
-    <p>
-        Digite o ID do paciente para acessar o histórico clínico,
-        exames e demais informações relacionadas ao atendimento.
-    </p>
+        <aside class="sidebar">
 
-</div>
+            <div class="logo">
 
-<!-- CARD -->
-<div class="card">
+                <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
+                    <path
+                        d="M2 18h8l3-7 5 16 5-11 3 5h12"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"/>
 
-    <h2>Insira o ID do Paciente</h2>
+                    <path
+                        d="M20 36C10 29 4 23 4 15C4 9 8 5 14 5c3 0 5 2 6 4 1-2 3-4 6-4 6 0 10 4 10 10"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"/>
+                </svg>
 
-    <div class="subtitle">
-        Central de Atendimento Neurológico
+                <div class="logo-text">
+                    <strong>EMPS</strong>
+                    <span>
+                        Sistema de Monitoramento<br>
+                        e Prevenção de Crises Epilépticas
+                    </span>
+                </div>
+
+            </div>
+
+            <nav class="menu">
+
+                <a href="dashboard.html" class="menu-item">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M3 11.5L12 4l9 7.5"/>
+                        <path d="M5 10v10h14V10"/>
+                        <path d="M9 20v-6h6v6"/>
+                    </svg>
+
+                    <span>Dashboard</span>
+
+                </a>
+
+                <a href="ficha.html" class="menu-item active">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="8" r="3.5"/>
+                        <path d="M5 20c.7-3.6 3.1-5.5 7-5.5s6.3 1.9 7 5.5"/>
+                        <path d="M4 4h16v16H4z"/>
+                    </svg>
+
+                    <span>Ficha de pacientes</span>
+
+                </a>
+
+                <a href="buscar.html" class="menu-item">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="10.5" cy="10.5" r="6.5"/>
+                        <path d="M16 16l5 5"/>
+                    </svg>
+
+                    <span>Buscar paciente</span>
+
+                </a>
+
+                <a href="agenda.html" class="menu-item">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <rect x="4" y="5" width="16" height="15" rx="2"/>
+                        <path d="M8 3v4M16 3v4M4 10h16"/>
+                    </svg>
+
+                    <span>Agenda</span>
+
+                </a>
+
+                <a href="consultas.html" class="menu-item">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M6 4h12v16H6z"/>
+                        <path d="M9 8h6M9 12h6M9 16h4"/>
+                    </svg>
+
+                    <span>Consultas</span>
+
+                </a>
+
+                <a href="relatorios.html" class="menu-item">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M5 20V10M12 20V4M19 20v-7"/>
+                    </svg>
+
+                    <span>Relatórios</span>
+
+                </a>
+
+                <a href="alertas.html" class="menu-item">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                        <path d="M10 21h4"/>
+                    </svg>
+
+                    <span>Alertas</span>
+
+                    <span class="notification">3</span>
+
+                </a>
+
+                <a href="mensagens.html" class="menu-item">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M4 5h16v12H8l-4 4z"/>
+                        <path d="M8 9h8M8 13h5"/>
+                    </svg>
+
+                    <span>Mensagens</span>
+
+                    <span class="notification">2</span>
+
+                </a>
+
+                <a href="configuracoes.html" class="menu-item">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a8 8 0 0 0-1.8-1L14.5 3h-4l-.3 2.1a8 8 0 0 0-1.8 1L6 6.1 4 9.5 6 11a7 7 0 0 0 0 2l-2 1.5L6 18l2.4-1a8 8 0 0 0 1.8 1l.3 2.1h4l.3-2.1a8 8 0 0 0 1.8-1l2.4 1 2-3.4-2-1.5c.1-.3.1-.7.1-1z"/>
+                    </svg>
+
+                    <span>Configurações</span>
+
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="help-box">
+
+                    <svg class="help-icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M4 14a8 8 0 0 1 16 0"/>
+                        <path d="M4 14v4h3v-5H4M20 14v4h-3v-5h3"/>
+                        <path d="M8 20h4"/>
+                    </svg>
+
+                    <div class="help-text">
+                        <strong>Precisa de ajuda?</strong>
+                        <span>Acesse o suporte</span>
+                    </div>
+
+                    <span class="help-arrow">›</span>
+
+                </div>
+
+                <a href="login.html" class="menu-item">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M10 17l5-5-5-5"/>
+                        <path d="M15 12H3"/>
+                        <path d="M20 4v16"/>
+                    </svg>
+
+                    <span>Sair</span>
+
+                </a>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =========================
+             ÁREA PRINCIPAL
+        ========================== -->
+
+        <section class="content-area">
+
+            <!-- HEADER -->
+
+            <header class="topbar">
+
+                <div class="breadcrumb">
+                    <span>Ficha de pacientes</span>
+                    <span class="breadcrumb-arrow">›</span>
+                    <span>Buscar paciente</span>
+                </div>
+
+                <div class="top-search">
+
+                    <input
+                        type="text"
+                        placeholder="Buscar paciente...">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <circle cx="10.5" cy="10.5" r="6.5"/>
+                        <path d="M16 16l5 5"/>
+                    </svg>
+
+                </div>
+
+                <div class="notification-area">
+
+                    <svg viewBox="0 0 24 24" fill="none">
+                        <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                        <path d="M10 21h4"/>
+                    </svg>
+
+                    <span class="notification-number">3</span>
+
+                </div>
+
+                <div class="profile">
+
+                    <div class="profile-info">
+                        <strong>Dr. Rafael Oliveira</strong>
+                        <span>Neurologista</span>
+                    </div>
+
+                    <div class="profile-photo">
+
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="8" r="3"/>
+                            <path d="M6 21c.7-4 2.7-6 6-6s5.3 2 6 6"/>
+                        </svg>
+
+                    </div>
+
+                    <svg class="profile-arrow" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 9l6 6 6-6"/>
+                    </svg>
+
+                </div>
+
+            </header>
+
+
+            <!-- CONTEÚDO -->
+
+            <main class="main-content">
+
+                <div class="dots"></div>
+
+                <!-- ECG DECORATIVO -->
+
+                <div class="ecg">
+
+                    <svg viewBox="0 0 900 180" preserveAspectRatio="none">
+
+                        <path
+                            d="M0 120
+                            H180
+                            L220 120
+                            L245 90
+                            L270 145
+                            L305 35
+                            L340 120
+                            H410
+                            L450 120
+                            L480 95
+                            L505 140
+                            L530 70
+                            L555 120
+                            H700
+                            L730 120
+                            L755 100
+                            L780 140
+                            L805 50
+                            L830 120
+                            H900"
+
+                            fill="none"
+                            stroke="#8d8ce0"
+                            stroke-width="2"/>
+                    </svg>
+
+                </div>
+
+
+                <div class="page-content">
+
+                    <!-- TEXTO -->
+
+                    <div class="intro">
+
+                        <div class="intro-label">
+                            BUSCAR PACIENTE
+                        </div>
+
+                        <div class="intro-line"></div>
+
+                        <h1>
+                            Encontre o paciente<br>
+                            pelo código
+                        </h1>
+
+                        <p>
+                            Digite o código do paciente para acessar
+                            de forma rápida e segura o histórico clínico,
+                            exames, consultas e demais informações.
+                        </p>
+
+
+                        <div class="benefits">
+
+                            <div class="benefit">
+
+                                <div class="benefit-icon">
+
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/>
+                                        <path d="M9 12l2 2 4-4"/>
+                                    </svg>
+
+                                </div>
+
+                                <div class="benefit-text">
+                                    <strong>Acesso seguro</strong>
+                                    <span>
+                                        Dados protegidos com criptografia
+                                        e autenticação.
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="benefit">
+
+                                <div class="benefit-icon">
+
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <circle cx="12" cy="12" r="8"/>
+                                        <path d="M12 7v5l3 2"/>
+                                    </svg>
+
+                                </div>
+
+                                <div class="benefit-text">
+                                    <strong>Agilidade no atendimento</strong>
+                                    <span>
+                                        Localize o paciente em segundos
+                                        e tenha tudo à mão.
+                                    </span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="benefit">
+
+                                <div class="benefit-icon">
+
+                                    <svg viewBox="0 0 24 24" fill="none">
+                                        <path d="M6 4h12v16H6z"/>
+                                        <path d="M9 8h6M9 12h6M9 16h4"/>
+                                    </svg>
+
+                                </div>
+
+                                <div class="benefit-text">
+                                    <strong>Informações completas</strong>
+                                    <span>
+                                        Histórico clínico, consultas,
+                                        exames e dispositivos conectados.
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CARD -->
+
+                    <div class="card">
+
+                        <div class="card-icon">
+
+                            <svg viewBox="0 0 24 24" fill="none">
+
+                                <circle cx="10.5" cy="10.5" r="5.5"/>
+
+                                <path d="M15 15l5 5"/>
+
+                                <path d="M8.5 10.5c.5-1.5 1.5-2.2 2.5-2.2s2 .7 2.5 2.2"/>
+
+                                <path d="M9 13.5c.7.7 1.3 1 2 1s1.3-.3 2-1"/>
+
+                            </svg>
+
+                        </div>
+
+                        <h2>
+                            Código do paciente
+                        </h2>
+
+                        <div class="subtitle">
+                            Central de Neurologia
+                        </div>
+
+                        <div class="divider"></div>
+
+                        <div class="instruction">
+                            Digite o código único do paciente para continuar
+                        </div>
+
+
+                        <form action="paciente.html" method="POST">
+
+                            <div class="input-wrapper">
+
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <rect x="4" y="5" width="16" height="14" rx="2"/>
+                                    <path d="M8 9h2M8 13h2M14 9h3M14 13h3"/>
+                                </svg>
+
+                                <input
+                                    type="text"
+                                    name="id_paciente"
+                                    class="input-box"
+                                    placeholder="Ex.: PCT-0012"
+                                    required>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="start-btn">
+
+                                <span>Buscar paciente</span>
+
+                                <svg viewBox="0 0 24 24" fill="none">
+                                    <path d="M5 12h14"/>
+                                    <path d="M13 6l6 6-6 6"/>
+                                </svg>
+
+                            </button>
+
+                        </form>
+
+
+                        <div class="security">
+
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <rect x="5" y="10" width="14" height="10" rx="2"/>
+                                <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                            </svg>
+
+                            <span>
+                                Ambiente seguro e criptografado
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+        </section>
+
     </div>
 
-    <form action="paciente.htmlxz" method="POST">
 
-        <input
-            type="text"
-            name="id_paciente"
-            class="input-box"
-            placeholder="Digite o ID do paciente"
-            required>
+    <!-- =========================
+         RODAPÉ
+    ========================== -->
 
-        <button type="submit" class="start-btn">
-            Iniciar
-        </button>
+    <footer class="footer">
 
-    </form>
+        <div class="footer-logo">
+
+            <svg viewBox="0 0 40 40" fill="none">
+
+                <path
+                    d="M2 18h8l3-7 5 16 5-11 3 5h12"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"/>
+
+                <path
+                    d="M20 36C10 29 4 23 4 15C4 9 8 5 14 5c3 0 5 2 6 4 1-2 3-4 6-4 6 0 10 4 10 10"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"/>
+
+            </svg>
+
+            <div class="footer-logo-text">
+                <strong>EMPS</strong>
+                <span>
+                    Sistema de Monitoramento<br>
+                    e Prevenção de Crises Epilépticas
+                </span>
+            </div>
+
+        </div>
+
+
+        <div class="footer-center">
+
+            <div class="footer-security">
+
+                <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="5" y="10" width="14" height="10" rx="2"/>
+                    <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                </svg>
+
+                <span>
+                    Ambiente seguro e criptografado
+                </span>
+
+            </div>
+
+            <span>
+                © 2024 EMPS. Todos os direitos reservados.
+            </span>
+
+        </div>
+
+
+        <div class="footer-right"></div>
+
+    </footer>
 
 </div>
 

@@ -1,1217 +1,2339 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Perfil do Paciente | EMPS</title>
+    <title>Ficha do Paciente | EMPS</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
-
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-<style>
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
-
-body{
-
-    background:#EEF3FF;
-    color:#222;
-    overflow-x:hidden;
-
-}
-
-.container{
-
-    display:flex;
-    min-height:100vh;
-
-}
-
-/* ===========================
-        SIDEBAR
-=========================== */
-
-.sidebar{
-
-    width:290px;
-    background:linear-gradient(180deg,#7266FF,#4D8DFF);
-
-    width:300px;
-    background:linear-gradient(180deg,#8F7CFF 0%,#6D7BFF 55%,#69B8FF 100%);
-    box-shadow:0 8px 35px rgba(108,97,255,.12);
-    padding:30px;
-}
-
-.logo{
-
-    display:flex;
-    align-items:center;
-    gap:15px;
-
-    margin-bottom:50px;
-
-}
-
-.logo i{
-
-    font-size:38px;
-
-}
-
-.logo h2{
-
-    font-size:40px;
-    font-weight:700;
-
-}
-
-.sidebar nav{
-
-    display:flex;
-    flex-direction:column;
-    gap:18px;
-
-}
-
-.sidebar nav a{
-
-    display:flex;
-    align-items:center;
-    gap:15px;
-    color:white;
-    text-decoration:none;
-    padding:18px 22px;
-    border-radius:18px;
-    transition:.35s;
-    font-size:17px;
-
-}
-
-.sidebar nav a:hover{
-
-    background:rgba(255,255,255,.18);
-
-}
-
-.sidebar nav .active{
-
-    background:white;
-    color:#5A63F6;
-    font-weight:600;
-
-}
-
-.sidebar nav i{
-
-    width:22px;
-    text-align:center;
-
-}
-
-.logout{
-
-    border:none;
-    background:rgba(255,255,255,.18);
-    color:white;
-    padding:18px;
-    border-radius:18px;
-    cursor:pointer;
-    font-size:17px;
-    transition:.3s;
-
-}
-
-.logout:hover{
-    background:white;
-    color:#5A63F6;
-
-}
-
-/* ===========================
-        CONTEÚDO
-=========================== */
-
-main{
-
-    flex:1;
-    padding:35px;
-
-}
-
-.top{
-    display:grid;
-    grid-template-columns:2fr 1fr 1fr;
-    gap:25px;
-    margin-bottom:28px;
-}
-
-.card{
-    background:white;
-    border-radius:18px;
-    box-shadow:0 12px 35px rgba(53,55,100,.08);
-}
-
-.profile{
-    display:flex;
-    align-items:center;
-    gap:30px;
-    padding:30px;
-}
-
-.profile img{
-    width:180px;
-    height:180px;
-    border-radius:25px;
-    object-fit:cover;
-}
-
-.profile h1{
-    color:#252A69;
-    font-size:46px;
-    margin-bottom:12px;
-}
-
-.profile .id{
-    display:inline-block;
-    background:#ECE8FF;
-    color:#6655E4;
-    padding:8px 18px;
-    border-radius:40px;
-    font-weight:600;
-    margin-bottom:25px;
-}
-
-.profile .dados{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
-
-.profile .dados p{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    color:#666;
-}
-
-.profile .dados i{
-    color:#6A63FF;
-}
-
-/* ===========================
-      CARDS DE MÉTRICAS
-=========================== */
-
-.metric{
-    padding:35px 30px;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    position:relative;
-    overflow:hidden;
-}
-
-.metric::before{
-    content:"";
-    position:absolute;
-    width:220px;
-    height:220px;
-    background:rgba(116,103,255,.06);
-    border-radius:50%;
-    top:-110px;
-    right:-110px;
-
-}
-
-.circle{
-    width:85px;
-    height:85px;
-    border-radius:50%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#7467FF,#5A9DFF);
-    color:white;
-    font-size:34px;
-    margin-bottom:20px;
-    box-shadow:0 12px 25px rgba(103,95,255,.30);
-    z-index:2;
-}
-
-.circle.blue{
-
-    background:linear-gradient(135deg,#3EB7FF,#5B88FF);
-
-}
-
-.metric p{
-    color:#7c7c7c;
-    margin-bottom:10px;
-    z-index:2;
-}
-
-.metric h2{
-    font-size:42px;
-    color:#5A63F6;
-    margin-bottom:15px;
-    z-index:2;
-}
-
-.normal{
-    background:#E8FFF1;
-    color:#17A75D;
-    padding:8px 20px;
-    border-radius:30px;
-    font-weight:600;
-    z-index:2;
-}
-
-/* ===========================
-      PARTE INFERIOR
-=========================== */
-
-.bottom{
-    display:grid;
-    grid-template-columns:360px 1fr;
-    gap:30px;
-    align-items:start;
-}
-
-/* ===========================
-      INFORMAÇÕES
-=========================== */
-
-.info{
-
-    padding:30px;
-
-}
-
-.info h2{
-    color:#2C3173;
-    margin-bottom:30px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.info h2 i{
-
-    color:#6C63FF;
-
-}
-
-.linha{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:18px 0;
-    border-bottom:1px solid #ECECEC;
-}
-
-.linha:last-child{
-
-    border-bottom:none;
-
-}
-
-.linha span{
-
-    color:#777;
-
-}
-
-.linha strong{
-
-    color:#333;
-
-}
-
-/* ===========================
-      HISTÓRICO
-=========================== */
-
-.history{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-}
-
-.title{
-
-    padding:28px 30px;
-
-}
-
-.title h2{
-    color:#2A2F70;
-    margin-bottom:10px;
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.title p{
-
-    color:#777;
-
-}
-
-/* ===========================
-      CRISES
-=========================== */
-
-.crise{
-    background:white;
-    border-radius:24px;
-    padding:28px;
-    box-shadow:0 12px 30px rgba(0,0,0,.06);
-    transition:.35s;
-    border-left:7px solid transparent;
-}
-
-.crise:hover{
-
-    transform:translateY(-6px);
-    box-shadow:0 20px 40px rgba(0,0,0,.10);
-
-}
-
-.cabecalho{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:18px;
-}
-
-.cabecalho h3{
-
-    color:#2D3376;
-
-}
-
-.status{
-    padding:8px 18px;
-    border-radius:30px;
-    font-size:14px;
-    font-weight:600;
-}
-
-/* ===========================
-      CORES DAS CRISES
-=========================== */
-
-.grave{
-
-    border-left-color:#FF5B5B;
-
-}
-
-.grave .status{
-
-    background:#FFE5E5;
-    color:#D92F2F;
-
-}
-
-.moderada{
-
-    border-left-color:#FFA726;
-
-}
-
-.moderada .status{
-
-    background:#FFF1DD;
-    color:#D67C00;
-
-}
-
-.leve{
-
-    border-left-color:#42C978;
-
-}
-
-.leve .status{
-
-    background:#E6FFF1;
-    color:#199E54;
-
-}
-
-.crise .dados{
-    display:flex;
-    gap:30px;
-    margin-bottom:18px;
-    color:#7B7B7B;
-    flex-wrap:wrap;
-}
-
-.crise .dados span{
-    display:flex;
-    align-items:center;
-    gap:8px;
-}
-
-.crise .dados i{
-
-    color:#6B63FF;
-
-}
-
-.crise p{
-
-    color:#666;
-    line-height:1.8;
-
-}
-
-/* ===========================
-      ANIMAÇÕES
-=========================== */
-
-.card{
-
-    transition:.35s;
-
-}
-
-.card:hover{
-
-    transform:translateY(-6px);
-    box-shadow:0 20px 40px rgba(0,0,0,.10);
-
-}
-
-.metric:hover .circle{
-
-    transform:scale(1.08) rotate(8deg);
-
-}
-
-.circle{
-
-    transition:.35s;
-
-}
-
-.sidebar nav a{
-
-    position:relative;
-    overflow:hidden;
-
-}
-
-.sidebar nav a::before{
-    content:"";
-    position:absolute;
-    left:-100%;
-    top:0;
-    width:100%;
-    height:100%;
-    background:rgba(255,255,255,.15);
-    transition:.4s;
-}
-
-.sidebar nav a:hover::before{
-
-    left:0;
-
-}
-
-button{
-
-    transition:.3s;
-
-}
-
-button:hover{
-
-    transform:translateY(-2px);
-
-}
-
-/* ===========================
-      SCROLLBAR
-=========================== */
-
-::-webkit-scrollbar{
-
-    width:10px;
-
-}
-
-::-webkit-scrollbar-track{
-
-    background:#EDF1FA;
-
-}
-
-::-webkit-scrollbar-thumb{
-
-    background:#7B6CFF;
-    border-radius:20px;
-
-}
-
-::-webkit-scrollbar-thumb:hover{
-
-    background:#5E52EA;
-
-}
-
-/* ===========================
-      RESPONSIVIDADE
-=========================== */
-
-@media(max-width:1400px){
-
-    .top{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .bottom{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .profile{
-
-        flex-direction:column;
-        text-align:center;
-
-    }
-
-    .profile .dados{
-
-        align-items:center;
-
-    }
-
-}
-
-@media(max-width:980px){
-
-    .container{
-
-        flex-direction:column;
-
-    }
-
-    .sidebar{
-
-        width:100%;
-        border-radius:0;
-
-    }
-
-    main{
-
-        padding:20px;
-
-    }
-
-}
-
-@media(max-width:700px){
-
-    .profile h1{
-
-        font-size:34px;
-
-    }
-
-    .profile img{
-
-        width:140px;
-        height:140px;
-
-    }
-
-    .metric h2{
-
-        font-size:32px;
-
-    }
-
-    .cabecalho{
-
-        flex-direction:column;
-        align-items:flex-start;
-        gap:10px;
-
-    }
-
-    .crise .dados{
-
-        flex-direction:column;
-        gap:10px;
-
-    }
-
-}
-
-</style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <style>
+
+        /* =========================================================
+           CONFIGURAÇÕES GERAIS
+        ========================================================= */
+
+        :root {
+            --primary: #5b31c9;
+            --primary-dark: #43209e;
+            --primary-light: #f0ecff;
+
+            --blue: #5f7cff;
+
+            --text: #25263a;
+            --text-soft: #74758a;
+            --text-light: #9b9caf;
+
+            --border: #e9e9f1;
+            --background: #fafafd;
+            --white: #ffffff;
+
+            --green: #31a46d;
+            --green-bg: #eaf8f0;
+
+            --yellow: #c88b1c;
+            --yellow-bg: #fff7e6;
+
+            --red: #dc6464;
+            --red-bg: #fff0f0;
+
+            --shadow: 0 4px 20px rgba(35, 28, 80, 0.045);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        button,
+        input {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* =========================================================
+           ESTRUTURA PRINCIPAL
+        ========================================================= */
+
+        .app {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* =========================================================
+           SIDEBAR
+        ========================================================= */
+
+        .sidebar {
+            width: 210px;
+            min-height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            z-index: 20;
+        }
+
+        .sidebar-logo {
+            height: 112px;
+            display: flex;
+            align-items: center;
+            padding: 24px 26px;
+            border-bottom: 1px solid #f2f2f7;
+        }
+
+        .logo-icon {
+            width: 43px;
+            height: 43px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 34px;
+        }
+
+        .logo-text {
+            margin-left: 8px;
+        }
+
+        .logo-text h1 {
+            font-size: 25px;
+            line-height: 1;
+            color: #4c4388;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo-text p {
+            font-size: 6px;
+            color: #6d6d7d;
+            line-height: 1.4;
+            margin-top: 5px;
+            width: 105px;
+        }
+
+        .menu {
+            padding: 18px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .menu a {
+            height: 43px;
+            padding: 0 16px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: #65667a;
+            font-size: 12px;
+            font-weight: 500;
+            transition: 0.25s ease;
+            position: relative;
+        }
+
+        .menu a i {
+            width: 17px;
+            font-size: 15px;
+            text-align: center;
+            color: #7a7b8c;
+        }
+
+        .menu a:hover {
+            background: #f6f3ff;
+            color: var(--primary);
+        }
+
+        .menu a:hover i {
+            color: var(--primary);
+        }
+
+        .menu a.active {
+            color: white;
+            background: linear-gradient(
+                135deg,
+                #4e21bd,
+                #6d35d8
+            );
+            box-shadow: 0 5px 14px rgba(91, 49, 201, 0.2);
+        }
+
+        .menu a.active i {
+            color: white;
+        }
+
+        .menu-badge {
+            margin-left: auto;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--primary);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+            padding: 14px 10px 20px;
+        }
+
+        .support-box {
+            background: #f7f5ff;
+            border-radius: 8px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .support-box i {
+            font-size: 25px;
+            color: #6251b4;
+        }
+
+        .support-box strong {
+            display: block;
+            font-size: 10px;
+            color: #4f4f62;
+            margin-bottom: 3px;
+        }
+
+        .support-box span {
+            font-size: 9px;
+            color: #888899;
+        }
+
+        .logout {
+            width: 100%;
+            height: 42px;
+            border: none;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            padding: 0 18px;
+            gap: 14px;
+            color: #65667a;
+            font-size: 12px;
+            border-radius: 7px;
+            transition: 0.25s;
+        }
+
+        .logout:hover {
+            background: #fff0f0;
+            color: #cf4e4e;
+        }
+
+        /* =========================================================
+           ÁREA PRINCIPAL
+        ========================================================= */
+
+        .content {
+            margin-left: 210px;
+            width: calc(100% - 210px);
+            min-height: 100vh;
+        }
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        .header {
+            height: 62px;
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 26px 0 34px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 10px;
+            color: #858698;
+        }
+
+        .breadcrumb strong {
+            color: #4c4d60;
+            font-weight: 600;
+        }
+
+        .breadcrumb i {
+            font-size: 8px;
+            color: #aaaaba;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .search {
+            width: 175px;
+            height: 36px;
+            position: relative;
+        }
+
+        .search input {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ececf2;
+            background: #fafafd;
+            border-radius: 7px;
+            padding: 0 35px 0 13px;
+            font-size: 10px;
+            outline: none;
+            color: #454557;
+        }
+
+        .search input:focus {
+            border-color: #b7a8eb;
+        }
+
+        .search i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #707186;
+            font-size: 12px;
+        }
+
+        .notification {
+            position: relative;
+            color: #55566b;
+            font-size: 17px;
+        }
+
+        .notification span {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 7px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            top: -7px;
+            right: -7px;
+            font-weight: 700;
+        }
+
+        .doctor {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+        }
+
+        .doctor-info {
+            text-align: right;
+        }
+
+        .doctor-info strong {
+            display: block;
+            font-size: 10px;
+            color: #363647;
+        }
+
+        .doctor-info span {
+            display: block;
+            font-size: 8px;
+            color: #8b8b9a;
+            margin-top: 3px;
+        }
+
+        .doctor-photo {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #f0eff7;
+        }
+
+        .doctor-arrow {
+            color: #8a8a99;
+            font-size: 9px;
+        }
+
+        /* =========================================================
+           MAIN
+        ========================================================= */
+
+        main {
+            padding: 26px 22px 34px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .back-button {
+            width: 35px;
+            height: 35px;
+            border: none;
+            background: transparent;
+            color: #57586b;
+            font-size: 15px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+        .back-button:hover {
+            background: #f1eff8;
+            color: var(--primary);
+        }
+
+        .page-title h2 {
+            font-size: 21px;
+            font-weight: 700;
+            color: #2c2d3e;
+        }
+
+        /* =========================================================
+           CARD PADRÃO
+        ========================================================= */
+
+        .panel {
+            background: white;
+            border: 1px solid #ededf2;
+            border-radius: 11px;
+            box-shadow: var(--shadow);
+        }
+
+        /* =========================================================
+           FICHA DO PACIENTE
+        ========================================================= */
+
+        .patient-card {
+            min-height: 210px;
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            padding: 25px 28px;
+            margin-bottom: 22px;
+        }
+
+        .patient-main {
+            display: flex;
+            align-items: flex-start;
+            gap: 22px;
+        }
+
+        .patient-avatar {
+            min-width: 80px;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #e9e3ff, #d9e5ff);
+            color: #51428f;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .patient-data {
+            flex: 1;
+        }
+
+        .patient-name {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .patient-name h1 {
+            font-size: 20px;
+            color: #303143;
+        }
+
+        .status-active {
+            background: #eaf8f0;
+            color: #35986b;
+            border-radius: 4px;
+            padding: 5px 10px;
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .patient-details {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(190px, 1fr));
+            gap: 14px 30px;
+        }
+
+        .detail {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 9px;
+            color: #626375;
+        }
+
+        .detail i {
+            color: #6d6e81;
+            width: 12px;
+            text-align: center;
+        }
+
+        .patient-code {
+            border-left: 1px solid #eeeeF3;
+            padding-left: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .code-label,
+        .patient-code small {
+            font-size: 9px;
+            color: #77788a;
+        }
+
+        .code-box {
+            margin: 9px 0 17px;
+            width: 95px;
+            height: 36px;
+            border-radius: 5px;
+            background: #f7f6fb;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            color: #55566b;
+            font-size: 10px;
+        }
+
+        .code-box button {
+            border: none;
+            background: transparent;
+            color: var(--primary);
+            font-size: 12px;
+        }
+
+        .code-info {
+            margin-bottom: 16px;
+        }
+
+        .code-info strong {
+            display: block;
+            margin-top: 6px;
+            font-size: 9px;
+            color: #525365;
+            font-weight: 500;
+        }
+
+        /* =========================================================
+           ABAS
+        ========================================================= */
+
+        .tabs {
+            height: 52px;
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 25px;
+        }
+
+        .tab {
+            height: 52px;
+            padding: 0 17px;
+            border: none;
+            background: transparent;
+            color: #717286;
+            font-size: 10px;
+            position: relative;
+        }
+
+        .tab.active {
+            color: #4735a0;
+            font-weight: 600;
+        }
+
+        .tab.active::after {
+            content: "";
+            position: absolute;
+            height: 3px;
+            left: 0;
+            right: 0;
+            bottom: -1px;
+            background: var(--primary);
+            border-radius: 4px 4px 0 0;
+        }
+
+        /* =========================================================
+           GRID PRINCIPAL
+        ========================================================= */
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 260px;
+            gap: 18px;
+        }
+
+        .left-column,
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        /* =========================================================
+           CABEÇALHOS DOS CARDS
+        ========================================================= */
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px 12px;
+        }
+
+        .panel-header h3 {
+            font-size: 12px;
+            color: #38394b;
+        }
+
+        .view-link {
+            color: #5541aa;
+            text-decoration: none;
+            font-size: 9px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* =========================================================
+           ÚLTIMOS SINAIS
+        ========================================================= */
+
+        .signals-content {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 22px;
+            padding: 8px 20px 20px;
+        }
+
+        .heart-card {
+            border: 1px solid #eeeeF4;
+            border-radius: 8px;
+            min-height: 180px;
+            padding: 17px;
+        }
+
+        .heart-card-top {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 9px;
+            color: #4e4f61;
+            font-weight: 600;
+        }
+
+        .heart-card-top i {
+            color: #7863d6;
+            font-size: 17px;
+        }
+
+        .heart-rate {
+            font-size: 19px;
+            color: #333447;
+            margin: 20px 0 5px;
+            font-weight: 700;
+        }
+
+        .heart-status {
+            font-size: 9px;
+            color: #77788a;
+        }
+
+        .chart {
+            height: 65px;
+            margin-top: 16px;
+            position: relative;
+            border-bottom: 1px solid #e9e9ef;
+        }
+
+        .chart svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .signal-list {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            gap: 13px;
+            padding: 4px 0;
+        }
+
+        .signal-item {
+            display: grid;
+            grid-template-columns: 25px 1fr auto auto;
+            align-items: center;
+            gap: 10px;
+            font-size: 9px;
+        }
+
+        .signal-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #f5f3fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7663c5;
+            font-size: 10px;
+        }
+
+        .signal-name {
+            color: #666779;
+        }
+
+        .signal-value {
+            color: #4d4e60;
+            font-weight: 600;
+        }
+
+        .mini-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        .mini-status.good {
+            background: var(--green-bg);
+            color: var(--green);
+        }
+
+        .mini-status.ideal {
+            background: #f0ecff;
+            color: #6a54c2;
+        }
+
+        /* =========================================================
+           HISTÓRICO DE CRISES
+        ========================================================= */
+
+        .table-container {
+            padding: 0 20px 12px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        th {
+            text-align: left;
+            padding: 11px 8px;
+            color: #858697;
+            font-size: 8px;
+            font-weight: 500;
+            border-bottom: 1px solid #eeeeF3;
+        }
+
+        td {
+            padding: 13px 8px;
+            font-size: 8px;
+            color: #555668;
+            border-bottom: 1px solid #f1f1f5;
+            line-height: 1.6;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .intensity {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 8px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .intensity.leve {
+            background: var(--green-bg);
+            color: var(--green);
+        }
+
+        .intensity.moderada {
+            background: var(--yellow-bg);
+            color: var(--yellow);
+        }
+
+        .intensity.intensa {
+            background: var(--red-bg);
+            color: var(--red);
+        }
+
+        .eye-button {
+            border: none;
+            background: transparent;
+            color: #6d57c1;
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           ANOTAÇÕES
+        ========================================================= */
+
+        .notes-content {
+            padding: 0 20px 16px;
+        }
+
+        .note {
+            display: grid;
+            grid-template-columns: 35px 1fr 20px;
+            gap: 13px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f4;
+        }
+
+        .note-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: #f5f3fc;
+            color: #725fc0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .note-info small {
+            display: block;
+            color: #77788b;
+            font-size: 8px;
+            margin-bottom: 7px;
+        }
+
+        .note-info p {
+            color: #555668;
+            font-size: 9px;
+            line-height: 1.7;
+        }
+
+        .note-menu {
+            border: none;
+            background: transparent;
+            color: #77788a;
+            align-self: start;
+        }
+
+        .new-note {
+            width: 100%;
+            height: 32px;
+            margin-top: 10px;
+            border: 1px solid #7461c9;
+            background: white;
+            color: #5a45af;
+            border-radius: 5px;
+            font-size: 9px;
+            font-weight: 500;
+        }
+
+        .new-note:hover {
+            background: #f5f2ff;
+        }
+
+        /* =========================================================
+           CONSULTAS RECENTES
+        ========================================================= */
+
+        .appointment-list {
+            padding: 0 12px 6px;
+        }
+
+        .appointment {
+            display: grid;
+            grid-template-columns: 30px 1fr 12px;
+            gap: 10px;
+            padding: 16px 8px;
+            border-bottom: 1px solid #f0f0f4;
+        }
+
+        .appointment:last-child {
+            border-bottom: none;
+        }
+
+        .appointment-icon {
+            width: 29px;
+            height: 29px;
+            background: #f5f3fc;
+            color: #725fc0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        .appointment-date {
+            display: flex;
+            justify-content: space-between;
+            gap: 5px;
+            font-size: 8px;
+            color: #666779;
+            margin-bottom: 8px;
+        }
+
+        .appointment-status {
+            color: var(--green);
+            font-size: 8px;
+        }
+
+        .appointment-status::before {
+            content: "●";
+            margin-right: 3px;
+            font-size: 6px;
+        }
+
+        .appointment-title {
+            font-size: 9px;
+            color: #47485a;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .appointment-description {
+            font-size: 8px;
+            color: #77788b;
+            line-height: 1.7;
+        }
+
+        .appointment-arrow {
+            color: #8b8b9a;
+            font-size: 9px;
+            align-self: center;
+        }
+
+        /* =========================================================
+           DOCUMENTOS
+        ========================================================= */
+
+        .documents {
+            padding: 0 12px 10px;
+        }
+
+        .document-item {
+            display: grid;
+            grid-template-columns: 30px 1fr 18px;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 7px;
+            border-bottom: 1px solid #f0f0f4;
+        }
+
+        .document-item:last-child {
+            border-bottom: none;
+        }
+
+        .document-icon {
+            width: 28px;
+            height: 28px;
+            background: #f5f3fc;
+            color: #6f5abe;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        .document-name {
+            font-size: 9px;
+            color: #4d4e60;
+            font-weight: 500;
+        }
+
+        .document-date {
+            display: block;
+            margin-top: 4px;
+            font-size: 7px;
+            color: #9292a1;
+        }
+
+        .download {
+            border: none;
+            background: transparent;
+            color: #5c49ad;
+            font-size: 11px;
+        }
+
+        /* =========================================================
+           RODAPÉ
+        ========================================================= */
+
+        .footer {
+            margin-top: 28px;
+            min-height: 70px;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            padding: 14px 24px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .footer-brand i {
+            color: #55419f;
+            font-size: 23px;
+        }
+
+        .footer-brand strong {
+            display: block;
+            font-size: 18px;
+            color: #514287;
+        }
+
+        .footer-brand small {
+            display: block;
+            font-size: 5px;
+            color: #89899a;
+            margin-top: 3px;
+        }
+
+        .footer-security {
+            text-align: center;
+            color: #747586;
+            font-size: 8px;
+        }
+
+        .footer-security i {
+            margin-right: 6px;
+        }
+
+        .footer-copy {
+            text-align: right;
+            color: #8a8b99;
+            font-size: 8px;
+        }
+
+        /* =========================================================
+           RESPONSIVIDADE
+        ========================================================= */
+
+        @media (max-width: 1100px) {
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
+            }
+
+        }
+
+        @media (max-width: 850px) {
+
+            .sidebar {
+                width: 70px;
+            }
+
+            .sidebar-logo {
+                justify-content: center;
+                padding: 10px;
+            }
+
+            .logo-text,
+            .menu a span,
+            .support-box > div,
+            .logout span {
+                display: none;
+            }
+
+            .menu {
+                padding: 18px 9px;
+            }
+
+            .menu a {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .menu a i {
+                width: auto;
+            }
+
+            .menu-badge {
+                position: absolute;
+                right: 5px;
+                top: 6px;
+            }
+
+            .support-box {
+                justify-content: center;
+                padding: 13px 0;
+            }
+
+            .logout {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .content {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+            }
+
+            .patient-card {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .patient-code {
+                border-left: none;
+                border-top: 1px solid var(--border);
+                padding: 20px 0 0;
+            }
+
+        }
+
+        @media (max-width: 650px) {
+
+            .header {
+                padding: 0 15px;
+            }
+
+            .search,
+            .doctor-info,
+            .doctor-arrow {
+                display: none;
+            }
+
+            main {
+                padding: 20px 13px;
+            }
+
+            .patient-main {
+                flex-direction: column;
+            }
+
+            .patient-details {
+                grid-template-columns: 1fr;
+            }
+
+            .signals-content {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                display: flex;
+            }
+
+            .footer {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .footer-brand {
+                justify-content: center;
+            }
+
+            .footer-copy {
+                text-align: center;
+            }
+
+        }
+
+    </style>
+</head>
 
 <body>
 
-<div class="container">
+    <div class="app">
 
-    <!-- ==========================
-            SIDEBAR
-    =========================== -->
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
 
-    <aside class="sidebar">
+        <aside class="sidebar">
 
-        <div>
+            <div class="sidebar-logo">
 
-            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fa-regular fa-heart"></i>
+                </div>
 
-                <i class="fa-solid fa-heart-pulse"></i>
-
-                <h2>EMPS</h2>
+                <div class="logo-text">
+                    <h1>EMPS</h1>
+                    <p>Sistema de Monitoramento<br>e Prevenção de Crises Epilépticas</p>
+                </div>
 
             </div>
 
-            <nav>
+
+            <nav class="menu">
 
                 <a href="#">
-
-                    <i class="fa-solid fa-stethoscope"></i>
-
-                    Iniciar Consulta
-
-                </a>
-
-                <a href="#">
-
-                    <i class="fa-regular fa-user"></i>
-
-                    Perfil
-
+                    <i class="fa-solid fa-house"></i>
+                    <span>Dashboard</span>
                 </a>
 
                 <a href="#" class="active">
-
-                    <i class="fa-solid fa-user-injured"></i>
-
-                    Paciente
-
+                    <i class="fa-regular fa-user"></i>
+                    <span>Ficha de pacientes</span>
                 </a>
 
                 <a href="#">
-
-                    <i class="fa-regular fa-folder-open"></i>
-
-                    Ficha de Pacientes
-
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Buscar paciente</span>
                 </a>
 
                 <a href="#">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>Agenda</span>
+                </a>
 
-                    <i class="fa-regular fa-calendar-days"></i>
+                <a href="#">
+                    <i class="fa-regular fa-clipboard"></i>
+                    <span>Consultas</span>
+                </a>
 
-                    Agenda
+                <a href="#">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Relatórios</span>
+                </a>
 
+                <a href="#">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>Alertas</span>
+                    <span class="menu-badge">3</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-regular fa-comment-dots"></i>
+                    <span>Mensagens</span>
+                    <span class="menu-badge">2</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Configurações</span>
                 </a>
 
             </nav>
 
+
+            <div class="sidebar-bottom">
+
+                <div class="support-box">
+
+                    <i class="fa-solid fa-headset"></i>
+
+                    <div>
+                        <strong>Precisa de ajuda?</strong>
+                        <span>Acesse o suporte</span>
+                    </div>
+
+                </div>
+
+                <button class="logout">
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <span>Sair</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================================
+             CONTEÚDO
+        ====================================================== -->
+
+        <div class="content">
+
+            <!-- HEADER -->
+
+            <header class="header">
+
+                <div class="breadcrumb">
+                    <span>Ficha de pacientes</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+                    <strong>Maria Silva</strong>
+                </div>
+
+
+                <div class="header-right">
+
+                    <div class="search">
+                        <input
+                            type="text"
+                            placeholder="Buscar paciente..."
+                        >
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+
+
+                    <div class="notification">
+                        <i class="fa-regular fa-bell"></i>
+                        <span>0</span>
+                    </div>
+
+
+                    <div class="doctor">
+
+                        <div class="doctor-info">
+                            <strong>Dr. Rafael Oliveira</strong>
+                            <span>Neurologista</span>
+                        </div>
+
+                        <img
+                            class="doctor-photo"
+                            src="img/img05.jfif"
+                            alt="Médico"
+                        >
+
+                        <i class="fa-solid fa-chevron-down doctor-arrow"></i>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- MAIN -->
+
+            <main>
+
+                <div class="page-title">
+
+                    <button class="back-button">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+
+                    <h2>Ficha do paciente</h2>
+
+                </div>
+
+
+                <!-- =================================================
+                     DADOS PRINCIPAIS DO PACIENTE
+                ================================================== -->
+
+                <section class="patient-card panel">
+
+                    <div class="patient-main">
+
+                        <div class="patient-avatar">
+                            MS
+                        </div>
+
+
+                        <div class="patient-data">
+
+                            <div class="patient-name">
+
+                                <h1>Maria Silva</h1>
+
+                                <span class="status-active">
+                                    Ativo
+                                </span>
+
+                            </div>
+
+
+                            <div class="patient-details">
+
+                                <div class="detail">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    <span>22 anos (12/04/2002)</span>
+                                </div>
+
+                                <div class="detail">
+                                    <i class="fa-solid fa-venus"></i>
+                                    <span>Feminino</span>
+                                </div>
+
+                                <div class="detail">
+                                    <i class="fa-regular fa-address-card"></i>
+                                    <span>CPF: 123.456.789-10</span>
+                                </div>
+
+                                <div class="detail">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>Telefone: (11) 98765-4321</span>
+                                </div>
+
+                                <div class="detail">
+                                    <i class="fa-regular fa-envelope"></i>
+                                    <span>E-mail: maria.silva@email.com</span>
+                                </div>
+
+                                <div class="detail">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span>Rua das Flores, 123 - São Paulo, SP - 01000-000</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="patient-code">
+
+                        <span class="code-label">
+                            Código do paciente
+                        </span>
+
+                        <div class="code-box">
+
+                            <span>PCT-0012</span>
+
+                            <button title="Copiar código">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+
+                        </div>
+
+
+                        <div class="code-info">
+                            <small>Cadastrado em</small>
+                            <strong>10/02/2024</strong>
+                        </div>
+
+                        <div class="code-info">
+                            <small>Última consulta</small>
+                            <strong>09/05/2024</strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     ABAS
+                ================================================== -->
+
+                <div class="tabs">
+
+                    <button class="tab active">
+                        Histórico clínico
+                    </button>
+
+                    <button class="tab">
+                        Consultas
+                    </button>
+
+                    <button class="tab">
+                        Relatórios
+                    </button>
+
+                    <button class="tab">
+                        Dispositivos
+                    </button>
+
+                    <button class="tab">
+                        Documentos
+                    </button>
+
+                </div>
+
+
+                <!-- =================================================
+                     CONTEÚDO EM GRID
+                ================================================== -->
+
+                <div class="dashboard-grid">
+
+
+                    <!-- COLUNA ESQUERDA -->
+
+                    <div class="left-column">
+
+
+                        <!-- ÚLTIMOS SINAIS -->
+
+                        <section class="panel">
+
+                            <div class="panel-header">
+
+                                <h3>Últimos sinais e dados</h3>
+
+                                <a href="#" class="view-link">
+                                    Ver relatório completo
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+
+                            <div class="signals-content">
+
+
+                                <!-- CARD FREQUÊNCIA -->
+
+                                <div class="heart-card">
+
+                                    <div class="heart-card-top">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <span>Frequência cardíaca média</span>
+                                    </div>
+
+                                    <div class="heart-rate">
+                                        72 bpm
+                                    </div>
+
+                                    <div class="heart-status">
+                                        Dentro do normal
+                                    </div>
+
+
+                                    <div class="chart">
+
+                                        <svg
+                                            viewBox="0 0 220 70"
+                                            preserveAspectRatio="none"
+                                        >
+
+                                            <path
+                                                d="M0,52
+                                                   C8,50 10,38 18,43
+                                                   C26,48 28,25 38,33
+                                                   C47,42 52,40 60,24
+                                                   C68,9 74,39 84,37
+                                                   C92,36 95,24 102,28
+                                                   C110,32 115,10 125,18
+                                                   C134,25 138,21 146,27
+                                                   C154,34 161,11 171,13
+                                                   C181,16 184,36 193,28
+                                                   C202,20 208,21 220,4"
+                                                fill="none"
+                                                stroke="#6853c6"
+                                                stroke-width="2"
+                                                stroke-linecap="round"
+                                            />
+
+                                        </svg>
+
+                                    </div>
+
+                                </div>
+
+
+                                <!-- LISTA DE SINAIS -->
+
+                                <div class="signal-list">
+
+
+                                    <div class="signal-item">
+
+                                        <div class="signal-icon">
+                                            <i class="fa-regular fa-moon"></i>
+                                        </div>
+
+                                        <span class="signal-name">
+                                            Sono médio
+                                        </span>
+
+                                        <strong class="signal-value">
+                                            7h 20min
+                                        </strong>
+
+                                        <span class="mini-status good">
+                                            Bom
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="signal-item">
+
+                                        <div class="signal-icon">
+                                            <i class="fa-solid fa-person-walking"></i>
+                                        </div>
+
+                                        <span class="signal-name">
+                                            Atividade física
+                                        </span>
+
+                                        <strong class="signal-value">
+                                            Moderada
+                                        </strong>
+
+                                        <span class="mini-status ideal">
+                                            Ideal
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="signal-item">
+
+                                        <div class="signal-icon">
+                                            <i class="fa-solid fa-brain"></i>
+                                        </div>
+
+                                        <span class="signal-name">
+                                            Nível de estresse
+                                        </span>
+
+                                        <strong class="signal-value">
+                                            Baixo
+                                        </strong>
+
+                                        <span class="mini-status good">
+                                            Bom
+                                        </span>
+
+                                    </div>
+
+
+                                    <div class="signal-item">
+
+                                        <div class="signal-icon">
+                                            <i class="fa-solid fa-pills"></i>
+                                        </div>
+
+                                        <span class="signal-name">
+                                            Adesão ao tratamento
+                                        </span>
+
+                                        <strong class="signal-value">
+                                            Alta
+                                        </strong>
+
+                                        <span class="mini-status good">
+                                            Boa
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- HISTÓRICO DE CRISES -->
+
+                        <section class="panel">
+
+                            <div class="panel-header">
+
+                                <h3>Histórico de crises</h3>
+
+                                <a href="#" class="view-link">
+                                    Ver todas
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+
+                            <div class="table-container">
+
+                                <table>
+
+                                    <thead>
+
+                                        <tr>
+                                            <th>Data</th>
+                                            <th>Hora</th>
+                                            <th>Duração</th>
+                                            <th>Tipo</th>
+                                            <th>Intensidade</th>
+                                            <th>Observações</th>
+                                            <th></th>
+                                        </tr>
+
+                                    </thead>
+
+
+                                    <tbody>
+
+                                        <tr>
+
+                                            <td>08/05/2024</td>
+                                            <td>22:15</td>
+                                            <td>1min 20s</td>
+                                            <td>Focal com<br>generalização</td>
+
+                                            <td>
+                                                <span class="intensity moderada">
+                                                    Moderada
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                Durante o sono.<br>
+                                                Recuperação rápida.
+                                            </td>
+
+                                            <td>
+                                                <button class="eye-button">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </button>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <td>02/05/2024</td>
+                                            <td>18:40</td>
+                                            <td>1min 05s</td>
+                                            <td>Focal</td>
+
+                                            <td>
+                                                <span class="intensity leve">
+                                                    Leve
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                Crise breve. Sem<br>
+                                                generalização.
+                                            </td>
+
+                                            <td>
+                                                <button class="eye-button">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </button>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <td>25/04/2024</td>
+                                            <td>07:10</td>
+                                            <td>1min 40s</td>
+                                            <td>Focal com<br>generalização</td>
+
+                                            <td>
+                                                <span class="intensity moderada">
+                                                    Moderada
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                Ao acordar. Confusão<br>
+                                                pós-ictal leve.
+                                            </td>
+
+                                            <td>
+                                                <button class="eye-button">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </button>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <td>18/04/2024</td>
+                                            <td>21:55</td>
+                                            <td>2min 10s</td>
+                                            <td>Focal com<br>generalização</td>
+
+                                            <td>
+                                                <span class="intensity intensa">
+                                                    Intensa
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                Crise mais intensa.<br>
+                                                Atendimento realizado.
+                                            </td>
+
+                                            <td>
+                                                <button class="eye-button">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </button>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <td>10/04/2024</td>
+                                            <td>16:30</td>
+                                            <td>50s</td>
+                                            <td>Focal</td>
+
+                                            <td>
+                                                <span class="intensity leve">
+                                                    Leve
+                                                </span>
+                                            </td>
+
+                                            <td>
+                                                Crise breve durante<br>
+                                                a tarde.
+                                            </td>
+
+                                            <td>
+                                                <button class="eye-button">
+                                                    <i class="fa-regular fa-eye"></i>
+                                                </button>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- ANOTAÇÕES -->
+
+                        <section class="panel">
+
+                            <div class="panel-header">
+
+                                <h3>Anotações</h3>
+
+                                <a href="#" class="view-link">
+                                    Ver todas
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+
+                            <div class="notes-content">
+
+
+                                <div class="note">
+
+                                    <div class="note-icon">
+                                        <i class="fa-regular fa-file-lines"></i>
+                                    </div>
+
+                                    <div class="note-info">
+
+                                        <small>
+                                            09/05/2024 - Dr. Rafael Oliveira
+                                        </small>
+
+                                        <p>
+                                            Paciente relata boa adesão ao tratamento e qualidade do sono adequada.
+                                            Mantém rotina de exercícios leves.
+                                        </p>
+
+                                    </div>
+
+                                    <button class="note-menu">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+
+                                </div>
+
+
+                                <div class="note">
+
+                                    <div class="note-icon">
+                                        <i class="fa-regular fa-file-lines"></i>
+                                    </div>
+
+                                    <div class="note-info">
+
+                                        <small>
+                                            09/05/2024 - Dr. Rafael Oliveira
+                                        </small>
+
+                                        <p>
+                                            Ajuste na dose do medicamento devido à crise ocorrida à noite.
+                                            Monitorar diário de sono e estresse.
+                                        </p>
+
+                                    </div>
+
+                                    <button class="note-menu">
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+
+                                </div>
+
+
+                                <button class="new-note">
+                                    <i class="fa-solid fa-plus"></i>
+                                    &nbsp; Nova anotação
+                                </button>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <!-- COLUNA DIREITA -->
+
+                    <div class="right-column">
+
+
+                        <!-- CONSULTAS RECENTES -->
+
+                        <section class="panel">
+
+                            <div class="panel-header">
+
+                                <h3>Consultas recentes</h3>
+
+                                <a href="#" class="view-link">
+                                    Ver todas
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+
+                            <div class="appointment-list">
+
+
+                                <div class="appointment">
+
+                                    <div class="appointment-icon">
+                                        <i class="fa-regular fa-calendar"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <div class="appointment-date">
+                                            <span>09/05/2024 - 10:30</span>
+                                            <span class="appointment-status">Realizada</span>
+                                        </div>
+
+                                        <div class="appointment-title">
+                                            Consulta de rotina
+                                        </div>
+
+                                        <div class="appointment-description">
+                                            Paciente estável. Frequência cardíaca dentro do normal.
+                                            Manter acompanhamento.
+                                        </div>
+
+                                    </div>
+
+                                    <i class="fa-solid fa-chevron-right appointment-arrow"></i>
+
+                                </div>
+
+
+                                <div class="appointment">
+
+                                    <div class="appointment-icon">
+                                        <i class="fa-regular fa-calendar"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <div class="appointment-date">
+                                            <span>08/04/2024 - 14:00</span>
+                                            <span class="appointment-status">Realizada</span>
+                                        </div>
+
+                                        <div class="appointment-title">
+                                            Retorno
+                                        </div>
+
+                                        <div class="appointment-description">
+                                            Relatou uma crise leve durante a noite.
+                                            Medicação mantida.
+                                        </div>
+
+                                    </div>
+
+                                    <i class="fa-solid fa-chevron-right appointment-arrow"></i>
+
+                                </div>
+
+
+                                <div class="appointment">
+
+                                    <div class="appointment-icon">
+                                        <i class="fa-regular fa-calendar"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <div class="appointment-date">
+                                            <span>10/03/2024 - 09:15</span>
+                                            <span class="appointment-status">Realizada</span>
+                                        </div>
+
+                                        <div class="appointment-title">
+                                            Consulta de rotina
+                                        </div>
+
+                                        <div class="appointment-description">
+                                            Evolução positiva. Melhora na qualidade do sono.
+                                        </div>
+
+                                    </div>
+
+                                    <i class="fa-solid fa-chevron-right appointment-arrow"></i>
+
+                                </div>
+
+
+                                <div class="appointment">
+
+                                    <div class="appointment-icon">
+                                        <i class="fa-regular fa-calendar"></i>
+                                    </div>
+
+                                    <div>
+
+                                        <div class="appointment-date">
+                                            <span>12/02/2024 - 11:20</span>
+                                            <span class="appointment-status">Realizada</span>
+                                        </div>
+
+                                        <div class="appointment-title">
+                                            Primeira consulta
+                                        </div>
+
+                                        <div class="appointment-description">
+                                            Avaliação inicial. Início do tratamento e orientações.
+                                        </div>
+
+                                    </div>
+
+                                    <i class="fa-solid fa-chevron-right appointment-arrow"></i>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- DOCUMENTOS -->
+
+                        <section class="panel">
+
+                            <div class="panel-header">
+
+                                <h3>Documentos</h3>
+
+                                <a href="#" class="view-link">
+                                    Ver todos
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+
+                            </div>
+
+
+                            <div class="documents">
+
+
+                                <div class="document-item">
+
+                                    <div class="document-icon">
+                                        <i class="fa-regular fa-file-lines"></i>
+                                    </div>
+
+                                    <div>
+                                        <div class="document-name">
+                                            Relatório neurológico
+                                        </div>
+                                        <span class="document-date">
+                                            09/05/2024
+                                        </span>
+                                    </div>
+
+                                    <button class="download">
+                                        <i class="fa-solid fa-download"></i>
+                                    </button>
+
+                                </div>
+
+
+                                <div class="document-item">
+
+                                    <div class="document-icon">
+                                        <i class="fa-regular fa-file-lines"></i>
+                                    </div>
+
+                                    <div>
+                                        <div class="document-name">
+                                            Eletroencefalograma
+                                        </div>
+                                        <span class="document-date">
+                                            05/05/2024
+                                        </span>
+                                    </div>
+
+                                    <button class="download">
+                                        <i class="fa-solid fa-download"></i>
+                                    </button>
+
+                                </div>
+
+
+                                <div class="document-item">
+
+                                    <div class="document-icon">
+                                        <i class="fa-regular fa-file-lines"></i>
+                                    </div>
+
+                                    <div>
+                                        <div class="document-name">
+                                            Exame de sangue
+                                        </div>
+                                        <span class="document-date">
+                                            28/04/2024
+                                        </span>
+                                    </div>
+
+                                    <button class="download">
+                                        <i class="fa-solid fa-download"></i>
+                                    </button>
+
+                                </div>
+
+
+                                <div class="document-item">
+
+                                    <div class="document-icon">
+                                        <i class="fa-regular fa-file-lines"></i>
+                                    </div>
+
+                                    <div>
+                                        <div class="document-name">
+                                            Receita médica
+                                        </div>
+                                        <span class="document-date">
+                                            09/05/2024
+                                        </span>
+                                    </div>
+
+                                    <button class="download">
+                                        <i class="fa-solid fa-download"></i>
+                                    </button>
+
+                                </div>
+
+
+                                <div class="document-item">
+
+                                    <div class="document-icon">
+                                        <i class="fa-regular fa-file-lines"></i>
+                                    </div>
+
+                                    <div>
+                                        <div class="document-name">
+                                            Plano terapêutico
+                                        </div>
+                                        <span class="document-date">
+                                            10/02/2024
+                                        </span>
+                                    </div>
+
+                                    <button class="download">
+                                        <i class="fa-solid fa-download"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+
+            <!-- =====================================================
+                 RODAPÉ
+            ====================================================== -->
+
+            <footer class="footer">
+
+                <div class="footer-brand">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                    <div>
+                        <strong>EMPS</strong>
+                        <small>Sistema de Monitoramento<br>e Prevenção de Crises Epilépticas</small>
+                    </div>
+
+                </div>
+
+
+                <div class="footer-security">
+                    <i class="fa-solid fa-lock"></i>
+                    Ambiente seguro e criptografado
+                </div>
+
+
+                <div class="footer-copy">
+                    © 2024 EMPS. Todos os direitos reservados.
+                </div>
+
+            </footer>
+
         </div>
 
-        <button class="logout">
+    </div>
 
-            <i class="fa-solid fa-right-from-bracket"></i>
 
-            Sair
+    <script>
 
-        </button>
+        /* =========================================================
+           MENU LATERAL
+        ========================================================= */
 
-    </aside>
+        const menuItems = document.querySelectorAll(".menu a");
 
-    <!-- ==========================
-            CONTEÚDO
-    =========================== -->
+        menuItems.forEach(item => {
 
-    <main>
+            item.addEventListener("click", function(event) {
 
-        <section class="top">
+                event.preventDefault();
 
-            <!-- PERFIL -->
+                menuItems.forEach(link => {
+                    link.classList.remove("active");
+                });
 
-            <div class="profile card">
+                this.classList.add("active");
 
-                <img src="img/img05.jfif" alt="Paciente">
+            });
 
-                <div>
+        });
 
-                    <h1>Maria Jesus</h1>
 
-                    <div class="id">
+        /* =========================================================
+           ABAS
+        ========================================================= */
 
-                        ID do paciente: 208898786
+        const tabs = document.querySelectorAll(".tab");
 
-                    </div>
+        tabs.forEach(tab => {
 
-                    <div class="dados">
+            tab.addEventListener("click", function() {
 
-                        <p>
+                tabs.forEach(item => {
+                    item.classList.remove("active");
+                });
 
-                            <i class="fa-solid fa-calendar"></i>
+                this.classList.add("active");
 
-                            12/03/2003
+            });
 
-                        </p>
+        });
 
-                        <p>
 
-                            <i class="fa-solid fa-phone"></i>
+        /* =========================================================
+           COPIAR CÓDIGO DO PACIENTE
+        ========================================================= */
 
-                            (11) 98765-4321
+        const copyButton = document.querySelector(".code-box button");
 
-                        </p>
+        copyButton.addEventListener("click", () => {
 
-                        <p>
+            navigator.clipboard.writeText("PCT-0012");
 
-                            <i class="fa-solid fa-envelope"></i>
+            const icon = copyButton.querySelector("i");
 
-                            maria@email.com
+            icon.classList.remove("fa-copy");
+            icon.classList.add("fa-check");
 
-                        </p>
+            setTimeout(() => {
 
-                    </div>
+                icon.classList.remove("fa-check");
+                icon.classList.add("fa-copy");
 
-                </div>
+            }, 1500);
 
-            </div>
+        });
 
-            <!-- CARD BPM -->
 
-            <div class="metric card">
+        /* =========================================================
+           BOTÃO VOLTAR
+        ========================================================= */
 
-                <div class="circle">
+        document.querySelector(".back-button").addEventListener("click", () => {
+            window.history.back();
+        });
 
-                    <i class="fa-solid fa-heart-pulse"></i>
-
-                </div>
-
-                <p>Frequência Cardíaca</p>
-
-                <h2>80 BPM</h2>
-
-                <span class="normal">
-
-                    Normal
-
-                </span>
-
-            </div>
-
-            <!-- CARD PRESSÃO -->
-
-            <div class="metric card">
-
-                <div class="circle blue">
-
-                    <i class="fa-solid fa-stethoscope"></i>
-
-                </div>
-
-                <p>Pressão Arterial</p>
-
-                <h2>120 / 80</h2>
-
-                <span class="normal">
-
-                    Normal
-
-                </span>
-
-            </div>
-
-        </section>
-
-        <section class="bottom">
-
-                <!-- ==========================
-                    INFORMAÇÕES
-            =========================== -->
-
-            <div class="info card">
-
-                <h2>
-
-                    <i class="fa-solid fa-circle-info"></i>
-
-                    Informações do Paciente
-
-                </h2>
-
-                <div class="linha">
-                    <span>Gênero</span>
-                    <strong>Feminino</strong>
-                </div>
-
-                <div class="linha">
-                    <span>Idade</span>
-                    <strong>21 anos</strong>
-                </div>
-
-                <div class="linha">
-                    <span>Tipo sanguíneo</span>
-                    <strong>O+</strong>
-                </div>
-
-                <div class="linha">
-                    <span>Peso</span>
-                    <strong>65 kg</strong>
-                </div>
-
-                <div class="linha">
-                    <span>Altura</span>
-                    <strong>1,60 m</strong>
-                </div>
-
-                <div class="linha">
-                    <span>Alergias</span>
-                    <strong>Penicilina</strong>
-                </div>
-
-                <div class="linha">
-                    <span>Medicamentos</span>
-                    <strong>Levetiracetam</strong>
-                </div>
-
-                <div class="linha">
-                    <span>Médico Responsável</span>
-                    <strong>Dr. João Pedro</strong>
-                </div>
-
-            </div>
-
-            <!-- ==========================
-                    HISTÓRICO
-            =========================== -->
-
-            <div class="history">
-
-                <div class="title card">
-
-                    <h2>
-
-                        <i class="fa-solid fa-clock-rotate-left"></i>
-
-                        Histórico de Crises
-
-                    </h2>
-
-                    <p>
-                        Acompanhe todos os episódios registrados pelo sistema.
-                    </p>
-
-                </div>
-
-                <!-- CRISE 1 -->
-
-                <div class="crise grave">
-
-                    <div class="cabecalho">
-
-                        <h3>Crise Convulsiva</h3>
-
-                        <span class="status">
-                            Grave
-                        </span>
-
-                    </div>
-
-                    <div class="dados">
-
-                        <span>
-
-                            <i class="fa-solid fa-calendar"></i>
-
-                            15/06/2026
-
-                        </span>
-
-                        <span>
-
-                            <i class="fa-solid fa-clock"></i>
-
-                            03 min
-
-                        </span>
-
-                    </div>
-
-                    <p>
-
-                        Crise generalizada com perda de consciência.
-                        Alerta enviado automaticamente para familiares e médico.
-
-                    </p>
-
-                </div>
-
-                <!-- CRISE 2 -->
-
-                <div class="crise moderada">
-
-                    <div class="cabecalho">
-
-                        <h3>Crise Focal</h3>
-
-                        <span class="status">
-
-                            Moderada
-
-                        </span>
-
-                    </div>
-
-                    <div class="dados">
-
-                        <span>
-
-                            <i class="fa-solid fa-calendar"></i>
-
-                            08/06/2026
-
-                        </span>
-
-                        <span>
-
-                            <i class="fa-solid fa-clock"></i>
-
-                            01 min
-
-                        </span>
-
-                    </div>
-
-                    <p>
-
-                        Episódio focal registrado pela cinta.
-                        Paciente permaneceu consciente durante o evento.
-
-                    </p>
-
-                </div>
-
-                <!-- CRISE 3 -->
-
-                <div class="crise leve">
-
-                    <div class="cabecalho">
-
-                        <h3>Alerta Preventivo</h3>
-
-                        <span class="status">
-
-                            Leve
-
-                        </span>
-
-                    </div>
-
-                    <div class="dados">
-
-                        <span>
-
-                            <i class="fa-solid fa-calendar"></i>
-
-                            27/05/2026
-
-                        </span>
-
-                        <span>
-
-                            <i class="fa-solid fa-clock"></i>
-
-                            40 segundos
-
-                        </span>
-
-                    </div>
-
-                    <p>
-
-                        Alteração cardíaca identificada.
-                        A cinta emitiu vibração preventiva e evitou evolução da crise.
-
-                    </p>
-
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-</div>
-
-<script>
-
-/* ==========================
-      MENU LATERAL
-========================== */
-
-const menu = document.querySelectorAll(".sidebar nav a");
-
-menu.forEach(item => {
-
-    item.addEventListener("click", function(e){
-
-        e.preventDefault();
-
-        menu.forEach(link=>link.classList.remove("active"));
-
-        this.classList.add("active");
-
-    });
-
-});
-
-/* ==========================
-      CONTADOR DOS CARDS
-========================== */
-
-function animarNumero(elemento, destino, sufixo=""){
-
-    let atual = 0;
-
-    const incremento = destino / 80;
-
-    const timer = setInterval(()=>{
-
-        atual += incremento;
-
-        if(atual >= destino){
-
-            atual = destino;
-
-            clearInterval(timer);
-
-        }
-
-        elemento.innerHTML = Math.floor(atual) + sufixo;
-
-    },15);
-
-}
-
-const numeros = document.querySelectorAll(".metric h2");
-
-animarNumero(numeros[0],80," BPM");
-
-animarNumero(numeros[1],120," / 80");
-
-/* ==========================
-      EFEITO NOS CARDS
-========================== */
-
-const cards = document.querySelectorAll(".card");
-
-cards.forEach(card=>{
-
-    card.addEventListener("mousemove",(e)=>{
-
-        const rect = card.getBoundingClientRect();
-
-        const x = e.clientX - rect.left;
-
-        const y = e.clientY - rect.top;
-
-        card.style.background =
-        `radial-gradient(circle at ${x}px ${y}px,
-        rgba(123,108,255,.12),
-        white 55%)`;
-
-    });
-
-    card.addEventListener("mouseleave",()=>{
-
-        card.style.background="white";
-
-    });
-
-});
-
-/* ==========================
-      ANIMAÇÃO DAS CRISES
-========================== */
-
-const crises = document.querySelectorAll(".crise");
-
-const observer = new IntersectionObserver(entries=>{
-
-    entries.forEach(entry=>{
-
-        if(entry.isIntersecting){
-
-            entry.target.animate(
-
-                [
-
-                    {
-
-                        opacity:0,
-
-                        transform:"translateY(40px)"
-
-                    },
-
-                    {
-
-                        opacity:1,
-
-                        transform:"translateY(0)"
-
-                    }
-
-                ],
-
-                {
-
-                    duration:600,
-
-                    easing:"ease"
-
-                }
-
-            );
-
-        }
-
-    });
-
-});
-
-crises.forEach(c=>observer.observe(c));
-
-</script>
+    </script>
 
 </body>
-
 </html>

@@ -1,114 +1,599 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ficha de Pacientes</title>
+
+<title>EMPS - Lista de Pacientes</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: Arial, sans-serif;
+    font-family:Arial, Helvetica, sans-serif;
 }
 
 body{
-    display:flex;
-    background:#f4f4f4;
+    min-height:100vh;
+    background:#f5f7ff;
+    color:#20245f;
+    overflow-x:hidden;
 }
 
-/* MENU LATERAL */
-.sidebar{
-    width:220px;
-    background:#d9f3fa;
-    height:100vh;
-    padding-top:20px;
+.app{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
 }
+
+.main-area{
+    flex:1;
+    display:flex;
+    min-height:calc(100vh - 58px);
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:155px;
+    min-width:155px;
+    background:#fff;
+    border-right:1px solid #eceef7;
+    padding:12px 10px;
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* LOGO */
+
+.logo{
+    display:flex;
+    align-items:flex-start;
+    gap:6px;
+    padding:0 4px;
+    margin-bottom:28px;
+}
+
+.logo-icon{
+    width:29px;
+    height:29px;
+    color:#6331d2;
+}
+
+.logo-text strong{
+    display:block;
+    color:#5b2bc8;
+    font-size:18px;
+    line-height:17px;
+}
+
+.logo-text span{
+    display:block;
+    color:#34365e;
+    font-size:5.5px;
+    line-height:7px;
+    margin-top:3px;
+    max-width:90px;
+}
+
+
+/* MENU */
 
 .menu{
     display:flex;
     flex-direction:column;
-    gap:25px;
-    align-items:center;
+    gap:3px;
 }
 
 .menu a{
+    height:30px;
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding:0 8px;
+    border-radius:7px;
+
+    color:#303361;
     text-decoration:none;
-    color:#000;
-    font-size:18px;
-    padding:12px 20px;
-    border-radius:20px;
-    transition:0.3s;
+    font-size:9px;
+
+    transition:.25s;
 }
 
-.menu a.active{
-    background:#fff;
-    width:170px;
-    text-align:center;
+.menu a svg{
+    width:14px;
+    height:14px;
+    stroke-width:1.6;
+    flex-shrink:0;
 }
 
 .menu a:hover{
-    background:#fff;
+    background:#f1edff;
+    color:#5c2dc9;
 }
 
-/* CONTEÚDO */
-.content{
+.menu a.active{
+    background:linear-gradient(
+        135deg,
+        #6330d2,
+        #5420bd
+    );
+
+    color:white;
+    box-shadow:
+        0 5px 12px rgba(91,43,201,.18);
+}
+
+.menu a.active svg{
+    stroke:white;
+}
+
+
+/* NOTIFICAÇÃO */
+
+.notification{
+    margin-left:auto;
+
+    width:14px;
+    height:14px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#5d2bc9;
+    color:white;
+
+    font-size:7px;
+}
+
+
+/* PARTE INFERIOR */
+
+.sidebar-bottom{
+    margin-top:auto;
+}
+
+.help-box{
+    display:flex;
+    align-items:center;
+    gap:7px;
+
+    padding:9px 7px;
+
+    background:#f3efff;
+    border-radius:7px;
+
+    margin-bottom:8px;
+}
+
+.help-icon{
+    width:17px;
+    height:17px;
+    color:#6331d2;
+}
+
+.help-text{
     flex:1;
-    padding:45px;
 }
 
-/* TOPO */
-.top-bar{
+.help-text strong{
+    display:block;
+    color:#5b2bc8;
+    font-size:7px;
+    margin-bottom:2px;
+}
+
+.help-text span{
+    display:block;
+    color:#5b5e80;
+    font-size:6px;
+}
+
+.help-arrow{
+    color:#5b2bc8;
+    font-size:15px;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.content-area{
+    flex:1;
+    min-width:0;
+
+    display:flex;
+    flex-direction:column;
+}
+
+
+/* =========================
+   TOPBAR
+========================= */
+
+.topbar{
+    height:42px;
+    min-height:42px;
+
+    background:#fff;
+    border-bottom:1px solid #eceef6;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 14px;
+
+    gap:18px;
+}
+
+
+/* BREADCRUMB */
+
+.breadcrumb{
+    flex:1;
+
+    display:flex;
+    align-items:center;
+    gap:8px;
+
+    font-size:8px;
+    color:#66698a;
+}
+
+.breadcrumb .current{
+    color:#5b2bc8;
+    font-weight:bold;
+}
+
+.breadcrumb-arrow{
+    color:#aaaec2;
+}
+
+
+/* BUSCA */
+
+.top-search{
+    width:132px;
+    height:25px;
+
+    border:1px solid #e1e3ee;
+    border-radius:6px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 8px;
+    gap:5px;
+}
+
+.top-search input{
+    width:100%;
+    border:none;
+    outline:none;
+
+    font-size:7px;
+    color:#444;
+}
+
+.top-search input::placeholder{
+    color:#999cb3;
+}
+
+.top-search svg{
+    width:11px;
+    height:11px;
+    color:#65698d;
+}
+
+
+/* NOTIFICAÇÃO */
+
+.top-notification{
+    width:20px;
+    height:25px;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.top-notification svg{
+    width:14px;
+    height:14px;
+    color:#464a72;
+}
+
+.top-number{
+    position:absolute;
+
+    top:0;
+    right:-1px;
+
+    width:11px;
+    height:11px;
+
+    border-radius:50%;
+
+    background:#5c2bc9;
+    color:white;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:6px;
+}
+
+
+/* PERFIL */
+
+.profile{
+    display:flex;
+    align-items:center;
+    gap:6px;
+}
+
+.profile-info{
+    text-align:right;
+}
+
+.profile-info strong{
+    display:block;
+    font-size:7px;
+    color:#27294f;
+}
+
+.profile-info span{
+    display:block;
+    font-size:6px;
+    color:#5b31c8;
+    margin-top:1px;
+}
+
+.profile-photo{
+    width:25px;
+    height:25px;
+
+    border-radius:50%;
+
+    background:linear-gradient(
+        135deg,
+        #ddd,
+        #999
+    );
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+}
+
+.profile-photo svg{
+    width:16px;
+    height:16px;
+}
+
+.profile-arrow{
+    width:11px;
+    height:11px;
+    color:#5b6084;
+}
+
+
+/* =========================
+   ÁREA DA PÁGINA
+========================= */
+
+.main-content{
+    flex:1;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,.8),
+            transparent 30%
+        ),
+        linear-gradient(
+            115deg,
+            #f5f3ff,
+            #edf3ff
+        );
+
+    padding:17px 18px 12px;
+}
+
+
+/* CABEÇALHO DA PÁGINA */
+
+.page-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:30px;
+
+    margin-bottom:14px;
 }
 
-/* PESQUISA */
-.search-box{
-    width:360px;
-    height:50px;
-    border:none;
-    border-radius:25px;
-    background:#dfecef;
-    padding:0 20px;
-    font-size:22px;
-    outline:none;
-    box-shadow:0 4px 6px rgba(0,0,0,0.1);
+.page-title h1{
+    font-size:17px;
+    color:#171b5c;
+    margin-bottom:4px;
 }
 
-/* BOTÃO */
+.page-title p{
+    font-size:7px;
+    color:#6c6f8d;
+}
+
+
+/* BOTÃO ADICIONAR */
+
 .add-btn{
-    width:200px;
-    height:50px;
-    margin-left: 70%;
+    height:28px;
+    padding:0 13px;
+
     border:none;
-    border-radius:10px;
-    background:#bcebf5;
-    font-size:22px;
+    border-radius:6px;
+
+    background:linear-gradient(
+        90deg,
+        #6531d5,
+        #5630c9
+    );
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    font-size:7px;
     cursor:pointer;
-    box-shadow:0 4px 6px rgba(0,0,0,0.1);
+
+    box-shadow:
+        0 5px 12px rgba(91,43,201,.18);
+
+    transition:.25s;
 }
 
-/* TÍTULO */
-.title{
-    font-size:48px;
-    margin-bottom:25px;
-    color:#111;
+.add-btn svg{
+    width:12px;
+    height:12px;
 }
+
+.add-btn:hover{
+    transform:translateY(-1px);
+}
+
+
+/* =========================
+   TABELA
+========================= */
+
+.table-container{
+    background:white;
+
+    border:1px solid #edf0f7;
+
+    border-radius:9px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 5px 20px rgba(52,70,130,.05);
+}
+
+
+/* BARRA DA TABELA */
+
+.table-toolbar{
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 13px;
+
+    border-bottom:1px solid #f0f1f6;
+}
+
+
+/* PESQUISA DA TABELA */
+
+.table-search{
+    width:173px;
+    height:25px;
+
+    border:1px solid #e8eaf1;
+    border-radius:6px;
+
+    display:flex;
+    align-items:center;
+
+    padding:0 9px;
+    gap:6px;
+}
+
+.table-search input{
+    width:100%;
+
+    border:none;
+    outline:none;
+
+    font-size:7px;
+}
+
+.table-search input::placeholder{
+    color:#a1a4b7;
+}
+
+.table-search svg{
+    width:11px;
+    height:11px;
+    color:#777b98;
+}
+
+
+/* FILTROS */
+
+.filter-btn{
+    height:24px;
+
+    padding:0 10px;
+
+    background:white;
+
+    border:1px solid #e7e9f1;
+
+    border-radius:5px;
+
+    color:#565a7b;
+
+    font-size:7px;
+
+    display:flex;
+    align-items:center;
+    gap:5px;
+
+    cursor:pointer;
+}
+
+.filter-btn svg{
+    width:11px;
+    height:11px;
+}
+
 
 /* TABELA */
-.table-container{
-    background:#fff;
-    border-radius:20px;
-    overflow:hidden;
-    box-shadow:0 4px 12px rgba(0,0,0,0.08);
+
+.table-scroll{
+    width:100%;
+    overflow-x:auto;
 }
 
 table{
     width:100%;
+    min-width:730px;
+
     border-collapse:collapse;
 }
 
@@ -117,270 +602,1625 @@ thead{
 }
 
 thead th{
+    height:30px;
+
+    padding:0 13px;
+
     text-align:left;
-    padding:20px;
-    font-size:14px;
-    color:#666;
-    border-bottom:1px solid #eee;
+
+    color:#656985;
+
+    font-size:6.5px;
+    font-weight:bold;
+
+    border-bottom:1px solid #eef0f5;
+
+    white-space:nowrap;
+}
+
+thead th .sort{
+    margin-left:4px;
+    color:#a4a7ba;
+}
+
+
+/* LINHAS */
+
+tbody tr{
+    transition:.2s;
+}
+
+tbody tr:hover{
+    background:#fafaff;
 }
 
 tbody td{
-    padding:18px 20px;
-    border-bottom:1px solid #f0f0f0;
-    color:#555;
+    height:34px;
+
+    padding:0 13px;
+
+    border-bottom:1px solid #f0f1f6;
+
+    color:#555a7b;
+
+    font-size:7px;
+
+    white-space:nowrap;
 }
+
+tbody tr:last-child td{
+    border-bottom:none;
+}
+
+
+/* PACIENTE */
 
 .patient-link{
-    text-decoration: none;
-    color: inherit;
-    display: block;
+    text-decoration:none;
+    color:inherit;
 }
 
-.btn-visualizar{
-    background: #6c63ff;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.btn-visualizar:hover{
-    background: #574bdb;
-}
-
-/* FOTO INICIAL */
 .patient{
     display:flex;
     align-items:center;
-    gap:10px;
+    gap:7px;
+
+    color:#292d62;
+
+    font-weight:bold;
 }
 
 .avatar{
-    width:30px;
-    height:30px;
+    width:22px;
+    height:22px;
+
     border-radius:50%;
+
     display:flex;
-    justify-content:center;
     align-items:center;
-    color:#555;
-    font-size:12px;
+    justify-content:center;
+
+    font-size:6.5px;
     font-weight:bold;
 }
 
+
 /* STATUS */
+
 .status{
-    padding:6px 15px;
-    border-radius:20px;
-    font-size:13px;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+
+    padding:4px 8px;
+
+    border-radius:15px;
+
+    font-size:6.5px;
     font-weight:bold;
+}
+
+.status-dot{
+    width:5px;
+    height:5px;
+    border-radius:50%;
 }
 
 .active-status{
-    background:#d9f7e4;
-    color:#22a559;
+    background:#e4f8ed;
+    color:#159b57;
+}
+
+.active-status .status-dot{
+    background:#18b968;
 }
 
 .inactive-status{
-    background:#ffe2e2;
-    color:#e84d4d;
+    background:#ffe8e8;
+    color:#e24c4c;
+}
+
+.inactive-status .status-dot{
+    background:#f24c4c;
 }
 
 .obs-status{
-    background:#fff1d7;
-    color:#d68a00;
+    background:#fff2df;
+    color:#d48600;
 }
 
-/* PAGINAÇÃO */
+.obs-status .status-dot{
+    background:#f1a21a;
+}
+
+
+/* AÇÕES */
+
+.action-btn{
+    border:none;
+    background:transparent;
+
+    color:#4d5278;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    line-height:1;
+}
+
+
+/* =========================
+   PAGINAÇÃO
+========================= */
+
 .pagination{
+    height:34px;
+
     display:flex;
-    justify-content:space-between;
     align-items:center;
-    padding:20px;
-    font-size:14px;
-    color:#666;
+    justify-content:space-between;
+
+    padding:0 13px;
+
+    border-top:1px solid #f0f1f6;
+
+    color:#656985;
+
+    font-size:7px;
+}
+
+.pagination-side{
+    display:flex;
+    align-items:center;
+    gap:7px;
+}
+
+.pagination-arrow{
+    color:#626683;
+    font-size:12px;
 }
 
 .pages{
     display:flex;
-    gap:8px;
+    align-items:center;
+    gap:5px;
 }
 
 .page{
-    width:30px;
-    height:30px;
-    border-radius:8px;
+    width:19px;
+    height:19px;
+
+    border-radius:5px;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
     cursor:pointer;
+
+    color:#656985;
+    font-size:7px;
+}
+
+.page:hover{
+    background:#f1edff;
+    color:#5c2dc9;
 }
 
 .page.active{
-    background:#4f8cff;
-    color:#fff;
+    background:#5d2bc9;
+    color:white;
 }
 
-/* RESPONSIVO */
-@media(max-width:1000px){
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    height:58px;
+    min-height:58px;
+
+    background:#fff;
+
+    border-top:1px solid #edf0f6;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 15px;
+}
+
+
+/* LOGO FOOTER */
+
+.footer-logo{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.footer-logo svg{
+    width:28px;
+    height:28px;
+    color:#6031d2;
+}
+
+.footer-logo strong{
+    display:block;
+
+    color:#5b2bc8;
+
+    font-size:14px;
+}
+
+.footer-logo span{
+    display:block;
+
+    color:#40436a;
+
+    font-size:5.5px;
+
+    line-height:7px;
+}
+
+
+/* TEXTO FOOTER */
+
+.footer-center{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:5px;
+
+    color:#676a87;
+
+    font-size:7px;
+}
+
+.footer-security{
+    display:flex;
+    align-items:center;
+    gap:4px;
+}
+
+.footer-security svg{
+    width:10px;
+    height:10px;
+}
+
+.footer-right{
+    width:100px;
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media(max-width:900px){
+
     .sidebar{
+        width:145px;
+        min-width:145px;
+    }
+
+    .profile-info{
         display:none;
     }
 
-    .content{
-        padding:20px;
+    .main-content{
+        padding:15px;
     }
 
-    .top-bar{
+}
+
+
+@media(max-width:700px){
+
+    .main-area{
         flex-direction:column;
-        gap:15px;
-        align-items:flex-start;
     }
 
-    .search-box{
+    .sidebar{
         width:100%;
+        min-width:100%;
+        height:auto;
+        padding:8px;
     }
 
-    .table-container{
+    .logo{
+        margin-bottom:8px;
+    }
+
+    .menu{
+        flex-direction:row;
         overflow-x:auto;
     }
-}
-</style>
-</head>
 
+    .menu a{
+        min-width:max-content;
+    }
+
+    .sidebar-bottom{
+        display:none;
+    }
+
+    .breadcrumb{
+        display:none;
+    }
+
+    .top-search{
+        margin-left:auto;
+    }
+
+    .page-header{
+        align-items:flex-start;
+        gap:10px;
+    }
+
+    .page-title h1{
+        font-size:16px;
+    }
+
+    .add-btn{
+        flex-shrink:0;
+    }
+
+    .footer-right{
+        display:none;
+    }
+
+}
+
+</style>
+
+</head>
 
 
 <body>
 
-<!-- MENU -->
-<div class="sidebar">
-    <div class="menu">
-        <a href="consulta.html">Iniciar Consulta</a>
-        <a href="perfil.html">Perfil</a>
-        <a href="" class="active">Ficha de pacientes</a>
-        <a href="agenda.html">Agenda</a>
-    </div>
+
+<div class="app">
+
+<div class="main-area">
+
+
+<!-- =====================================================
+     SIDEBAR
+===================================================== -->
+
+<aside class="sidebar">
+
+
+<div class="logo">
+
+<svg class="logo-icon" viewBox="0 0 40 40" fill="none">
+
+<path
+d="M2 18h8l3-7 5 16 5-11 3 5h12"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"/>
+
+<path
+d="M20 36C10 29 4 23 4 15C4 9 8 5 14 5c3 0 5 2 6 4 1-2 3-4 6-4 6 0 10 4 10 10"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"/>
+
+</svg>
+
+
+<div class="logo-text">
+
+<strong>EMPS</strong>
+
+<span>
+Sistema de Monitoramento<br>
+e Prevenção de Crises Epilépticas
+</span>
+
 </div>
 
-<!-- CONTEÚDO -->
-<div class="content">
+</div>
 
-    <!-- TOPO -->
-    <div class="top-bar">
 
-    </div>
+<nav class="menu">
 
-    <h1 class="title">Pacientes</h1>
 
-    <!-- TABELA -->
-   <tbody>
+<a href="dashboard.html">
+
+<svg viewBox="0 0 24 24" fill="none">
+<rect x="4" y="4" width="6" height="6"/>
+<rect x="14" y="4" width="6" height="6"/>
+<rect x="4" y="14" width="6" height="6"/>
+<rect x="14" y="14" width="6" height="6"/>
+</svg>
+
+Dashboard
+
+</a>
+
+
+<a href="ficha.html" class="active">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<circle cx="12" cy="8" r="3"/>
+
+<path d="M5 20c.7-3.5 3-5.5 7-5.5s6.3 2 7 5.5"/>
+
+<path d="M4 4h16v16H4z"/>
+
+</svg>
+
+Ficha de pacientes
+
+</a>
+
+
+<a href="buscar.html">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<circle cx="10.5" cy="10.5" r="6.5"/>
+
+<path d="M16 16l5 5"/>
+
+</svg>
+
+Buscar paciente
+
+</a>
+
+
+<a href="agenda.html">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<rect x="4" y="5" width="16" height="15" rx="2"/>
+
+<path d="M8 3v4M16 3v4M4 10h16"/>
+
+</svg>
+
+Agenda
+
+</a>
+
+
+<a href="consultas.html">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<rect x="5" y="4" width="14" height="16"/>
+
+<path d="M9 8h6M9 12h6M9 16h4"/>
+
+</svg>
+
+Consultas
+
+</a>
+
+
+<a href="relatorios.html">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<path d="M5 20V10"/>
+<path d="M12 20V4"/>
+<path d="M19 20v-7"/>
+
+</svg>
+
+Relatórios
+
+</a>
+
+
+<a href="alertas.html">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+<path d="M10 21h4"/>
+
+</svg>
+
+Alertas
+
+<span class="notification">3</span>
+
+</a>
+
+
+<a href="mensagens.html">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<path d="M4 5h16v12H8l-4 4z"/>
+<path d="M8 9h8M8 13h5"/>
+
+</svg>
+
+Mensagens
+
+<span class="notification">2</span>
+
+</a>
+
+
+<a href="configuracoes.html">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<circle cx="12" cy="12" r="3"/>
+
+<path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a8 8 0 0 0-1.8-1L14.5 3h-4l-.3 2.1a8 8 0 0 0-1.8 1L6 6.1 4 9.5 6 11a7 7 0 0 0 0 2l-2 1.5L6 18l2.4-1a8 8 0 0 0 1.8 1l.3 2.1h4l.3-2.1a8 8 0 0 0 1.8-1l2.4 1 2-3.4-2-1.5c.1-.3.1-.7.1-1z"/>
+
+</svg>
+
+Configurações
+
+</a>
+
+
+</nav>
+
+
+<div class="sidebar-bottom">
+
+
+<div class="help-box">
+
+<svg class="help-icon" viewBox="0 0 24 24" fill="none">
+
+<path d="M4 14a8 8 0 0 1 16 0"/>
+<path d="M4 14v4h3v-5H4M20 14v4h-3v-5h3"/>
+<path d="M8 20h4"/>
+
+</svg>
+
+<div class="help-text">
+
+<strong>Precisa de ajuda?</strong>
+
+<span>Acesse o suporte</span>
+
+</div>
+
+<span class="help-arrow">›</span>
+
+</div>
+
+
+<a href="login.html">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<path d="M10 17l5-5-5-5"/>
+<path d="M15 12H3"/>
+<path d="M20 4v16"/>
+
+</svg>
+
+Sair
+
+</a>
+
+</div>
+
+
+</aside>
+
+
+<!-- =====================================================
+     ÁREA PRINCIPAL
+===================================================== -->
+
+<section class="content-area">
+
+
+<!-- TOPBAR -->
+
+<header class="topbar">
+
+
+<div class="breadcrumb">
+
+<span>Ficha de pacientes</span>
+
+<span class="breadcrumb-arrow">›</span>
+
+<span class="current">Lista de pacientes</span>
+
+</div>
+
+
+<div class="top-search">
+
+<input
+type="text"
+placeholder="Buscar paciente...">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<circle cx="10.5" cy="10.5" r="6.5"/>
+<path d="M16 16l5 5"/>
+
+</svg>
+
+</div>
+
+
+<div class="top-notification">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+<path d="M10 21h4"/>
+
+</svg>
+
+<span class="top-number">3</span>
+
+</div>
+
+
+<div class="profile">
+
+<div class="profile-info">
+
+<strong>Dr. Rafael Oliveira</strong>
+
+<span>Neurologista</span>
+
+</div>
+
+
+<div class="profile-photo">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<circle cx="12" cy="8" r="3"/>
+<path d="M6 21c.7-4 2.7-6 6-6s5.3 2 6 6"/>
+
+</svg>
+
+</div>
+
+
+<svg class="profile-arrow" viewBox="0 0 24 24" fill="none">
+
+<path d="M6 9l6 6 6-6"/>
+
+</svg>
+
+</div>
+
+
+</header>
+
+
+<!-- =====================================================
+     CONTEÚDO
+===================================================== -->
+
+<main class="main-content">
+
+
+<div class="page-header">
+
+
+<div class="page-title">
+
+<h1>Lista de pacientes</h1>
+
+<p>
+Gerencie e acompanhe os pacientes cadastrados.
+</p>
+
+</div>
+
+
+<button
+class="add-btn"
+onclick="window.location.href='cadastro.html'">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<path d="M12 5v14"/>
+<path d="M5 12h14"/>
+
+</svg>
+
+Adicionar paciente
+
+</button>
+
+
+</div>
+
+
+<!-- TABELA -->
+
+<div class="table-container">
+
+
+<!-- BARRA -->
+
+<div class="table-toolbar">
+
+
+<div class="table-search">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Pesquisar paciente..."
+onkeyup="filterPatients()">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<circle cx="10.5" cy="10.5" r="6.5"/>
+<path d="M16 16l5 5"/>
+
+</svg>
+
+</div>
+
+
+<button class="filter-btn">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<path d="M4 6h16"/>
+<path d="M7 12h10"/>
+<path d="M10 18h4"/>
+
+</svg>
+
+Filtros
+
+</button>
+
+
+</div>
+
+
+<!-- TABELA -->
+
+<div class="table-scroll">
+
 <table>
-    <tr>
-        <td>
-            <a href="paciente.html" class="patient-link">
-                <div class="patient">
-                    <div class="avatar" style="background:#e6d8ff;">AC</div>
-                    Ana Clara Souza
-                </div>
-            </a>
-        </td>
-        <td>208899786</td>
-        <td>(11) 99821-4450</td>
-        <td>Epilepsia Focal</td>
-        <td>
-            <span class="status active-status">
-                ● Ativo
-            </span>
-        </td>
-        <td>
-            <button class="btn-visualizar"
-                onclick="window.location.href='paciente.html'">
-                Visualizar
-            </button>
-        </td>
-    </tr>
 
-    <tr>
-        <td>
-            <a href="paciente.html" class="patient-link">
-                <div class="patient">
-                    <div class="avatar" style="background:#d7e9ff;">LM</div>
-                    Lucas Mendes
-                </div>
-            </a>
-        </td>
-        <td>928374651</td>
-        <td>(21) 98741-2231</td>
-        <td>Epilepsia Generalizada</td>
-        <td>
-            <span class="status inactive-status">
-                ● Inativo
-            </span>
-        </td>
-        <td>
-            <button class="btn-visualizar"
-                onclick="window.location.href='paciente.html'">
-                Visualizar
-            </button>
-        </td>
-    </tr>
+<thead>
 
-    <tr>
-        <td>
-            <a href="paciente.html" class="patient-link">
-                <div class="patient">
-                    <div class="avatar" style="background:#dfffe2;">BL</div>
-                    Beatriz Lima
-                </div>
-            </a>
-        </td>
-        <td>673284199</td>
-        <td>(31) 99112-7744</td>
-        <td>Monitoramento Neurológico</td>
-        <td>
-            <span class="status active-status">
-                ● Ativo
-            </span>
-        </td>
-        <td>
-            <button class="btn-visualizar"
-                onclick="window.location.href='paciente.html'">
-                Visualizar
-            </button>
-        </td>
-    </tr>
+<tr>
 
-    <tr>
-        <td>
-            <a href="paciente.html" class="patient-link">
-                <div class="patient">
-                    <div class="avatar" style="background:#ffe7c9;">GR</div>
-                    Gabriel Rocha
-                </div>
-            </a>
-        </td>
-        <td>542781309</td>
-        <td>(41) 9654-8890</td>
-        <td>Crises Frequentes</td>
-        <td>
-            <span class="status obs-status">
-                ● Em Observação
-            </span>
-        </td>
-        <td>
-            <button class="btn-visualizar"
-                onclick="window.location.href='paciente.html'">
-                Visualizar
-            </button>
-        </td>
-    </tr>
-</table>
+<th>
+Nome do Paciente
+<span class="sort">↕</span>
+</th>
+
+<th>
+ID do Paciente
+<span class="sort">↕</span>
+</th>
+
+<th>
+Telefone
+<span class="sort">↕</span>
+</th>
+
+<th>
+Condição
+<span class="sort">↕</span>
+</th>
+
+<th>
+Status de Tratamento
+<span class="sort">↕</span>
+</th>
+
+<th>
+Ações
+</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="patientTable">
+
+
+<!-- ANA -->
+
+<tr>
+
+<td>
+
+<a href="paciente.html" class="patient-link">
+
+<div class="patient">
+
+<div
+class="avatar"
+style="background:#e9ddff;color:#6331d2;">
+AC
+</div>
+
+Ana Clara Souza
+
+</div>
+
+</a>
+
+</td>
+
+<td>260963706</td>
+
+<td>(11) 90817-4409</td>
+
+<td>Epilepsia Focal</td>
+
+<td>
+
+<span class="status active-status">
+
+<span class="status-dot"></span>
+
+Ativo
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn"
+onclick="window.location.href='paciente.html'">
+
+⋮
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- LUCAS -->
+
+<tr>
+
+<td>
+
+<a href="paciente.html" class="patient-link">
+
+<div class="patient">
+
+<div
+class="avatar"
+style="background:#dceaff;color:#4076cf;">
+LM
+</div>
+
+Lucas Mendes
+
+</div>
+
+</a>
+
+</td>
+
+<td>935745591</td>
+
+<td>(21) 98134-2213</td>
+
+<td>Epilepsia Generalizada</td>
+
+<td>
+
+<span class="status inactive-status">
+
+<span class="status-dot"></span>
+
+Inativo
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn"
+onclick="window.location.href='paciente.html'">
+
+⋮
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- BEATRIZ -->
+
+<tr>
+
+<td>
+
+<a href="paciente.html" class="patient-link">
+
+<div class="patient">
+
+<div
+class="avatar"
+style="background:#ddf8e8;color:#23a865;">
+BL
+</div>
+
+Beatriz Lima
+
+</div>
+
+</a>
+
+</td>
+
+<td>673349879</td>
+
+<td>(31) 97513-7384</td>
+
+<td>Monitoramento Neurológico</td>
+
+<td>
+
+<span class="status active-status">
+
+<span class="status-dot"></span>
+
+Ativo
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn"
+onclick="window.location.href='paciente.html'">
+
+⋮
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- GABRIEL -->
+
+<tr>
+
+<td>
+
+<a href="paciente.html" class="patient-link">
+
+<div class="patient">
+
+<div
+class="avatar"
+style="background:#fff0dd;color:#ef9a25;">
+GR
+</div>
+
+Gabriel Rocha
+
+</div>
+
+</a>
+
+</td>
+
+<td>542693197</td>
+
+<td>(41) 99634-8094</td>
+
+<td>Crises Frequentes</td>
+
+<td>
+
+<span class="status obs-status">
+
+<span class="status-dot"></span>
+
+Em Observação
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn"
+onclick="window.location.href='paciente.html'">
+
+⋮
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- MARIANE -->
+
+<tr>
+
+<td>
+
+<a href="paciente.html" class="patient-link">
+
+<div class="patient">
+
+<div
+class="avatar"
+style="background:#ffe1e6;color:#eb4f63;">
+MA
+</div>
+
+Mariane Alves
+
+</div>
+
+</a>
+
+</td>
+
+<td>375894820</td>
+
+<td>(85) 99255-3832</td>
+
+<td>Síndrome de Dravet</td>
+
+<td>
+
+<span class="status active-status">
+
+<span class="status-dot"></span>
+
+Ativo
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn"
+onclick="window.location.href='paciente.html'">
+
+⋮
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- RAFAEL -->
+
+<tr>
+
+<td>
+
+<a href="paciente.html" class="patient-link">
+
+<div class="patient">
+
+<div
+class="avatar"
+style="background:#dceaff;color:#3973cf;">
+RC
+</div>
+
+Rafael Costa
+
+</div>
+
+</a>
+
+</td>
+
+<td>596786343</td>
+
+<td>(61) 99144-5631</td>
+
+<td>Epilepsia Infantil</td>
+
+<td>
+
+<span class="status inactive-status">
+
+<span class="status-dot"></span>
+
+Inativo
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn"
+onclick="window.location.href='paciente.html'">
+
+⋮
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- SOFIA -->
+
+<tr>
+
+<td>
+
+<a href="paciente.html" class="patient-link">
+
+<div class="patient">
+
+<div
+class="avatar"
+style="background:#eee0ff;color:#7941c9;">
+SM
+</div>
+
+Sofia Martins
+
+</div>
+
+</a>
+
+</td>
+
+<td>786212430</td>
+
+<td>(71) 98765-7612</td>
+
+<td>Avaliação Médica</td>
+
+<td>
+
+<span class="status active-status">
+
+<span class="status-dot"></span>
+
+Ativo
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn"
+onclick="window.location.href='paciente.html'">
+
+⋮
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- PEDRO -->
+
+<tr>
+
+<td>
+
+<a href="paciente.html" class="patient-link">
+
+<div class="patient">
+
+<div
+class="avatar"
+style="background:#fff0c9;color:#df9b14;">
+PH
+</div>
+
+Pedro Henrique
+
+</div>
+
+</a>
+
+</td>
+
+<td>454679568</td>
+
+<td>(19) 98231-4333</td>
+
+<td>Crises Noturnas</td>
+
+<td>
+
+<span class="status obs-status">
+
+<span class="status-dot"></span>
+
+Em Observação
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn"
+onclick="window.location.href='paciente.html'">
+
+⋮
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- ARIANA -->
+
+<tr>
+
+<td>
+
+<a href="paciente.html" class="patient-link">
+
+<div class="patient">
+
+<div
+class="avatar"
+style="background:#dff7ed;color:#28a06a;">
+AF
+</div>
+
+Ariana Ferreira
+
+</div>
+
+</a>
+
+</td>
+
+<td>344655661</td>
+
+<td>(21) 97145-1186</td>
+
+<td>Acompanhamento Clínico</td>
+
+<td>
+
+<span class="status active-status">
+
+<span class="status-dot"></span>
+
+Ativo
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn"
+onclick="window.location.href='paciente.html'">
+
+⋮
+
+</button>
+
+</td>
+
+</tr>
+
+
+<!-- THIAGO -->
+
+<tr>
+
+<td>
+
+<a href="paciente.html" class="patient-link">
+
+<div class="patient">
+
+<div
+class="avatar"
+style="background:#ffe1e6;color:#e94f62;">
+TN
+</div>
+
+Thiago Nunes
+
+</div>
+
+</a>
+
+</td>
+
+<td>889977665</td>
+
+<td>(48) 99182-2301</td>
+
+<td>Ajuste de Medicação</td>
+
+<td>
+
+<span class="status inactive-status">
+
+<span class="status-dot"></span>
+
+Inativo
+
+</span>
+
+</td>
+
+<td>
+
+<button
+class="action-btn"
+onclick="window.location.href='paciente.html'">
+
+⋮
+
+</button>
+
+</td>
+
+</tr>
+
 
 </tbody>
 
+</table>
 
+</div>
+
+
+<!-- PAGINAÇÃO -->
+
+<div class="pagination">
+
+
+<div class="pagination-side">
+
+<span class="pagination-arrow">‹</span>
+
+<span>Anterior</span>
+
+</div>
+
+
+<div class="pages">
+
+<div class="page">1</div>
+
+<div class="page">2</div>
+
+<div class="page active">3</div>
+
+<div class="page">4</div>
+
+<div class="page">5</div>
+
+<span>...</span>
+
+<div class="page">10</div>
+
+</div>
+
+
+<div class="pagination-side">
+
+<span>Próximo</span>
+
+<span class="pagination-arrow">›</span>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</main>
+
+
+</section>
+
+</div>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+
+<div class="footer-logo">
+
+<svg viewBox="0 0 40 40" fill="none">
+
+<path
+d="M2 18h8l3-7 5 16 5-11 3 5h12"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round"/>
+
+<path
+d="M20 36C10 29 4 23 4 15C4 9 8 5 14 5c3 0 5 2 6 4 1-2 3-4 6-4 6 0 10 4 10 10"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"/>
+
+</svg>
+
+
+<div>
+
+<strong>EMPS</strong>
+
+<span>
+Sistema de Monitoramento<br>
+e Prevenção de Crises Epilépticas
+</span>
+
+</div>
+
+</div>
+
+
+<div class="footer-center">
+
+<div class="footer-security">
+
+<svg viewBox="0 0 24 24" fill="none">
+
+<rect
+x="5"
+y="10"
+width="14"
+height="10"
+rx="2"/>
+
+<path
+d="M8 10V7a4 4 0 0 1 8 0v3"/>
+
+</svg>
+
+<span>
+Ambiente seguro e criptografado
+</span>
+
+</div>
+
+
+<span>
+© 2024 EMPS. Todos os direitos reservados.
+</span>
+
+</div>
+
+
+<div class="footer-right"></div>
+
+
+</footer>
+
+</div>
+
+
+<script>
+
+/* =========================
+   PESQUISA DE PACIENTES
+========================= */
+
+function filterPatients(){
+
+    const input =
+        document.getElementById("searchInput");
+
+    const filter =
+        input.value.toLowerCase();
+
+    const rows =
+        document.querySelectorAll(
+            "#patientTable tr"
+        );
+
+    rows.forEach(row => {
+
+        const text =
+            row.textContent.toLowerCase();
+
+        if(text.includes(filter)){
+
+            row.style.display = "";
+
+        }else{
+
+            row.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   PAGINAÇÃO VISUAL
+========================= */
+
+document
+.querySelectorAll(".page")
+.forEach(page => {
+
+    page.addEventListener(
+        "click",
+        function(){
+
+            document
+            .querySelectorAll(".page")
+            .forEach(p =>
+                p.classList.remove("active")
+            );
+
+            this.classList.add("active");
+
+        }
+    );
+
+});
+
+</script>
 
 
 </body>
+
 </html>

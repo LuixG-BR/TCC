@@ -4,234 +4,1406 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda Médica</title>
+
+    <title>EMPS - Agenda</title>
 
     <!-- FullCalendar -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
         }
 
         body {
+            background: #ffffff;
+            color: #26324a;
+        }
+
+
+        /* =========================================
+           SIDEBAR
+        ========================================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            width: 225px;
+            height: 100vh;
+
+            background: #ffffff;
+
+            border-right: 1px solid #eeeeF5;
+
             display: flex;
-            background: #f5f5f5;
+            flex-direction: column;
+
+            z-index: 1000;
         }
 
-       /* MENU */
 
-.sidebar{
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 100vh;
-    background: #d8f1f8;
-    padding: 30px 20px;
-}
+        /* LOGO */
 
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-}
+        .logo-area {
+            height: 80px;
 
-.menu a{
-    display:block;
-    width:100%;
-    padding:12px 18px;
-    text-decoration:none;
-    color:#000;
-    font-size:16px;
-    border-radius:12px;
-    transition:.3s;
-}
+            display: flex;
+            align-items: center;
 
-.menu a:hover,
-.menu a.active{
-    background:#fff;
-}
+            padding: 0 25px;
 
-        /* CONTEÚDO */
-
-     .content{
-            margin-left: 250px;
-            width: calc(100% - 250px);
-            padding: 40px;
+            border-bottom: 1px solid #f1f1f6;
         }
 
-        /* TOPO */
-
-       .top{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            gap:30px;
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-     .profissional{
-            font-size:52px;
-            font-weight:bold;
-            margin:0;
+        .logo-icon {
+            width: 42px;
+            height: 42px;
+
+            border: 2px solid #6c3bd1;
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #6c3bd1;
         }
 
-        .user-area{
-            display:flex;
-            align-items:center;
-            gap:15px;
+        .logo-text {
+            display: flex;
+            flex-direction: column;
         }
 
-        .search{
-            width:300px;
-            height:46px;
-            border:none;
-            border-radius:30px;
-            background:#d9e6ea;
-            padding:0 20px;
-            font-size:18px;
+        .logo-text strong {
+            color: #5d35c7;
+            font-size: 22px;
+            line-height: 20px;
         }
 
-        .user-img{
-            width:65px;
-            height:65px;
-            border-radius:50%;
-            background:#ccc;
+        .logo-text span {
+            color: #7c8295;
+            font-size: 7px;
+            line-height: 9px;
+            margin-top: 3px;
         }
 
-        /* HEADER */
 
-        .calendar-header{
-            margin:40px 0 25px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
+        /* MENU */
+
+        .menu {
+            padding: 25px 13px;
+
+            display: flex;
+            flex-direction: column;
+
+            gap: 7px;
         }
+
+        .menu-title {
+            font-size: 11px;
+            color: #a1a6b5;
+
+            padding: 0 15px 8px;
+
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        .menu a {
+            height: 43px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 13px;
+
+            padding: 0 14px;
+
+            text-decoration: none;
+
+            color: #59647a;
+
+            font-size: 13px;
+            font-weight: 500;
+
+            border-radius: 9px;
+
+            transition: .25s;
+        }
+
+        .menu a svg {
+            width: 18px;
+            height: 18px;
+
+            stroke-width: 1.8;
+        }
+
+        .menu a:hover {
+            background: #f5f1ff;
+            color: #6437c9;
+        }
+
+        .menu a.active {
+            background: #6235c9;
+            color: #ffffff;
+
+            box-shadow: 0 5px 12px rgba(98, 53, 201, .18);
+        }
+
+
+        /* BADGES */
+
+        .menu-badge {
+            margin-left: auto;
+
+            min-width: 20px;
+            height: 20px;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #6635c9;
+            color: white;
+
+            font-size: 10px;
+        }
+
+
+        /* AJUDA */
+
+        .sidebar-bottom {
+            margin-top: auto;
+
+            padding: 15px;
+        }
+
+        .help-box {
+            background: #f5f1ff;
+
+            border-radius: 10px;
+
+            padding: 13px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .help-box svg {
+            color: #6839ca;
+            width: 25px;
+            height: 25px;
+        }
+
+        .help-box strong {
+            display: block;
+
+            color: #6540bd;
+
+            font-size: 11px;
+        }
+
+        .help-box span {
+            display: block;
+
+            color: #8a8fa0;
+
+            font-size: 9px;
+
+            margin-top: 3px;
+        }
+
+        .logout {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 17px 10px 5px;
+
+            text-decoration: none;
+
+            color: #626b7d;
+
+            font-size: 12px;
+        }
+
+        .logout svg {
+            width: 18px;
+        }
+
+
+        /* =========================================
+           CONTEÚDO
+        ========================================= */
+
+        .content {
+            margin-left: 225px;
+
+            min-height: 100vh;
+
+            width: calc(100% - 225px);
+
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* =========================================
+           TOPBAR
+        ========================================= */
+
+        .topbar {
+            height: 70px;
+
+            border-bottom: 1px solid #eeeeF4;
+
+            display: flex;
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 12px;
+            color: #9aa0af;
+        }
+
+        .breadcrumb svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        .breadcrumb strong {
+            color: #29344b;
+        }
+
+
+        /* TOP RIGHT */
+
+        .top-right {
+            display: flex;
+            align-items: center;
+
+            gap: 18px;
+        }
+
+
+        /* BUSCA */
+
+        .top-search {
+            width: 195px;
+            height: 36px;
+
+            border: 1px solid #ececf2;
+
+            border-radius: 9px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 12px;
+
+            background: #ffffff;
+        }
+
+        .top-search input {
+            width: 100%;
+
+            border: none;
+            outline: none;
+
+            font-size: 11px;
+
+            color: #555e72;
+        }
+
+        .top-search input::placeholder {
+            color: #a7acba;
+        }
+
+        .top-search svg {
+            width: 15px;
+
+            color: #7b8190;
+        }
+
+
+        /* NOTIFICAÇÕES */
+
+        .notification {
+            position: relative;
+
+            width: 30px;
+            height: 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: #606a7e;
+        }
+
+        .notification svg {
+            width: 19px;
+        }
+
+        .notification-number {
+            position: absolute;
+
+            top: -2px;
+            right: -2px;
+
+            width: 16px;
+            height: 16px;
+
+            background: #6335ca;
+
+            color: white;
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 8px;
+
+            border: 2px solid white;
+        }
+
+
+        /* PERFIL */
+
+        .profile {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+        }
+
+        .profile-info {
+            text-align: right;
+        }
+
+        .profile-info strong {
+            display: block;
+
+            font-size: 11px;
+
+            color: #29344b;
+        }
+
+        .profile-info span {
+            display: block;
+
+            font-size: 9px;
+
+            color: #9298a7;
+
+            margin-top: 2px;
+        }
+
+        .profile-image {
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            background: linear-gradient(
+                135deg,
+                #ddd,
+                #b7b7b7
+            );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: white;
+        }
+
+        .profile-image svg {
+            width: 18px;
+        }
+
+        .profile > svg {
+            width: 14px;
+
+            color: #626b7d;
+        }
+
+
+        /* =========================================
+           ÁREA PRINCIPAL
+        ========================================= */
+
+        .page {
+            padding: 25px 30px 30px;
+
+            flex: 1;
+        }
+
+
+        /* CABEÇALHO */
+
+        .page-header {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            margin-bottom: 22px;
+        }
+
+        .page-title h1 {
+            font-size: 23px;
+
+            color: #27324a;
+
+            margin-bottom: 5px;
+        }
+
+        .page-title p {
+            font-size: 11px;
+
+            color: #858c9d;
+        }
+
+
+        /* BOTÃO */
 
         .add-btn {
-            display: inline-block;
-            background: #bfeaf3;
-            color: #000;
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            background: #6335c9;
+
+            color: #ffffff;
+
             text-decoration: none;
-            padding: 12px 25px;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: .3s;
+
+            padding: 11px 17px;
+
+            border-radius: 8px;
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            transition: .25s;
+
+            box-shadow: 0 5px 12px rgba(99, 53, 201, .18);
+        }
+
+        .add-btn svg {
+            width: 16px;
+            height: 16px;
         }
 
         .add-btn:hover {
-            background: #9edce9;
+            background: #5428b5;
+
+            transform: translateY(-1px);
         }
 
-        /* CONTEÚDO PRINCIPAL */
 
-        .main {
-            margin-top: 20px;
+        /* =========================================
+           CARDS DE INFORMAÇÕES
+        ========================================= */
+
+        .stats {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 15px;
+
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+
+            border: 1px solid #eeeeF4;
+
+            border-radius: 11px;
+
+            padding: 16px 18px;
+
             display: flex;
-            gap: 20px;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            box-shadow: 0 2px 7px rgba(30, 35, 60, .025);
         }
 
-        .calendar{
-            width:100%;
-            background:#fff;
-            padding:20px;
-            border-radius:20px;
-            box-shadow:0 2px 10px rgba(0,0,0,.1);
+        .stat-info span {
+            display: block;
+
+            color: #9298a7;
+
+            font-size: 10px;
+
+            margin-bottom: 6px;
+        }
+
+        .stat-info strong {
+            color: #29344b;
+
+            font-size: 20px;
+        }
+
+        .stat-icon {
+            width: 38px;
+            height: 38px;
+
+            border-radius: 9px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #f1edff;
+
+            color: #6738ca;
+        }
+
+        .stat-icon svg {
+            width: 19px;
+        }
+
+
+        /* =========================================
+           CALENDÁRIO
+        ========================================= */
+
+        .calendar-card {
+            background: #ffffff;
+
+            border: 1px solid #eeeeF4;
+
+            border-radius: 12px;
+
+            box-shadow: 0 2px 8px rgba(30, 35, 60, .035);
+
+            overflow: hidden;
+        }
+
+        .calendar-top {
+            height: 58px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 18px;
+
+            border-bottom: 1px solid #f0f0f5;
+        }
+
+        .calendar-top h2 {
+            font-size: 14px;
+
+            color: #303a50;
+        }
+
+        .calendar-tools {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+        .calendar-filter {
+            height: 32px;
+
+            padding: 0 11px;
+
+            border: 1px solid #e8e8ef;
+
+            background: #ffffff;
+
+            border-radius: 7px;
+
+            color: #667085;
+
+            font-size: 10px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 6px;
+        }
+
+        .calendar-filter svg {
+            width: 14px;
         }
 
         #calendar {
-            min-height: 700px;
+            padding: 15px;
+
+            min-height: 620px;
         }
 
-        /* RESPONSIVO */
 
-        @media (max-width:1100px) {
+        /* =========================================
+           FULLCALENDAR
+        ========================================= */
 
-            .sidebar{
-                width:260px;
+        .fc {
+            font-size: 11px;
+        }
+
+        .fc .fc-toolbar-title {
+            font-size: 17px;
+
+            color: #29344b;
+        }
+
+        .fc .fc-button {
+            background: #ffffff;
+
+            border: 1px solid #e5e5ec;
+
+            color: #5f6678;
+
+            font-size: 10px;
+
+            box-shadow: none;
+
+            text-transform: none;
+        }
+
+        .fc .fc-button:hover {
+            background: #f5f1ff;
+
+            color: #6335c9;
+
+            border-color: #dcd2f5;
+        }
+
+        .fc .fc-button-primary:not(:disabled).fc-button-active {
+            background: #6335c9;
+
+            border-color: #6335c9;
+
+            color: #ffffff;
+        }
+
+        .fc .fc-daygrid-day-number {
+            color: #697184;
+
+            font-size: 10px;
+
+            padding: 8px;
+        }
+
+        .fc .fc-col-header-cell-cushion {
+            color: #7a8191;
+
+            font-size: 10px;
+
+            text-decoration: none;
+        }
+
+        .fc-theme-standard td,
+        .fc-theme-standard th {
+            border-color: #eeeeF3;
+        }
+
+        .fc .fc-day-today {
+            background: #faf8ff !important;
+        }
+
+        .fc-event {
+            background: #eee8ff;
+
+            border: none;
+
+            color: #5d34bc;
+
+            border-radius: 5px;
+
+            padding: 3px 5px;
+
+            font-size: 9px;
+
+            font-weight: 600;
+        }
+
+        .fc-event:hover {
+            background: #dfd4ff;
+        }
+
+
+        /* =========================================
+           RODAPÉ
+        ========================================= */
+
+        .footer {
+            height: 58px;
+
+            border-top: 1px solid #eeeeF4;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 25px;
+
+            color: #a0a5b2;
+
+            font-size: 9px;
+        }
+
+        .footer-item {
+            display: flex;
+
+            align-items: center;
+
+            gap: 5px;
+        }
+
+        .footer svg {
+            width: 13px;
+            height: 13px;
+        }
+
+
+        /* =========================================
+           RESPONSIVO
+        ========================================= */
+
+        @media (max-width: 1100px) {
+
+            .sidebar {
+                width: 200px;
             }
 
-            .content{
-                margin-left:260px;
-                width:calc(100% - 260px);
+            .content {
+                margin-left: 200px;
+
+                width: calc(100% - 200px);
             }
 
-            .main {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+        }
+
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                width: 70px;
+            }
+
+            .logo-text,
+            .menu-title,
+            .menu a span,
+            .help-box div,
+            .logout span {
+                display: none;
+            }
+
+            .logo-area {
+                justify-content: center;
+
+                padding: 0;
+            }
+
+            .menu {
+                padding: 20px 10px;
+            }
+
+            .menu a {
+                justify-content: center;
+
+                padding: 0;
+            }
+
+            .menu-badge {
+                position: absolute;
+
+                margin-left: 25px;
+
+                margin-top: -20px;
+            }
+
+            .content {
+                margin-left: 70px;
+
+                width: calc(100% - 70px);
+            }
+
+            .top-search {
+                width: 140px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .page {
+                padding: 20px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .breadcrumb {
+                display: none;
+            }
+
+            .topbar {
+                padding: 0 15px;
+            }
+
+            .top-search {
+                display: none;
+            }
+
+            .page-header {
+                align-items: flex-start;
+
+                gap: 15px;
+
                 flex-direction: column;
             }
 
-            .calendar {
-                width: 100%;
+            .stats {
+                grid-template-columns: 1fr;
             }
+
+            .calendar-top {
+                flex-direction: column;
+
+                height: auto;
+
+                align-items: flex-start;
+
+                gap: 10px;
+
+                padding: 15px;
+            }
+
+            #calendar {
+                padding: 5px;
+            }
+
+            .footer {
+                gap: 10px;
+
+                flex-direction: column;
+
+                height: auto;
+
+                padding: 12px;
+            }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
-    <!-- MENU -->
 
-    <div class="sidebar">
+    <!-- =========================================
+         SIDEBAR
+    ========================================= -->
 
-        <div class="menu">
-            <a href="perfil.html">Perfil</a>
-            <a href="paciente.html">Paciente</a>
-            <a href="ficha.html">Ficha de Pacientes</a>
-            <a href="agenda.html" class="active">Agenda</a>
-        </div>
+    <aside class="sidebar">
 
-    </div>
 
-    <!-- CONTEÚDO -->
+        <!-- LOGO -->
 
-    <div class="content">
+        <div class="logo-area">
 
-        <div class="top">
+            <div class="logo">
 
-            <h1 class="profissional">
-                Nome do Profissional
-            </h1>
+                <div class="logo-icon">
 
-            <div class="user-area">
+                    <i data-lucide="heart-pulse"></i>
 
-                <input type="text" class="search" placeholder="Pesquisar">
+                </div>
 
-                <div class="user-img"></div>
+                <div class="logo-text">
+
+                    <strong>EMPS</strong>
+
+                    <span>
+                        Sistema de Monitoramento<br>
+                        e Prevenção de Crises Epilépticas
+                    </span>
+
+                </div>
 
             </div>
 
         </div>
 
-        <div class="calendar-header">
 
-            <h2>Agenda de Consultas</h2>
+        <!-- MENU -->
 
-            <a href="consulta.html" class="add-btn">
-                + Nova Consulta
+        <nav class="menu">
+
+            <div class="menu-title">
+                Menu
+            </div>
+
+
+            <a href="dashboard.html">
+
+                <i data-lucide="layout-dashboard"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="ficha.html">
+
+                <i data-lucide="users"></i>
+
+                <span>Ficha de pacientes</span>
+
+            </a>
+
+
+            <a href="paciente.html">
+
+                <i data-lucide="search"></i>
+
+                <span>Buscar paciente</span>
+
+            </a>
+
+
+            <a href="agenda.html" class="active">
+
+                <i data-lucide="calendar-days"></i>
+
+                <span>Agenda</span>
+
+            </a>
+
+
+            <a href="consulta.html">
+
+                <i data-lucide="clipboard-list"></i>
+
+                <span>Consultas</span>
+
+            </a>
+
+
+            <a href="relatorios.html">
+
+                <i data-lucide="bar-chart-3"></i>
+
+                <span>Relatórios</span>
+
+            </a>
+
+
+            <a href="alertas.html">
+
+                <i data-lucide="bell"></i>
+
+                <span>Alertas</span>
+
+                <div class="menu-badge">
+                    3
+                </div>
+
+            </a>
+
+
+            <a href="mensagens.html">
+
+                <i data-lucide="message-square"></i>
+
+                <span>Mensagens</span>
+
+                <div class="menu-badge">
+                    2
+                </div>
+
+            </a>
+
+
+            <a href="configuracoes.html">
+
+                <i data-lucide="settings"></i>
+
+                <span>Configurações</span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- PARTE INFERIOR -->
+
+        <div class="sidebar-bottom">
+
+
+            <div class="help-box">
+
+                <i data-lucide="headphones"></i>
+
+                <div>
+
+                    <strong>Precisa de ajuda?</strong>
+
+                    <span>Acesse o suporte</span>
+
+                </div>
+
+            </div>
+
+
+            <a href="login.html" class="logout">
+
+                <i data-lucide="log-out"></i>
+
+                <span>Sair</span>
+
             </a>
 
         </div>
 
-        <div class="main">
+    </aside>
 
-            <div class="calendar">
-                <div id="calendar"></div>
+
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================= -->
+
+    <main class="content">
+
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+
+            <div class="breadcrumb">
+
+                <span>Dashboard</span>
+
+                <i data-lucide="chevron-right"></i>
+
+                <strong>Agenda</strong>
+
             </div>
 
-        </div>
 
-    </div>
+            <div class="top-right">
+
+
+                <!-- BUSCA -->
+
+                <div class="top-search">
+
+                    <input
+                        type="text"
+                        placeholder="Buscar paciente..."
+                    >
+
+                    <i data-lucide="search"></i>
+
+                </div>
+
+
+                <!-- NOTIFICAÇÕES -->
+
+                <div class="notification">
+
+                    <i data-lucide="bell"></i>
+
+                    <div class="notification-number">
+                        3
+                    </div>
+
+                </div>
+
+
+                <!-- PERFIL -->
+
+                <div class="profile">
+
+                    <div class="profile-info">
+
+                        <strong>Dr. Rafael Oliveira</strong>
+
+                        <span>Neurologista</span>
+
+                    </div>
+
+
+                    <div class="profile-image">
+
+                        <i data-lucide="user"></i>
+
+                    </div>
+
+
+                    <i data-lucide="chevron-down"></i>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- PÁGINA -->
+
+        <section class="page">
+
+
+            <!-- TÍTULO -->
+
+            <div class="page-header">
+
+                <div class="page-title">
+
+                    <h1>Agenda de consultas</h1>
+
+                    <p>
+                        Gerencie e acompanhe os atendimentos agendados.
+                    </p>
+
+                </div>
+
+
+                <a href="consulta.html" class="add-btn">
+
+                    <i data-lucide="user-plus"></i>
+
+                    Nova Consulta
+
+                </a>
+
+            </div>
+
+
+
+            <!-- CARDS -->
+
+            <div class="stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-info">
+
+                        <span>Consultas hoje</span>
+
+                        <strong>08</strong>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i data-lucide="calendar-check"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-info">
+
+                        <span>Próximas consultas</span>
+
+                        <strong>14</strong>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i data-lucide="clock-3"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-info">
+
+                        <span>Pacientes atendidos</span>
+
+                        <strong>32</strong>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i data-lucide="users"></i>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-info">
+
+                        <span>Retornos</span>
+
+                        <strong>06</strong>
+
+                    </div>
+
+                    <div class="stat-icon">
+
+                        <i data-lucide="rotate-ccw"></i>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CALENDÁRIO -->
+
+            <div class="calendar-card">
+
+
+                <div class="calendar-top">
+
+                    <h2>Calendário de atendimentos</h2>
+
+
+                    <div class="calendar-tools">
+
+                        <button class="calendar-filter">
+
+                            <i data-lucide="filter"></i>
+
+                            Filtrar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div id="calendar"></div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- RODAPÉ -->
+
+        <footer class="footer">
+
+            <div class="footer-item">
+
+                <i data-lucide="lock"></i>
+
+                Ambiente seguro e criptografado
+
+            </div>
+
+            <div class="footer-item">
+
+                © 2024 EMPS. Todos os direitos reservados.
+
+            </div>
+
+        </footer>
+
+
+    </main>
+
+
+
+    <!-- FULLCALENDAR -->
 
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
 
+
     <script>
+
         document.addEventListener('DOMContentLoaded', function () {
 
+
+            /* ÍCONES */
+
+            lucide.createIcons();
+
+
+            /* CALENDÁRIO */
+
             const calendarEl = document.getElementById('calendar');
+
 
             const calendar = new FullCalendar.Calendar(calendarEl, {
 
@@ -239,49 +1411,88 @@
 
                 initialView: 'dayGridMonth',
 
+                height: 'auto',
+
+
                 headerToolbar: {
+
                     left: 'prev,next today',
+
                     center: 'title',
+
                     right: 'dayGridMonth,timeGridWeek,timeGridDay'
+
                 },
 
+
                 buttonText: {
+
                     today: 'Hoje',
+
                     month: 'Mês',
+
                     week: 'Semana',
+
                     day: 'Dia'
+
                 },
+
 
                 events: [
 
+
                     {
                         title: 'Consulta - Maria Silva',
-                        start: '2026-01-05T08:00:00'
+                        start: '2026-08-05T08:00:00'
                     },
+
 
                     {
                         title: 'Consulta - João Souza',
-                        start: '2026-01-10T14:00:00'
+                        start: '2026-08-10T14:00:00'
                     },
+
 
                     {
                         title: 'Consulta - Ana Costa',
-                        start: '2026-01-15T16:00:00'
+                        start: '2026-08-15T16:00:00'
                     },
+
 
                     {
                         title: 'Retorno - Pedro Santos',
-                        start: '2026-01-20T10:00:00'
+                        start: '2026-08-20T10:00:00'
+                    },
+
+
+                    {
+                        title: 'Consulta - Lucas Mendes',
+                        start: '2026-08-22T09:00:00'
+                    },
+
+
+                    {
+                        title: 'Avaliação - Beatriz Lima',
+                        start: '2026-08-25T15:00:00'
+                    },
+
+
+                    {
+                        title: 'Retorno - Rafael Costa',
+                        start: '2026-08-27T11:00:00'
                     }
 
                 ]
 
             });
 
+
             calendar.render();
 
         });
+
     </script>
+
 
 </body>
 
