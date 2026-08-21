@@ -1,0 +1,5 @@
+import React from "react";
+import { View, Text, TouchableOpacity } from "react-native";
+import { Stethoscope, Clock3, Heart } from "lucide-react-native";
+import styles from "../styles/styles";
+export default function MedicamentoCard({ nome, dose, hora1, hora2, medico }) { return <View style={styles.cardShadow}><View style={styles.medicCard}><View style={styles.cardTop}><View style={styles.remedioIcon}><Text style={styles.remedioEmoji}>💊</Text></View><View style={{flex:1}}><Text style={styles.nomeMedicamento}>{nome}</Text><Text style={styles.doseMedicamento}>{dose}</Text></View><TouchableOpacity style={styles.smallIconButton}><Stethoscope size={18} color="#572EA9"/></TouchableOpacity></View><View style={styles.horariosRow}><View style={styles.horarioBox}><Clock3 size={15} color="#572EA9"/><Text style={styles.horarioText}>{hora1}</Text></View><View style={styles.horarioBox}><Clock3 size={15} color="#572EA9"/><Text style={styles.horarioText}>{hora2}</Text></View></View><View style={styles.cardBottom}><Text style={styles.medicoText}>⚕ {medico}</Text><Heart size={18} color="#A47CF3"/></View></View></View>; }
