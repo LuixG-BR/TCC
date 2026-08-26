@@ -4,6 +4,8 @@ import { View, Text, TextInput, TouchableOpacity, Alert } from "react-native";
 import authService from "../services/authService";
 import authStorage from "../storage/authStorage";
 
+import notificacoes from "../services/notificacoes";
+
 
 export default function TelaLogin({ setTela }) {
 
@@ -14,10 +16,9 @@ export default function TelaLogin({ setTela }) {
     async function handleLogin() {
 
         if (!login || !senha) {
-            Alert.alert(
-                "Atenção",
-                "Preencha login e senha."
-            );
+
+            notificacoes.info("Preencha login e senha.");
+
             return;
         }
 
@@ -34,18 +35,26 @@ export default function TelaLogin({ setTela }) {
                 resposta.access_token
             );
 
-            console.log("Token salvo com sucesso.");
+            notificacoes.sucesso("Login realizado com sucesso!");
 
             setTela("inicio");
 
         } catch (erro) {
 
-            console.error(
-                erro.response?.data || erro.message
-            );
+            if (erro.response?.status === 401) {
+
+                notificacoes.erro("Login ou senha incorretos.");
+
+            } else {
+
+                notificacoes.erro("Não foi possível realizar o login.");
+
+            }
 
         } finally {
+
             setCarregando(false);
+
         }
     }
 
