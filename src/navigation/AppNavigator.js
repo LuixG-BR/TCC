@@ -1,5 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
+import authStorage from "../storage/authStorage";
+
+import TelaLogin from "../telas/TelaLogin";
 import TelaInicio from "../telas/TelaInicio";
 import TelaPerfil from "../telas/TelaPerfil";
 import TelaMedicacoes from "../telas/TelaMedicacoes";
@@ -8,9 +11,34 @@ import TelaCintaCardiaca from "../telas/TelaCintaCardiaca";
 import TelaRegistrarCrise from "../telas/TelaRegistrarCrise";
 
 export default function AppNavigator() {
-  const [tela, setTela] = useState("inicio");
+  const [tela, setTela] = useState(null);
+
+  useEffect(() => {
+
+    async function verificarLogin() {
+
+        const token = await authStorage.buscarToken();
+
+        if (token) {
+            setTela("inicio");
+        } else {
+            setTela("login");
+        }
+
+    }
+
+    verificarLogin();
+
+}, []);
 
   switch (tela) {
+    case "login":
+    return (
+        <TelaLogin
+            setTela={setTela}
+        />
+    );
+
     case "inicio":
       return (
         <TelaInicio

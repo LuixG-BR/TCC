@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import usuarioService from "../services/usuarioService";
 
 import {
   View,
@@ -29,6 +31,69 @@ export default function TelaPerfil({
   tela,
   setTela,
 }) {
+  const [usuario, setUsuario] = useState(null);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
+
+  useEffect(() => {
+
+    async function carregarUsuario() {
+
+      try {
+
+        const dados =
+          await usuarioService.buscarUsuarioLogado();
+
+        console.log("Dados da API:", dados);
+
+        setUsuario(dados);
+
+      } catch (erro) {
+
+        console.error(
+          "Erro ao carregar usuário:",
+          erro.response?.data || erro.message
+        );
+
+        setErro(
+          "Não foi possível carregar os dados."
+        );
+
+      } finally {
+
+        setCarregando(false);
+
+      }
+    }
+
+    carregarUsuario();
+
+  }, []);
+
+  if (carregando) {
+    return (
+      <AppShell
+        tela={tela}
+        setTela={setTela}
+        title="Perfil"
+      >
+        <Text>Carregando dados...</Text>
+      </AppShell>
+    );
+  }
+
+  if (erro) {
+    return (
+      <AppShell
+        tela={tela}
+        setTela={setTela}
+        title="Perfil"
+      >
+        <Text>{erro}</Text>
+      </AppShell>
+    );
+  }
+
   return (
     <AppShell
       tela={tela}
@@ -53,7 +118,7 @@ export default function TelaPerfil({
           </Text>
 
           <Text style={styles.profileName}>
-            Maria Silva
+            {usuario?.nome || "Usuário"}
           </Text>
 
           <Text style={styles.profileDescription}>
