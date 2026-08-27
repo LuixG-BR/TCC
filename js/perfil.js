@@ -2,58 +2,129 @@ async function carregarPerfil() {
 
     const token = localStorage.getItem("token");
 
-    try {
-        const resposta = await fetch(`${API}/usuarios/me`,
-            {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            }
-        );
 
-        if (!resposta.ok) {
-            throw new Error(
-                "Erro ao buscar perfil"
-            )
+    /* =====================================
+       VERIFICA SE EXISTE TOKEN
+    ====================================== */
+
+    if (!token) {
+
+        window.location.href =
+            "login.html";
+
+        return;
+    }
+
+
+    try {
+
+        /* =====================================
+           BUSCA USUÁRIO LOGADO
+        ====================================== */
+
+        const resposta =
+            await fetch(
+                `${API}/usuarios/me`,
+                {
+                    headers: {
+                        "Authorization":
+                            `Bearer ${token}`
+                    }
+                }
+            );
+
+
+        /* =====================================
+           TOKEN INVÁLIDO OU EXPIRADO
+        ====================================== */
+
+        if (resposta.status === 401) {
+
+            localStorage.removeItem(
+                "token"
+            );
+
+            localStorage.removeItem(
+                "usuario"
+            );
+
+            window.location.href =
+                "login.html";
+
+            return;
         }
 
-        const usuario = await resposta.json();
-        console.log(usuario);
 
-        document.getElementById("perfil").innerHTML = `
-<h2>
-${usuario.nome}
-</h2>
+        /* =====================================
+           OUTRO ERRO
+        ====================================== */
 
-<p>
-CRM:
-${usuario.crm ?? "Não informado"}
-</p>
+        if (!resposta.ok) {
 
-<p>
-Especialidade:
-${usuario.especialidade ?? "Não informado"}
-</p>
+            throw new Error(
+                `Erro ao buscar perfil: ${resposta.status}`
+            );
 
-<p>
-Telefone:
-${usuario.telefone ?? "Não informado"}
-</p>
+        }
 
-<p>
-Email:
-${usuario.email}
-</p>
-`;
 
-    } catch (error) {
-        console.error(error);
-        document.getElementById(
-            "perfil"
-        )
-            .innerHTML =
-            "Erro ao carregar perfil";
+        /* =====================================
+           DADOS DO USUÁRIO
+        ====================================== */
+
+        const usuario =
+            await resposta.json();
+
+        console.log(
+            "Usuário logado:",
+            usuario
+        );
+
+
+        /* =====================================
+           NOME
+        ====================================== */
+
+        const nomeUsuario =
+            document.getElementById(
+                "nomeUsuario"
+            );
+
+        if (nomeUsuario) {
+
+            nomeUsuario.textContent =
+                usuario.nome;
+
+        }
+
+
+        /* =====================================
+           EMAIL
+        ====================================== */
+
+        const emailUsuario =
+            document.getElementById(
+                "emailUsuario"
+            );
+
+        if (emailUsuario) {
+            emailUsuario.textContent =
+                usuario.email;
+        }
+
+    } catch (erro) {
+        console.error(
+            "Erro ao carregar perfil:",
+            erro
+        );
     }
 }
 
 carregarPerfil();
+
+function logout() {
+    localStorage.removeItem("token");
+    localStorage.removeItem("usuario");
+
+    window.location.href = "login.html";
+}
