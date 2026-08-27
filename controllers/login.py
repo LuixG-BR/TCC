@@ -1,3 +1,5 @@
+from fastapi import HTTPException
+
 from core.security import verificar_senha, criar_token
 from models.usuario import Usuario
 
@@ -9,7 +11,10 @@ def login_usuario(email, senha, db):
     ).first()
 
     if not usuario:
-        return None
+        raise HTTPException(
+        status_code=401,
+        detail="Email ou senha inválidos."
+    )
 
     senha_valida = verificar_senha(
         senha,
@@ -17,7 +22,10 @@ def login_usuario(email, senha, db):
     )
 
     if not senha_valida:
-        return None
+        raise HTTPException(
+        status_code=401,
+        detail="Email ou senha inválidos."
+    )
 
     token = criar_token(
         {
@@ -33,6 +41,7 @@ def login_usuario(email, senha, db):
         "usuario": {
             "id": usuario.id_usuario,
             "nome": usuario.nome,
-            "email": usuario.email
+            "email": usuario.email,
+            "id_perfil": usuario.id_perfil
         }
     }
