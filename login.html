@@ -10,14 +10,10 @@
     <title>EMPS - Login</title>
 
     <!-- FONT AWESOME -->
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -156,22 +152,20 @@
 
             background: var(--cor-principal);
 
-            clip-path: polygon(
-                50% 0%,
-                63% 10%,
-                75% 27%,
-                87% 20%,
-                100% 33%,
-                95% 52%,
-                75% 70%,
-                50% 100%,
-                25% 70%,
-                5% 52%,
-                0% 33%,
-                13% 20%,
-                25% 27%,
-                37% 10%
-            );
+            clip-path: polygon(50% 0%,
+                    63% 10%,
+                    75% 27%,
+                    87% 20%,
+                    100% 33%,
+                    95% 52%,
+                    75% 70%,
+                    50% 100%,
+                    25% 70%,
+                    5% 52%,
+                    0% 33%,
+                    13% 20%,
+                    25% 27%,
+                    37% 10%);
 
             transition:
                 background 0.5s ease;
@@ -884,7 +878,6 @@
             }
 
         }
-
     </style>
 
 </head>
@@ -893,119 +886,192 @@
 <body>
 
 
-<div class="pagina">
+    <div class="pagina">
 
 
-    <div class="container">
+        <div class="container">
 
 
-        <!-- =====================================
+            <!-- =====================================
              FORMULÁRIO
         ====================================== -->
 
-        <div class="login-area">
+            <div class="login-area">
 
 
-            <!-- LOGO -->
+                <!-- LOGO -->
 
-            <div class="logo">
+                <div class="logo">
 
-                <div class="logo-icon"></div>
+                    <div class="logo-icon"></div>
 
-                EMPS
+                    EMPS
 
-            </div>
-
-
-            <h1 class="titulo">
-
-                BEM-VINDO DE VOLTA!
-
-            </h1>
+                </div>
 
 
-            <p class="subtitulo">
+                <h1 class="titulo">
 
-                Entre com seus dados para acessar sua conta
+                    BEM-VINDO DE VOLTA!
 
-            </p>
+                </h1>
+
+
+                <p class="subtitulo">
+
+                    Entre com seus dados para acessar sua conta
+
+                </p>
 
 
 
-            <!-- =====================================
+                <!-- =====================================
                  TIPO DE USUÁRIO
             ====================================== -->
 
-            <div class="tipo-login">
+                <div class="tipo-login">
 
 
-                <button
-                    type="button"
-                    class="tipo-btn ativo"
-                    id="btnPaciente"
-                    onclick="selecionarTipo('paciente')"
-                >
+                    <button type="button" class="tipo-btn ativo" id="btnPaciente" onclick="selecionarTipo('paciente')">
 
-                    <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-user"></i>
 
-                    Paciente
+                        Paciente
 
-                </button>
+                    </button>
 
 
-                <button
-                    type="button"
-                    class="tipo-btn"
-                    id="btnMedico"
-                    onclick="selecionarTipo('medico')"
-                >
+                    <button type="button" class="tipo-btn" id="btnMedico" onclick="selecionarTipo('medico')">
 
-                    <i class="fa-solid fa-user-doctor"></i>
+                        <i class="fa-solid fa-user-doctor"></i>
 
-                    Médico
+                        Médico
 
-                </button>
+                    </button>
 
 
-            </div>
+                </div>
 
 
 
-            <!-- =====================================
+                <!-- =====================================
                  CAMPOS
             ====================================== -->
 
-            <div id="campos">
+                <div id="campos">
 
 
-                <!-- NOME -->
+                    <!-- NOME -->
 
-                <div class="campo">
+                    <div class="campo">
 
-                    <label id="label1">
+                        <label id="label1">
 
-                        Nome Completo
+                            Nome Completo
 
-                    </label>
-
-
-                    <div class="input-box">
-
-                        <span
-                            class="input-icon"
-                            id="icone1"
-                        >
-
-                            <i class="fa-solid fa-user"></i>
-
-                        </span>
+                        </label>
 
 
-                        <input
-                            type="text"
-                            id="campo1"
-                            placeholder="Digite seu nome completo"
-                        >
+                        <div class="input-box">
+
+                            <span class="input-icon" id="icone1">
+                                <i class="fa-solid fa-user"></i>
+                            </span>
+
+                            <input type="text" id="nome" placeholder="Digite seu nome completo">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- DATA / CRM -->
+
+                    <div class="campo">
+
+                        <label id="label2">
+
+                            Data de Nascimento
+
+                        </label>
+
+
+                        <div class="input-box">
+
+                            <span class="input-icon" id="icone2">
+
+                                <i class="fa-solid fa-calendar"></i>
+
+                            </span>
+
+
+                            <input type="text" id="identificacao" placeholder="DD / MM / AAAA">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- EMAIL -->
+
+                    <div class="campo">
+
+                        <label id="label3">
+
+                            E-mail
+
+                        </label>
+
+
+                        <div class="input-box">
+
+                            <span class="input-icon" id="icone3">
+
+                                <i class="fa-solid fa-envelope"></i>
+
+                            </span>
+
+
+                            <input type="email" id="email" placeholder="Digite seu e-mail">
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- SENHA -->
+
+                    <div class="campo">
+
+                        <label id="label4">
+
+                            Senha
+
+                        </label>
+
+
+                        <div class="input-box">
+
+                            <span class="input-icon">
+
+                                <i class="fa-solid fa-lock"></i>
+
+                            </span>
+
+
+                            <input type="password" placeholder="Digite sua senha" id="senha">
+
+
+                            <span class="mostrar-senha" onclick="mostrarSenha()">
+
+                                <i id="iconeSenha" class="fa-solid fa-eye"></i>
+
+                            </span>
+
+                        </div>
 
                     </div>
 
@@ -1013,881 +1079,834 @@
 
 
 
-                <!-- DATA / CRM -->
-
-                <div class="campo">
-
-                    <label id="label2">
-
-                        Data de Nascimento
-
-                    </label>
-
-
-                    <div class="input-box">
-
-                        <span
-                            class="input-icon"
-                            id="icone2"
-                        >
-
-                            <i class="fa-solid fa-calendar"></i>
-
-                        </span>
-
-
-                        <input
-                            type="text"
-                            id="campo2"
-                            placeholder="DD / MM / AAAA"
-                        >
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- EMAIL -->
-
-                <div class="campo">
-
-                    <label id="label3">
-
-                        E-mail
-
-                    </label>
-
-
-                    <div class="input-box">
-
-                        <span
-                            class="input-icon"
-                            id="icone3"
-                        >
-
-                            <i class="fa-solid fa-envelope"></i>
-
-                        </span>
-
-
-                        <input
-                            type="email"
-                            id="campo3"
-                            placeholder="Digite seu e-mail"
-                        >
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- SENHA -->
-
-                <div class="campo">
-
-                    <label id="label4">
-
-                        Senha
-
-                    </label>
-
-
-                    <div class="input-box">
-
-                        <span class="input-icon">
-
-                            <i class="fa-solid fa-lock"></i>
-
-                        </span>
-
-
-                        <input
-                            type="password"
-                            placeholder="Digite sua senha"
-                            id="senha"
-                        >
-
-
-                        <span
-                            class="mostrar-senha"
-                            onclick="mostrarSenha()"
-                        >
-
-                            <i
-                                id="iconeSenha"
-                                class="fa-solid fa-eye"
-                            ></i>
-
-                        </span>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-
-            <!-- =====================================
+                <!-- =====================================
                  OPÇÕES
             ====================================== -->
 
-            <div class="opcoes">
+                <div class="opcoes">
 
 
-                <label class="lembrar">
+                    <label class="lembrar">
 
-                    <input type="checkbox">
+                        <input type="checkbox">
 
-                    Lembrar de mim
+                        Lembrar de mim
 
-                </label>
-
-
-                <a
-                    href="#"
-                    class="esqueci"
-                >
-
-                    Esqueci minha senha
-
-                </a>
+                    </label>
 
 
-            </div>
+                    <a href="#" class="esqueci">
+
+                        Esqueci minha senha
+
+                    </a>
+
+
+                </div>
 
 
 
-            <!-- =====================================
+                <!-- =====================================
                  ENTRAR
             ====================================== -->
 
-            <button
-                type="button"
-                class="btn-entrar"
-                onclick="entrar()"
-            >
+                <button type="button" class="btn-entrar" onclick="entrar()">
 
-                Entrar
+                    Entrar
 
-            </button>
+                </button>
 
 
-            <!-- MENSAGEM DE ERRO -->
+                <!-- MENSAGEM DE ERRO -->
 
-            <p
-                id="mensagemErro"
-                class="mensagem-erro"
-            ></p>
+                <p id="mensagemErro" class="mensagem-erro"></p>
 
 
 
-            <!-- =====================================
+                <!-- =====================================
                  DIVISOR
             ====================================== -->
 
-            <div class="divisor">
+                <div class="divisor">
 
-                ou
+                    ou
+
+                </div>
+
+
+
+                <!-- =====================================
+                 GOOGLE
+            ====================================== -->
+
+                <button type="button" class="btn-google">
+
+                    <span class="google-icon">
+
+                        G
+
+                    </span>
+
+                    Entrar com Google
+
+                </button>
+
+
+
+                <!-- =====================================
+                 CADASTRO
+            ====================================== -->
+
+                <p class="cadastro">
+
+                    Ainda não tem uma conta?
+
+                    <a href="cadastro.html">
+
+                        Cadastre-se
+
+                    </a>
+
+                </p>
+
 
             </div>
 
 
 
             <!-- =====================================
-                 GOOGLE
-            ====================================== -->
-
-            <button
-                type="button"
-                class="btn-google"
-            >
-
-                <span class="google-icon">
-
-                    G
-
-                </span>
-
-                Entrar com Google
-
-            </button>
-
-
-
-            <!-- =====================================
-                 CADASTRO
-            ====================================== -->
-
-            <p class="cadastro">
-
-                Ainda não tem uma conta?
-
-                <a href="cadastro.html">
-
-                    Cadastre-se
-
-                </a>
-
-            </p>
-
-
-        </div>
-
-
-
-        <!-- =====================================
              MASCOTE
         ====================================== -->
 
-        <div class="mascote-area">
+            <div class="mascote-area">
 
-            <img
-                src="img/mascote.jpeg"
-                alt="Mascote EMPS"
-            >
+                <img src="img/mascote.jpeg" alt="Mascote EMPS">
+
+            </div>
+
 
         </div>
 
-
     </div>
 
-</div>
 
+    <script src="js/api.js"></script>
+    <script>
 
 
-<script>
+        /* =========================================
+           SELECIONAR PACIENTE / MÉDICO
+        ========================================= */
 
+        function selecionarTipo(tipo) {
 
-    /* =========================================
-       SELECIONAR PACIENTE / MÉDICO
-    ========================================= */
 
-    function selecionarTipo(tipo) {
+            const paciente =
+                document.getElementById("btnPaciente");
 
 
-        const paciente =
-            document.getElementById("btnPaciente");
+            const medico =
+                document.getElementById("btnMedico");
 
 
-        const medico =
-            document.getElementById("btnMedico");
+            const body =
+                document.body;
 
 
-        const body =
-            document.body;
+            const label1 =
+                document.getElementById("label1");
 
 
-        const label1 =
-            document.getElementById("label1");
+            const label2 =
+                document.getElementById("label2");
 
 
-        const label2 =
-            document.getElementById("label2");
+            const label3 =
+                document.getElementById("label3");
 
 
-        const label3 =
-            document.getElementById("label3");
 
+            const nome =
+                document.getElementById("nome");
 
-        const campo1 =
-            document.getElementById("campo1");
+            const identificacao =
+                document.getElementById("identificacao");
 
+            const email =
+                document.getElementById("email");
 
-        const campo2 =
-            document.getElementById("campo2");
 
+            const icone1 =
+                document.getElementById("icone1");
 
-        const campo3 =
-            document.getElementById("campo3");
 
+            const icone2 =
+                document.getElementById("icone2");
 
-        const icone1 =
-            document.getElementById("icone1");
 
+            const icone3 =
+                document.getElementById("icone3");
 
-        const icone2 =
-            document.getElementById("icone2");
 
+            /* Limpa os campos */
 
-        const icone3 =
-            document.getElementById("icone3");
+            nome.value = "";
 
+            identificacao.value = "";
 
-        /* Limpa os campos */
+            email.value = "";
 
-        campo1.value = "";
+            document.getElementById("senha").value = "";
 
-        campo2.value = "";
 
-        campo3.value = "";
+            /* Limpa erros */
 
-        document.getElementById("senha").value = "";
+            document
+                .querySelectorAll(".input-box")
+                .forEach(box => {
 
+                    box.classList.remove("erro");
 
-        /* Limpa erros */
+                    box.classList.remove("sucesso");
 
-        document
-            .querySelectorAll(".input-box")
-            .forEach(box => {
+                });
 
-                box.classList.remove("erro");
 
-                box.classList.remove("sucesso");
+            const mensagem =
+                document.getElementById("mensagemErro");
 
-            });
+            mensagem.innerText = "";
 
+            mensagem.classList.remove("mostrar");
 
-        const mensagem =
-            document.getElementById("mensagemErro");
 
-        mensagem.innerText = "";
+            /* =====================================
+               PACIENTE
+            ====================================== */
 
-        mensagem.classList.remove("mostrar");
+            if (tipo === "paciente") {
 
 
-        /* =====================================
-           PACIENTE
-        ====================================== */
+                paciente.classList.add("ativo");
 
-        if (tipo === "paciente") {
+                medico.classList.remove("ativo");
 
 
-            paciente.classList.add("ativo");
+                body.classList.remove("medico");
 
-            medico.classList.remove("ativo");
 
+                label1.innerText =
+                    "Nome Completo";
 
-            body.classList.remove("medico");
 
+                nome.placeholder =
+                    "Digite seu nome completo";
 
-            label1.innerText =
-                "Nome Completo";
 
+                icone1.innerHTML =
+                    '<i class="fa-solid fa-user"></i>';
 
-            campo1.placeholder =
-                "Digite seu nome completo";
 
+                label2.innerText =
+                    "Data de Nascimento";
 
-            icone1.innerHTML =
-                '<i class="fa-solid fa-user"></i>';
 
+                identificacao.placeholder =
+                    "DD / MM / AAAA";
 
-            label2.innerText =
-                "Data de Nascimento";
 
+                icone2.innerHTML =
+                    '<i class="fa-solid fa-calendar"></i>';
 
-            campo2.placeholder =
-                "DD / MM / AAAA";
 
+                label3.innerText =
+                    "E-mail";
 
-            icone2.innerHTML =
-                '<i class="fa-solid fa-calendar"></i>';
 
+                email.placeholder =
+                    "Digite seu e-mail";
 
-            label3.innerText =
-                "E-mail";
 
+                icone3.innerHTML =
+                    '<i class="fa-solid fa-envelope"></i>';
 
-            campo3.placeholder =
-                "Digite seu e-mail";
+            }
 
 
-            icone3.innerHTML =
-                '<i class="fa-solid fa-envelope"></i>';
+            /* =====================================
+               MÉDICO
+            ====================================== */
+
+            else {
+
+
+                medico.classList.add("ativo");
+
+                paciente.classList.remove("ativo");
+
+
+                body.classList.add("medico");
+
+
+                label1.innerText =
+                    "Nome do Médico";
+
+
+                nome.placeholder =
+                    "Digite seu nome completo";
+
+
+                icone1.innerHTML =
+                    '<i class="fa-solid fa-user-doctor"></i>';
+
+
+                label2.innerText =
+                    "CRM";
+
+
+                identificacao.placeholder =
+                    "Digite seu CRM";
+
+
+                icone2.innerHTML =
+                    '<i class="fa-solid fa-id-card"></i>';
+
+
+                label3.innerText =
+                    "E-mail profissional";
+
+
+                email.placeholder =
+                    "Digite seu e-mail profissional";
+
+
+                icone3.innerHTML =
+                    '<i class="fa-solid fa-envelope"></i>';
+
+            }
 
         }
 
 
-        /* =====================================
-           MÉDICO
-        ====================================== */
 
-        else {
+        /* =========================================
+           VALIDAR LOGIN
+        ========================================= */
 
+        async function entrar() {
 
-            medico.classList.add("ativo");
+            const paciente =
+                document.getElementById("btnPaciente");
 
-            paciente.classList.remove("ativo");
+            const medico =
+                document.getElementById("btnMedico");
 
+            const mensagem =
+                document.getElementById("mensagemErro");
 
-            body.classList.add("medico");
+            const nome =
+                document.getElementById("nome");
 
+            const identificacao =
+                document.getElementById("identificacao");
 
-            label1.innerText =
-                "Nome do Médico";
+            const email =
+                document.getElementById("email");
 
-
-            campo1.placeholder =
-                "Digite seu nome completo";
-
-
-            icone1.innerHTML =
-                '<i class="fa-solid fa-user-doctor"></i>';
-
-
-            label2.innerText =
-                "CRM";
+            const senha =
+                document.getElementById("senha");
 
 
-            campo2.placeholder =
-                "Digite seu CRM";
+            const valorNome =
+                nome.value.trim();
+
+            const valorIdentificacao =
+                identificacao.value.trim();
+
+            const valorEmail =
+                email.value.trim();
+
+            const valorSenha =
+                senha.value.trim();
 
 
-            icone2.innerHTML =
-                '<i class="fa-solid fa-id-card"></i>';
+            /* =====================================
+               LIMPA MENSAGENS
+            ====================================== */
+
+            mensagem.innerText = "";
+
+            mensagem.classList.remove("mostrar");
 
 
-            label3.innerText =
-                "E-mail profissional";
+            /* =====================================
+               LIMPA ESTADOS DOS CAMPOS
+            ====================================== */
+
+            document
+                .querySelectorAll(".input-box")
+                .forEach(box => {
+
+                    box.classList.remove("erro");
+
+                    box.classList.remove("sucesso");
+
+                });
 
 
-            campo3.placeholder =
-                "Digite seu e-mail profissional";
+            /* =====================================
+               CAMPOS VAZIOS
+            ====================================== */
+
+            if (
+                valorNome === "" ||
+                valorIdentificacao === "" ||
+                valorEmail === "" ||
+                valorSenha === ""
+            ) {
+
+                mostrarErro(
+                    "Preencha todos os campos antes de entrar."
+                );
+
+                marcarCamposVazios();
+
+                return;
+            }
 
 
-            icone3.innerHTML =
-                '<i class="fa-solid fa-envelope"></i>';
+            /* =====================================
+               VALIDAÇÃO DE E-MAIL
+            ====================================== */
+
+            const emailValido =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailValido.test(valorEmail)) {
+
+                mostrarErro(
+                    "Digite um e-mail válido."
+                );
+
+                email
+                    .parentElement
+                    .classList.add("erro");
+
+                email.focus();
+
+                return;
+            }
+
+
+            /* =====================================
+               VALIDAÇÃO DE SENHA
+            ====================================== */
+
+            // if (valorSenha.length < 6) {
+
+            //     mostrarErro(
+            //         "A senha deve possuir pelo menos 6 caracteres."
+            //     );
+
+            //     senha
+            //         .parentElement
+            //         .classList.add("erro");
+
+            //     senha.focus();
+
+            //     return;
+            // }
+
+
+            /* =====================================
+               VALIDAÇÃO PACIENTE
+            ====================================== */
+
+            if (paciente.classList.contains("ativo")) {
+
+                if (!validarData(valorIdentificacao)) {
+
+                    mostrarErro(
+                        "Digite uma data de nascimento válida. Exemplo: 10/05/2000."
+                    );
+
+                    identificacao
+                        .parentElement
+                        .classList.add("erro");
+
+                    identificacao.focus();
+
+                    return;
+                }
+
+            }
+
+
+            /* =====================================
+               VALIDAÇÃO MÉDICO
+            ====================================== */
+
+            else if (medico.classList.contains("ativo")) {
+
+                if (valorIdentificacao.length < 4) {
+
+                    mostrarErro(
+                        "Digite um CRM válido."
+                    );
+
+                    identificacao
+                        .parentElement
+                        .classList.add("erro");
+
+                    identificacao.focus();
+
+                    return;
+                }
+
+            }
+
+
+            /* =====================================
+               LOGIN NA API
+            ====================================== */
+
+            const dados =
+                new URLSearchParams();
+
+            dados.append(
+                "username",
+                valorEmail
+            );
+
+            dados.append(
+                "password",
+                valorSenha
+            );
+
+
+            try {
+
+                const resposta =
+                    await fetch(
+                        `${API}/login/`,
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/x-www-form-urlencoded"
+                            },
+
+                            body: dados
+                        }
+                    );
+
+
+                /* =====================================
+                   ERRO DA API
+                ====================================== */
+
+                if (!resposta.ok) {
+
+                    if (resposta.status === 401) {
+
+                        mostrarErro(
+                            "E-mail ou senha inválidos."
+                        );
+
+                        email
+                            .parentElement
+                            .classList.add("erro");
+
+                        senha
+                            .parentElement
+                            .classList.add("erro");
+
+                    } else {
+
+                        mostrarErro(
+                            `Erro no servidor. Código: ${resposta.status}`
+                        );
+
+                    }
+
+                    return;
+                }
+
+
+                /* =====================================
+                   RESPOSTA DA API
+                ====================================== */
+
+                const dadosLogin =
+                    await resposta.json();
+
+                console.log(
+                    "Resposta do login:",
+                    dadosLogin
+                );
+
+
+                /* =====================================
+                   VALIDA RESPOSTA
+                ====================================== */
+
+                if (
+                    !dadosLogin ||
+                    !dadosLogin.access_token
+                ) {
+
+                    mostrarErro(
+                        "A API não retornou um token de acesso."
+                    );
+
+                    console.error(
+                        "Resposta inesperada da API:",
+                        dadosLogin
+                    );
+
+                    return;
+                }
+
+
+                /* =====================================
+                   SALVA TOKEN
+                ====================================== */
+
+                localStorage.setItem(
+                    "token",
+                    dadosLogin.access_token
+                );
+
+
+                /* =====================================
+                   SALVA USUÁRIO
+                ====================================== */
+
+                if (dadosLogin.usuario) {
+
+                    localStorage.setItem(
+                        "usuario",
+                        JSON.stringify(
+                            dadosLogin.usuario
+                        )
+                    );
+
+                }
+
+
+                /* =====================================
+                   LOGIN CONCLUÍDO
+                ====================================== */
+
+                marcarCamposSucesso();
+
+                window.location.href =
+                    "perfil.html";
+
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao realizar login:",
+                    erro
+                );
+
+                mostrarErro(
+                    "Não foi possível conectar ao servidor."
+                );
+
+            }
+        }
+
+
+
+        /* =========================================
+           MENSAGEM DE ERRO
+        ========================================= */
+
+        function mostrarErro(texto) {
+
+
+            const mensagem =
+                document.getElementById("mensagemErro");
+
+
+            mensagem.innerText = texto;
+
+
+            mensagem.classList.add("mostrar");
 
         }
 
-    }
 
 
-
-    /* =========================================
-       VALIDAR LOGIN
-    ========================================= */
-
-    function entrar() {
-
-
-        const paciente =
-            document.getElementById("btnPaciente");
-
-
-        const medico =
-            document.getElementById("btnMedico");
-
-
-        const mensagem =
-            document.getElementById("mensagemErro");
-
-
-        const campo1 =
-            document.getElementById("campo1");
-
-
-        const campo2 =
-            document.getElementById("campo2");
-
-
-        const campo3 =
-            document.getElementById("campo3");
-
-
-        const senha =
-            document.getElementById("senha");
-
-
-        const valor1 =
-            campo1.value.trim();
-
-
-        const valor2 =
-            campo2.value.trim();
-
-
-        const valor3 =
-            campo3.value.trim();
-
-
-        const valorSenha =
-            senha.value.trim();
-
-
-        /* Limpa mensagens */
-
-        mensagem.innerText = "";
-
-        mensagem.classList.remove("mostrar");
-
-
-        /* Limpa estados */
-
-        document
-            .querySelectorAll(".input-box")
-            .forEach(box => {
-
-                box.classList.remove("erro");
-
-                box.classList.remove("sucesso");
-
-            });
-
-
-        /* =====================================
+        /* =========================================
            CAMPOS VAZIOS
-        ====================================== */
+        ========================================= */
 
-        if (
-            valor1 === "" ||
-            valor2 === "" ||
-            valor3 === "" ||
-            valorSenha === ""
-        ) {
+        function marcarCamposVazios() {
 
 
-            mostrarErro(
-                "Preencha todos os campos antes de entrar."
-            );
-
-
-            marcarCamposVazios();
-
-
-            return;
-
-        }
-
-
-        /* =====================================
-           E-MAIL
-        ====================================== */
-
-        const emailValido =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-        if (!emailValido.test(valor3)) {
-
-
-            mostrarErro(
-                "Digite um e-mail válido."
-            );
-
-
-            campo3
-                .parentElement
-                .classList.add("erro");
-
-
-            campo3.focus();
-
-
-            return;
-
-        }
-
-
-        /* =====================================
-           SENHA
-        ====================================== */
-
-        if (valorSenha.length < 6) {
-
-
-            mostrarErro(
-                "A senha deve possuir pelo menos 6 caracteres."
-            );
-
-
-            senha
-                .parentElement
-                .classList.add("erro");
-
-
-            senha.focus();
-
-
-            return;
-
-        }
-
-
-        /* =====================================
-           PACIENTE
-        ====================================== */
-
-        if (paciente.classList.contains("ativo")) {
-
-
-            if (!validarData(valor2)) {
-
-
-                mostrarErro(
-                    "Digite uma data de nascimento válida. Exemplo: 10/05/2000."
+            const campos =
+                document.querySelectorAll(
+                    ".input-box input"
                 );
 
 
-                campo2
-                    .parentElement
-                    .classList.add("erro");
+            campos.forEach(function (campo) {
 
 
-                campo2.focus();
+                if (campo.value.trim() === "") {
 
 
-                return;
+                    campo.parentElement
+                        .classList.add("erro");
 
-            }
+                }
 
-
-            marcarCamposSucesso();
-
-
-            setTimeout(function() {
-
-        /* =====================================
-           ALTERAR AQUI A ENTRADA DO BOTAO DO PACIENTE APOS A CRIÇÃO DA TELA 
-        ====================================== */
-                window.location.href =
-                    "InterfacePac.html.html";
-
-
-            }, 400);
-
+            });
 
         }
 
 
-        /* =====================================
-           MÉDICO
-        ====================================== */
 
-        else if (medico.classList.contains("ativo")) {
+        /* =========================================
+           CAMPOS CORRETOS
+        ========================================= */
 
-
-            if (valor2.length < 4) {
+        function marcarCamposSucesso() {
 
 
-                mostrarErro(
-                    "Digite um CRM válido."
+            const campos =
+                document.querySelectorAll(
+                    ".input-box input"
                 );
 
 
-                campo2
-                    .parentElement
-                    .classList.add("erro");
+            campos.forEach(function (campo) {
 
 
-                campo2.focus();
+                if (campo.value.trim() !== "") {
 
 
-                return;
+                    campo.parentElement
+                        .classList.add("sucesso");
+
+                }
+
+            });
+
+        }
+
+
+
+        /* =========================================
+           VALIDAR DATA
+        ========================================= */
+
+        function validarData(data) {
+
+
+            const formato =
+                /^(\d{2})\/(\d{2})\/(\d{4})$/;
+
+
+            const resultado =
+                data.match(formato);
+
+
+            if (!resultado) {
+
+                return false;
 
             }
 
 
-            marcarCamposSucesso();
+            const dia =
+                parseInt(resultado[1]);
 
 
-            setTimeout(function() {
-
-        /* =====================================
-           ALTERAR AQUI A ENTRADA DO BOTAO DO MEDICO APOS A CRIÇÃO DA TELA 
-        ====================================== */
-
-                window.location.href =
-                    ".html";
+            const mes =
+                parseInt(resultado[2]);
 
 
-            }, 400);
-
-        }
-
-    }
+            const ano =
+                parseInt(resultado[3]);
 
 
+            if (mes < 1 || mes > 12) {
 
-    /* =========================================
-       MENSAGEM DE ERRO
-    ========================================= */
-
-    function mostrarErro(texto) {
-
-
-        const mensagem =
-            document.getElementById("mensagemErro");
-
-
-        mensagem.innerText = texto;
-
-
-        mensagem.classList.add("mostrar");
-
-    }
-
-
-
-    /* =========================================
-       CAMPOS VAZIOS
-    ========================================= */
-
-    function marcarCamposVazios() {
-
-
-        const campos =
-            document.querySelectorAll(
-                ".input-box input"
-            );
-
-
-        campos.forEach(function(campo) {
-
-
-            if (campo.value.trim() === "") {
-
-
-                campo.parentElement
-                    .classList.add("erro");
+                return false;
 
             }
 
-        });
 
-    }
-
-
-
-    /* =========================================
-       CAMPOS CORRETOS
-    ========================================= */
-
-    function marcarCamposSucesso() {
+            const diasNoMes =
+                new Date(
+                    ano,
+                    mes,
+                    0
+                ).getDate();
 
 
-        const campos =
-            document.querySelectorAll(
-                ".input-box input"
-            );
+            if (
+                dia < 1 ||
+                dia > diasNoMes
+            ) {
 
-
-        campos.forEach(function(campo) {
-
-
-            if (campo.value.trim() !== "") {
-
-
-                campo.parentElement
-                    .classList.add("sucesso");
+                return false;
 
             }
 
-        });
 
-    }
-
-
-
-    /* =========================================
-       VALIDAR DATA
-    ========================================= */
-
-    function validarData(data) {
-
-
-        const formato =
-            /^(\d{2})\/(\d{2})\/(\d{4})$/;
-
-
-        const resultado =
-            data.match(formato);
-
-
-        if (!resultado) {
-
-            return false;
+            return true;
 
         }
 
 
-        const dia =
-            parseInt(resultado[1]);
+
+        /* =========================================
+           MOSTRAR / OCULTAR SENHA
+        ========================================= */
+
+        function mostrarSenha() {
 
 
-        const mes =
-            parseInt(resultado[2]);
+            const senha =
+                document.getElementById("senha");
 
 
-        const ano =
-            parseInt(resultado[3]);
+            const iconeSenha =
+                document.getElementById("iconeSenha");
 
 
-        if (mes < 1 || mes > 12) {
-
-            return false;
-
-        }
+            if (senha.type === "password") {
 
 
-        const diasNoMes =
-            new Date(
-                ano,
-                mes,
-                0
-            ).getDate();
+                senha.type = "text";
 
 
-        if (
-            dia < 1 ||
-            dia > diasNoMes
-        ) {
+                iconeSenha.className =
+                    "fa-solid fa-eye-slash";
 
-            return false;
+            }
 
-        }
+            else {
 
 
-        return true;
-
-    }
+                senha.type = "password";
 
 
+                iconeSenha.className =
+                    "fa-solid fa-eye";
 
-    /* =========================================
-       MOSTRAR / OCULTAR SENHA
-    ========================================= */
-
-    function mostrarSenha() {
-
-
-        const senha =
-            document.getElementById("senha");
-
-
-        const iconeSenha =
-            document.getElementById("iconeSenha");
-
-
-        if (senha.type === "password") {
-
-
-            senha.type = "text";
-
-
-            iconeSenha.className =
-                "fa-solid fa-eye-slash";
+            }
 
         }
 
-        else {
 
-
-            senha.type = "password";
-
-
-            iconeSenha.className =
-                "fa-solid fa-eye";
-
-        }
-
-    }
-
-
-</script>
+    </script>
 
 
 </body>
