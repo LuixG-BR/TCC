@@ -85,17 +85,13 @@ async function carregarPerfil() {
            NOME
         ====================================== */
 
-        const nomeUsuario =
-            document.getElementById(
-                "nomeUsuario"
-            );
+        const nomesUsuario =
+            document.querySelectorAll(".nomeUsuario");
 
-        if (nomeUsuario) {
-
-            nomeUsuario.textContent =
+        nomesUsuario.forEach(elemento => {
+            elemento.textContent =
                 usuario.nome;
-
-        }
+        });
 
 
         /* =====================================
