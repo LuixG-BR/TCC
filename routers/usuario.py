@@ -15,11 +15,26 @@ router = APIRouter(
     tags=["Usuários"]
 )
 
+def somente_administrador(
+    usuario_token = Depends(verificar_token)
+):
+
+    id_perfil = usuario_token.get("id_perfil")
+
+    if id_perfil != 1:
+        raise HTTPException(
+            status_code=403,
+            detail="Acesso permitido apenas para administradores."
+        )
+
+    return usuario_token
+
 
 @router.post("/")
 def cadastrar_usuario(
     usuario: UsuarioCreate,
-    db: Session = Depends(conectar)
+    db: Session = Depends(conectar),
+    usuario_token = Depends(somente_administrador)
 ):
     resultado = criar_usuario(
         db,
@@ -31,7 +46,8 @@ def cadastrar_usuario(
 
 @router.get("/")
 def buscar_usuarios(
-    db: Session = Depends(conectar)
+    db: Session = Depends(conectar),
+    usuario_token = Depends(somente_administrador)
 ):
     resultado = listar_usuarios(db)
 
