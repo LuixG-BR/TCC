@@ -42,10 +42,10 @@ def buscar_usuarios():
 
 @router.get("/me")
 def usuario_logado(
-usuario_token = Depends(verificar_token),
-db: Session = Depends(conectar)
+    usuario_token = Depends(verificar_token),
+    db: Session = Depends(conectar)
 ):
-    
+
     id_usuario = int(usuario_token["sub"])
 
     usuario = (
@@ -56,6 +56,12 @@ db: Session = Depends(conectar)
         .first()
     )
 
+    if not usuario:
+        raise HTTPException(
+            status_code=404,
+            detail="Usuário não encontrado."
+        )
+
     resposta = {
         "id_usuario": usuario.id_usuario,
         "nome": usuario.nome,
@@ -63,15 +69,61 @@ db: Session = Depends(conectar)
         "perfil": usuario.id_perfil
     }
 
-    if usuario.id_perfil == 2:
+
+    if usuario.id_perfil == 1:
+
+        resposta["tipo"] = "administrador"
+
+        resposta["dados"] = {
+            "acesso_total": True
+        }
+
+
+    elif usuario.id_perfil == 2:
+
         medico = (
-        db.query(Medico)
-        .filter(
-            Medico.id_usuario == id_usuario
-            ).first()
+            db.query(Medico)
+            .filter(
+                Medico.id_usuario == id_usuario
+            )
+            .first()
         )
-        
-        resposta["crm"] = medico.crm
-        resposta["especialidade"] = medico.especialidade
+        resposta["tipo"] = "medico"
+
+        if medico:
+            resposta["dados"] = {
+                "id_medico": medico.id_medico,
+                "crm": medico.crm,
+                "especialidade": medico.especialidade
+            }
+
+        else:
+            resposta["dados"] = None
+
+
+    elif usuario.id_perfil == 3:
+
+        paciente = (
+            db.query(Paciente)
+            .filter(
+                Paciente.id_usuario == id_usuario
+            )
+            .first()
+        )
+        resposta["tipo"] = "paciente"
+
+        if paciente:
+            resposta["dados"] = {
+                "id_paciente": paciente.id_paciente,
+                "cpf": paciente.cpf,
+                "cns": paciente.cns,
+                "data_nascimento": paciente.data_nascimento,
+                "sexo": paciente.sexo,
+                "contato_emergencia": paciente.contato_emergencia,
+                "tipo_sanguineo": paciente.tipo_sanguineo
+            }
+
+        else:
+            resposta["dados"] = None
 
     return resposta
