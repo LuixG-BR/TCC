@@ -28,9 +28,7 @@ def conectar():
     db = SessionLocal()
 
     try:
-
-        return db
+        yield db
 
     finally:
-
-        pass
+        db.close()
