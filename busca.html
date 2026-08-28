@@ -44,13 +44,13 @@
         ========================= */
 
         .sidebar {
-            width: 182px;
-            min-width: 182px;
+            width: 205px;
+            min-width: 205px;
             background: #ffffff;
             border-right: 1px solid #edf0f8;
             display: flex;
             flex-direction: column;
-            padding: 17px 13px;
+            padding: 19px 14px;
         }
 
         /* LOGO */
@@ -58,14 +58,14 @@
         .logo {
             display: flex;
             align-items: flex-start;
-            gap: 7px;
-            padding: 0 7px;
-            margin-bottom: 34px;
+            gap: 8px;
+            padding: 0 8px;
+            margin-bottom: 35px;
         }
 
         .logo-icon {
-            width: 30px;
-            height: 30px;
+            width: 34px;
+            height: 34px;
             color: #6134d8;
             flex-shrink: 0;
         }
@@ -77,8 +77,8 @@
 
         .logo-text strong {
             color: #5b2bc7;
-            font-size: 20px;
-            line-height: 19px;
+            font-size: 22px;
+            line-height: 21px;
             font-weight: 700;
         }
 
@@ -87,7 +87,7 @@
             font-size: 6.5px;
             line-height: 8px;
             margin-top: 4px;
-            max-width: 88px;
+            max-width: 110px;
         }
 
         /* MENU */
@@ -95,25 +95,25 @@
         .menu {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 5px;
         }
 
         .menu-item {
-            height: 33px;
+            min-height: 38px;
             display: flex;
             align-items: center;
-            gap: 11px;
-            padding: 0 9px;
+            gap: 12px;
+            padding: 0 10px;
             border-radius: 8px;
             color: #25265f;
             text-decoration: none;
-            font-size: 10px;
+            font-size: 11px;
             transition: .25s;
         }
 
         .menu-item svg {
-            width: 16px;
-            height: 16px;
+            width: 17px;
+            height: 17px;
             stroke-width: 1.6;
             flex-shrink: 0;
         }
@@ -123,9 +123,17 @@
             color: #5b2bd0;
         }
 
+        /*
+           BUSCAR PACIENTE É O ITEM ATIVO
+        */
+
         .menu-item.active {
             color: white;
-            background: linear-gradient(135deg, #6030cf, #5520bc);
+            background: linear-gradient(
+                135deg,
+                #6030cf,
+                #5520bc
+            );
             box-shadow: 0 5px 12px rgba(91, 43, 207, .18);
         }
 
@@ -135,8 +143,8 @@
 
         .menu-item .notification {
             margin-left: auto;
-            width: 16px;
-            height: 16px;
+            width: 18px;
+            height: 18px;
             border-radius: 50%;
             background: #5d2bc9;
             color: white;
@@ -144,6 +152,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+        .menu-item.active .notification {
+            background: white;
+            color: #5d2bc9;
         }
 
         /* PARTE INFERIOR DA SIDEBAR */
@@ -155,17 +168,17 @@
         .help-box {
             background: #f4efff;
             border-radius: 8px;
-            padding: 10px 8px;
+            padding: 12px 9px;
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 10px;
+            gap: 9px;
+            margin-bottom: 11px;
         }
 
         .help-icon {
             color: #6230d1;
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             flex-shrink: 0;
         }
 
@@ -189,7 +202,7 @@
 
         .help-arrow {
             color: #5b2bc9;
-            font-size: 16px;
+            font-size: 17px;
         }
 
         /* =========================
@@ -208,13 +221,13 @@
         ========================= */
 
         .topbar {
-            height: 52px;
-            min-height: 52px;
+            height: 58px;
+            min-height: 58px;
             background: #ffffff;
             border-bottom: 1px solid #edf0f7;
             display: flex;
             align-items: center;
-            padding: 0 15px 0 27px;
+            padding: 0 20px 0 30px;
             gap: 20px;
         }
 
@@ -222,7 +235,7 @@
             display: flex;
             align-items: center;
             gap: 9px;
-            font-size: 9px;
+            font-size: 10px;
             color: #52557b;
             flex: 1;
         }
@@ -239,8 +252,8 @@
         /* BUSCA DO HEADER */
 
         .top-search {
-            width: 165px;
-            height: 30px;
+            width: 190px;
+            height: 33px;
             border: 1px solid #e1e3ef;
             border-radius: 7px;
             display: flex;
@@ -253,8 +266,9 @@
             width: 100%;
             border: none;
             outline: none;
-            font-size: 9px;
+            font-size: 10px;
             color: #444;
+            background: transparent;
         }
 
         .top-search input::placeholder {
@@ -262,25 +276,27 @@
         }
 
         .top-search svg {
-            width: 14px;
-            height: 14px;
+            width: 15px;
+            height: 15px;
             color: #646b99;
+            flex-shrink: 0;
         }
 
         /* NOTIFICAÇÕES */
 
         .notification-area {
             position: relative;
-            width: 25px;
+            width: 27px;
             height: 30px;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .notification-area svg {
-            width: 17px;
-            height: 17px;
+            width: 18px;
+            height: 18px;
             color: #353866;
         }
 
@@ -304,8 +320,9 @@
         .profile {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 9px;
             padding-left: 3px;
+            flex-shrink: 0;
         }
 
         .profile-info {
@@ -314,7 +331,7 @@
 
         .profile-info strong {
             display: block;
-            font-size: 8px;
+            font-size: 9px;
             color: #26274e;
         }
 
@@ -326,8 +343,8 @@
         }
 
         .profile-photo {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             background: linear-gradient(135deg, #ddd, #aaa);
             display: flex;
@@ -338,13 +355,13 @@
         }
 
         .profile-photo svg {
-            width: 18px;
-            height: 18px;
+            width: 19px;
+            height: 19px;
         }
 
         .profile-arrow {
-            width: 13px;
-            height: 13px;
+            width: 14px;
+            height: 14px;
             color: #59608d;
         }
 
@@ -358,7 +375,11 @@
             overflow: hidden;
 
             background:
-                radial-gradient(circle at 15% 15%, rgba(255,255,255,.8), transparent 25%),
+                radial-gradient(
+                    circle at 15% 15%,
+                    rgba(255,255,255,.8),
+                    transparent 25%
+                ),
                 linear-gradient(
                     115deg,
                     #f1efff 0%,
@@ -371,10 +392,10 @@
 
         .dots {
             position: absolute;
-            top: 15px;
-            left: 25px;
-            width: 80px;
-            height: 60px;
+            top: 18px;
+            left: 28px;
+            width: 85px;
+            height: 65px;
             opacity: .35;
 
             background-image: radial-gradient(
@@ -389,9 +410,9 @@
 
         .ecg {
             position: absolute;
-            left: 26%;
+            left: 25%;
             bottom: 20px;
-            width: 65%;
+            width: 68%;
             height: 180px;
             opacity: .25;
             pointer-events: none;
@@ -411,97 +432,104 @@
             z-index: 2;
             width: 100%;
             height: 100%;
+            min-height: 560px;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 30px 7%;
-            gap: 50px;
+
+            padding: 42px clamp(35px, 6vw, 100px);
+            gap: clamp(35px, 6vw, 100px);
         }
 
         /* TEXTO ESQUERDO */
 
         .intro {
-            width: 43%;
-            max-width: 420px;
+            width: 45%;
+            max-width: 560px;
         }
 
         .intro-label {
             color: #5c2bd0;
-            font-size: 10px;
+            font-size: 12px;
             font-weight: bold;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
         }
 
         .intro-line {
-            width: 26px;
-            height: 2px;
+            width: 32px;
+            height: 3px;
             background: #6030d1;
-            margin-bottom: 14px;
+            margin-bottom: 17px;
         }
 
         .intro h1 {
             color: #151b61;
-            font-size: 26px;
-            line-height: 1.17;
-            margin-bottom: 13px;
+            font-size: clamp(28px, 2.5vw, 40px);
+            line-height: 1.16;
+            margin-bottom: 16px;
         }
 
         .intro p {
             color: #303465;
-            font-size: 11px;
-            line-height: 1.55;
-            max-width: 360px;
+            font-size: 12px;
+            line-height: 1.65;
+            max-width: 470px;
         }
 
         /* BENEFÍCIOS */
 
         .benefits {
-            margin-top: 23px;
+            margin-top: 28px;
             display: flex;
             flex-direction: column;
-            gap: 13px;
+            gap: 16px;
         }
 
         .benefit {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 13px;
         }
 
         .benefit-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 9px;
+            width: 39px;
+            height: 39px;
+            border-radius: 10px;
+
             background: linear-gradient(
                 145deg,
                 #e5dcff,
                 #f0edff
             );
+
             color: #6333d3;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             flex-shrink: 0;
         }
 
         .benefit-icon svg {
-            width: 17px;
-            height: 17px;
+            width: 20px;
+            height: 20px;
         }
 
         .benefit-text strong {
             display: block;
-            font-size: 9px;
+            font-size: 10px;
             color: #22255e;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
         }
 
         .benefit-text span {
             display: block;
-            font-size: 7.5px;
-            line-height: 10px;
+            font-size: 8px;
+            line-height: 12px;
             color: #575a7f;
-            max-width: 170px;
+            max-width: 250px;
         }
 
         /* =========================
@@ -509,11 +537,15 @@
         ========================= */
 
         .card {
-            width: 355px;
-            min-width: 355px;
+            width: clamp(370px, 31vw, 470px);
+            min-width: 360px;
+
             background: rgba(255,255,255,.97);
-            border-radius: 15px;
-            padding: 25px;
+
+            border-radius: 17px;
+
+            padding: 32px;
+
             box-shadow:
                 0 12px 35px rgba(52, 70, 130, .10);
 
@@ -525,33 +557,37 @@
         /* ÍCONE DO CARD */
 
         .card-icon {
-            width: 67px;
-            height: 67px;
+            width: 78px;
+            height: 78px;
             border-radius: 50%;
+
             background: #f5f0ff;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             color: #6131d3;
-            margin-bottom: 12px;
+
+            margin-bottom: 15px;
         }
 
         .card-icon svg {
-            width: 37px;
-            height: 37px;
+            width: 43px;
+            height: 43px;
             stroke-width: 1.5;
         }
 
         .card h2 {
             color: #171b5e;
-            font-size: 18px;
+            font-size: 21px;
             text-align: center;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
         }
 
         .subtitle {
             color: #5b38b9;
-            font-size: 10px;
+            font-size: 12px;
             text-align: center;
         }
 
@@ -559,14 +595,14 @@
             width: 100%;
             height: 1px;
             background: #ececf3;
-            margin: 20px 0;
+            margin: 24px 0;
         }
 
         .instruction {
             color: #55587b;
-            font-size: 8px;
+            font-size: 10px;
             text-align: center;
-            margin-bottom: 14px;
+            margin-bottom: 17px;
         }
 
         /* FORM */
@@ -577,23 +613,28 @@
 
         .input-wrapper {
             width: 100%;
-            height: 44px;
+            height: 52px;
+
             border: 1.5px solid #6835dc;
-            border-radius: 7px;
+            border-radius: 8px;
+
             display: flex;
             align-items: center;
-            padding: 0 11px;
-            gap: 8px;
+
+            padding: 0 14px;
+            gap: 10px;
+
             transition: .25s;
         }
 
         .input-wrapper:focus-within {
-            box-shadow: 0 0 0 3px rgba(99, 49, 211, .10);
+            box-shadow:
+                0 0 0 3px rgba(99, 49, 211, .10);
         }
 
         .input-wrapper svg {
-            width: 17px;
-            height: 17px;
+            width: 20px;
+            height: 20px;
             color: #6835dc;
             flex-shrink: 0;
         }
@@ -601,10 +642,13 @@
         .input-box {
             width: 100%;
             height: 100%;
+
             border: none;
             outline: none;
-            font-size: 11px;
+
+            font-size: 13px;
             color: #333;
+
             background: transparent;
         }
 
@@ -616,11 +660,12 @@
 
         .start-btn {
             width: 100%;
-            height: 42px;
-            margin-top: 20px;
+            height: 50px;
+
+            margin-top: 22px;
 
             border: none;
-            border-radius: 7px;
+            border-radius: 8px;
 
             background: linear-gradient(
                 90deg,
@@ -629,7 +674,8 @@
             );
 
             color: white;
-            font-size: 11px;
+
+            font-size: 13px;
             font-weight: bold;
 
             cursor: pointer;
@@ -637,22 +683,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
 
-            box-shadow: 0 6px 14px rgba(82, 52, 211, .20);
+            gap: 14px;
+
+            box-shadow:
+                0 6px 14px rgba(82, 52, 211, .20);
 
             transition: .25s;
         }
 
         .start-btn svg {
-            width: 16px;
-            height: 16px;
+            width: 19px;
+            height: 19px;
             transition: .25s;
         }
 
         .start-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(82, 52, 211, .28);
+
+            box-shadow:
+                0 8px 18px rgba(82, 52, 211, .28);
         }
 
         .start-btn:hover svg {
@@ -667,26 +717,34 @@
 
         .security {
             width: 100%;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 7px;
+
+            gap: 8px;
+
             color: #696c88;
-            font-size: 8px;
-            margin-top: 18px;
+
+            font-size: 9px;
+
+            margin-top: 21px;
         }
 
         .security::before,
         .security::after {
             content: "";
+
             height: 1px;
+
             background: #ececf3;
+
             flex: 1;
         }
 
         .security svg {
-            width: 12px;
-            height: 12px;
+            width: 14px;
+            height: 14px;
             color: #5c5f85;
         }
 
@@ -695,37 +753,41 @@
         ========================= */
 
         .footer {
-            height: 58px;
-            min-height: 58px;
+            height: 65px;
+            min-height: 65px;
+
             background: white;
+
             border-top: 1px solid #edf0f7;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
+
+            padding: 0 35px;
         }
 
         .footer-logo {
             display: flex;
             align-items: center;
-            gap: 6px;
+            gap: 7px;
         }
 
         .footer-logo svg {
-            width: 28px;
-            height: 28px;
+            width: 33px;
+            height: 33px;
             color: #6031d2;
         }
 
         .footer-logo-text strong {
             display: block;
             color: #5b2bc8;
-            font-size: 15px;
+            font-size: 17px;
         }
 
         .footer-logo-text span {
             display: block;
-            font-size: 6px;
+            font-size: 7px;
             color: #40436a;
             margin-top: 2px;
         }
@@ -734,9 +796,12 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 6px;
+
+            gap: 7px;
+
             color: #666a88;
-            font-size: 8px;
+
+            font-size: 9px;
         }
 
         .footer-security {
@@ -754,68 +819,383 @@
             width: 150px;
         }
 
-        /* =========================
-           RESPONSIVO
-        ========================= */
 
-        @media (max-width: 950px) {
+        /* =========================================================
+           TELAS MUITO GRANDES
+        ========================================================= */
+
+        @media (min-width: 1500px) {
 
             .sidebar {
-                width: 155px;
-                min-width: 155px;
+                width: 255px;
+                min-width: 255px;
+                padding: 22px 18px;
+            }
+
+            .logo {
+                margin-bottom: 42px;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text strong {
+                font-size: 26px;
+                line-height: 24px;
+            }
+
+            .logo-text span {
+                font-size: 7.5px;
+                line-height: 10px;
+                max-width: 135px;
+            }
+
+            .menu {
+                gap: 6px;
+            }
+
+            .menu-item {
+                min-height: 45px;
+                padding: 0 13px;
+                gap: 14px;
+                font-size: 12px;
+            }
+
+            .menu-item svg {
+                width: 20px;
+                height: 20px;
+            }
+
+            .menu-item .notification {
+                width: 20px;
+                height: 20px;
+                font-size: 9px;
+            }
+
+            .topbar {
+                height: 70px;
+                min-height: 70px;
+                padding: 0 35px;
+            }
+
+            .breadcrumb {
+                font-size: 11px;
+            }
+
+            .top-search {
+                width: 235px;
+                height: 38px;
+            }
+
+            .top-search input {
+                font-size: 11px;
+            }
+
+            .notification-area svg {
+                width: 21px;
+                height: 21px;
+            }
+
+            .profile-photo {
+                width: 38px;
+                height: 38px;
+            }
+
+            .profile-info strong {
+                font-size: 10px;
+            }
+
+            .profile-info span {
+                font-size: 9px;
             }
 
             .page-content {
-                padding: 25px;
-                gap: 25px;
+                padding-left: clamp(50px, 8vw, 150px);
+                padding-right: clamp(50px, 8vw, 150px);
             }
 
             .intro h1 {
-                font-size: 23px;
+                font-size: clamp(34px, 2.3vw, 45px);
+            }
+
+            .intro p {
+                font-size: 13px;
+                max-width: 520px;
             }
 
             .card {
-                width: 330px;
-                min-width: 330px;
-            }
-
-            .profile-info {
-                display: none;
+                width: 480px;
+                min-width: 420px;
+                padding: 36px;
             }
         }
+
+
+        /* =========================================================
+           NOTEBOOK
+        ========================================================= */
+
+        @media (min-width: 761px) and (max-width: 1200px) {
+
+            .sidebar {
+                width: 190px;
+                min-width: 190px;
+                padding: 17px 12px;
+            }
+
+            .logo {
+                margin-bottom: 30px;
+            }
+
+            .logo-icon {
+                width: 31px;
+                height: 31px;
+            }
+
+            .logo-text strong {
+                font-size: 20px;
+            }
+
+            .logo-text span {
+                font-size: 6px;
+                line-height: 7px;
+            }
+
+            .menu {
+                gap: 4px;
+            }
+
+            .menu-item {
+                min-height: 35px;
+                gap: 10px;
+                padding: 0 8px;
+                font-size: 10px;
+            }
+
+            .menu-item svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .topbar {
+                height: 54px;
+                min-height: 54px;
+                padding: 0 18px;
+                gap: 14px;
+            }
+
+            .breadcrumb {
+                font-size: 8px;
+            }
+
+            .top-search {
+                width: 165px;
+                height: 30px;
+            }
+
+            .top-search input {
+                font-size: 9px;
+            }
+
+            .profile-info strong,
+            .profile-info span {
+                font-size: 7px;
+            }
+
+            .profile-photo {
+                width: 29px;
+                height: 29px;
+            }
+
+            .page-content {
+                padding: 25px 4%;
+                gap: 25px;
+            }
+
+            .intro {
+                width: 48%;
+            }
+
+            .intro-label {
+                font-size: 9px;
+            }
+
+            .intro h1 {
+                font-size: clamp(23px, 3vw, 31px);
+            }
+
+            .intro p {
+                font-size: 10px;
+                max-width: 370px;
+            }
+
+            .benefits {
+                margin-top: 20px;
+                gap: 11px;
+            }
+
+            .benefit-icon {
+                width: 31px;
+                height: 31px;
+            }
+
+            .benefit-icon svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .benefit-text strong {
+                font-size: 8px;
+            }
+
+            .benefit-text span {
+                font-size: 7px;
+                line-height: 9px;
+            }
+
+            .card {
+                width: min(350px, 43vw);
+                min-width: 300px;
+                padding: 25px;
+            }
+
+            .card-icon {
+                width: 65px;
+                height: 65px;
+            }
+
+            .card-icon svg {
+                width: 35px;
+                height: 35px;
+            }
+
+            .card h2 {
+                font-size: 17px;
+            }
+
+            .subtitle {
+                font-size: 9px;
+            }
+
+            .input-wrapper {
+                height: 43px;
+            }
+
+            .input-box {
+                font-size: 10px;
+            }
+
+            .start-btn {
+                height: 42px;
+                font-size: 10px;
+            }
+
+            .footer {
+                height: 55px;
+                min-height: 55px;
+                padding: 0 20px;
+            }
+        }
+
+
+        /* =========================================================
+           TABLET / CELULAR
+        ========================================================= */
 
         @media (max-width: 760px) {
 
             .main-area {
                 flex-direction: column;
+                min-height: auto;
             }
+
+            /* MENU */
 
             .sidebar {
                 width: 100%;
                 min-width: 100%;
                 height: auto;
-                padding: 10px 15px;
+
+                padding: 10px 12px;
+
+                border-right: none;
+                border-bottom: 1px solid #edf0f8;
             }
 
             .logo {
+                align-items: center;
+                padding: 0 5px;
                 margin-bottom: 10px;
+            }
+
+            .logo-icon {
+                width: 31px;
+                height: 31px;
+            }
+
+            .logo-text strong {
+                font-size: 20px;
+                line-height: 19px;
+            }
+
+            .logo-text span {
+                font-size: 5.8px;
+                line-height: 7px;
             }
 
             .menu {
                 flex-direction: row;
+                gap: 6px;
+
                 overflow-x: auto;
+
+                padding-bottom: 4px;
+
+                scrollbar-width: thin;
             }
 
             .menu-item {
                 min-width: max-content;
+                flex-shrink: 0;
+
+                height: 37px;
+                min-height: 37px;
+
+                padding: 0 10px;
+
+                gap: 8px;
+
+                border-radius: 8px;
+
+                font-size: 9px;
+            }
+
+            .menu-item svg {
+                width: 15px;
+                height: 15px;
+            }
+
+            .menu-item .notification {
+                width: 15px;
+                height: 15px;
+                font-size: 7px;
             }
 
             .sidebar-bottom {
                 display: none;
             }
 
+            /* HEADER */
+
             .topbar {
-                padding: 0 15px;
+                height: 52px;
+                min-height: 52px;
+
+                padding: 0 12px;
+
+                gap: 10px;
             }
 
             .breadcrumb {
@@ -823,44 +1203,205 @@
             }
 
             .top-search {
-                margin-left: auto;
+                flex: 1;
+                width: auto;
+                height: 31px;
+                margin-left: 0;
             }
 
-            .page-content {
-                flex-direction: column;
-                justify-content: center;
-                padding: 35px 20px;
+            .top-search input {
+                font-size: 9px;
+            }
+
+            .notification-area {
+                width: 25px;
+            }
+
+            .notification-area svg {
+                width: 17px;
+                height: 17px;
+            }
+
+            .notification-number {
+                width: 13px;
+                height: 13px;
+                font-size: 6px;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .profile-photo {
+                width: 29px;
+                height: 29px;
+            }
+
+            .profile-arrow {
+                width: 12px;
+                height: 12px;
+            }
+
+            /* CONTEÚDO */
+
+            .main-content {
+                min-height: calc(100vh - 52px);
                 overflow-y: auto;
             }
 
+            .dots {
+                top: 12px;
+                left: 12px;
+                width: 60px;
+                height: 45px;
+            }
+
+            .ecg {
+                left: 0;
+                bottom: 5px;
+                width: 100%;
+                height: 100px;
+                opacity: .18;
+            }
+
+            .page-content {
+                height: auto;
+                min-height: 100%;
+                flex-direction: column;
+
+                justify-content: center;
+                align-items: center;
+
+                padding: 35px 18px 45px;
+
+                gap: 28px;
+            }
+
+            /* INTRO */
+
             .intro {
                 width: 100%;
-                max-width: 500px;
+                max-width: 560px;
                 text-align: center;
+            }
+
+            .intro-label {
+                font-size: 10px;
+                margin-bottom: 10px;
             }
 
             .intro-line {
                 margin-left: auto;
                 margin-right: auto;
+                margin-bottom: 13px;
+            }
+
+            .intro h1 {
+                font-size: clamp(25px, 7vw, 32px);
+                line-height: 1.18;
+                margin-bottom: 13px;
             }
 
             .intro p {
-                margin: auto;
+                max-width: 500px;
+                margin: 0 auto;
+
+                font-size: 10px;
+                line-height: 1.55;
             }
 
             .benefits {
                 display: none;
             }
 
+            /* CARD */
+
             .card {
                 width: 100%;
-                max-width: 355px;
+                max-width: 420px;
                 min-width: 0;
+
+                padding: clamp(22px, 6vw, 30px);
+
+                border-radius: 15px;
             }
+
+            .card-icon {
+                width: 65px;
+                height: 65px;
+                margin-bottom: 13px;
+            }
+
+            .card-icon svg {
+                width: 35px;
+                height: 35px;
+            }
+
+            .card h2 {
+                font-size: 18px;
+            }
+
+            .subtitle {
+                font-size: 10px;
+            }
+
+            .divider {
+                margin: 18px 0;
+            }
+
+            .instruction {
+                font-size: 8px;
+                margin-bottom: 14px;
+            }
+
+            .input-wrapper {
+                height: 45px;
+            }
+
+            .input-box {
+                font-size: 11px;
+            }
+
+            .start-btn {
+                height: 44px;
+                margin-top: 18px;
+                font-size: 11px;
+            }
+
+            .security {
+                margin-top: 17px;
+                font-size: 8px;
+            }
+
+            .security svg {
+                width: 12px;
+                height: 12px;
+            }
+
+            /* FOOTER */
 
             .footer {
                 height: auto;
-                padding: 12px 20px;
+                min-height: 55px;
+                padding: 10px 15px;
+            }
+
+            .footer-logo svg {
+                width: 27px;
+                height: 27px;
+            }
+
+            .footer-logo-text strong {
+                font-size: 14px;
+            }
+
+            .footer-logo-text span {
+                font-size: 5.5px;
+            }
+
+            .footer-center {
+                font-size: 7px;
+                text-align: center;
             }
 
             .footer-right {
@@ -868,26 +1409,204 @@
             }
         }
 
+
+        /* =========================================================
+           CELULARES PEQUENOS
+        ========================================================= */
+
         @media (max-width: 480px) {
 
+            .sidebar {
+                padding: 8px 9px;
+            }
+
+            .logo {
+                margin-bottom: 8px;
+            }
+
+            .logo-icon {
+                width: 28px;
+                height: 28px;
+            }
+
+            .logo-text strong {
+                font-size: 18px;
+            }
+
+            .logo-text span {
+                font-size: 5px;
+                line-height: 6px;
+            }
+
+            .menu {
+                gap: 5px;
+            }
+
+            .menu-item {
+                height: 35px;
+                min-height: 35px;
+                padding: 0 8px;
+                font-size: 8.5px;
+            }
+
+            .menu-item svg {
+                width: 14px;
+                height: 14px;
+            }
+
             .topbar {
-                gap: 10px;
+                height: 49px;
+                min-height: 49px;
+                padding: 0 9px;
             }
 
             .top-search {
-                width: 140px;
+                height: 29px;
             }
 
-            .profile-arrow {
-                display: none;
+            .top-search input {
+                font-size: 8px;
+            }
+
+            .notification-area svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .notification-number {
+                width: 12px;
+                height: 12px;
+                font-size: 6px;
+            }
+
+            .profile-photo {
+                width: 26px;
+                height: 26px;
+            }
+
+            .page-content {
+                padding: 27px 13px 35px;
+                gap: 22px;
+            }
+
+            .intro-label {
+                font-size: 9px;
+            }
+
+            .intro-line {
+                width: 27px;
+                height: 2px;
+            }
+
+            .intro h1 {
+                font-size: 24px;
+            }
+
+            .intro p {
+                font-size: 9px;
+            }
+
+            .card {
+                padding: 20px 17px;
+            }
+
+            .card-icon {
+                width: 58px;
+                height: 58px;
+            }
+
+            .card-icon svg {
+                width: 31px;
+                height: 31px;
+            }
+
+            .card h2 {
+                font-size: 16px;
+            }
+
+            .subtitle {
+                font-size: 9px;
+            }
+
+            .divider {
+                margin: 15px 0;
+            }
+
+            .instruction {
+                font-size: 7.5px;
+            }
+
+            .input-wrapper {
+                height: 43px;
+                padding: 0 9px;
+            }
+
+            .input-wrapper svg {
+                width: 16px;
+                height: 16px;
+            }
+
+            .input-box {
+                font-size: 10px;
+            }
+
+            .start-btn {
+                height: 42px;
+                font-size: 10px;
+            }
+
+            .security {
+                font-size: 7px;
+            }
+
+            .footer {
+                flex-direction: column;
+                gap: 7px;
+                padding: 10px;
+            }
+
+            .footer-center {
+                order: 2;
+            }
+        }
+
+
+        /* =========================================================
+           CELULAR MUITO PEQUENO
+        ========================================================= */
+
+        @media (max-width: 360px) {
+
+            .menu-item {
+                padding: 0 7px;
+            }
+
+            .menu-item span {
+                font-size: 8px;
             }
 
             .intro h1 {
                 font-size: 22px;
             }
 
+            .intro p {
+                font-size: 8px;
+            }
+
             .card {
-                padding: 22px;
+                padding: 18px 14px;
+            }
+
+            .card h2 {
+                font-size: 15px;
+            }
+
+            .start-btn {
+                font-size: 9px;
+            }
+
+            .security {
+                font-size: 6.5px;
             }
         }
 
@@ -909,6 +1628,7 @@
             <div class="logo">
 
                 <svg class="logo-icon" viewBox="0 0 40 40" fill="none">
+
                     <path
                         d="M2 18h8l3-7 5 16 5-11 3 5h12"
                         stroke="currentColor"
@@ -921,21 +1641,26 @@
                         stroke="currentColor"
                         stroke-width="2"
                         stroke-linecap="round"/>
+
                 </svg>
 
                 <div class="logo-text">
+
                     <strong>EMPS</strong>
+
                     <span>
                         Sistema de Monitoramento<br>
                         e Prevenção de Crises Epilépticas
                     </span>
+
                 </div>
 
             </div>
 
+
             <nav class="menu">
 
-                <a href="dashboard.html" class="menu-item">
+                <a href="perfil.html" class="menu-item">
 
                     <svg viewBox="0 0 24 24" fill="none">
                         <path d="M3 11.5L12 4l9 7.5"/>
@@ -947,7 +1672,8 @@
 
                 </a>
 
-                <a href="ficha.html" class="menu-item active">
+
+                <a href="ficha.html" class="menu-item">
 
                     <svg viewBox="0 0 24 24" fill="none">
                         <circle cx="12" cy="8" r="3.5"/>
@@ -959,54 +1685,47 @@
 
                 </a>
 
-                <a href="buscar.html" class="menu-item">
+
+                <!-- BUSCAR PACIENTE ATIVO -->
+
+                <a href="buscar.html" class="menu-item active">
 
                     <svg viewBox="0 0 24 24" fill="none">
+
                         <circle cx="10.5" cy="10.5" r="6.5"/>
+
                         <path d="M16 16l5 5"/>
+
                     </svg>
 
                     <span>Buscar paciente</span>
 
                 </a>
 
+
                 <a href="agenda.html" class="menu-item">
 
                     <svg viewBox="0 0 24 24" fill="none">
+
                         <rect x="4" y="5" width="16" height="15" rx="2"/>
+
                         <path d="M8 3v4M16 3v4M4 10h16"/>
+
                     </svg>
 
                     <span>Agenda</span>
 
                 </a>
 
-                <a href="consultas.html" class="menu-item">
-
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M6 4h12v16H6z"/>
-                        <path d="M9 8h6M9 12h6M9 16h4"/>
-                    </svg>
-
-                    <span>Consultas</span>
-
-                </a>
-
-                <a href="relatorios.html" class="menu-item">
-
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M5 20V10M12 20V4M19 20v-7"/>
-                    </svg>
-
-                    <span>Relatórios</span>
-
-                </a>
 
                 <a href="alertas.html" class="menu-item">
 
                     <svg viewBox="0 0 24 24" fill="none">
+
                         <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+
                         <path d="M10 21h4"/>
+
                     </svg>
 
                     <span>Alertas</span>
@@ -1015,57 +1734,44 @@
 
                 </a>
 
-                <a href="mensagens.html" class="menu-item">
-
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M4 5h16v12H8l-4 4z"/>
-                        <path d="M8 9h8M8 13h5"/>
-                    </svg>
-
-                    <span>Mensagens</span>
-
-                    <span class="notification">2</span>
-
-                </a>
-
-                <a href="configuracoes.html" class="menu-item">
-
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M19 12a7 7 0 0 0-.1-1l2-1.5-2-3.4-2.4 1a8 8 0 0 0-1.8-1L14.5 3h-4l-.3 2.1a8 8 0 0 0-1.8 1L6 6.1 4 9.5 6 11a7 7 0 0 0 0 2l-2 1.5L6 18l2.4-1a8 8 0 0 0 1.8 1l.3 2.1h4l.3-2.1a8 8 0 0 0 1.8-1l2.4 1 2-3.4-2-1.5c.1-.3.1-.7.1-1z"/>
-                    </svg>
-
-                    <span>Configurações</span>
-
-                </a>
-
-            </nav>
 
             <div class="sidebar-bottom">
 
                 <div class="help-box">
 
                     <svg class="help-icon" viewBox="0 0 24 24" fill="none">
+
                         <path d="M4 14a8 8 0 0 1 16 0"/>
+
                         <path d="M4 14v4h3v-5H4M20 14v4h-3v-5h3"/>
+
                         <path d="M8 20h4"/>
+
                     </svg>
 
                     <div class="help-text">
+
                         <strong>Precisa de ajuda?</strong>
+
                         <span>Acesse o suporte</span>
+
                     </div>
 
                     <span class="help-arrow">›</span>
 
                 </div>
 
+
                 <a href="login.html" class="menu-item">
 
                     <svg viewBox="0 0 24 24" fill="none">
+
                         <path d="M10 17l5-5-5-5"/>
+
                         <path d="M15 12H3"/>
+
                         <path d="M20 4v16"/>
+
                     </svg>
 
                     <span>Sair</span>
@@ -1088,10 +1794,15 @@
             <header class="topbar">
 
                 <div class="breadcrumb">
+
                     <span>Ficha de pacientes</span>
+
                     <span class="breadcrumb-arrow">›</span>
+
                     <span>Buscar paciente</span>
+
                 </div>
+
 
                 <div class="top-search">
 
@@ -1100,41 +1811,62 @@
                         placeholder="Buscar paciente...">
 
                     <svg viewBox="0 0 24 24" fill="none">
+
                         <circle cx="10.5" cy="10.5" r="6.5"/>
+
                         <path d="M16 16l5 5"/>
+
                     </svg>
 
                 </div>
 
+
                 <div class="notification-area">
 
                     <svg viewBox="0 0 24 24" fill="none">
+
                         <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+
                         <path d="M10 21h4"/>
+
                     </svg>
 
                     <span class="notification-number">3</span>
 
                 </div>
 
+
                 <div class="profile">
 
                     <div class="profile-info">
+
                         <strong>Dr. Rafael Oliveira</strong>
+
                         <span>Neurologista</span>
+
                     </div>
+
 
                     <div class="profile-photo">
 
                         <svg viewBox="0 0 24 24" fill="none">
+
                             <circle cx="12" cy="8" r="3"/>
+
                             <path d="M6 21c.7-4 2.7-6 6-6s5.3 2 6 6"/>
+
                         </svg>
 
                     </div>
 
-                    <svg class="profile-arrow" viewBox="0 0 24 24" fill="none">
+
+                    <svg
+                        class="profile-arrow"
+                        viewBox="0 0 24 24"
+                        fill="none">
+
                         <path d="M6 9l6 6 6-6"/>
+
                     </svg>
 
                 </div>
@@ -1148,11 +1880,14 @@
 
                 <div class="dots"></div>
 
+
                 <!-- ECG DECORATIVO -->
 
                 <div class="ecg">
 
-                    <svg viewBox="0 0 900 180" preserveAspectRatio="none">
+                    <svg
+                        viewBox="0 0 900 180"
+                        preserveAspectRatio="none">
 
                         <path
                             d="M0 120
@@ -1179,6 +1914,7 @@
                             fill="none"
                             stroke="#8d8ce0"
                             stroke-width="2"/>
+
                     </svg>
 
                 </div>
@@ -1194,12 +1930,15 @@
                             BUSCAR PACIENTE
                         </div>
 
+
                         <div class="intro-line"></div>
+
 
                         <h1>
                             Encontre o paciente<br>
                             pelo código
                         </h1>
+
 
                         <p>
                             Digite o código do paciente para acessar
@@ -1214,19 +1953,32 @@
 
                                 <div class="benefit-icon">
 
-                                    <svg viewBox="0 0 24 24" fill="none">
-                                        <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/>
-                                        <path d="M9 12l2 2 4-4"/>
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none">
+
+                                        <path
+                                            d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/>
+
+                                        <path
+                                            d="M9 12l2 2 4-4"/>
+
                                     </svg>
 
                                 </div>
 
+
                                 <div class="benefit-text">
-                                    <strong>Acesso seguro</strong>
+
+                                    <strong>
+                                        Acesso seguro
+                                    </strong>
+
                                     <span>
                                         Dados protegidos com criptografia
                                         e autenticação.
                                     </span>
+
                                 </div>
 
                             </div>
@@ -1236,19 +1988,34 @@
 
                                 <div class="benefit-icon">
 
-                                    <svg viewBox="0 0 24 24" fill="none">
-                                        <circle cx="12" cy="12" r="8"/>
-                                        <path d="M12 7v5l3 2"/>
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none">
+
+                                        <circle
+                                            cx="12"
+                                            cy="12"
+                                            r="8"/>
+
+                                        <path
+                                            d="M12 7v5l3 2"/>
+
                                     </svg>
 
                                 </div>
 
+
                                 <div class="benefit-text">
-                                    <strong>Agilidade no atendimento</strong>
+
+                                    <strong>
+                                        Agilidade no atendimento
+                                    </strong>
+
                                     <span>
                                         Localize o paciente em segundos
                                         e tenha tudo à mão.
                                     </span>
+
                                 </div>
 
                             </div>
@@ -1258,19 +2025,32 @@
 
                                 <div class="benefit-icon">
 
-                                    <svg viewBox="0 0 24 24" fill="none">
-                                        <path d="M6 4h12v16H6z"/>
-                                        <path d="M9 8h6M9 12h6M9 16h4"/>
+                                    <svg
+                                        viewBox="0 0 24 24"
+                                        fill="none">
+
+                                        <path
+                                            d="M6 4h12v16H6z"/>
+
+                                        <path
+                                            d="M9 8h6M9 12h6M9 16h4"/>
+
                                     </svg>
 
                                 </div>
 
+
                                 <div class="benefit-text">
-                                    <strong>Informações completas</strong>
+
+                                    <strong>
+                                        Informações completas
+                                    </strong>
+
                                     <span>
                                         Histórico clínico, consultas,
                                         exames e dispositivos conectados.
                                     </span>
+
                                 </div>
 
                             </div>
@@ -1286,43 +2066,68 @@
 
                         <div class="card-icon">
 
-                            <svg viewBox="0 0 24 24" fill="none">
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none">
 
-                                <circle cx="10.5" cy="10.5" r="5.5"/>
+                                <circle
+                                    cx="10.5"
+                                    cy="10.5"
+                                    r="5.5"/>
 
                                 <path d="M15 15l5 5"/>
 
-                                <path d="M8.5 10.5c.5-1.5 1.5-2.2 2.5-2.2s2 .7 2.5 2.2"/>
+                                <path
+                                    d="M8.5 10.5c.5-1.5 1.5-2.2 2.5-2.2s2 .7 2.5 2.2"/>
 
-                                <path d="M9 13.5c.7.7 1.3 1 2 1s1.3-.3 2-1"/>
+                                <path
+                                    d="M9 13.5c.7.7 1.3 1 2 1s1.3-.3 2-1"/>
 
                             </svg>
 
                         </div>
 
+
                         <h2>
                             Código do paciente
                         </h2>
+
 
                         <div class="subtitle">
                             Central de Neurologia
                         </div>
 
+
                         <div class="divider"></div>
+
 
                         <div class="instruction">
                             Digite o código único do paciente para continuar
                         </div>
 
 
-                        <form action="paciente.html" method="POST">
+                        <form
+                            action="paciente.html"
+                            method="POST">
 
                             <div class="input-wrapper">
 
-                                <svg viewBox="0 0 24 24" fill="none">
-                                    <rect x="4" y="5" width="16" height="14" rx="2"/>
-                                    <path d="M8 9h2M8 13h2M14 9h3M14 13h3"/>
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none">
+
+                                    <rect
+                                        x="4"
+                                        y="5"
+                                        width="16"
+                                        height="14"
+                                        rx="2"/>
+
+                                    <path
+                                        d="M8 9h2M8 13h2M14 9h3M14 13h3"/>
+
                                 </svg>
+
 
                                 <input
                                     type="text"
@@ -1338,11 +2143,19 @@
                                 type="submit"
                                 class="start-btn">
 
-                                <span>Buscar paciente</span>
+                                <span>
+                                    Buscar paciente
+                                </span>
 
-                                <svg viewBox="0 0 24 24" fill="none">
+
+                                <svg
+                                    viewBox="0 0 24 24"
+                                    fill="none">
+
                                     <path d="M5 12h14"/>
+
                                     <path d="M13 6l6 6-6 6"/>
+
                                 </svg>
 
                             </button>
@@ -1352,10 +2165,22 @@
 
                         <div class="security">
 
-                            <svg viewBox="0 0 24 24" fill="none">
-                                <rect x="5" y="10" width="14" height="10" rx="2"/>
-                                <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none">
+
+                                <rect
+                                    x="5"
+                                    y="10"
+                                    width="14"
+                                    height="10"
+                                    rx="2"/>
+
+                                <path
+                                    d="M8 10V7a4 4 0 0 1 8 0v3"/>
+
                             </svg>
+
 
                             <span>
                                 Ambiente seguro e criptografado
@@ -1382,7 +2207,9 @@
 
         <div class="footer-logo">
 
-            <svg viewBox="0 0 40 40" fill="none">
+            <svg
+                viewBox="0 0 40 40"
+                fill="none">
 
                 <path
                     d="M2 18h8l3-7 5 16 5-11 3 5h12"
@@ -1399,12 +2226,16 @@
 
             </svg>
 
+
             <div class="footer-logo-text">
+
                 <strong>EMPS</strong>
+
                 <span>
                     Sistema de Monitoramento<br>
                     e Prevenção de Crises Epilépticas
                 </span>
+
             </div>
 
         </div>
@@ -1414,16 +2245,29 @@
 
             <div class="footer-security">
 
-                <svg viewBox="0 0 24 24" fill="none">
-                    <rect x="5" y="10" width="14" height="10" rx="2"/>
-                    <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none">
+
+                    <rect
+                        x="5"
+                        y="10"
+                        width="14"
+                        height="10"
+                        rx="2"/>
+
+                    <path
+                        d="M8 10V7a4 4 0 0 1 8 0v3"/>
+
                 </svg>
+
 
                 <span>
                     Ambiente seguro e criptografado
                 </span>
 
             </div>
+
 
             <span>
                 © 2024 EMPS. Todos os direitos reservados.

@@ -38,8 +38,17 @@
         body {
             font-family: Arial, Helvetica, sans-serif;
             background:
-                radial-gradient(circle at 70% 30%, rgba(222, 215, 255, 0.75), transparent 23%),
-                linear-gradient(135deg, #ffffff 0%, #fbfbff 45%, #f2efff 100%);
+                radial-gradient(
+                    circle at 70% 30%,
+                    rgba(222, 215, 255, 0.75),
+                    transparent 23%
+                ),
+                linear-gradient(
+                    135deg,
+                    #ffffff 0%,
+                    #fbfbff 45%,
+                    #f2efff 100%
+                );
             color: var(--texto);
             overflow-x: hidden;
         }
@@ -78,6 +87,7 @@
             align-items: center;
             gap: 10px;
             min-width: 175px;
+            flex-shrink: 0;
         }
 
         .logo-heart {
@@ -87,6 +97,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-shrink: 0;
         }
 
         .logo-heart::before {
@@ -124,8 +135,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: clamp(22px, 3vw, 55px);
+            gap: clamp(18px, 3vw, 55px);
             flex: 1;
+            min-width: 0;
         }
 
         .main-nav a {
@@ -136,6 +148,7 @@
             position: relative;
             padding: 30px 0;
             transition: 0.25s;
+            white-space: nowrap;
         }
 
         .main-nav a:hover,
@@ -163,6 +176,7 @@
             font-size: 12px;
             font-weight: 600;
             white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .user-icon {
@@ -181,7 +195,7 @@
         .hero {
             min-height: 560px;
             display: grid;
-            grid-template-columns: 0.85fr 1.15fr;
+            grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
             align-items: center;
             gap: 35px;
             padding: 25px 0 45px;
@@ -191,6 +205,7 @@
         .hero-left {
             position: relative;
             z-index: 3;
+            min-width: 0;
         }
 
         .tag {
@@ -224,7 +239,9 @@
             margin-bottom: 28px;
         }
 
-        /* BENEFÍCIOS */
+        /* =========================================
+           BENEFÍCIOS
+        ========================================= */
         .benefits {
             display: grid;
             gap: 15px;
@@ -263,7 +280,9 @@
             font-size: 11px;
         }
 
-        /* DOWNLOAD */
+        /* =========================================
+           DOWNLOAD
+        ========================================= */
         .download-title {
             font-size: 15px;
             margin-bottom: 11px;
@@ -309,7 +328,9 @@
             font-weight: 500;
         }
 
-        /* QR */
+        /* =========================================
+           QR
+        ========================================= */
         .qr-box {
             margin-top: 15px;
             width: min(100%, 370px);
@@ -328,8 +349,31 @@
             height: 55px;
             flex-shrink: 0;
             background:
-                linear-gradient(90deg, #222 10%, transparent 10% 20%, #222 20% 30%, transparent 30% 40%, #222 40% 50%, transparent 50% 60%, #222 60% 70%, transparent 70% 80%, #222 80% 90%, transparent 90%),
-                linear-gradient(#222 10%, transparent 10% 20%, #222 20% 30%, transparent 30% 40%, #222 40% 50%, transparent 50% 60%, #222 60% 70%, transparent 70% 80%, #222 80% 90%, transparent 90%);
+                linear-gradient(
+                    90deg,
+                    #222 10%,
+                    transparent 10% 20%,
+                    #222 20% 30%,
+                    transparent 30% 40%,
+                    #222 40% 50%,
+                    transparent 50% 60%,
+                    #222 60% 70%,
+                    transparent 70% 80%,
+                    #222 80% 90%,
+                    transparent 90%
+                ),
+                linear-gradient(
+                    #222 10%,
+                    transparent 10% 20%,
+                    #222 20% 30%,
+                    transparent 30% 40%,
+                    #222 40% 50%,
+                    transparent 50% 60%,
+                    #222 60% 70%,
+                    transparent 70% 80%,
+                    #222 80% 90%,
+                    transparent 90%
+                );
             background-size: 11px 11px;
             border: 4px solid white;
             box-shadow: 0 0 0 1px #ddd;
@@ -357,6 +401,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            min-width: 0;
         }
 
         .hero-bg-shape {
@@ -367,7 +412,11 @@
             top: 5%;
             border-radius: 180px 0 0 180px;
             background:
-                radial-gradient(circle at 40% 50%, rgba(147, 123, 255, 0.18), transparent 50%),
+                radial-gradient(
+                    circle at 40% 50%,
+                    rgba(147, 123, 255, 0.18),
+                    transparent 50%
+                ),
                 linear-gradient(135deg, #ece8ff, #ddd8ff);
             overflow: hidden;
         }
@@ -434,7 +483,9 @@
             transform: rotate(3deg);
         }
 
-        /* APP MOCKUP */
+        /* =========================================
+           APP MOCKUP
+        ========================================= */
         .app-top {
             display: flex;
             justify-content: space-between;
@@ -526,7 +577,16 @@
             top: 0;
             left: -10px;
             background:
-                linear-gradient(135deg, transparent 0 42%, #6546d4 43% 45%, transparent 46% 54%, #6546d4 55% 57%, transparent 58% 65%, #6546d4 66% 68%, transparent 69%);
+                linear-gradient(
+                    135deg,
+                    transparent 0 42%,
+                    #6546d4 43% 45%,
+                    transparent 46% 54%,
+                    #6546d4 55% 57%,
+                    transparent 58% 65%,
+                    #6546d4 66% 68%,
+                    transparent 69%
+                );
         }
 
         .summary-title {
@@ -603,7 +663,9 @@
             font-weight: bold;
         }
 
-        /* HISTÓRICO */
+        /* =========================================
+           HISTÓRICO
+        ========================================= */
         .history-title {
             font-size: 13px;
             font-weight: bold;
@@ -680,7 +742,12 @@
             display: grid;
             grid-template-columns: 1fr 1.45fr;
             background:
-                linear-gradient(105deg, #3f2996 0%, #4b34aa 40%, rgba(255,255,255,.08) 65%),
+                linear-gradient(
+                    105deg,
+                    #3f2996 0%,
+                    #4b34aa 40%,
+                    rgba(255, 255, 255, .08) 65%
+                ),
                 #5a42bd;
             position: relative;
             box-shadow: var(--sombra);
@@ -692,7 +759,7 @@
             width: 500px;
             height: 500px;
             border-radius: 50%;
-            border: 1px solid rgba(255,255,255,.12);
+            border: 1px solid rgba(255, 255, 255, .12);
             left: -150px;
             top: -270px;
         }
@@ -734,7 +801,7 @@
 
         .promo-rating {
             align-self: center;
-            background: rgba(255,255,255,0.9);
+            background: rgba(255, 255, 255, 0.9);
             color: #313449;
             width: 220px;
             padding: 20px;
@@ -784,8 +851,16 @@
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(90deg, #4b34a8 0%, transparent 35%),
-                linear-gradient(120deg, rgba(19,17,42,.2), transparent 60%);
+                linear-gradient(
+                    90deg,
+                    #4b34a8 0%,
+                    transparent 35%
+                ),
+                linear-gradient(
+                    120deg,
+                    rgba(19, 17, 42, .2),
+                    transparent 60%
+                );
         }
 
         .promo-phone {
@@ -798,7 +873,7 @@
             left: 25%;
             top: 12px;
             transform: rotate(12deg);
-            box-shadow: 0 15px 30px rgba(0,0,0,.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, .3);
             z-index: 2;
         }
 
@@ -834,7 +909,7 @@
             height: 16px;
             border-radius: 4px;
             background: white;
-            box-shadow: 0 3px 8px rgba(0,0,0,.08);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, .08);
         }
 
         /* =========================================
@@ -846,7 +921,8 @@
             border: 1px solid #e5e6ed;
             border-radius: 10px;
             margin: 25px 0;
-            background: rgba(255,255,255,.45);
+            background: rgba(255, 255, 255, .45);
+            overflow: hidden;
         }
 
         .advantage {
@@ -877,6 +953,7 @@
             background: #f1eeff;
             color: #5a42ca;
             font-size: 16px;
+            flex-shrink: 0;
         }
 
         .advantage strong {
@@ -934,16 +1011,102 @@
         }
 
         /* =========================================
-           RESPONSIVIDADE
+           TELAS GRANDES
         ========================================= */
-        @media (max-width: 1100px) {
+        @media (min-width: 1501px) {
+
+            .page {
+                box-shadow: 0 0 60px rgba(50, 38, 110, 0.05);
+            }
+        }
+
+        /* =========================================
+           NOTEBOOK / TABLET HORIZONTAL
+        ========================================= */
+        @media (max-width: 1200px) {
 
             .content-width {
-                width: min(100% - 50px, 1000px);
+                width: min(100% - 50px, 1050px);
+            }
+
+            header {
+                gap: 18px;
+            }
+
+            .main-nav {
+                gap: 18px;
+            }
+
+            .main-nav a {
+                font-size: 11px;
+            }
+
+            .hero {
+                grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+                gap: 15px;
+            }
+
+            .hero-left h2 {
+                font-size: clamp(35px, 4vw, 50px);
+            }
+
+            .hero-right {
+                transform: scale(0.92);
+                transform-origin: center;
+            }
+
+            .phone-main {
+                left: 4%;
+            }
+
+            .phone-history {
+                right: 0;
+            }
+
+            .promo-content {
+                padding-left: 30px;
+            }
+
+            .advantage {
+                padding: 10px 12px;
+                gap: 9px;
+            }
+        }
+
+        /* =========================================
+           TABLET
+        ========================================= */
+        @media (max-width: 1050px) {
+
+            .content-width {
+                width: min(100% - 40px, 900px);
+            }
+
+            header {
+                flex-wrap: wrap;
+                padding: 12px 0;
+            }
+
+            .main-nav {
+                order: 3;
+                width: 100%;
+                flex: 0 0 100%;
+                justify-content: center;
+                gap: 25px;
+            }
+
+            .main-nav a {
+                padding: 10px 0;
+            }
+
+            .main-nav a.active::after {
+                bottom: 0;
             }
 
             .hero {
                 grid-template-columns: 1fr;
+                min-height: auto;
+                padding: 35px 0 50px;
             }
 
             .hero-left {
@@ -953,55 +1116,50 @@
                 align-items: center;
             }
 
+            .hero-left h2 {
+                max-width: 700px;
+            }
+
             .hero-description {
                 max-width: 650px;
             }
 
             .benefits {
+                width: min(100%, 470px);
                 text-align: left;
             }
 
             .hero-right {
-                min-height: 540px;
                 width: min(100%, 700px);
-                margin: auto;
+                min-height: 540px;
+                margin: 0 auto;
+                transform: none;
             }
 
             .promo {
                 grid-template-columns: 1fr;
+                min-height: 300px;
+            }
+
+            .promo-content {
+                padding: 35px 40px 150px;
+            }
+
+            .promo-content h2,
+            .promo-content p {
+                max-width: 450px;
             }
 
             .promo-rating {
                 position: absolute;
                 left: 50%;
-                bottom: 20px;
+                bottom: 25px;
                 transform: translateX(-50%);
+                width: min(300px, calc(100% - 50px));
             }
 
             .promo-image {
                 display: none;
-            }
-        }
-
-        @media (max-width: 850px) {
-
-            header {
-                flex-wrap: wrap;
-                padding: 15px 0;
-            }
-
-            .main-nav {
-                order: 3;
-                width: 100%;
-                flex: auto;
-            }
-
-            .main-nav a {
-                padding: 10px 0;
-            }
-
-            .main-nav a.active::after {
-                bottom: 2px;
             }
 
             .advantages {
@@ -1012,9 +1170,17 @@
                 display: none;
             }
 
+            .advantage:nth-child(-n + 2) {
+                border-bottom: 1px solid #e3e4ec;
+            }
+
             .footer-top {
                 grid-template-columns: 1fr;
                 text-align: center;
+            }
+
+            .footer-top .logo {
+                justify-content: center;
             }
 
             .footer-links,
@@ -1023,20 +1189,48 @@
             }
         }
 
-        @media (max-width: 600px) {
+        /* =========================================
+           TABLET VERTICAL / CELULARES GRANDES
+        ========================================= */
+        @media (max-width: 768px) {
 
             .content-width {
-                width: min(100% - 30px, 500px);
+                width: min(100% - 30px, 600px);
+            }
+
+            .page {
+                width: 100%;
+            }
+
+            header {
+                min-height: auto;
+                padding: 15px 0 10px;
+                gap: 12px;
+            }
+
+            .logo {
+                min-width: auto;
+            }
+
+            .logo-text h1 {
+                font-size: 21px;
             }
 
             .user-menu {
                 margin-left: auto;
+                font-size: 11px;
             }
 
             .main-nav {
-                gap: 15px;
+                gap: 18px;
                 overflow-x: auto;
                 justify-content: flex-start;
+                padding-bottom: 4px;
+                scrollbar-width: none;
+            }
+
+            .main-nav::-webkit-scrollbar {
+                display: none;
             }
 
             .main-nav a {
@@ -1045,87 +1239,594 @@
             }
 
             .hero {
-                padding-top: 15px;
+                padding-top: 25px;
+                gap: 30px;
             }
 
             .hero-left h2 {
-                font-size: 36px;
+                font-size: clamp(32px, 7vw, 43px);
+                letter-spacing: -1px;
             }
 
-            .hero-right {
-                min-height: 430px;
-            }
-
-            .phone-main {
-                width: 205px;
-                height: 395px;
-                left: 4%;
-            }
-
-            .phone-history {
-                width: 180px;
-                height: 345px;
-                right: 0;
-            }
-
-            .phone-screen {
-                padding: 30px 10px 8px;
-                border-radius: 24px;
-            }
-
-            .phone {
-                border-radius: 30px;
-                padding: 6px;
-            }
-
-            .phone::before {
-                width: 62px;
-                height: 17px;
-                top: 10px;
-            }
-
-            .phone-history .app-card,
-            .phone-history .history-stat {
-                transform: scale(0.95);
-            }
-
-            .stores {
-                justify-content: center;
-            }
-
-            .store-btn {
-                min-width: 145px;
+            .hero-description {
+                font-size: 13px;
+                line-height: 1.75;
             }
 
             .benefit {
                 align-items: flex-start;
             }
 
+            .hero-right {
+                min-height: 470px;
+                width: 100%;
+                overflow: visible;
+            }
+
+            .hero-bg-shape {
+                width: 100%;
+                right: 0;
+                border-radius: 100px 0 0 100px;
+            }
+
+            .phone-main {
+                width: 220px;
+                height: 425px;
+                left: 3%;
+                top: 3%;
+            }
+
+            .phone-history {
+                width: 195px;
+                height: 375px;
+                right: 0;
+                top: 12%;
+            }
+
+            .phone-screen {
+                padding: 31px 11px 9px;
+                border-radius: 25px;
+            }
+
+            .phone {
+                border-radius: 31px;
+                padding: 6px;
+            }
+
+            .phone::before {
+                width: 65px;
+                height: 18px;
+                top: 10px;
+            }
+
+            .promo {
+                min-height: 340px;
+            }
+
+            .promo-content {
+                padding: 30px 25px 155px;
+            }
+
+            .promo-content h2 {
+                font-size: 30px;
+            }
+
             .advantages {
                 grid-template-columns: 1fr;
             }
 
-            .advantage::after {
-                width: 50% !important;
-                height: 1px !important;
+            .advantage {
+                min-height: 70px;
+                justify-content: flex-start;
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            .advantage:not(:last-child)::after {
+                width: 70%;
+                height: 1px;
+                right: 15%;
                 bottom: 0;
-                right: 25% !important;
+                top: auto;
             }
 
-            .advantage:last-child::after {
-                display: none;
-            }
-
-            .promo-content {
-                padding: 28px 25px 160px;
-            }
-
-            .promo-rating {
-                width: calc(100% - 50px);
+            .advantage:nth-child(-n + 2) {
+                border-bottom: none;
             }
 
             .footer-links {
                 gap: 15px;
+            }
+        }
+
+        /* =========================================
+           CELULAR
+        ========================================= */
+        @media (max-width: 600px) {
+
+            .content-width {
+                width: calc(100% - 24px);
+            }
+
+            .logo-heart {
+                width: 34px;
+                height: 31px;
+            }
+
+            .logo-heart::before {
+                font-size: 40px;
+            }
+
+            .logo-heart::after {
+                font-size: 23px;
+            }
+
+            .logo-text h1 {
+                font-size: 19px;
+            }
+
+            .logo-text p {
+                font-size: 5px;
+                max-width: 85px;
+            }
+
+            .user-menu {
+                gap: 5px;
+                font-size: 9px;
+            }
+
+            .user-icon {
+                width: 22px;
+                height: 22px;
+                font-size: 15px;
+            }
+
+            .main-nav {
+                gap: 15px;
+            }
+
+            .main-nav a {
+                font-size: 9px;
+            }
+
+            .hero {
+                padding: 20px 0 35px;
+            }
+
+            .tag {
+                font-size: 9px;
+                padding: 7px 11px;
+            }
+
+            .hero-left h2 {
+                font-size: 34px;
+                line-height: 1.15;
+            }
+
+            .hero-description {
+                font-size: 12px;
+                line-height: 1.7;
+                margin-bottom: 23px;
+            }
+
+            .benefits {
+                gap: 13px;
+            }
+
+            .benefit {
+                gap: 10px;
+            }
+
+            .benefit-icon {
+                width: 38px;
+                height: 38px;
+                font-size: 17px;
+            }
+
+            .benefit strong {
+                font-size: 12px;
+            }
+
+            .benefit span {
+                font-size: 10px;
+                line-height: 1.4;
+            }
+
+            .download-title {
+                font-size: 14px;
+            }
+
+            .stores {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .store-btn {
+                min-width: 0;
+                width: 145px;
+                height: 49px;
+                padding: 6px 10px;
+                gap: 7px;
+            }
+
+            .store-symbol {
+                font-size: 23px;
+            }
+
+            .store-btn small {
+                font-size: 7px;
+            }
+
+            .store-btn strong {
+                font-size: 15px;
+            }
+
+            .qr-box {
+                width: 100%;
+                max-width: 360px;
+                align-items: flex-start;
+            }
+
+            .fake-qr {
+                width: 50px;
+                height: 50px;
+            }
+
+            .qr-box strong {
+                font-size: 10px;
+            }
+
+            .qr-box p {
+                font-size: 8px;
+            }
+
+            .hero-right {
+                min-height: 415px;
+            }
+
+            .hero-bg-shape {
+                height: 82%;
+                top: 9%;
+                border-radius: 70px 0 0 70px;
+            }
+
+            .phone-main {
+                width: 185px;
+                height: 355px;
+                left: 0;
+            }
+
+            .phone-history {
+                width: 165px;
+                height: 315px;
+                right: 0;
+                top: 15%;
+            }
+
+            .phone-screen {
+                padding: 27px 9px 7px;
+                border-radius: 22px;
+            }
+
+            .phone {
+                padding: 5px;
+                border-radius: 27px;
+            }
+
+            .phone::before {
+                width: 55px;
+                height: 15px;
+                top: 9px;
+            }
+
+            .app-top {
+                margin-bottom: 9px;
+            }
+
+            .app-logo {
+                font-size: 12px;
+            }
+
+            .app-user {
+                font-size: 8px;
+            }
+
+            .app-card {
+                padding: 7px;
+                border-radius: 8px;
+                margin-bottom: 6px;
+            }
+
+            .device-card small,
+            .app-card small {
+                font-size: 6px;
+            }
+
+            .device-card strong {
+                font-size: 7px;
+            }
+
+            .mini-belt {
+                width: 58px;
+                height: 26px;
+                border-width: 6px;
+            }
+
+            .mini-belt::after {
+                width: 8px;
+                height: 8px;
+                left: 17px;
+                top: 3px;
+            }
+
+            .status-card strong {
+                font-size: 11px;
+                margin: 5px 0 3px;
+            }
+
+            .chart {
+                height: 30px;
+            }
+
+            .chart::before {
+                height: 33px;
+            }
+
+            .summary-title {
+                font-size: 7px;
+                margin: 7px 0 5px;
+            }
+
+            .app-stats {
+                gap: 4px;
+            }
+
+            .stat {
+                min-height: 47px;
+                padding: 6px 3px;
+            }
+
+            .stat-icon {
+                font-size: 10px;
+            }
+
+            .stat strong {
+                font-size: 8px;
+                margin-top: 3px;
+            }
+
+            .stat small {
+                font-size: 5px;
+                margin-top: 2px;
+            }
+
+            .delivery-card strong {
+                font-size: 11px;
+            }
+
+            .delivery-card small {
+                font-size: 6px;
+            }
+
+            .app-bottom {
+                margin-top: 6px;
+                padding-top: 6px;
+                font-size: 6px;
+            }
+
+            .history-title {
+                font-size: 11px;
+                margin-bottom: 7px;
+            }
+
+            .tabs {
+                margin-bottom: 7px;
+            }
+
+            .tabs span {
+                padding: 5px 2px;
+                font-size: 6px;
+            }
+
+            .date-title {
+                font-size: 6px;
+                margin: 9px 0;
+            }
+
+            .bar-chart {
+                height: 85px;
+                padding-bottom: 7px;
+            }
+
+            .bar-chart span {
+                width: 6px;
+            }
+
+            .history-stat {
+                gap: 5px;
+                margin-top: 8px;
+            }
+
+            .history-stat div {
+                padding: 7px 4px;
+                font-size: 6px;
+            }
+
+            .phone-history .app-card {
+                margin-top: 7px !important;
+            }
+
+            .phone-history .app-card strong {
+                font-size: 6px !important;
+            }
+
+            .promo {
+                min-height: 355px;
+                border-radius: 14px;
+            }
+
+            .promo-content {
+                padding: 27px 20px 160px;
+            }
+
+            .promo-content h2 {
+                font-size: 27px;
+                margin-bottom: 12px;
+            }
+
+            .promo-content p {
+                font-size: 10px;
+                line-height: 1.7;
+                margin-bottom: 16px;
+            }
+
+            .promo-content a {
+                padding: 11px 16px;
+                font-size: 10px;
+            }
+
+            .promo-rating {
+                width: calc(100% - 40px);
+                padding: 16px;
+                bottom: 18px;
+                border-radius: 14px;
+            }
+
+            .stars {
+                font-size: 13px;
+            }
+
+            .promo-rating p {
+                font-size: 8px;
+                margin: 9px 0;
+            }
+
+            .rating-list {
+                gap: 7px;
+                font-size: 8px;
+            }
+
+            .advantages {
+                margin: 20px 0;
+            }
+
+            .advantage {
+                min-height: 67px;
+                padding: 9px 18px;
+            }
+
+            .advantage-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+            }
+
+            .advantage strong {
+                font-size: 9px;
+            }
+
+            .advantage span {
+                font-size: 7px;
+            }
+
+            footer {
+                padding-top: 20px;
+            }
+
+            .footer-links {
+                gap: 12px;
+            }
+
+            .footer-links a,
+            .social a {
+                font-size: 8px;
+            }
+
+            .copyright {
+                font-size: 8px;
+                line-height: 1.5;
+            }
+        }
+
+        /* =========================================
+           CELULARES MUITO PEQUENOS
+        ========================================= */
+        @media (max-width: 400px) {
+
+            .content-width {
+                width: calc(100% - 18px);
+            }
+
+            .user-menu span:first-of-type {
+                display: none;
+            }
+
+            .hero-left h2 {
+                font-size: 30px;
+            }
+
+            .stores {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .store-btn {
+                width: min(100%, 220px);
+            }
+
+            .hero-right {
+                min-height: 365px;
+            }
+
+            .phone-main {
+                width: 160px;
+                height: 305px;
+            }
+
+            .phone-history {
+                width: 145px;
+                height: 278px;
+            }
+
+            .phone-screen {
+                padding: 23px 7px 5px;
+            }
+
+            .phone::before {
+                width: 47px;
+                height: 13px;
+                top: 8px;
+            }
+
+            .mini-belt {
+                width: 45px;
+                height: 22px;
+            }
+
+            .mini-belt::after {
+                left: 13px;
+            }
+
+            .hero-bg-shape {
+                border-radius: 55px 0 0 55px;
+            }
+
+            .promo {
+                min-height: 370px;
+            }
+
+            .promo-content {
+                padding-left: 17px;
+                padding-right: 17px;
+            }
+
+            .promo-rating {
+                width: calc(100% - 30px);
+            }
+
+            .advantage {
+                padding-left: 14px;
+                padding-right: 14px;
             }
         }
     </style>
@@ -1147,7 +1848,10 @@
 
                     <div class="logo-text">
                         <h1>EMPS</h1>
-                        <p>Sistema de Monitoramento<br>e Prevenção de Crises Epilépticas</p>
+                        <p>
+                            Sistema de Monitoramento<br>
+                            e Prevenção de Crises Epilépticas
+                        </p>
                     </div>
                 </div>
 
@@ -1191,54 +1895,72 @@
                     <div class="benefits">
 
                         <div class="benefit">
+
                             <div class="benefit-icon">♧</div>
 
                             <div>
                                 <strong>Alertas instantâneos</strong>
-                                <span>Notificações em tempo real em cada etapa.</span>
+                                <span>
+                                    Notificações em tempo real em cada etapa.
+                                </span>
                             </div>
+
                         </div>
 
                         <div class="benefit">
+
                             <div class="benefit-icon">⌁</div>
 
                             <div>
                                 <strong>Dados sempre com você</strong>
-                                <span>Acompanhe seu histórico e relatórios de forma fácil.</span>
+                                <span>
+                                    Acompanhe seu histórico e relatórios de forma fácil.
+                                </span>
                             </div>
+
                         </div>
 
                         <div class="benefit">
+
                             <div class="benefit-icon">♙</div>
 
                             <div>
                                 <strong>Compartilhe com segurança</strong>
-                                <span>Quem você confia sempre informado, quando precisar.</span>
+                                <span>
+                                    Quem você confia sempre informado, quando precisar.
+                                </span>
                             </div>
+
                         </div>
 
                     </div>
 
-                    <h3 class="download-title">Baixe agora o aplicativo EMPS</h3>
+                    <h3 class="download-title">
+                        Baixe agora o aplicativo EMPS
+                    </h3>
 
                     <div class="stores">
 
                         <a href="#" class="store-btn">
+
                             <span class="store-symbol">●</span>
 
                             <span>
                                 <small>Baixar na</small>
                                 <strong>App Store</strong>
                             </span>
+
                         </a>
 
                         <a href="#" class="store-btn">
+
                             <span class="store-symbol">▶</span>
 
                             <span>
                                 <small>DISPONÍVEL NO</small>
                                 <strong>Google Play</strong>
                             </span>
+
                         </a>
 
                     </div>
@@ -1248,11 +1970,15 @@
                         <div class="fake-qr"></div>
 
                         <div>
-                            <strong>Escaneie o QR Code e baixe agora</strong>
+                            <strong>
+                                Escaneie o QR Code e baixe agora
+                            </strong>
+
                             <p>
                                 Aponte a câmera do seu celular para o código
                                 e acesse o aplicativo EMPS.
                             </p>
+
                             <p>⌁ Download 100% seguro</p>
                         </div>
 
@@ -1260,7 +1986,9 @@
 
                 </div>
 
-                <!-- LADO DIREITO -->
+                <!-- =====================================
+                     LADO DIREITO
+                ====================================== -->
                 <div class="hero-right">
 
                     <div class="hero-bg-shape"></div>
@@ -1271,20 +1999,36 @@
                         <div class="phone-screen">
 
                             <div class="app-top">
+
                                 <div>
                                     <div class="app-logo">EMPS</div>
                                     <div class="app-user">Olá, Maria!</div>
                                 </div>
 
                                 <div class="app-notification">♧</div>
+
                             </div>
 
                             <div class="app-card device-card">
 
                                 <div>
-                                    <strong>Dispositivo conectado</strong><br>
-                                    <small>● Cinta EMPS</small><br>
-                                    <small>Bateria: 85%</small>
+
+                                    <strong>
+                                        Dispositivo conectado
+                                    </strong>
+
+                                    <br>
+
+                                    <small>
+                                        ● Cinta EMPS
+                                    </small>
+
+                                    <br>
+
+                                    <small>
+                                        Bateria: 85%
+                                    </small>
+
                                 </div>
 
                                 <div class="mini-belt"></div>
@@ -1292,51 +2036,111 @@
                             </div>
 
                             <div class="app-card status-card">
+
                                 <small>Status atual</small>
-                                <strong>Tudo normal</strong>
-                                <small>Nenhuma alteração detectada</small>
+
+                                <strong>
+                                    Tudo normal
+                                </strong>
+
+                                <small>
+                                    Nenhuma alteração detectada
+                                </small>
 
                                 <div class="chart"></div>
+
                             </div>
 
                             <div class="summary-title">
-                                <span style="color:#252839;">Resumo do dia</span>
-                                <span>Ver histórico</span>
+                                <span style="color:#252839;">
+                                    Resumo do dia
+                                </span>
+
+                                <span>
+                                    Ver histórico
+                                </span>
                             </div>
 
                             <div class="app-stats">
 
                                 <div class="stat">
+
                                     <div class="stat-icon">♡</div>
-                                    <strong>72 bpm</strong>
-                                    <small>Batimentos médios</small>
+
+                                    <strong>
+                                        72 bpm
+                                    </strong>
+
+                                    <small>
+                                        Batimentos médios
+                                    </small>
+
                                 </div>
 
                                 <div class="stat">
+
                                     <div class="stat-icon">⌁</div>
-                                    <strong>0</strong>
-                                    <small>Eventos detectados</small>
+
+                                    <strong>
+                                        0
+                                    </strong>
+
+                                    <small>
+                                        Eventos detectados
+                                    </small>
+
                                 </div>
 
                                 <div class="stat">
+
                                     <div class="stat-icon">◷</div>
-                                    <strong>8h 24m</strong>
-                                    <small>Tempo de sono</small>
+
+                                    <strong>
+                                        8h 24m
+                                    </strong>
+
+                                    <small>
+                                        Tempo de sono
+                                    </small>
+
                                 </div>
 
                             </div>
 
                             <div class="app-card delivery-card">
-                                <small>Previsão de entrega</small>
-                                <strong>22 a 24 de Maio</strong>
-                                <small>Em breve para você</small>
+
+                                <small>
+                                    Previsão de entrega
+                                </small>
+
+                                <strong>
+                                    22 a 24 de Maio
+                                </strong>
+
+                                <small>
+                                    Em breve para você
+                                </small>
+
                             </div>
 
                             <div class="app-bottom">
-                                <span class="selected">⌂<br>Início</span>
-                                <span>⌁<br>Histórico</span>
-                                <span>◉<br>Dispositivo</span>
-                                <span>♙<br>Perfil</span>
+
+                                <span class="selected">
+                                    ⌂<br>Início
+                                </span>
+
+                                <span>
+                                    ⌁<br>Histórico
+                                </span>
+
+                                <span>
+                                    ◉<br>Dispositivo
+                                </span>
+
+                                <span>
+                                    ♙<br>Perfil
+                                </span>
+
                             </div>
 
                         </div>
@@ -1348,17 +2152,34 @@
 
                         <div class="phone-screen">
 
-                            <div class="history-title">Histórico</div>
-
-                            <div class="tabs">
-                                <span class="selected">Semana</span>
-                                <span>Mês</span>
-                                <span>Ano</span>
+                            <div class="history-title">
+                                Histórico
                             </div>
 
-                            <div class="date-title">‹ &nbsp;&nbsp; 12 a 18 de Maio &nbsp;&nbsp; ›</div>
+                            <div class="tabs">
+
+                                <span class="selected">
+                                    Semana
+                                </span>
+
+                                <span>
+                                    Mês
+                                </span>
+
+                                <span>
+                                    Ano
+                                </span>
+
+                            </div>
+
+                            <div class="date-title">
+                                ‹ &nbsp;&nbsp;
+                                12 a 18 de Maio
+                                &nbsp;&nbsp; ›
+                            </div>
 
                             <div class="bar-chart">
+
                                 <span style="height:28%;"></span>
                                 <span style="height:62%;"></span>
                                 <span style="height:45%;"></span>
@@ -1367,27 +2188,49 @@
                                 <span style="height:51%;"></span>
                                 <span style="height:43%;"></span>
                                 <span style="height:73%;"></span>
+
                             </div>
 
                             <div class="history-stat">
 
                                 <div>
-                                    <strong>0</strong><br>
-                                    <small>Eventos detectados</small>
+                                    <strong>0</strong>
+                                    <br>
+                                    <small>
+                                        Eventos detectados
+                                    </small>
                                 </div>
 
                                 <div>
-                                    <strong>8h 24m</strong><br>
-                                    <small>Tempo de sono médio</small>
+                                    <strong>8h 24m</strong>
+                                    <br>
+                                    <small>
+                                        Tempo de sono médio
+                                    </small>
                                 </div>
 
                             </div>
 
-                            <div class="app-card" style="margin-top:10px; text-align:center;">
-                                <small>Relatório semanal</small>
-                                <strong style="display:block; margin-top:7px; color:#513bc0; font-size:8px;">
+                            <div
+                                class="app-card"
+                                style="margin-top:10px; text-align:center;"
+                            >
+
+                                <small>
+                                    Relatório semanal
+                                </small>
+
+                                <strong
+                                    style="
+                                        display:block;
+                                        margin-top:7px;
+                                        color:#513bc0;
+                                        font-size:8px;
+                                    "
+                                >
                                     Ver relatório completo
                                 </strong>
+
                             </div>
 
                         </div>
@@ -1405,7 +2248,10 @@
 
                 <div class="promo-content">
 
-                    <h2>Leve sua saúde<br>para onde for</h2>
+                    <h2>
+                        Leve sua saúde<br>
+                        para onde for
+                    </h2>
 
                     <p>
                         O aplicativo EMPS é leve, intuitivo e feito para facilitar
@@ -1422,7 +2268,9 @@
                 <div class="promo-image">
 
                     <div class="promo-phone">
+
                         <div class="promo-phone-screen">
+
                             <strong>EMPS</strong>
 
                             <div class="promo-lines">
@@ -1432,7 +2280,9 @@
                                 <span></span>
                                 <span></span>
                             </div>
+
                         </div>
+
                     </div>
 
                 </div>
@@ -1440,16 +2290,35 @@
                 <div class="promo-rating">
 
                     <div>
-                        <span class="stars">★★★★★</span>
-                        <span class="rating-number">4,9</span>
+
+                        <span class="stars">
+                            ★★★★★
+                        </span>
+
+                        <span class="rating-number">
+                            4,9
+                        </span>
+
                     </div>
 
-                    <p>Com base em mais de 10 mil avaliações</p>
+                    <p>
+                        Com base em mais de 10 mil avaliações
+                    </p>
 
                     <div class="rating-list">
-                        <div>Fácil de usar</div>
-                        <div>Interface intuitiva</div>
-                        <div>Atualizações constantes</div>
+
+                        <div>
+                            Fácil de usar
+                        </div>
+
+                        <div>
+                            Interface intuitiva
+                        </div>
+
+                        <div>
+                            Atualizações constantes
+                        </div>
+
                     </div>
 
                 </div>
@@ -1462,39 +2331,75 @@
             <section class="advantages">
 
                 <div class="advantage">
-                    <div class="advantage-icon">▣</div>
+
+                    <div class="advantage-icon">
+                        ▣
+                    </div>
 
                     <div>
-                        <strong>Entrega para todo o Brasil</strong>
-                        <span>com seguro incluso</span>
+                        <strong>
+                            Entrega para todo o Brasil
+                        </strong>
+
+                        <span>
+                            com seguro incluso
+                        </span>
                     </div>
+
                 </div>
 
                 <div class="advantage">
-                    <div class="advantage-icon">⟳</div>
+
+                    <div class="advantage-icon">
+                        ⟳
+                    </div>
 
                     <div>
-                        <strong>30 dias para trocar</strong>
-                        <span>ou devolver</span>
+                        <strong>
+                            30 dias para trocar
+                        </strong>
+
+                        <span>
+                            ou devolver
+                        </span>
                     </div>
+
                 </div>
 
                 <div class="advantage">
-                    <div class="advantage-icon">♢</div>
+
+                    <div class="advantage-icon">
+                        ♢
+                    </div>
 
                     <div>
-                        <strong>Produtos originais</strong>
-                        <span>e com garantia</span>
+                        <strong>
+                            Produtos originais
+                        </strong>
+
+                        <span>
+                            e com garantia
+                        </span>
                     </div>
+
                 </div>
 
                 <div class="advantage">
-                    <div class="advantage-icon">♧</div>
+
+                    <div class="advantage-icon">
+                        ♧
+                    </div>
 
                     <div>
-                        <strong>Suporte especializado</strong>
-                        <span>sempre que precisar</span>
+                        <strong>
+                            Suporte especializado
+                        </strong>
+
+                        <span>
+                            sempre que precisar
+                        </span>
                     </div>
+
                 </div>
 
             </section>
@@ -1507,25 +2412,56 @@
                 <div class="footer-top">
 
                     <div class="logo">
+
                         <div class="logo-heart"></div>
 
                         <div class="logo-text">
+
                             <h1>EMPS</h1>
-                            <p>Sistema de Monitoramento<br>e Prevenção de Crises Epilépticas</p>
+
+                            <p>
+                                Sistema de Monitoramento<br>
+                                e Prevenção de Crises Epilépticas
+                            </p>
+
                         </div>
+
                     </div>
 
                     <div class="footer-links">
-                        <a href="#">Sobre a EMPS</a>
-                        <a href="#">Privacidade</a>
-                        <a href="#">Termos de uso</a>
-                        <a href="#">Contato</a>
+
+                        <a href="#">
+                            Sobre a EMPS
+                        </a>
+
+                        <a href="#">
+                            Privacidade
+                        </a>
+
+                        <a href="#">
+                            Termos de uso
+                        </a>
+
+                        <a href="#">
+                            Contato
+                        </a>
+
                     </div>
 
                     <div class="social">
-                        <a href="#">◎</a>
-                        <a href="#">f</a>
-                        <a href="#">▶</a>
+
+                        <a href="#">
+                            ◎
+                        </a>
+
+                        <a href="#">
+                            f
+                        </a>
+
+                        <a href="#">
+                            ▶
+                        </a>
+
                     </div>
 
                 </div>
@@ -1541,4 +2477,6 @@
     </div>
 
 </body>
+
 </html>
+

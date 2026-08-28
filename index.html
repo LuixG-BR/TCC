@@ -4,20 +4,17 @@
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>EMPS</title>
 
-
     <!-- FONTES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
-          rel="stylesheet">
-
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
 
     <style>
 
@@ -31,18 +28,18 @@
             box-sizing: border-box;
         }
 
-
         html {
             scroll-behavior: smooth;
+            overflow-x: hidden;
         }
 
-
         body {
+            width: 100%;
+            min-width: 0;
 
             font-family: "Roboto", Arial, sans-serif;
 
             background: #ffffff;
-
             color: #171717;
 
             overflow-x: hidden;
@@ -55,6 +52,7 @@
 
         .hero {
 
+            width: 100%;
             min-height: 720px;
 
             padding: 35px 5% 0;
@@ -78,10 +76,9 @@
         .topo {
 
             width: 100%;
-
             max-width: 1400px;
 
-            height: 75px;
+            min-height: 75px;
 
             margin: 0 auto;
 
@@ -92,7 +89,6 @@
             border-radius: 50px;
 
             display: flex;
-
             align-items: center;
 
             gap: 70px;
@@ -102,13 +98,16 @@
 
         .logo {
 
+            flex: 0 0 auto;
+
             font-family: "Oswald", sans-serif;
 
             font-size: 25px;
-
             font-weight: 700;
 
             color: #111;
+
+            white-space: nowrap;
 
         }
 
@@ -116,10 +115,11 @@
         .menu {
 
             display: flex;
-
             align-items: center;
 
             gap: 55px;
+
+            flex: 1;
 
         }
 
@@ -131,18 +131,17 @@
             text-decoration: none;
 
             font-size: 13px;
-
             font-weight: 500;
 
             transition: 0.2s;
+
+            white-space: nowrap;
 
         }
 
 
         .menu a:hover {
-
             opacity: 0.55;
-
         }
 
 
@@ -152,12 +151,12 @@
 
         .hero-content {
 
+            width: 100%;
+
             min-height: 610px;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
         }
@@ -166,8 +165,8 @@
         .coracao {
 
             width: 450px;
-
             max-width: 75vw;
+            max-height: 65vh;
 
             object-fit: contain;
 
@@ -189,17 +188,14 @@
         .sobre {
 
             width: 100%;
-
             max-width: 1400px;
 
-            margin: auto;
+            margin: 0 auto;
 
             padding: 110px 7%;
 
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
 
             gap: 100px;
@@ -210,6 +206,7 @@
         .sobre-texto {
 
             flex: 1;
+            min-width: 0;
 
             max-width: 600px;
 
@@ -221,7 +218,6 @@
             font-family: "Oswald", sans-serif;
 
             font-size: 52px;
-
             line-height: 1;
 
             margin-bottom: 40px;
@@ -232,7 +228,6 @@
         .sobre-texto p {
 
             font-size: 14px;
-
             line-height: 1.6;
 
             margin-bottom: 18px;
@@ -245,11 +240,10 @@
         .sobre-imagem {
 
             flex: 1;
+            min-width: 0;
 
             display: flex;
-
             justify-content: center;
-
             align-items: center;
 
         }
@@ -258,8 +252,8 @@
         .sobre-imagem img {
 
             width: 480px;
-
             max-width: 100%;
+            height: auto;
 
             object-fit: contain;
 
@@ -288,37 +282,23 @@
             font-family: "Oswald", sans-serif;
 
             font-size: 46px;
-
             font-weight: 600;
 
             color: #111;
 
             margin-bottom: 15px;
 
-
-            /*
-                IMPORTANTE:
-                ISSO REMOVE A LINHA AZUL
-            */
-
             text-decoration: none !important;
 
             border: none !important;
-
             border-bottom: none !important;
 
         }
 
 
-        /*
-            GARANTE QUE NÃO EXISTA
-            LINHA CRIADA POR ::AFTER
-        */
-
         .profissionais h2::after {
 
             display: none !important;
-
             content: none !important;
 
         }
@@ -326,12 +306,12 @@
 
         .descricao-profissionais {
 
+            width: 100%;
             max-width: 850px;
 
             margin: 0 auto 65px;
 
             font-size: 13px;
-
             line-height: 1.5;
 
             color: #444;
@@ -346,14 +326,13 @@
         .cards {
 
             width: 100%;
-
             max-width: 1100px;
 
             margin: 0 auto;
 
             display: grid;
 
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(4, minmax(0, 1fr));
 
             gap: 65px;
 
@@ -362,6 +341,7 @@
 
         .card {
 
+            width: 100%;
             height: 230px;
 
             overflow: hidden;
@@ -376,7 +356,6 @@
         .card img {
 
             width: 100%;
-
             height: 100%;
 
             object-fit: cover;
@@ -389,9 +368,7 @@
 
 
         .card:hover img {
-
             transform: scale(1.05);
-
         }
 
 
@@ -417,7 +394,6 @@
             font-family: "Oswald", sans-serif;
 
             font-size: 48px;
-
             font-weight: 600;
 
             margin-bottom: 25px;
@@ -427,12 +403,12 @@
 
         .beneficios-descricao {
 
+            width: 100%;
             max-width: 1050px;
 
             margin: 0 auto 60px;
 
             font-size: 14px;
-
             line-height: 1.6;
 
             color: #444;
@@ -443,14 +419,13 @@
         .beneficios-grid {
 
             width: 100%;
-
             max-width: 1100px;
 
             margin: 0 auto;
 
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns: repeat(3, minmax(0, 1fr));
 
             gap: 70px;
 
@@ -459,6 +434,7 @@
 
         .beneficio-card {
 
+            width: 100%;
             min-height: 180px;
 
             padding: 38px 32px;
@@ -500,7 +476,6 @@
         .beneficio-card p {
 
             font-size: 13px;
-
             line-height: 1.5;
 
             color: #333;
@@ -515,7 +490,6 @@
         .equipe {
 
             width: 100%;
-
             max-width: 1400px;
 
             margin: 0 auto;
@@ -523,9 +497,7 @@
             padding: 80px 7% 120px;
 
             display: flex;
-
             align-items: center;
-
             justify-content: space-between;
 
             gap: 100px;
@@ -536,6 +508,7 @@
         .equipe-texto {
 
             flex: 1;
+            min-width: 0;
 
             max-width: 600px;
 
@@ -556,7 +529,6 @@
             font-family: "Oswald", sans-serif;
 
             font-size: 48px;
-
             line-height: 1.1;
 
             margin-bottom: 30px;
@@ -567,7 +539,6 @@
         .equipe-texto p {
 
             font-size: 14px;
-
             line-height: 1.6;
 
             margin-bottom: 18px;
@@ -598,7 +569,6 @@
             font-family: "Oswald", sans-serif;
 
             font-size: 18px;
-
             font-weight: 600;
 
             color: #181818;
@@ -630,11 +600,10 @@
         .equipe-imagem {
 
             flex: 1;
+            min-width: 0;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
         }
@@ -643,8 +612,8 @@
         .equipe-imagem img {
 
             width: 550px;
-
             max-width: 100%;
+            height: auto;
 
             object-fit: contain;
 
@@ -657,7 +626,9 @@
 
         footer {
 
-            padding: 35px;
+            width: 100%;
+
+            padding: 35px 20px;
 
             text-align: center;
 
@@ -671,39 +642,59 @@
 
 
         /* =========================================
-           RESPONSIVIDADE - TABLET
+           NOTEBOOK / TELAS MÉDIAS
+           1001px - 1200px
         ========================================= */
 
-        @media (max-width: 1000px) {
+        @media (max-width: 1200px) {
+
+            .hero {
+                padding-left: 4%;
+                padding-right: 4%;
+            }
+
 
             .topo {
 
-                gap: 30px;
-
                 padding: 0 30px;
+
+                gap: 35px;
 
             }
 
 
             .menu {
 
-                gap: 25px;
+                gap: 28px;
+
+            }
+
+
+            .menu a {
+
+                font-size: 12px;
 
             }
 
 
             .sobre {
 
-                gap: 50px;
+                padding-left: 5%;
+                padding-right: 5%;
+
+                gap: 55px;
+
+            }
+
+
+            .sobre-texto h1 {
+
+                font-size: 46px;
 
             }
 
 
             .cards {
-
-                grid-template-columns: repeat(2, 1fr);
-
-                max-width: 650px;
 
                 gap: 35px;
 
@@ -712,14 +703,17 @@
 
             .beneficios-grid {
 
-                gap: 30px;
+                gap: 35px;
 
             }
 
 
             .equipe {
 
-                gap: 50px;
+                padding-left: 5%;
+                padding-right: 5%;
+
+                gap: 55px;
 
             }
 
@@ -727,44 +721,37 @@
 
 
         /* =========================================
-           RESPONSIVIDADE - CELULAR
+           TABLET / NOTEBOOK PEQUENO
+           751px - 1000px
         ========================================= */
 
-        @media (max-width: 750px) {
+        @media (max-width: 1000px) {
 
             .hero {
 
-                min-height: 600px;
+                min-height: 680px;
 
-                padding: 20px;
+                padding-top: 25px;
 
             }
 
 
             .topo {
 
-                height: auto;
+                min-height: 70px;
 
-                padding: 20px 25px;
+                padding: 15px 25px;
 
-                border-radius: 25px;
-
-                flex-direction: column;
-
-                gap: 15px;
+                gap: 25px;
 
             }
 
 
             .menu {
 
-                width: 100%;
+                gap: 20px;
 
-                flex-wrap: wrap;
-
-                justify-content: center;
-
-                gap: 15px 25px;
+                justify-content: flex-end;
 
             }
 
@@ -778,14 +765,15 @@
 
             .hero-content {
 
-                min-height: 450px;
+                min-height: 570px;
 
             }
 
 
             .coracao {
 
-                width: 330px;
+                width: 400px;
+                max-width: 65vw;
 
             }
 
@@ -794,13 +782,10 @@
 
             .sobre {
 
-                padding: 80px 8%;
+                padding-top: 80px;
+                padding-bottom: 80px;
 
-                flex-direction: column;
-
-                text-align: center;
-
-                gap: 50px;
+                gap: 45px;
 
             }
 
@@ -809,12 +794,21 @@
 
                 font-size: 42px;
 
+                margin-bottom: 30px;
+
+            }
+
+
+            .sobre-texto p {
+
+                font-size: 13px;
+
             }
 
 
             .sobre-imagem img {
 
-                width: 350px;
+                width: 420px;
 
             }
 
@@ -823,30 +817,39 @@
 
             .profissionais {
 
-                padding: 80px 8%;
+                padding-top: 80px;
 
             }
 
 
             .profissionais h2 {
 
-                font-size: 38px;
+                font-size: 42px;
+
+            }
+
+
+            .descricao-profissionais {
+
+                margin-bottom: 45px;
 
             }
 
 
             .cards {
 
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(2, minmax(0, 1fr));
 
-                gap: 20px;
+                max-width: 700px;
+
+                gap: 30px;
 
             }
 
 
             .card {
 
-                height: 200px;
+                height: 220px;
 
             }
 
@@ -855,21 +858,21 @@
 
             .beneficios {
 
-                padding: 60px 8% 80px;
+                padding-top: 70px;
+
+                padding-bottom: 80px;
 
             }
 
 
             .beneficios h2 {
 
-                font-size: 40px;
+                font-size: 44px;
 
             }
 
 
             .beneficios-grid {
-
-                grid-template-columns: 1fr;
 
                 gap: 25px;
 
@@ -878,7 +881,7 @@
 
             .beneficio-card {
 
-                min-height: auto;
+                padding: 30px 25px;
 
             }
 
@@ -887,11 +890,317 @@
 
             .equipe {
 
-                padding: 60px 8% 90px;
+                padding-top: 70px;
+                padding-bottom: 90px;
+
+                gap: 45px;
+
+            }
+
+
+            .equipe-texto h2 {
+
+                font-size: 42px;
+
+            }
+
+
+            .equipe-imagem img {
+
+                width: 450px;
+
+            }
+
+        }
+
+
+        /* =========================================
+           CELULAR
+           ATÉ 750px
+        ========================================= */
+
+        @media (max-width: 750px) {
+
+            .hero {
+
+                min-height: auto;
+
+                padding: 15px;
+
+            }
+
+
+            /* MENU */
+
+            .topo {
+
+                width: 100%;
+
+                min-height: auto;
+
+                padding: 20px;
+
+                border-radius: 25px;
 
                 flex-direction: column;
 
-                gap: 50px;
+                align-items: center;
+
+                justify-content: center;
+
+                gap: 18px;
+
+            }
+
+
+            .logo {
+
+                font-size: 27px;
+
+            }
+
+
+            .menu {
+
+                width: 100%;
+
+                flex: none;
+
+                display: flex;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                align-items: center;
+
+                gap: 12px 20px;
+
+            }
+
+
+            .menu a {
+
+                font-size: 11px;
+
+                text-align: center;
+
+            }
+
+
+            /* HERO */
+
+            .hero-content {
+
+                width: 100%;
+
+                min-height: 430px;
+
+                padding: 30px 0;
+
+            }
+
+
+            .coracao {
+
+                width: 330px;
+
+                max-width: 80vw;
+
+                max-height: 55vh;
+
+            }
+
+
+            /* SOBRE */
+
+            .sobre {
+
+                width: 100%;
+
+                padding: 70px 8%;
+
+                flex-direction: column;
+
+                text-align: center;
+
+                gap: 45px;
+
+            }
+
+
+            .sobre-texto {
+
+                width: 100%;
+
+                max-width: 650px;
+
+            }
+
+
+            .sobre-texto h1 {
+
+                font-size: 42px;
+
+                line-height: 1.05;
+
+                margin-bottom: 30px;
+
+            }
+
+
+            .sobre-texto p {
+
+                font-size: 14px;
+
+                line-height: 1.6;
+
+            }
+
+
+            .sobre-imagem {
+
+                width: 100%;
+
+            }
+
+
+            .sobre-imagem img {
+
+                width: 350px;
+
+                max-width: 90vw;
+
+            }
+
+
+            /* PROFISSIONAIS */
+
+            .profissionais {
+
+                padding: 70px 8%;
+
+            }
+
+
+            .profissionais h2 {
+
+                font-size: 38px;
+
+                line-height: 1.1;
+
+            }
+
+
+            .descricao-profissionais {
+
+                font-size: 13px;
+
+                margin-bottom: 45px;
+
+            }
+
+
+            .cards {
+
+                width: 100%;
+
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+
+                gap: 20px;
+
+            }
+
+
+            .card {
+
+                width: 100%;
+
+                height: 190px;
+
+                border-radius: 17px;
+
+            }
+
+
+            /* BENEFÍCIOS */
+
+            .beneficios {
+
+                padding: 60px 8% 75px;
+
+            }
+
+
+            .beneficios h2 {
+
+                font-size: 40px;
+
+                line-height: 1.1;
+
+            }
+
+
+            .beneficios-descricao {
+
+                font-size: 13px;
+
+                margin-bottom: 40px;
+
+            }
+
+
+            .beneficios-grid {
+
+                width: 100%;
+
+                grid-template-columns: 1fr;
+
+                gap: 22px;
+
+            }
+
+
+            .beneficio-card {
+
+                width: 100%;
+
+                min-height: auto;
+
+                padding: 30px 25px;
+
+            }
+
+
+            .beneficio-card h3 {
+
+                font-size: 20px;
+
+                margin-bottom: 15px;
+
+            }
+
+
+            .beneficio-card p {
+
+                font-size: 13px;
+
+            }
+
+
+            /* EQUIPE */
+
+            .equipe {
+
+                width: 100%;
+
+                padding: 60px 8% 80px;
+
+                flex-direction: column;
+
+                gap: 45px;
+
+                text-align: center;
 
             }
 
@@ -900,12 +1209,50 @@
 
                 width: 100%;
 
+                max-width: 650px;
+
+            }
+
+
+            .seta {
+
+                font-size: 30px;
+
+                margin-bottom: 15px;
+
             }
 
 
             .equipe-texto h2 {
 
                 font-size: 40px;
+
+                line-height: 1.1;
+
+                margin-bottom: 25px;
+
+            }
+
+
+            .equipe-texto p {
+
+                font-size: 14px;
+
+            }
+
+
+            .btn-equipe {
+
+                font-size: 17px;
+
+                padding: 16px 20px;
+
+            }
+
+
+            .equipe-imagem {
+
+                width: 100%;
 
             }
 
@@ -914,6 +1261,19 @@
 
                 width: 400px;
 
+                max-width: 90vw;
+
+            }
+
+
+            /* FOOTER */
+
+            footer {
+
+                padding: 28px 15px;
+
+                font-size: 12px;
+
             }
 
         }
@@ -921,22 +1281,113 @@
 
         /* =========================================
            CELULARES PEQUENOS
+           ATÉ 480px
         ========================================= */
 
         @media (max-width: 480px) {
 
-            .cards {
+            .hero {
 
-                grid-template-columns: 1fr 1fr;
+                padding: 10px;
 
             }
 
 
-            .card {
+            /* MENU */
 
-                height: 160px;
+            .topo {
 
-                border-radius: 15px;
+                padding: 18px 15px;
+
+                border-radius: 20px;
+
+                gap: 15px;
+
+            }
+
+
+            .logo {
+
+                font-size: 24px;
+
+            }
+
+
+            .menu {
+
+                gap: 10px 14px;
+
+            }
+
+
+            .menu a {
+
+                font-size: 10px;
+
+            }
+
+
+            /* HERO */
+
+            .hero-content {
+
+                min-height: 330px;
+
+                padding: 20px 0;
+
+            }
+
+
+            .coracao {
+
+                width: 280px;
+
+                max-width: 85vw;
+
+            }
+
+
+            /* SOBRE */
+
+            .sobre {
+
+                padding: 55px 7%;
+
+                gap: 35px;
+
+            }
+
+
+            .sobre-texto h1 {
+
+                font-size: 34px;
+
+                margin-bottom: 25px;
+
+            }
+
+
+            .sobre-texto p {
+
+                font-size: 13px;
+
+            }
+
+
+            .sobre-imagem img {
+
+                width: 300px;
+
+                max-width: 90vw;
+
+            }
+
+
+            /* PROFISSIONAIS */
+
+            .profissionais {
+
+                padding: 55px 7%;
 
             }
 
@@ -948,23 +1399,205 @@
             }
 
 
-            .sobre-texto h1 {
+            .descricao-profissionais {
 
-                font-size: 38px;
+                font-size: 12px;
+
+                margin-bottom: 35px;
+
+            }
+
+
+            .cards {
+
+                grid-template-columns: 1fr;
+
+                gap: 18px;
+
+                max-width: 330px;
+
+            }
+
+
+            .card {
+
+                height: 190px;
+
+                border-radius: 15px;
+
+            }
+
+
+            /* BENEFÍCIOS */
+
+            .beneficios {
+
+                padding: 50px 7% 65px;
 
             }
 
 
             .beneficios h2 {
 
-                font-size: 36px;
+                font-size: 34px;
+
+            }
+
+
+            .beneficios-descricao {
+
+                font-size: 12px;
+
+                margin-bottom: 35px;
+
+            }
+
+
+            .beneficio-card {
+
+                padding: 25px 20px;
+
+                border-radius: 15px;
+
+            }
+
+
+            .beneficio-card h3 {
+
+                font-size: 18px;
+
+            }
+
+
+            .beneficio-card p {
+
+                font-size: 12px;
+
+            }
+
+
+            /* EQUIPE */
+
+            .equipe {
+
+                padding: 50px 7% 65px;
+
+                gap: 35px;
+
+            }
+
+
+            .seta {
+
+                font-size: 27px;
 
             }
 
 
             .equipe-texto h2 {
 
-                font-size: 36px;
+                font-size: 33px;
+
+            }
+
+
+            .equipe-texto p {
+
+                font-size: 13px;
+
+            }
+
+
+            .btn-equipe {
+
+                font-size: 16px;
+
+                padding: 15px 18px;
+
+            }
+
+
+            .equipe-imagem img {
+
+                width: 300px;
+
+                max-width: 90vw;
+
+            }
+
+
+            /* FOOTER */
+
+            footer {
+
+                padding: 25px 10px;
+
+                font-size: 11px;
+
+            }
+
+        }
+
+
+        /* =========================================
+           CELULAR MUITO PEQUENO
+           ATÉ 360px
+        ========================================= */
+
+        @media (max-width: 360px) {
+
+            .menu {
+
+                gap: 9px 11px;
+
+            }
+
+
+            .menu a {
+
+                font-size: 9px;
+
+            }
+
+
+            .coracao {
+
+                width: 250px;
+
+            }
+
+
+            .sobre-texto h1 {
+
+                font-size: 31px;
+
+            }
+
+
+            .profissionais h2 {
+
+                font-size: 29px;
+
+            }
+
+
+            .beneficios h2 {
+
+                font-size: 31px;
+
+            }
+
+
+            .equipe-texto h2 {
+
+                font-size: 30px;
+
+            }
+
+
+            .card {
+
+                height: 170px;
 
             }
 
@@ -1017,7 +1650,6 @@
         </header>
 
 
-
         <!-- CORAÇÃO -->
 
         <div class="hero-content">
@@ -1032,7 +1664,6 @@
 
 
     </section>
-
 
 
     <!-- =========================================
@@ -1083,7 +1714,6 @@
         </div>
 
 
-
         <div class="sobre-imagem">
 
             <img
@@ -1095,7 +1725,6 @@
 
 
     </section>
-
 
 
     <!-- =========================================
@@ -1120,7 +1749,6 @@
         </p>
 
 
-
         <div class="cards">
 
 
@@ -1134,7 +1762,6 @@
             </div>
 
 
-
             <div class="card">
 
                 <img
@@ -1145,7 +1772,6 @@
             </div>
 
 
-
             <div class="card">
 
                 <img
@@ -1154,7 +1780,6 @@
                 >
 
             </div>
-
 
 
             <div class="card">
@@ -1171,7 +1796,6 @@
 
 
     </section>
-
 
 
     <!-- =========================================
@@ -1197,7 +1821,6 @@
         </p>
 
 
-
         <div class="beneficios-grid">
 
 
@@ -1214,7 +1837,6 @@
             </div>
 
 
-
             <div class="beneficio-card">
 
                 <h3>
@@ -1226,7 +1848,6 @@
                 </p>
 
             </div>
-
 
 
             <div class="beneficio-card">
@@ -1246,7 +1867,6 @@
 
 
     </section>
-
 
 
     <!-- =========================================
@@ -1290,7 +1910,7 @@
 
 
             <a
-                href="LoginUsuarios.html"
+                href="login.html"
                 class="btn-equipe"
             >
 
@@ -1300,7 +1920,6 @@
 
 
         </div>
-
 
 
         <div class="equipe-imagem">
@@ -1314,7 +1933,6 @@
 
 
     </section>
-
 
 
     <!-- =========================================
