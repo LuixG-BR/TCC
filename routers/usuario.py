@@ -64,6 +64,7 @@ def usuario_logado(
         "id_usuario": usuario.id_usuario,
         "nome": usuario.nome,
         "email": usuario.email,
+        "telefone": usuario.telefone,
         "perfil": usuario.id_perfil
     }
 
