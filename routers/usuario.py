@@ -18,25 +18,23 @@ router = APIRouter(
 
 @router.post("/")
 def cadastrar_usuario(
-    usuario: UsuarioCreate
+    usuario: UsuarioCreate,
+    db: Session = Depends(conectar)
 ):
-
-    db = conectar()
-
     resultado = criar_usuario(
         db,
         usuario
     )
-    db.close()
+
     return resultado
 
 
 @router.get("/")
-def buscar_usuarios():
-
-    db = conectar()
+def buscar_usuarios(
+    db: Session = Depends(conectar)
+):
     resultado = listar_usuarios(db)
-    db.close()
+
     return resultado
 
 

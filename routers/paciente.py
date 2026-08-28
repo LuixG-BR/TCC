@@ -1,4 +1,5 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
 from database import conectar
 
@@ -12,19 +13,19 @@ router = APIRouter(
 )
 
 @router.post("/")
-def cadastrar(paciente: PacienteCreate):
-    db = conectar()
-
+def cadastrar(
+    paciente: PacienteCreate,
+    db: Session = Depends(conectar)
+):
     resultado = criar_paciente(db, paciente)
-    db.close()
+
     return resultado
 
 
 @router.get("/")
-def listar():
-
-    db = conectar()
+def listar(
+    db: Session = Depends(conectar)
+):
     resultado = listar_pacientes(db)
-    db.close()
 
     return resultado

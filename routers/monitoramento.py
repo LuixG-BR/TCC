@@ -1,4 +1,5 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
 from database import conectar
 
@@ -17,30 +18,20 @@ router = APIRouter(
 
 
 @router.post("/")
-def receber_dados(dados: MonitoramentoCreate):
-    
-    db = conectar()
-
-    resultado = registrar_monitoramento(
-        db,
-        dados
-    )
-
-    db.close()
+def receber_dados(
+    dados: MonitoramentoCreate,
+    db: Session = Depends(conectar)
+):
+    resultado = registrar_monitoramento(db, dados)
 
     return resultado
 
 
 @router.get("/paciente/{id_paciente}")
-def buscar_historico_paciente(id_paciente:int):
-
-    db = conectar()
-
-    resultado = listar_monitoramentos_paciente(
-        db,
-        id_paciente
-    )
-
-    db.close()
+def buscar_historico_paciente(
+    id_paciente:int,
+    db: Session = Depends(conectar)
+):
+    resultado = listar_monitoramentos_paciente(db, id_paciente)
 
     return resultado

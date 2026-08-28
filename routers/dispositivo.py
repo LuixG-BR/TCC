@@ -1,4 +1,5 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
 from database import conectar
 
@@ -17,27 +18,19 @@ router = APIRouter(
 )
 
 @router.post("/")
-def cadastrar(dispositivo: DispositivoCreate):
-
-    db = conectar()
-
-    resultado = criar_dispositivo(
-        db,
-        dispositivo
-    )
-
-    db.close()
+def cadastrar(
+    dispositivo: DispositivoCreate,
+    db: Session = Depends(conectar)
+):
+    resultado = criar_dispositivo(db, dispositivo)
 
     return resultado
 
 
 @router.get("/")
-def listar():
-
-    db = conectar()
-
+def listar(
+    db: Session = Depends(conectar)
+):
     resultado = listar_dispositivos(db)
-
-    db.close()
 
     return resultado
