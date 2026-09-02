@@ -1,365 +1,1139 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agenda</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
+    <title>EMPS - Nova Consulta</title>
 
-body{
-    display:flex;
-    background:#f5f5f5;
-}
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-/* MENU */
+    <style>
+        /* =========================================
+           RESET
+        ========================================= */
 
-.sidebar{
-    width:170px;
-    background:#d8f1f8;
-    height:100vh;
-    padding-top:20px;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-.menu{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-    align-items:center;
-}
+        body {
+            background: #eef3ff;
+            color: #171a58;
+            min-height: 100vh;
+        }
 
-.menu a{
-    text-decoration:none;
-    color:#000;
-    font-size:18px;
-    padding:12px 20px;
-    border-radius:20px;
-    transition:.3s;
-}
 
-.menu a:hover,
-.menu a.active{
-    background:#fff;
-}
+        /* =========================================
+           SIDEBAR
+        ========================================= */
 
-/* CONTEÚDO */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 225px;
+            height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #e7e9f2;
+            padding: 25px 15px;
+            z-index: 1000;
+        }
 
-.content{
-    flex:1;
-    padding:30px;
-}
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 10px;
+            margin-bottom: 35px;
+        }
 
-/* TOPO */
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #6030cf, #5520bc);
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
 
-.top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+        .logo-icon i {
+            width: 21px;
+            height: 21px;
+        }
 
-.input-profissional{
-    border:none;
-    background:transparent;
-    font-size:34px;
-    font-weight:bold;
-    outline:none;
-}
+        .logo span {
+            font-size: 22px;
+            font-weight: 700;
+            color: #171a58;
+        }
 
-.user-area{
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
 
-.search{
-    width:220px;
-    padding:10px;
-    border:none;
-    border-radius:20px;
-    background:#d9e6ea;
-}
+        .menu a {
+            text-decoration: none;
+            color: #70749a;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
 
-.user-img{
-    width:50px;
-    height:50px;
-    border-radius:50%;
-    background:#ccc;
-}
+        .menu a:hover {
+            background: #f1edff;
+            color: #6030cf;
+        }
 
-/* BOTÕES */
+        .menu a.active {
+            background: linear-gradient(135deg, #6030cf, #5520bc);
+            color: white;
+            box-shadow: 0 6px 15px rgba(96, 48, 207, 0.22);
+        }
 
-.tabs{
-    margin-top:30px;
-    display:flex;
-    gap:10px;
-    background:#fff;
-    width:250px;
-    padding:10px;
-    border-radius:10px;
-    box-shadow:0 2px 5px rgba(0,0,0,.1);
-}
+        .menu a i {
+            width: 19px;
+            height: 19px;
+        }
 
-.tabs button{
-    border:none;
-    background:none;
-    padding:8px 15px;
-    cursor:pointer;
-    border-radius:8px;
-}
+        .alert-menu {
+            position: relative;
+        }
 
-.tabs .active{
-    background:#bfeaf3;
-}
+        .alert-badge {
+            position: absolute;
+            right: 12px;
+            background: #ef476f;
+            color: white;
+            font-size: 10px;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
-/* HEADER */
 
-.calendar-header{
-    margin-top:30px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
+        /* =========================================
+           TOPBAR
+        ========================================= */
 
-.input-mes{
-    width:auto;
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:8px;
-}
+        .topbar {
+            position: fixed;
+            left: 225px;
+            right: 0;
+            top: 0;
+            height: 70px;
+            background: #ffffff;
+            border-bottom: 1px solid #e7e9f2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 999;
+        }
 
-.add-btn{
-    background:#bfeaf3;
-    border:none;
-    padding:12px 25px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:16px;
-    margin-top: 30px;
-}
+        .breadcrumb {
+            font-size: 14px;
+            color: #8b8fab;
+        }
 
-/* CONTEÚDO PRINCIPAL */
+        .breadcrumb strong {
+            color: #171a58;
+        }
 
-.main{
-    margin-top:20px;
-    display:flex;
-    gap:20px;
-}
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-/* FORM CONSULTA */
+        .search {
+            width: 240px;
+            height: 38px;
+            background: #f5f6fb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            gap: 8px;
+        }
 
-.calendar{
-    width:300%;
-    background:#fff;
-    border-radius:15px;
-    padding:25px;
-    margin-left: 40px;
-    margin-top: -30px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
-}
+        .search i {
+            color: #8589a8;
+            width: 17px;
+            height: 17px;
+        }
 
-.form-consulta{
-    display:flex;
-    flex-direction:column;
-}
+        .search input {
+            border: none;
+            outline: none;
+            background: transparent;
+            width: 100%;
+            color: #171a58;
+            font-size: 13px;
+        }
 
-.form-consulta h2{
-    margin-bottom:20px;
-}
+        .notification {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f6fb;
+            position: relative;
+            cursor: pointer;
+        }
 
-.form-consulta label{
-    margin-top:10px;
-    margin-bottom:5px;
-}
+        .notification i {
+            width: 19px;
+            height: 19px;
+            color: #5f6389;
+        }
 
-input,
-select,
-textarea{
-    width:100%;
-    padding:10px;
-    border:1px solid #ccc;
-    border-radius:8px;
-}
+        .notification-dot {
+            position: absolute;
+            right: 8px;
+            top: 7px;
+            width: 7px;
+            height: 7px;
+            background: #ef476f;
+            border-radius: 50%;
+        }
 
-textarea{
-    min-height:120px;
-    resize:none;
-}
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-/* PAINEL LATERAL */
+        .profile-avatar {
+            width: 38px;
+            height: 38px;
+            background: #ded6ff;
+            color: #6030cf;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+        }
 
-.info-panel{
-    width:30%;
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-}
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
 
-.card{
-    background:#fff;
-    border-radius:15px;
-    padding:20px;
-    box-shadow:0 2px 8px rgba(0,0,0,.1);
-}
+        .profile-info strong {
+            font-size: 13px;
+            color: #171a58;
+        }
 
-.card h3{
-    color:#6bbfd1;
-    margin-bottom:15px;
-}
+        .profile-info span {
+            font-size: 11px;
+            color: #898da9;
+            margin-top: 2px;
+        }
 
-.info-item{
-    margin-bottom:10px;
-}
 
-.bottom-icons{
-    display:flex;
-    justify-content:space-around;
-    font-size:24px;
-}
+        /* =========================================
+           MAIN
+        ========================================= */
 
-/* RESPONSIVO */
+        .main {
+            margin-left: 225px;
+            padding: 100px 30px 40px;
+            min-height: 100vh;
+        }
 
-@media(max-width:1000px){
 
-    .main{
-        flex-direction:column;
-    }
+        /* =========================================
+           PAGE HEADER
+        ========================================= */
 
-    .calendar,
-    .info-panel{
-        width:100%;
-    }
+        .page-header {
+            margin-bottom: 25px;
+        }
 
-    .sidebar{
-        display:none;
-    }
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: #70749a;
+            text-decoration: none;
+            font-size: 13px;
+            margin-bottom: 15px;
+            transition: 0.2s;
+        }
 
-}
-</style>
+        .back-link:hover {
+            color: #6030cf;
+        }
+
+        .back-link i {
+            width: 16px;
+            height: 16px;
+        }
+
+        .page-header h1 {
+            font-size: 27px;
+            color: #171a58;
+            margin-bottom: 7px;
+        }
+
+        .page-header p {
+            font-size: 13px;
+            color: #8589a8;
+        }
+
+
+        /* =========================================
+           FORM CARD
+        ========================================= */
+
+        .form-card {
+            background: #ffffff;
+            border: 1px solid #e8eaf3;
+            border-radius: 17px;
+            padding: 30px;
+            max-width: 850px;
+            box-shadow: 0 5px 20px rgba(50, 50, 90, 0.03);
+        }
+
+        .form-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .form-title-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 12px;
+            background: #f0ebff;
+            color: #6030cf;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-title-icon i {
+            width: 21px;
+            height: 21px;
+        }
+
+        .form-title-text h2 {
+            font-size: 17px;
+            color: #171a58;
+            margin-bottom: 4px;
+        }
+
+        .form-title-text span {
+            font-size: 12px;
+            color: #8589a8;
+        }
+
+
+        /* =========================================
+           FORM
+        ========================================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #4d5177;
+        }
+
+        .required {
+            color: #ef476f;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            height: 45px;
+            border: 1px solid #dfe1eb;
+            border-radius: 10px;
+            padding: 0 13px;
+            outline: none;
+            color: #171a58;
+            background: #ffffff;
+            font-size: 13px;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #6030cf;
+            box-shadow: 0 0 0 3px rgba(96, 48, 207, 0.08);
+        }
+
+        .form-group input::placeholder {
+            color: #a2a5ba;
+        }
+
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 28px;
+            padding-top: 22px;
+            border-top: 1px solid #eceef5;
+        }
+
+        .cancel-button,
+        .submit-button {
+            height: 43px;
+            padding: 0 20px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .cancel-button {
+            background: #ffffff;
+            border: 1px solid #dfe1eb;
+            color: #686c8f;
+        }
+
+        .cancel-button:hover {
+            background: #f7f7fa;
+        }
+
+        .submit-button {
+            border: none;
+            background: linear-gradient(135deg, #6030cf, #5520bc);
+            color: white;
+            box-shadow: 0 6px 15px rgba(96, 48, 207, 0.2);
+        }
+
+        .submit-button:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(96, 48, 207, 0.27);
+        }
+
+        .submit-button i,
+        .cancel-button i {
+            width: 16px;
+            height: 16px;
+        }
+
+
+        /* =========================================
+           MENSAGEM DE SUCESSO
+        ========================================= */
+
+        .success-message {
+            display: none;
+            background: #edf9f2;
+            border: 1px solid #c9ecd8;
+            color: #26734d;
+            padding: 12px 15px;
+            border-radius: 10px;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+
+        .success-message.show {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .success-message i {
+            width: 18px;
+            height: 18px;
+        }
+
+
+        /* =========================================
+           RESPONSIVIDADE
+        ========================================= */
+
+        @media (max-width: 950px) {
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .topbar {
+                left: 200px;
+            }
+
+            .main {
+                margin-left: 200px;
+            }
+
+            .form-card {
+                max-width: 100%;
+            }
+        }
+
+
+        @media (max-width: 760px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 8px;
+            }
+
+            .logo {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .logo span {
+                display: none;
+            }
+
+            .menu a {
+                justify-content: center;
+                padding: 13px 8px;
+            }
+
+            .menu a span {
+                display: none;
+            }
+
+            .alert-badge {
+                right: 3px;
+                top: 5px;
+            }
+
+            .topbar {
+                left: 70px;
+                padding: 0 15px;
+            }
+
+            .breadcrumb {
+                display: none;
+            }
+
+            .main {
+                margin-left: 70px;
+                padding: 90px 18px 30px;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .search {
+                width: 180px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+        }
+
+
+        @media (max-width: 480px) {
+
+            .topbar {
+                height: 62px;
+            }
+
+            .main {
+                padding: 80px 12px 25px;
+            }
+
+            .top-actions {
+                gap: 8px;
+            }
+
+            .search {
+                width: 135px;
+            }
+
+            .page-header h1 {
+                font-size: 23px;
+            }
+
+            .form-card {
+                padding: 20px 16px;
+                border-radius: 14px;
+            }
+
+            .form-title {
+                margin-bottom: 22px;
+            }
+
+            .form-actions {
+                flex-direction: column-reverse;
+            }
+
+            .cancel-button,
+            .submit-button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
+
 
 <body>
 
-<!-- MENU -->
+    <!-- =========================================
+         SIDEBAR
+    ========================================= -->
 
-<div class="sidebar">
+    <aside class="sidebar">
 
-    <div class="menu">
-        <a href="agenda.html">Agenda</a>
-    </div>
+        <div class="logo">
 
-</div>
+            <div class="logo-icon">
+                <i data-lucide="heart-pulse"></i>
+            </div>
 
-<!-- CONTEÚDO -->
+            <span>EMPS</span>
 
-<div class="content">
-
-    <!-- TOPO -->
-
-    <div class="top">
-
-        <form>
-            <input
-                type="text"
-                name="nome_profissional"
-                placeholder="Nome do Profissional"
-                class="input-profissional">
-        </form>
+        </div>
 
 
-    </div>
+        <nav class="menu">
 
-    <!-- HEADER -->
+            <a href="dashboard.html">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </a>
 
-    <div class="calendar-header">
+            <a href="ficha.html">
+                <i data-lucide="file-text"></i>
+                <span>Ficha de pacientes</span>
+            </a>
 
-        <form>
-         
-        </form>
+            <a href="paciente.html">
+                <i data-lucide="search"></i>
+                <span>Buscar paciente</span>
+            </a>
+
+            <a href="agenda.html" class="active">
+                <i data-lucide="calendar-days"></i>
+                <span>Agenda</span>
+            </a>
+
+            <a href="alertas.html" class="alert-menu">
+                <i data-lucide="bell"></i>
+                <span>Alertas</span>
+
+                <div class="alert-badge">
+                    3
+                </div>
+            </a>
+
+            <a href="login.html">
+                <i data-lucide="log-out"></i>
+                <span>Sair</span>
+            </a>
+
+        </nav>
+
+    </aside>
 
 
-    </div>
+    <!-- =========================================
+         TOPBAR
+    ========================================= -->
 
-    <!-- CONTEÚDO PRINCIPAL -->
+    <header class="topbar">
 
-    <div class="main">
+        <div class="breadcrumb">
+            EMPS / Agenda / <strong>Nova Consulta</strong>
+        </div>
 
-        <!-- AGENDAR CONSULTA -->
 
-        <div class="calendar">
+        <div class="top-actions">
 
-            <form class="form-consulta">
+            <div class="search">
 
-                <h2>Agendar Consulta</h2>
+                <i data-lucide="search"></i>
 
-                <label>Nome do Paciente</label>
                 <input
                     type="text"
-                    name="paciente"
-                    required>
+                    placeholder="Buscar..."
+                >
 
-                <label>Data da Consulta</label>
-                <input
-                    type="date"
-                    name="data_consulta"
-                    required>
+            </div>
 
-                <label>Horário</label>
-                <input
-                    type="time"
-                    name="hora_consulta"
-                    required>
 
-                <label>Tipo de Atendimento</label>
+            <div class="notification">
 
-                <select name="tipo_atendimento">
+                <i data-lucide="bell"></i>
 
-                    <option value="">
-                        Selecione
-                    </option>
+                <div class="notification-dot"></div>
 
-                    <option value="presencial">
-                        Presencial
-                    </option>
+            </div>
 
-                    <option value="online">
-                        Online
-                    </option>
 
-                </select>
+            <div class="profile">
 
-                <button
-                    type="submit"
-                    class="add-btn">
+                <div class="profile-avatar">
+                    RO
+                </div>
 
-                    Agendar Consulta
+                <div class="profile-info">
 
-                </button>
+                    <strong>
+                        Dr. Rafael Oliveira
+                    </strong>
+
+                    <span>
+                        Neurologista
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         MAIN
+    ========================================= -->
+
+    <main class="main">
+
+
+        <!-- HEADER -->
+
+        <div class="page-header">
+
+            <a href="agenda.html" class="back-link">
+
+                <i data-lucide="arrow-left"></i>
+
+                Voltar para agenda
+
+            </a>
+
+
+            <h1>
+                Nova Consulta
+            </h1>
+
+            <p>
+                Preencha os dados abaixo para agendar uma nova consulta.
+            </p>
+
+        </div>
+
+
+        <!-- =========================================
+             FORMULÁRIO
+        ========================================= -->
+
+        <section class="form-card">
+
+
+            <div class="form-title">
+
+                <div class="form-title-icon">
+
+                    <i data-lucide="calendar-plus"></i>
+
+                </div>
+
+
+                <div class="form-title-text">
+
+                    <h2>
+                        Dados da consulta
+                    </h2>
+
+                    <span>
+                        Informe os dados necessários para realizar o agendamento.
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENSAGEM -->
+
+            <div
+                id="successMessage"
+                class="success-message"
+            >
+
+                <i data-lucide="check-circle"></i>
+
+                Consulta agendada com sucesso!
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form id="appointmentForm">
+
+
+                <div class="form-grid">
+
+
+                    <!-- PACIENTE -->
+
+                    <div class="form-group full">
+
+                        <label for="patientName">
+                            Nome do Paciente
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="text"
+                            id="patientName"
+                            placeholder="Digite o nome completo do paciente"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- DATA -->
+
+                    <div class="form-group">
+
+                        <label for="appointmentDate">
+                            Data da Consulta
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="appointmentDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- HORÁRIO -->
+
+                    <div class="form-group">
+
+                        <label for="appointmentTime">
+                            Horário
+                            <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="time"
+                            id="appointmentTime"
+                            required
+                        >
+
+                    </div>
+
+
+                    <!-- TIPO -->
+
+                    <div class="form-group full">
+
+                        <label for="appointmentType">
+                            Tipo de Atendimento
+                            <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="appointmentType"
+                            required
+                        >
+
+                            <option value="">
+                                Selecione o tipo de atendimento
+                            </option>
+
+                            <option value="Consulta">
+                                Consulta
+                            </option>
+
+                            <option value="Retorno">
+                                Retorno
+                            </option>
+
+                            <option value="Avaliação">
+                                Avaliação
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- BOTÕES -->
+
+                <div class="form-actions">
+
+                    <a
+                        href="agenda.html"
+                        class="cancel-button"
+                    >
+
+                        <i data-lucide="x"></i>
+
+                        Cancelar
+
+                    </a>
+
+
+                    <button
+                        type="submit"
+                        class="submit-button"
+                    >
+
+                        <i data-lucide="calendar-check"></i>
+
+                        Agendar Consulta
+
+                    </button>
+
+                </div>
+
 
             </form>
 
-        </div>
+        </section>
 
-        <!-- PAINEL LATERAL -->
-
-        <div class="info-panel">
+    </main>
 
 
-            </div>
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
 
-            </div>
+    <script>
 
-        </div>
+        document.addEventListener(
+            'DOMContentLoaded',
+            function () {
 
-    </div>
+                lucide.createIcons();
 
-</div>
+
+                /* =========================================
+                   FORMULÁRIO
+                ========================================= */
+
+                const appointmentForm =
+                    document.getElementById(
+                        'appointmentForm'
+                    );
+
+
+                appointmentForm.addEventListener(
+                    'submit',
+                    function (event) {
+
+                        event.preventDefault();
+
+
+                        /* =========================================
+                           PEGAR DADOS DO FORMULÁRIO
+                        ========================================= */
+
+                        const paciente =
+                            document
+                                .getElementById(
+                                    'patientName'
+                                )
+                                .value
+                                .trim();
+
+
+                        const data =
+                            document
+                                .getElementById(
+                                    'appointmentDate'
+                                )
+                                .value;
+
+
+                        const horario =
+                            document
+                                .getElementById(
+                                    'appointmentTime'
+                                )
+                                .value;
+
+
+                        const tipo =
+                            document
+                                .getElementById(
+                                    'appointmentType'
+                                )
+                                .value;
+
+
+                        /* =========================================
+                           VALIDAR DADOS
+                        ========================================= */
+
+                        if (
+                            !paciente ||
+                            !data ||
+                            !horario ||
+                            !tipo
+                        ) {
+
+                            alert(
+                                'Preencha todos os campos obrigatórios.'
+                            );
+
+                            return;
+                        }
+
+
+                        /* =========================================
+                           CRIAR NOVA CONSULTA
+                        ========================================= */
+
+                        const novaConsulta = {
+
+                            id:
+                                Date.now().toString(),
+
+                            paciente:
+                                paciente,
+
+                            data:
+                                data,
+
+                            horario:
+                                horario,
+
+                            tipo:
+                                tipo
+
+                        };
+
+
+                        /* =========================================
+                           BUSCAR CONSULTAS EXISTENTES
+                        ========================================= */
+
+                        const consultasSalvas =
+                            JSON.parse(
+                                localStorage.getItem(
+                                    'empsConsultas'
+                                )
+                            ) || [];
+
+
+                        /* =========================================
+                           ADICIONAR NOVA CONSULTA
+                        ========================================= */
+
+                        consultasSalvas.push(
+                            novaConsulta
+                        );
+
+
+                        /* =========================================
+                           SALVAR NO LOCALSTORAGE
+                        ========================================= */
+
+                        localStorage.setItem(
+                            'empsConsultas',
+                            JSON.stringify(
+                                consultasSalvas
+                            )
+                        );
+
+
+                        /* =========================================
+                           MENSAGEM DE SUCESSO
+                        ========================================= */
+
+                        const successMessage =
+                            document.getElementById(
+                                'successMessage'
+                            );
+
+                        successMessage.classList.add(
+                            'show'
+                        );
+
+
+                        /* =========================================
+                           REDIRECIONAR PARA AGENDA
+                        ========================================= */
+
+                        setTimeout(
+                            function () {
+
+                                window.location.href =
+                                    'agenda.html';
+
+                            },
+                            700
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+    </script>
 
 </body>
+
 </html>
