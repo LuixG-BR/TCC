@@ -147,7 +147,7 @@ def usuario_logado(
 @router.put("/{id_usuario}", response_model=UsuarioResponse)
 def editar(
     id_usuario: int,
-    dados: UsuarioResponse,
+    dados: UsuarioCreate,
     db: Session = Depends(conectar),
 
     usuario_token = Depends(somente_administrador)
@@ -164,10 +164,10 @@ def editar(
         )
     
     usuario.nome = dados.nome
-    usuario.login = dados.login
+    usuario.email = dados.email
     usuario.senha = criar_hash(dados.senha)
+    usuario.telefone = dados.telefone
     usuario.id_perfil = dados.id_perfil
-    usuario.id_congregacao = dados.id_congregacao
     
     db.commit()
     db.refresh(usuario)
