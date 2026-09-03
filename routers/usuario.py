@@ -3,8 +3,9 @@ from sqlalchemy.orm import Session
 
 from database import conectar
 from core.security import verificar_token
+from core.security import criar_hash
 
-from schemas.usuario import UsuarioCreate, UsuarioMeResponse
+from schemas.usuario import UsuarioCreate, UsuarioResponse, UsuarioMeResponse
 from controllers.usuario import (criar_usuario, listar_usuarios)
 from models.usuario import Usuario
 from models.medico import Medico
@@ -142,3 +143,33 @@ def usuario_logado(
             resposta["dados"] = None
 
     return resposta
+
+@router.put("/{id_usuario}", response_model=UsuarioResponse)
+def editar(
+    id_usuario: int,
+    dados: UsuarioResponse,
+    db: Session = Depends(conectar),
+
+    usuario_token = Depends(somente_administrador)
+):
+    usuario = ( db.query(Usuario)
+    .filter(
+        Usuario.id_usuario == id_usuario
+    ).first())
+
+    if not usuario:
+        raise HTTPException(
+            status_code=404,
+            detail="Usuário não encontrado."
+        )
+    
+    usuario.nome = dados.nome
+    usuario.login = dados.login
+    usuario.senha = criar_hash(dados.senha)
+    usuario.id_perfil = dados.id_perfil
+    usuario.id_congregacao = dados.id_congregacao
+    
+    db.commit()
+    db.refresh(usuario)
+
+    return usuario
