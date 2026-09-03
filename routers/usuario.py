@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from database import conectar
-from core.security import verificar_token
-from core.security import criar_hash
+from core.security import verificar_token, criar_hash
+from core.permissions import somente_administrador
 
 from schemas.usuario import UsuarioCreate, UsuarioResponse, UsuarioMeResponse
 from controllers.usuario import (criar_usuario, listar_usuarios)
@@ -15,20 +15,6 @@ router = APIRouter(
     prefix="/usuarios",
     tags=["Usuários"]
 )
-
-def somente_administrador(
-    usuario_token = Depends(verificar_token)
-):
-
-    id_perfil = usuario_token.get("id_perfil")
-
-    if id_perfil != 1:
-        raise HTTPException(
-            status_code=403,
-            detail="Acesso permitido apenas para administradores."
-        )
-
-    return usuario_token
 
 
 @router.post("/")
