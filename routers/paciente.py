@@ -7,7 +7,7 @@ from models.paciente import Paciente
 from schemas.paciente import PacienteCreate, PacienteResponse
 from controllers.paciente import (criar_paciente, listar_pacientes)
 from core.security import criar_hash
-from core.permissions import administrador_ou_medico
+from core.permissions import administrador_ou_medico, paciente_proprio_ou_admin_medico
 
 
 router = APIRouter(
@@ -37,12 +37,12 @@ def listar(
     return resultado
 
 @router.put("/{id_paciente}", response_model=PacienteResponse)
-def editar_completo(
+def editar(
     id_paciente: int,
     dados: PacienteCreate,
     db: Session = Depends(conectar),
 
-    usuario_token = Depends(administrador_ou_medico)
+    usuario_token = Depends(paciente_proprio_ou_admin_medico)
 ):
     paciente = (db.query(Paciente)
     .filter(
