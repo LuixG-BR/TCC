@@ -5,10 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Dashboard | EMPS</title>
 
@@ -17,35 +14,21 @@
          FONTES
     ========================================================== -->
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 
     <!-- =========================================================
          FONT AWESOME
     ========================================================== -->
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
 
     <style>
-
         /* =========================================================
            VARIÁVEIS
         ========================================================== */
@@ -298,15 +281,12 @@
             color: white;
 
             background:
-                linear-gradient(
-                    135deg,
+                linear-gradient(135deg,
                     #5124bd,
-                    #6d3bd5
-                );
+                    #6d3bd5);
 
             box-shadow:
-                0 5px 13px
-                rgba(88, 47, 200, 0.16);
+                0 5px 13px rgba(88, 47, 200, 0.16);
         }
 
 
@@ -568,7 +548,7 @@
         }
 
 
-        .doctor-mini > i {
+        .doctor-mini>i {
 
             font-size: 10px;
 
@@ -1376,8 +1356,7 @@
                 var(--primary);
 
             box-shadow:
-                0 0 0 3px
-                rgba(89, 48, 200, 0.08);
+                0 0 0 3px rgba(89, 48, 200, 0.08);
         }
 
 
@@ -1484,7 +1463,7 @@
         }
 
 
-        .recent-patient > i {
+        .recent-patient>i {
 
             color: #715ac1;
 
@@ -1791,7 +1770,6 @@
             }
 
         }
-
     </style>
 
 </head>
@@ -1840,10 +1818,7 @@
             <nav>
 
 
-                <a
-                    href="dashboard.html"
-                    class="active-perfil"
-                >
+                <a href="dashboard.html" class="active-perfil">
 
                     <i class="fa-solid fa-house"></i>
 
@@ -1895,9 +1870,7 @@
                         Alertas
                     </span>
 
-                    <i
-                        class="fa-regular fa-bell menu-notification"
-                    ></i>
+                    <i class="fa-regular fa-bell menu-notification"></i>
 
                 </a>
 
@@ -1929,14 +1902,9 @@
                 </div>
 
 
-                <button
-                    class="logout"
-                    onclick="logout();"
-                >
+                <button class="logout" onclick="logout();">
 
-                    <i
-                        class="fa-solid fa-arrow-right-from-bracket"
-                    ></i>
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
 
                     <span>
                         Sair
@@ -1978,7 +1946,8 @@
                     </div>
 
 
-                    <div class="doctor-mini">
+                    <div class="doctor-mini" onclick="abrirEditarPerfil()" onkeydown="if(event.key==='Enter' || event.key===' ') abrirEditarPerfil()" role="button" tabindex="0"
+                        aria-label="Editar perfil">
 
                         <span>
 
@@ -1990,15 +1959,10 @@
                         </span>
 
 
-                        <img
-                            src="img/img03.jfif"
-                            alt="Médico"
-                        >
+                        <img id="fotoUsuarioTopo" src="img/img03.jfif" alt="Médico">
 
 
-                        <i
-                            class="fa-solid fa-chevron-down"
-                        ></i>
+                        <i class="fa-solid fa-chevron-down"></i>
 
                     </div>
 
@@ -2047,16 +2011,11 @@
                     </div>
 
 
-                    <button
-                        class="date-selector"
-                        type="button"
-                    >
+                    <button class="date-selector" type="button">
 
                         <span>
 
-                            <i
-                                class="fa-regular fa-calendar"
-                            ></i>
+                            <i class="fa-regular fa-calendar"></i>
 
                             <span id="dataAtual">
                                 Carregando...
@@ -2065,9 +2024,7 @@
                         </span>
 
 
-                        <i
-                            class="fa-solid fa-chevron-down"
-                        ></i>
+                        <i class="fa-solid fa-chevron-down"></i>
 
                     </button>
 
@@ -2087,42 +2044,28 @@
                     <div class="profile-card">
 
 
-                        <img
-                            src="img/img03.jfif"
-                            alt="Médico"
-                        >
+                        <img id="fotoUsuario" src="img/img03.jfif" alt="Médico">
 
 
-                        <div
-                            class="profile-info"
-                            id="perfil"
-                        >
+                        <div class="profile-info" id="perfil">
 
                             <h2 class="nomeUsuario">
                                 carregando...
                             </h2>
 
 
-                            <span
-                                class="specialty especialidadeUsuario"
-                                id="especialidadeUsuario"
-                            >
+                            <span class="specialty especialidadeUsuario" id="especialidadeUsuario">
                                 carregando...
                             </span>
 
 
                             <p>
 
-                                <i
-                                    class="fa-regular fa-address-card"
-                                ></i>
+                                <i class="fa-regular fa-address-card"></i>
 
                                 CRM
 
-                                <span
-                                    class="crmUsuario"
-                                    id="crmUsuario"
-                                >
+                                <span class="crmUsuario" id="crmUsuario">
                                     123.456-SP
                                 </span>
 
@@ -2131,14 +2074,9 @@
 
                             <p>
 
-                                <i
-                                    class="fa-solid fa-graduation-cap"
-                                ></i>
+                                <i class="fa-solid fa-graduation-cap"></i>
 
-                                <span
-                                    class="especialidadeUsuario"
-                                    id="especialidadeUsuario2"
-                                >
+                                <span class="especialidadeUsuario" id="especialidadeUsuario2">
                                     carregando...
                                 </span>
 
@@ -2147,14 +2085,9 @@
 
                             <p>
 
-                                <i
-                                    class="fa-regular fa-envelope"
-                                ></i>
+                                <i class="fa-regular fa-envelope"></i>
 
-                                <span
-                                    class="emailUsuario"
-                                    id="emailUsuario"
-                                >
+                                <span class="emailUsuario" id="emailUsuario">
                                     carregando...
                                 </span>
 
@@ -2163,28 +2096,18 @@
 
                             <p>
 
-                                <i
-                                    class="fa-solid fa-phone"
-                                ></i>
+                                <i class="fa-solid fa-phone"></i>
 
-                                <span
-                                    class="telefoneUsuario"
-                                    id="telefoneUsuario"
-                                >
+                                <span class="telefoneUsuario" id="telefoneUsuario">
                                     --
                                 </span>
 
                             </p>
 
 
-                            <button
-                                class="edit-profile"
-                                type="button"
-                            >
+                            <button class="edit-profile" type="button" onclick="abrirEditarPerfil()">
 
-                                <i
-                                    class="fa-regular fa-pen-to-square"
-                                ></i>
+                                <i class="fa-regular fa-pen-to-square"></i>
 
                                 Editar perfil
 
@@ -2207,9 +2130,7 @@
 
                             <div class="stat-icon">
 
-                                <i
-                                    class="fa-regular fa-calendar"
-                                ></i>
+                                <i class="fa-regular fa-calendar"></i>
 
                             </div>
 
@@ -2219,10 +2140,7 @@
                             </div>
 
 
-                            <div
-                                class="stat-value"
-                                id="statMembroDesde"
-                            >
+                            <div class="stat-value" id="statMembroDesde">
                                 --
                             </div>
 
@@ -2235,9 +2153,7 @@
 
                             <div class="stat-icon">
 
-                                <i
-                                    class="fa-regular fa-user"
-                                ></i>
+                                <i class="fa-regular fa-user"></i>
 
                             </div>
 
@@ -2247,10 +2163,7 @@
                             </div>
 
 
-                            <div
-                                class="stat-value"
-                                id="statPacientes"
-                            >
+                            <div class="stat-value" id="statPacientes">
                                 0
                             </div>
 
@@ -2263,9 +2176,7 @@
 
                             <div class="stat-icon">
 
-                                <i
-                                    class="fa-regular fa-clipboard"
-                                ></i>
+                                <i class="fa-regular fa-clipboard"></i>
 
                             </div>
 
@@ -2275,10 +2186,7 @@
                             </div>
 
 
-                            <div
-                                class="stat-value"
-                                id="statConsultas"
-                            >
+                            <div class="stat-value" id="statConsultas">
                                 0
                             </div>
 
@@ -2291,9 +2199,7 @@
 
                             <div class="stat-icon">
 
-                                <i
-                                    class="fa-solid fa-wave-square"
-                                ></i>
+                                <i class="fa-solid fa-wave-square"></i>
 
                             </div>
 
@@ -2303,10 +2209,7 @@
                             </div>
 
 
-                            <div
-                                class="stat-value red"
-                                id="statAlertas"
-                            >
+                            <div class="stat-value red" id="statAlertas">
                                 0
                             </div>
 
@@ -2319,9 +2222,7 @@
 
                             <div class="stat-icon">
 
-                                <i
-                                    class="fa-regular fa-file-lines"
-                                ></i>
+                                <i class="fa-regular fa-file-lines"></i>
 
                             </div>
 
@@ -2331,10 +2232,7 @@
                             </div>
 
 
-                            <div
-                                class="stat-value"
-                                id="statRelatorios"
-                            >
+                            <div class="stat-value" id="statRelatorios">
                                 0
                             </div>
 
@@ -2370,9 +2268,7 @@
 
                             Ver todas as consultas
 
-                            <i
-                                class="fa-solid fa-arrow-right"
-                            ></i>
+                            <i class="fa-solid fa-arrow-right"></i>
 
                         </a>
 
@@ -2414,9 +2310,7 @@
                             </thead>
 
 
-                            <tbody
-                                id="consultasRecentes"
-                            >
+                            <tbody id="consultasRecentes">
 
                                 <!--
                                     As consultas serão
@@ -2460,19 +2354,14 @@
 
                                 Ver agenda completa
 
-                                <i
-                                    class="fa-solid fa-arrow-right"
-                                ></i>
+                                <i class="fa-solid fa-arrow-right"></i>
 
                             </a>
 
                         </div>
 
 
-                        <div
-                            class="upcoming-list"
-                            id="proximasConsultas"
-                        >
+                        <div class="upcoming-list" id="proximasConsultas">
 
                             <!--
                                 As próximas consultas
@@ -2482,17 +2371,11 @@
                         </div>
 
 
-                        <button
-                            class="agenda-button"
-                            type="button"
-                            onclick="window.location.href='agenda.html'"
-                        >
+                        <button class="agenda-button" type="button" onclick="window.location.href='agenda.html'">
 
                             Ir para agenda
 
-                            <i
-                                class="fa-regular fa-calendar"
-                            ></i>
+                            <i class="fa-regular fa-calendar"></i>
 
                         </button>
 
@@ -2519,10 +2402,7 @@
                         <div class="search-patient-content">
 
 
-                            <label
-                                class="search-label"
-                                for="patientSearch"
-                            >
+                            <label class="search-label" for="patientSearch">
 
                                 Pesquise pelo nome do paciente
                                 para acessar o prontuário.
@@ -2533,17 +2413,11 @@
                             <div class="search-input">
 
 
-                                <input
-                                    type="text"
-                                    id="patientSearch"
-                                    placeholder="Digite o nome do paciente"
-                                    autocomplete="off"
-                                >
+                                <input type="text" id="patientSearch" placeholder="Digite o nome do paciente"
+                                    autocomplete="off">
 
 
-                                <i
-                                    class="fa-solid fa-magnifying-glass"
-                                ></i>
+                                <i class="fa-solid fa-magnifying-glass"></i>
 
 
                             </div>
@@ -2556,9 +2430,7 @@
                             </div>
 
 
-                            <div
-                                id="listaPacientes"
-                            >
+                            <div id="listaPacientes">
 
                                 <!--
                                     Pacientes cadastrados
@@ -2568,17 +2440,11 @@
                             </div>
 
 
-                            <button
-                                class="patients-button"
-                                type="button"
-                                onclick="window.location.href='busca.html'"
-                            >
+                            <button class="patients-button" type="button" onclick="window.location.href='busca.html'">
 
                                 Ver todos os pacientes
 
-                                <i
-                                    class="fa-solid fa-user-plus"
-                                ></i>
+                                <i class="fa-solid fa-user-plus"></i>
 
                             </button>
 
@@ -2612,9 +2478,7 @@
 
                 <span class="footer-security">
 
-                    <i
-                        class="fa-solid fa-lock"
-                    ></i>
+                    <i class="fa-solid fa-lock"></i>
 
                     Ambiente seguro e criptografado
 
@@ -2655,6 +2519,20 @@
                 carregarDashboard();
 
                 configurarBuscaPaciente();
+
+                aplicarDadosEditados();
+
+                aplicarFotoUsuario();
+
+                setTimeout(
+                    aplicarDadosEditados,
+                    500
+                );
+
+                setTimeout(
+                    aplicarFotoUsuario,
+                    500
+                );
 
             }
         );
@@ -2861,7 +2739,7 @@
             return (
                 partes[0][0] +
                 partes[
-                    partes.length - 1
+                partes.length - 1
                 ][0]
             ).toUpperCase();
 
@@ -3239,8 +3117,8 @@
                                                 <strong>
 
                                                     ${escapeHTML(
-                                                        consulta.paciente
-                                                    )}
+                                consulta.paciente
+                            )}
 
                                                 </strong>
 
@@ -3248,8 +3126,8 @@
                                                 <small>
 
                                                     ${escapeHTML(
-                                                        consulta.tipo
-                                                    )}
+                                consulta.tipo
+                            )}
 
                                                 </small>
 
@@ -3269,8 +3147,8 @@
                                         <br>
 
                                         ${escapeHTML(
-                                            consulta.horario
-                                        )}
+                                consulta.horario
+                            )}
 
                                     </td>
 
@@ -3293,8 +3171,8 @@
                                     >
 
                                         ${escapeHTML(
-                                            consulta.tipo
-                                        )}
+                                consulta.tipo
+                            )}
 
                                         <br>
 
@@ -3310,8 +3188,8 @@
                                             class="view-button"
                                             type="button"
                                             onclick="abrirConsulta('${escapeHTML(
-                                                consulta.id
-                                            )}')"
+                                consulta.id
+                            )}')"
                                             title="Ver consulta"
                                         >
 
@@ -3445,8 +3323,8 @@
                                 <div
                                     class="upcoming-item clickable"
                                     onclick="abrirConsulta('${escapeHTML(
-                                        consulta.id
-                                    )}')"
+                                consulta.id
+                            )}')"
                                 >
 
                                     <div
@@ -3456,8 +3334,8 @@
                                         <strong>
 
                                             ${escapeHTML(
-                                                consulta.horario
-                                            )}
+                                consulta.horario
+                            )}
 
                                         </strong>
 
@@ -3483,8 +3361,8 @@
                                         <strong>
 
                                             ${escapeHTML(
-                                                consulta.paciente
-                                            )}
+                                consulta.paciente
+                            )}
 
                                         </strong>
 
@@ -3492,8 +3370,8 @@
                                         <span>
 
                                             ${escapeHTML(
-                                                consulta.tipo
-                                            )}
+                                consulta.tipo
+                            )}
 
                                         </span>
 
@@ -3670,11 +3548,10 @@
                             class="fa-regular fa-user"
                         ></i>
 
-                        ${
-                            busca
-                                ? "Nenhum paciente encontrado."
-                                : "Nenhum paciente cadastrado."
-                        }
+                        ${busca
+                        ? "Nenhum paciente encontrado."
+                        : "Nenhum paciente cadastrado."
+                    }
 
                     </div>
 
@@ -3705,8 +3582,8 @@
                                 <div
                                     class="recent-patient"
                                     onclick="abrirPaciente('${escapeHTML(
-                                        nome
-                                    )}')"
+                                nome
+                            )}')"
                                 >
 
                                     <div
@@ -3723,8 +3600,8 @@
                                         <strong>
 
                                             ${escapeHTML(
-                                                nome
-                                            )}
+                                nome
+                            )}
 
                                         </strong>
 
@@ -3876,6 +3753,150 @@
             window.location.href =
                 "busca.html?nome=" +
                 nomeCodificado;
+
+        }
+
+
+        /* =========================================================
+           ATUALIZAR DADOS EDITADOS
+        ========================================================== */
+
+        function aplicarDadosEditados() {
+
+            try {
+
+                const savedProfile =
+                    JSON.parse(
+                        localStorage.getItem("empsProfile")
+                    );
+
+                if (!savedProfile) {
+                    return;
+                }
+
+                /* NOME */
+                if (savedProfile.name) {
+
+                    document
+                        .querySelectorAll(".nomeUsuario")
+                        .forEach(function (elemento) {
+
+                            elemento.textContent =
+                                savedProfile.name;
+
+                        });
+
+                }
+
+                /* E-MAIL */
+                if (savedProfile.email) {
+
+                    document
+                        .querySelectorAll(".emailUsuario")
+                        .forEach(function (elemento) {
+
+                            elemento.textContent =
+                                savedProfile.email;
+
+                        });
+
+                }
+
+                /* TELEFONE */
+                if (savedProfile.phone) {
+
+                    document
+                        .querySelectorAll(".telefoneUsuario")
+                        .forEach(function (elemento) {
+
+                            elemento.textContent =
+                                savedProfile.phone;
+
+                        });
+
+                }
+
+                /* FOTO */
+                if (savedProfile.photo) {
+
+                    document
+                        .querySelectorAll(
+                            "#fotoUsuario, #fotoUsuarioTopo"
+                        )
+                        .forEach(function (imagem) {
+
+                            imagem.src =
+                                savedProfile.photo;
+
+                        });
+
+                }
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao aplicar dados editados:",
+                    erro
+                );
+
+            }
+
+        }
+
+
+        /* =========================================================
+           APLICAR FOTO DO USUÁRIO
+        ========================================================== */
+
+        function aplicarFotoUsuario() {
+
+            try {
+
+                const perfil =
+                    JSON.parse(
+                        localStorage.getItem("empsProfile")
+                    );
+
+                if (!perfil || !perfil.photo) {
+                    return;
+                }
+
+                document
+                    .querySelectorAll(
+                        "#fotoUsuario, #fotoUsuarioTopo"
+                    )
+                    .forEach(function (imagem) {
+
+                        imagem.src =
+                            perfil.photo;
+
+                    });
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao aplicar foto do usuário:",
+                    erro
+                );
+
+            }
+
+        }
+
+
+        /* =========================================================
+           ABRIR EDIÇÃO DO PERFIL
+        ========================================================== */
+
+        function abrirEditarPerfil() {
+
+            const origem =
+                window.location.pathname +
+                window.location.search;
+
+            window.location.href =
+                "editar.html?origem=" +
+                encodeURIComponent(origem);
 
         }
 
