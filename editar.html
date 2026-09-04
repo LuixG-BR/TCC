@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EMPS - Editar</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #eef3ff;
+            color: #171a58;
+            min-height: 100vh;
+        }
+
+        /* ================================
+           SIDEBAR
+        ================================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 182px;
+            height: 100vh;
+            background: #ffffff;
+            padding: 25px 14px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
+            z-index: 10;
+        }
+
+        .logo {
+            text-align: center;
+            font-size: 28px;
+            font-weight: bold;
+            color: #5b2bd0;
+            margin-bottom: 40px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #555;
+            padding: 13px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #f0ebff;
+            color: #5b2bd0;
+        }
+
+        .menu a.active {
+            background: linear-gradient(135deg, #6030cf, #5520bc);
+            color: white;
+        }
+
+        /* ================================
+           TOPBAR
+        ================================= */
+
+        .topbar {
+            position: fixed;
+            left: 182px;
+            right: 0;
+            top: 0;
+            height: 52px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 28px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 5;
+        }
+
+        .user-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .user-photo {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #ddd;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #171a58;
+        }
+
+        /* ================================
+           MAIN
+        ================================= */
+
+        .main {
+            margin-left: 182px;
+            padding: 82px 35px 40px;
+        }
+
+        .breadcrumb {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 8px;
+        }
+
+        .title {
+            font-size: 27px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #171a58;
+        }
+
+        /* ================================
+           CARD
+        ================================= */
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            max-width: 900px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .profile-photo-container {
+            position: relative;
+        }
+
+        .profile-photo {
+            width: 105px;
+            height: 105px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #ddd;
+            border: 4px solid #f0ebff;
+        }
+
+        .photo-button {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 50%;
+            background: #5b2bd0;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .profile-info h2 {
+            font-size: 21px;
+            margin-bottom: 5px;
+        }
+
+        .profile-info p {
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* ================================
+           FORM
+        ================================= */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            font-size: 13px;
+            font-weight: bold;
+            color: #171a58;
+        }
+
+        .field input {
+            width: 100%;
+            height: 43px;
+            border: 1px solid #d8d8e5;
+            border-radius: 8px;
+            padding: 0 13px;
+            font-size: 14px;
+            outline: none;
+            color: #333;
+            transition: 0.2s;
+        }
+
+        .field input:focus {
+            border-color: #5b2bd0;
+            box-shadow: 0 0 0 2px rgba(91, 43, 208, 0.08);
+        }
+
+        /* ================================
+           PASSWORD
+        ================================= */
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 45px;
+        }
+
+        .password-box button {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* ================================
+           BUTTONS
+        ================================= */
+
+        .actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            height: 42px;
+            padding: 0 23px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .btn-cancel {
+            background: #eeeeF5;
+            color: #555;
+        }
+
+        .btn-save {
+            background: linear-gradient(135deg, #6030cf, #5520bc);
+            color: white;
+        }
+
+        .btn-save:hover {
+            opacity: 0.9;
+        }
+
+        /* ================================
+           TOAST
+        ================================= */
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #171a58;
+            color: white;
+            padding: 14px 20px;
+            border-radius: 9px;
+            font-size: 14px;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: 0.3s;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ================================
+           RESPONSIVE
+        ================================= */
+
+        @media (max-width: 950px) {
+
+            .sidebar {
+                width: 155px;
+            }
+
+            .topbar {
+                left: 155px;
+            }
+
+            .main {
+                margin-left: 155px;
+                padding-left: 25px;
+                padding-right: 25px;
+            }
+
+            .card {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 760px) {
+
+            .sidebar {
+                width: 65px;
+                padding: 20px 8px;
+            }
+
+            .logo {
+                font-size: 20px;
+                margin-bottom: 30px;
+            }
+
+            .menu a {
+                justify-content: center;
+                padding: 13px 5px;
+                font-size: 0;
+            }
+
+            .menu a span {
+                font-size: 18px;
+            }
+
+            .topbar {
+                left: 65px;
+            }
+
+            .main {
+                margin-left: 65px;
+                padding: 75px 18px 30px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .profile-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .topbar {
+                padding: 0 15px;
+            }
+
+            .user-name {
+                display: none;
+            }
+
+            .main {
+                padding-left: 12px;
+                padding-right: 12px;
+            }
+
+            .title {
+                font-size: 23px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .actions {
+                flex-direction: column-reverse;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================================
+         SIDEBAR
+    ================================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            EMPS
+        </div>
+
+        <nav class="menu">
+
+            <a href="#">
+                <span>⌂</span>
+                Início
+            </a>
+
+            <a href="#">
+                <span>👤</span>
+                Pacientes
+            </a>
+
+            <a href="#">
+                <span>⚠</span>
+                Alertas
+            </a>
+
+            <a href="#" class="active">
+                <span>✎</span>
+                Editar
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- ================================
+         TOPBAR
+    ================================= -->
+
+    <header class="topbar">
+
+        <div class="user-area">
+
+            <img
+                id="topUserPhoto"
+                class="user-photo"
+                src="https://via.placeholder.com/100"
+                alt="Foto do usuário"
+            >
+
+            <span id="topUserName" class="user-name">
+                Usuário
+            </span>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================
+         MAIN
+    ================================= -->
+
+    <main class="main">
+
+        <div class="breadcrumb">
+            Editar
+        </div>
+
+        <h1 class="title">
+            Editar
+        </h1>
+
+
+        <section class="card">
+
+            <div class="profile-header">
+
+                <div class="profile-photo-container">
+
+                    <img
+                        id="profilePhoto"
+                        class="profile-photo"
+                        src="https://via.placeholder.com/150"
+                        alt="Foto do usuário"
+                    >
+
+                    <button
+                        class="photo-button"
+                        onclick="document.getElementById('photoInput').click()"
+                        title="Alterar foto"
+                    >
+                        ✎
+                    </button>
+
+                    <input
+                        type="file"
+                        id="photoInput"
+                        accept="image/*"
+                        hidden
+                    >
+
+                </div>
+
+                <div class="profile-info">
+
+                    <h2 id="profileName">
+                        Usuário
+                    </h2>
+
+                    <p>
+                        Atualize seus dados pessoais
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <div class="field">
+
+                    <label for="name">
+                        Nome
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Digite seu nome"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Digite seu e-mail"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="phone">
+                        Telefone
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="phone"
+                        placeholder="Digite seu telefone"
+                    >
+
+                </div>
+
+
+                <div class="field">
+
+                    <label for="cpf">
+                        CPF
+                    </label>
+
+                    <input
+                        type="text"
+                        id="cpf"
+                        placeholder="Digite seu CPF"
+                    >
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label for="password">
+                        Nova senha
+                    </label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Digite uma nova senha"
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('password')"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="field full">
+
+                    <label for="confirmPassword">
+                        Confirmar senha
+                    </label>
+
+                    <div class="password-box">
+
+                        <input
+                            type="password"
+                            id="confirmPassword"
+                            placeholder="Confirme sua nova senha"
+                        >
+
+                        <button
+                            type="button"
+                            onclick="togglePassword('confirmPassword')"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="btn btn-cancel"
+                    onclick="cancelEdit()"
+                >
+                    Cancelar
+                </button>
+
+                <button
+                    class="btn btn-save"
+                    onclick="saveProfile()"
+                >
+                    Salvar
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <div
+        id="toast"
+        class="toast"
+    >
+        Dados atualizados com sucesso!
+    </div>
+
+
+    <script>
+
+        const nameInput = document.getElementById("name");
+        const emailInput = document.getElementById("email");
+        const phoneInput = document.getElementById("phone");
+        const cpfInput = document.getElementById("cpf");
+
+        const profileName = document.getElementById("profileName");
+        const topUserName = document.getElementById("topUserName");
+
+        const profilePhoto = document.getElementById("profilePhoto");
+        const topUserPhoto = document.getElementById("topUserPhoto");
+
+        /* ================================
+           CARREGAR DADOS
+        ================================= */
+
+        function loadProfile() {
+
+            const savedProfile =
+                JSON.parse(localStorage.getItem("empsProfile"));
+
+            if (!savedProfile) {
+                return;
+            }
+
+            nameInput.value = savedProfile.name || "";
+            emailInput.value = savedProfile.email || "";
+            phoneInput.value = savedProfile.phone || "";
+            cpfInput.value = savedProfile.cpf || "";
+
+            if (savedProfile.name) {
+                profileName.textContent = savedProfile.name;
+                topUserName.textContent = savedProfile.name;
+            }
+
+            if (savedProfile.photo) {
+                profilePhoto.src = savedProfile.photo;
+                topUserPhoto.src = savedProfile.photo;
+            }
+        }
+
+
+        /* ================================
+           ALTERAR FOTO
+        ================================= */
+
+        document
+            .getElementById("photoInput")
+            .addEventListener("change", function () {
+
+                const file = this.files[0];
+
+                if (!file) {
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+
+                    const image = event.target.result;
+
+                    profilePhoto.src = image;
+                    topUserPhoto.src = image;
+
+                    const profile =
+                        JSON.parse(
+                            localStorage.getItem("empsProfile")
+                        ) || {};
+
+                    profile.photo = image;
+
+                    localStorage.setItem(
+                        "empsProfile",
+                        JSON.stringify(profile)
+                    );
+
+                };
+
+                reader.readAsDataURL(file);
+
+            });
+
+
+        /* ================================
+           SALVAR
+        ================================= */
+
+        function saveProfile() {
+
+            const password =
+                document.getElementById("password").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+
+                alert("As senhas não coincidem.");
+
+                return;
+            }
+
+            const profile = {
+
+                name: nameInput.value,
+                email: emailInput.value,
+                phone: phoneInput.value,
+                cpf: cpfInput.value,
+                photo: profilePhoto.src
+
+            };
+
+            localStorage.setItem(
+                "empsProfile",
+                JSON.stringify(profile)
+            );
+
+            profileName.textContent =
+                nameInput.value || "Usuário";
+
+            topUserName.textContent =
+                nameInput.value || "Usuário";
+
+            showToast();
+
+        }
+
+
+        /* ================================
+           CANCELAR
+        ================================= */
+
+        function cancelEdit() {
+
+            loadProfile();
+
+            document.getElementById("password").value = "";
+            document.getElementById("confirmPassword").value = "";
+
+        }
+
+
+        /* ================================
+           MOSTRAR / OCULTAR SENHA
+        ================================= */
+
+        function togglePassword(id) {
+
+            const input =
+                document.getElementById(id);
+
+            if (input.type === "password") {
+
+                input.type = "text";
+
+            } else {
+
+                input.type = "password";
+
+            }
+
+        }
+
+
+        /* ================================
+           TOAST
+        ================================= */
+
+        function showToast() {
+
+            const toast =
+                document.getElementById("toast");
+
+            toast.classList.add("show");
+
+            setTimeout(function () {
+
+                toast.classList.remove("show");
+
+            }, 2500);
+
+        }
+
+
+        loadProfile();
+
+    </script>
+
+</body>
+
+</html>

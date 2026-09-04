@@ -1,0 +1,3916 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Dashboard | EMPS</title>
+
+
+    <!-- =========================================================
+         FONTES
+    ========================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+
+    <!-- =========================================================
+         FONT AWESOME
+    ========================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+
+    <style>
+
+        /* =========================================================
+           VARIÁVEIS
+        ========================================================== */
+
+        :root {
+
+            --primary: #5930c8;
+            --primary-dark: #4822b0;
+            --primary-light: #f1edff;
+
+            --text: #29293d;
+            --text-soft: #77778a;
+            --text-light: #a2a2b2;
+
+            --border: #e9e8f0;
+            --background: #fafafd;
+            --white: #ffffff;
+
+            --green: #32a46e;
+            --green-bg: #eaf8ef;
+
+            --orange: #d68a20;
+            --orange-bg: #fff5e6;
+
+            --red: #d95858;
+
+            --shadow:
+                0 5px 20px rgba(50, 40, 100, 0.04);
+        }
+
+
+        /* =========================================================
+           RESET
+        ========================================================== */
+
+        * {
+
+            margin: 0;
+            padding: 0;
+
+            box-sizing: border-box;
+
+            font-family: "Inter", sans-serif;
+        }
+
+
+        body {
+
+            background: var(--background);
+
+            color: var(--text);
+
+            min-height: 100vh;
+        }
+
+
+        button,
+        input {
+
+            font-family: inherit;
+        }
+
+
+        button {
+
+            cursor: pointer;
+        }
+
+
+        a {
+
+            text-decoration: none;
+        }
+
+
+        /* =========================================================
+           ESTRUTURA
+        ========================================================== */
+
+        .emps-dashboard {
+
+            display: flex;
+
+            min-height: 100vh;
+        }
+
+
+        /* =========================================================
+           SIDEBAR
+        ========================================================== */
+
+        .sidebar {
+
+            width: 270px;
+
+            min-height: 100vh;
+
+            background: #ffffff;
+
+            border-right: 1px solid var(--border);
+
+            display: flex;
+
+            flex-direction: column;
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+            bottom: 0;
+
+            z-index: 10;
+        }
+
+
+        /* =========================================================
+           LOGO
+        ========================================================== */
+
+        .logo {
+
+            height: 92px;
+
+            padding: 0 26px;
+
+            display: flex;
+
+            align-items: center;
+
+            border-bottom: 1px solid #f0eff5;
+        }
+
+
+        .logo-icon {
+
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: #5b42aa;
+
+            font-size: 35px;
+        }
+
+
+        .logo-info {
+
+            margin-left: 9px;
+        }
+
+
+        .logo-info h1 {
+
+            font-size: 27px;
+
+            color: #514088;
+
+            font-weight: 800;
+
+            letter-spacing: -0.8px;
+        }
+
+
+        .logo-info p {
+
+            font-size: 7px;
+
+            color: #777687;
+
+            margin-top: 3px;
+
+            line-height: 1.4;
+        }
+
+
+        /* =========================================================
+           MENU
+        ========================================================== */
+
+        .sidebar nav {
+
+            padding: 13px 11px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 4px;
+        }
+
+
+        .sidebar nav a {
+
+            min-height: 50px;
+
+            padding: 0 16px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            border-radius: 8px;
+
+            color: #656578;
+
+            font-size: 13px;
+
+            font-weight: 500;
+
+            transition: 0.25s;
+
+            position: relative;
+        }
+
+
+        .sidebar nav a i {
+
+            width: 18px;
+
+            text-align: center;
+
+            font-size: 17px;
+
+            color: #737386;
+        }
+
+
+        .sidebar nav a:hover {
+
+            background: #f5f2ff;
+
+            color: var(--primary);
+        }
+
+
+        .sidebar nav a:hover i {
+
+            color: var(--primary);
+        }
+
+
+        .sidebar nav a.active-perfil {
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #5124bd,
+                    #6d3bd5
+                );
+
+            box-shadow:
+                0 5px 13px
+                rgba(88, 47, 200, 0.16);
+        }
+
+
+        .sidebar nav a.active-perfil i {
+
+            color: white;
+        }
+
+
+        .menu-notification {
+
+            margin-left: auto;
+
+            color: var(--primary) !important;
+
+            font-size: 17px !important;
+
+            position: relative;
+        }
+
+
+        .menu-notification::after {
+
+            content: "";
+
+            position: absolute;
+
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: var(--primary);
+
+            top: -2px;
+            right: -3px;
+        }
+
+
+        /* =========================================================
+           PARTE INFERIOR SIDEBAR
+        ========================================================== */
+
+        .sidebar-bottom {
+
+            margin-top: auto;
+
+            padding: 19px 12px 21px;
+        }
+
+
+        .support-box {
+
+            min-height: 78px;
+
+            background: #f6f3ff;
+
+            border-radius: 8px;
+
+            padding: 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .support-box i {
+
+            color: #674fc0;
+
+            font-size: 28px;
+        }
+
+
+        .support-box strong {
+
+            display: block;
+
+            color: #5c596f;
+
+            font-size: 10px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .support-box span {
+
+            color: #9998a8;
+
+            font-size: 9px;
+        }
+
+
+        .logout {
+
+            height: 47px;
+
+            width: 100%;
+
+            border: none;
+
+            background: transparent;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 16px;
+
+            padding: 0 18px;
+
+            border-radius: 8px;
+
+            color: #656578;
+
+            font-size: 13px;
+
+            transition: 0.25s;
+        }
+
+
+        .logout:hover {
+
+            background: #fff0f0;
+
+            color: #ce5050;
+        }
+
+
+        /* =========================================================
+           ÁREA PRINCIPAL
+        ========================================================== */
+
+        .main-area {
+
+            width: calc(100% - 270px);
+
+            margin-left: 270px;
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================== */
+
+        .top-header {
+
+            height: 72px;
+
+            background:
+                rgba(255, 255, 255, 0.92);
+
+            border-bottom:
+                1px solid var(--border);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            padding: 0 28px;
+        }
+
+
+        .header-right {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 21px;
+        }
+
+
+        .notification {
+
+            color: #625f76;
+
+            position: relative;
+
+            font-size: 19px;
+        }
+
+
+        .notification-badge {
+
+            position: absolute;
+
+            width: 14px;
+            height: 14px;
+
+            border-radius: 50%;
+
+            background: var(--primary);
+
+            color: white;
+
+            font-size: 8px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            top: -8px;
+            right: -8px;
+
+            font-weight: 700;
+        }
+
+
+        .doctor-mini {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+        }
+
+
+        .doctor-mini span {
+
+            font-size: 10px;
+
+            color: #626174;
+        }
+
+
+        .doctor-mini strong {
+
+            font-weight: 600;
+        }
+
+
+        .doctor-mini img {
+
+            width: 34px;
+            height: 34px;
+
+            border-radius: 50%;
+
+            object-fit: cover;
+
+            border: 1px solid #eeeef3;
+        }
+
+
+        .doctor-mini > i {
+
+            font-size: 10px;
+
+            color: #9493a2;
+        }
+
+
+        /* =========================================================
+           CONTEÚDO
+        ========================================================== */
+
+        main {
+
+            width: 100%;
+
+            max-width: 1450px;
+
+            margin: 0 auto;
+
+            padding: 30px 30px 24px;
+
+            flex: 1;
+        }
+
+
+        /* =========================================================
+           BOAS-VINDAS
+        ========================================================== */
+
+        .welcome-section {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            margin-bottom: 17px;
+        }
+
+
+        .welcome-text h1 {
+
+            font-size: 24px;
+
+            color: #303043;
+
+            margin-bottom: 9px;
+        }
+
+
+        .welcome-text p {
+
+            color: #7e7d8d;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+        }
+
+
+        .date-selector {
+
+            height: 38px;
+
+            min-width: 170px;
+
+            padding: 0 13px;
+
+            border:
+                1px solid #e6e5ec;
+
+            border-radius: 7px;
+
+            background: white;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            color: #666577;
+
+            font-size: 10px;
+        }
+
+
+        .date-selector i:first-child {
+
+            color: #644ac0;
+
+            margin-right: 9px;
+        }
+
+
+        .date-selector i:last-child {
+
+            color: #9695a4;
+
+            font-size: 9px;
+
+            margin-left: 16px;
+        }
+
+
+        /* =========================================================
+           PERFIL + ESTATÍSTICAS
+        ========================================================== */
+
+        .profile-overview {
+
+            background: white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 12px;
+
+            box-shadow: var(--shadow);
+
+            min-height: 205px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.15fr 1fr;
+
+            overflow: hidden;
+
+            margin-bottom: 17px;
+        }
+
+
+        .profile-card {
+
+            padding: 17px 20px;
+
+            display: flex;
+
+            align-items: center;
+
+            border-right:
+                1px solid #efeff3;
+        }
+
+
+        .profile-card img {
+
+            width: 100px;
+
+            height: 128px;
+
+            object-fit: cover;
+
+            border-radius: 9px;
+
+            border:
+                1px solid #ededf2;
+        }
+
+
+        .profile-info {
+
+            margin-left: 19px;
+
+            flex: 1;
+        }
+
+
+        .profile-info h2,
+        .profile-info h3 {
+
+            font-size: 13px;
+
+            color: #414153;
+
+            margin-bottom: 10px;
+        }
+
+
+        .profile-info p {
+
+            font-size: 9px;
+
+            color: #737285;
+
+            margin-bottom: 9px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+
+        .profile-info p i {
+
+            width: 12px;
+
+            color: #6855b6;
+
+            font-size: 10px;
+        }
+
+
+        .specialty {
+
+            display: inline-block;
+
+            background: #f0ecff;
+
+            color: #6952bd;
+
+            border-radius: 4px;
+
+            padding: 4px 8px;
+
+            font-size: 8px;
+
+            font-weight: 600;
+
+            margin-bottom: 11px;
+        }
+
+
+        .edit-profile {
+
+            height: 32px;
+
+            padding: 0 17px;
+
+            border:
+                1px solid #755dc9;
+
+            color: #5e45b3;
+
+            background: white;
+
+            border-radius: 5px;
+
+            font-size: 10px;
+
+            font-weight: 500;
+
+            margin-top: 4px;
+        }
+
+
+        .edit-profile:hover {
+
+            background: #f5f2ff;
+        }
+
+
+        /* =========================================================
+           ESTATÍSTICAS
+        ========================================================== */
+
+        .statistics {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            align-content: center;
+
+            padding: 13px 19px;
+        }
+
+
+        .stat {
+
+            min-height: 76px;
+
+            padding: 12px;
+
+            border-right:
+                1px solid #efeff3;
+        }
+
+
+        .stat:nth-child(3),
+        .stat:nth-child(6) {
+
+            border-right: none;
+        }
+
+
+        .stat:nth-child(-n+3) {
+
+            border-bottom:
+                1px solid #efeff3;
+        }
+
+
+        .stat-icon {
+
+            color: #6753b6;
+
+            font-size: 14px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .stat-label {
+
+            font-size: 8px;
+
+            color: #8a8998;
+
+            margin-bottom: 6px;
+        }
+
+
+        .stat-value {
+
+            font-size: 22px;
+
+            font-weight: 700;
+
+            color: #4a495b;
+        }
+
+
+        .stat-value.red {
+
+            color: var(--red);
+        }
+
+
+        /* =========================================================
+           CARDS
+        ========================================================== */
+
+        .dashboard-card {
+
+            background: white;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 11px;
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .card-header {
+
+            min-height: 50px;
+
+            padding: 0 18px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .card-header h3 {
+
+            font-size: 13px;
+
+            color: #444456;
+        }
+
+
+        .card-header a {
+
+            font-size: 9px;
+
+            color: #5d43b2;
+
+            font-weight: 600;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+
+        .card-header a:hover {
+
+            color: var(--primary-dark);
+        }
+
+
+        /* =========================================================
+           TABELA DE CONSULTAS
+        ========================================================== */
+
+        .table-wrapper {
+
+            width: 100%;
+        }
+
+
+        .consultations-table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+        }
+
+
+        .consultations-table th {
+
+            text-align: left;
+
+            padding:
+                0 13px 10px;
+
+            font-size: 8px;
+
+            color: #a09fac;
+
+            font-weight: 500;
+
+            border-bottom:
+                1px solid #eeeeF3;
+        }
+
+
+        .consultations-table td {
+
+            padding:
+                11px 13px;
+
+            border-bottom:
+                1px solid #f1f1f5;
+
+            font-size: 9px;
+
+            color: #656476;
+        }
+
+
+        .consultations-table tbody tr:last-child td {
+
+            border-bottom: none;
+        }
+
+
+        .patient-cell {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+
+        .patient-initials {
+
+            width: 29px;
+            height: 29px;
+
+            border-radius: 50%;
+
+            background: #f0edfb;
+
+            color: #6b58ba;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 9px;
+
+            font-weight: 600;
+
+            flex-shrink: 0;
+        }
+
+
+        .patient-cell strong {
+
+            display: block;
+
+            font-size: 9px;
+
+            color: #515063;
+
+            margin-bottom: 3px;
+        }
+
+
+        .patient-cell small {
+
+            font-size: 8px;
+
+            color: #92919f;
+        }
+
+
+        .date-cell {
+
+            line-height: 1.7;
+        }
+
+
+        .time-status {
+
+            display: inline-block;
+
+            padding: 5px 8px;
+
+            border-radius: 4px;
+
+            background:
+                var(--green-bg);
+
+            color:
+                var(--green);
+
+            font-size: 8px;
+
+            white-space: nowrap;
+        }
+
+
+        .summary {
+
+            line-height: 1.6;
+
+            color: #777687;
+        }
+
+
+        .view-button {
+
+            width: 31px;
+            height: 31px;
+
+            border:
+                1px solid #e7e5ef;
+
+            background: white;
+
+            border-radius: 5px;
+
+            color: #674fc0;
+
+            font-size: 10px;
+        }
+
+
+        .view-button:hover {
+
+            background: #f4f1ff;
+        }
+
+
+        /* =========================================================
+           PARTE INFERIOR
+        ========================================================== */
+
+        .bottom-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 0.95fr;
+
+            gap: 17px;
+
+            margin-top: 17px;
+        }
+
+
+        /* =========================================================
+           PRÓXIMAS CONSULTAS
+        ========================================================== */
+
+        .upcoming-list {
+
+            padding:
+                0 17px 12px;
+        }
+
+
+        .upcoming-item {
+
+            display: grid;
+
+            grid-template-columns:
+                45px 29px 1fr auto;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 9px 0;
+
+            border-bottom:
+                1px solid #f1f1f5;
+
+            transition: 0.2s;
+        }
+
+
+        .upcoming-item:last-child {
+
+            border-bottom: none;
+        }
+
+
+        .upcoming-item.clickable {
+
+            cursor: pointer;
+        }
+
+
+        .upcoming-item.clickable:hover {
+
+            background: #faf9ff;
+        }
+
+
+        .appointment-time {
+
+            font-size: 9px;
+
+            color: #59586b;
+
+            line-height: 1.7;
+        }
+
+
+        .appointment-time strong {
+
+            display: block;
+
+            font-size: 9px;
+        }
+
+
+        .appointment-avatar {
+
+            width: 29px;
+            height: 29px;
+
+            border-radius: 50%;
+
+            background: #f0edfb;
+
+            color: #6c58ba;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 9px;
+        }
+
+
+        .upcoming-info strong {
+
+            display: block;
+
+            font-size: 9px;
+
+            color: #575668;
+
+            margin-bottom: 4px;
+        }
+
+
+        .upcoming-info span {
+
+            font-size: 8px;
+
+            color: #9695a2;
+        }
+
+
+        .confirmed {
+
+            font-size: 8px;
+
+            color: #737285;
+
+            white-space: nowrap;
+        }
+
+
+        .confirmed::before {
+
+            content: "●";
+
+            color: var(--green);
+
+            font-size: 6px;
+
+            margin-right: 5px;
+        }
+
+
+        .agenda-button,
+        .patients-button {
+
+            width:
+                calc(100% - 34px);
+
+            margin:
+                6px 17px 13px;
+
+            height: 34px;
+
+            border:
+                1px solid #755ec8;
+
+            border-radius: 5px;
+
+            background: white;
+
+            color: #6049af;
+
+            font-size: 9px;
+
+            font-weight: 500;
+        }
+
+
+        .agenda-button:hover,
+        .patients-button:hover {
+
+            background: #f5f2ff;
+        }
+
+
+        .agenda-button i {
+
+            margin-left: 14px;
+        }
+
+
+        /* =========================================================
+           BUSCAR PACIENTE
+        ========================================================== */
+
+        .search-patient-content {
+
+            padding:
+                0 17px 11px;
+        }
+
+
+        .search-label {
+
+            display: block;
+
+            color: #8c8b9a;
+
+            font-size: 8px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .search-input {
+
+            position: relative;
+
+            margin-bottom: 11px;
+        }
+
+
+        .search-input input {
+
+            width: 100%;
+
+            height: 33px;
+
+            border:
+                1px solid #e5e4ec;
+
+            border-radius: 5px;
+
+            outline: none;
+
+            padding:
+                0 37px 0 11px;
+
+            font-size: 9px;
+
+            color: #5b5a6d;
+        }
+
+
+        .search-input input:focus {
+
+            border-color:
+                var(--primary);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(89, 48, 200, 0.08);
+        }
+
+
+        .search-input i {
+
+            position: absolute;
+
+            right: 11px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color: #624abb;
+
+            font-size: 10px;
+        }
+
+
+        .recent-patients-title {
+
+            font-size: 8px;
+
+            color: #8c8b9a;
+
+            margin-bottom: 6px;
+        }
+
+
+        .recent-patient {
+
+            display: grid;
+
+            grid-template-columns:
+                29px 1fr 15px;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 7px 2px;
+
+            border-bottom:
+                1px solid #f1f1f5;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+
+        .recent-patient:hover {
+
+            background: #faf9ff;
+        }
+
+
+        .recent-patient:last-child {
+
+            border-bottom: none;
+        }
+
+
+        .recent-patient .initial {
+
+            width: 27px;
+            height: 27px;
+
+            border-radius: 50%;
+
+            background: #f1eefb;
+
+            color: #6955b7;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-size: 8px;
+
+            font-weight: 600;
+        }
+
+
+        .recent-patient strong {
+
+            display: block;
+
+            color: #575668;
+
+            font-size: 8px;
+
+            margin-bottom: 3px;
+        }
+
+
+        .recent-patient span {
+
+            font-size: 7px;
+
+            color: #9695a2;
+        }
+
+
+        .recent-patient > i {
+
+            color: #715ac1;
+
+            font-size: 9px;
+        }
+
+
+        .patients-button {
+
+            margin:
+                10px 0 0;
+
+            width: 100%;
+        }
+
+
+        .patients-button i {
+
+            margin-left: 13px;
+        }
+
+
+        /* =========================================================
+           MENSAGENS VAZIAS
+        ========================================================== */
+
+        .empty-message {
+
+            padding: 22px 15px;
+
+            text-align: center;
+
+            color: #9998a8;
+
+            font-size: 9px;
+        }
+
+
+        .empty-message i {
+
+            display: block;
+
+            font-size: 20px;
+
+            color: #c7c2da;
+
+            margin-bottom: 8px;
+        }
+
+
+        .empty-table {
+
+            padding:
+                25px 15px !important;
+
+            text-align: center;
+
+            color: #9998a8 !important;
+
+            font-size: 9px !important;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================== */
+
+        .footer {
+
+            height: 48px;
+
+            border-top:
+                1px solid var(--border);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+            background: #ffffff;
+
+            font-size: 8px;
+
+            color: #92919e;
+        }
+
+
+        .footer-security {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+        }
+
+
+        .footer-security i {
+
+            color: #6652b5;
+        }
+
+
+        /* =========================================================
+           RESPONSIVIDADE
+        ========================================================== */
+
+        @media (max-width: 1000px) {
+
+            .profile-overview {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .profile-card {
+
+                border-right: none;
+
+                border-bottom:
+                    1px solid #efeff3;
+            }
+
+
+            .bottom-grid {
+
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .sidebar {
+
+                width: 72px;
+            }
+
+
+            .logo {
+
+                justify-content: center;
+
+                padding: 0;
+            }
+
+
+            .logo-info,
+            .sidebar nav a span,
+            .support-box div,
+            .logout span {
+
+                display: none;
+            }
+
+
+            .sidebar nav {
+
+                padding:
+                    12px 8px;
+            }
+
+
+            .sidebar nav a {
+
+                min-height: 46px;
+
+                padding: 0;
+
+                justify-content: center;
+            }
+
+
+            .sidebar nav a i {
+
+                width: auto;
+            }
+
+
+            .support-box {
+
+                justify-content: center;
+            }
+
+
+            .logout {
+
+                justify-content: center;
+
+                padding: 0;
+            }
+
+
+            .main-area {
+
+                margin-left: 72px;
+
+                width:
+                    calc(100% - 72px);
+            }
+
+
+            main {
+
+                padding:
+                    22px 15px;
+            }
+
+
+            .statistics {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .stat:nth-child(3) {
+
+                border-right:
+                    1px solid #efeff3;
+            }
+
+
+            .stat:nth-child(-n+3) {
+
+                border-bottom:
+                    1px solid #efeff3;
+            }
+
+        }
+
+
+        @media (max-width: 550px) {
+
+            .welcome-section {
+
+                align-items:
+                    flex-start;
+
+                flex-direction:
+                    column;
+
+                gap: 12px;
+            }
+
+
+            .date-selector {
+
+                width: 100%;
+            }
+
+
+            .consultations-table {
+
+                min-width: 600px;
+            }
+
+
+            .table-wrapper {
+
+                overflow-x: auto;
+            }
+
+
+            .profile-card {
+
+                align-items:
+                    flex-start;
+            }
+
+
+            .footer {
+
+                padding:
+                    0 12px;
+            }
+
+
+            .footer-security {
+
+                display: none;
+            }
+
+
+            .upcoming-item {
+
+                grid-template-columns:
+                    45px 29px 1fr;
+
+                row-gap: 4px;
+            }
+
+
+            .confirmed {
+
+                grid-column:
+                    3;
+
+                font-size: 7px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <div class="emps-dashboard">
+
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+
+        <aside class="sidebar">
+
+
+            <!-- LOGO -->
+
+            <div class="logo">
+
+                <div class="logo-icon">
+
+                    <i class="fa-regular fa-heart"></i>
+
+                </div>
+
+
+                <div class="logo-info">
+
+                    <h1>EMPS</h1>
+
+                    <p>
+                        Sistema de Monitoramento<br>
+                        e Prevenção de Crises Epilépticas
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MENU -->
+
+            <nav>
+
+
+                <a
+                    href="dashboard.html"
+                    class="active-perfil"
+                >
+
+                    <i class="fa-solid fa-house"></i>
+
+                    <span>
+                        Dashboard
+                    </span>
+
+                </a>
+
+
+                <a href="ficha.html">
+
+                    <i class="fa-regular fa-user"></i>
+
+                    <span>
+                        Ficha de pacientes
+                    </span>
+
+                </a>
+
+
+                <a href="busca.html">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <span>
+                        Buscar paciente
+                    </span>
+
+                </a>
+
+
+                <a href="agenda.html">
+
+                    <i class="fa-regular fa-calendar"></i>
+
+                    <span>
+                        Agenda
+                    </span>
+
+                </a>
+
+
+                <a href="alertas.html">
+
+                    <i class="fa-regular fa-bell"></i>
+
+                    <span>
+                        Alertas
+                    </span>
+
+                    <i
+                        class="fa-regular fa-bell menu-notification"
+                    ></i>
+
+                </a>
+
+
+            </nav>
+
+
+            <!-- PARTE INFERIOR -->
+
+            <div class="sidebar-bottom">
+
+
+                <div class="support-box">
+
+                    <i class="fa-solid fa-headset"></i>
+
+                    <div>
+
+                        <strong>
+                            Precisa de ajuda?
+                        </strong>
+
+                        <span>
+                            Acesse o suporte
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="logout"
+                    onclick="logout();"
+                >
+
+                    <i
+                        class="fa-solid fa-arrow-right-from-bracket"
+                    ></i>
+
+                    <span>
+                        Sair
+                    </span>
+
+                </button>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =====================================================
+             ÁREA PRINCIPAL
+        ====================================================== -->
+
+        <div class="main-area">
+
+
+            <!-- =================================================
+                 HEADER
+            ================================================== -->
+
+            <header class="top-header">
+
+
+                <div class="header-right">
+
+
+                    <div class="notification">
+
+                        <i class="fa-regular fa-bell"></i>
+
+                        <span class="notification-badge">
+                            3
+                        </span>
+
+                    </div>
+
+
+                    <div class="doctor-mini">
+
+                        <span>
+
+                            Olá,
+                            <strong class="nomeUsuario">
+                                carregando...
+                            </strong>
+
+                        </span>
+
+
+                        <img
+                            src="img/img03.jfif"
+                            alt="Médico"
+                        >
+
+
+                        <i
+                            class="fa-solid fa-chevron-down"
+                        ></i>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+
+            <!-- =================================================
+                 CONTEÚDO PRINCIPAL
+            ================================================== -->
+
+            <main>
+
+
+                <!-- =================================================
+                     BOAS-VINDAS
+                ================================================== -->
+
+                <section class="welcome-section">
+
+
+                    <div class="welcome-text">
+
+                        <h1>
+
+                            Olá,
+                            <span class="nomeUsuario">
+                                carregando...
+                            </span>
+
+                            👋
+
+                        </h1>
+
+
+                        <p>
+
+                            Bem-vindo(a) de volta ao painel EMPS.<br>
+
+                            Aqui está um resumo geral do seu acompanhamento.
+
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="date-selector"
+                        type="button"
+                    >
+
+                        <span>
+
+                            <i
+                                class="fa-regular fa-calendar"
+                            ></i>
+
+                            <span id="dataAtual">
+                                Carregando...
+                            </span>
+
+                        </span>
+
+
+                        <i
+                            class="fa-solid fa-chevron-down"
+                        ></i>
+
+                    </button>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     PERFIL E ESTATÍSTICAS
+                ================================================== -->
+
+                <section class="profile-overview">
+
+
+                    <!-- PERFIL -->
+
+                    <div class="profile-card">
+
+
+                        <img
+                            src="img/img03.jfif"
+                            alt="Médico"
+                        >
+
+
+                        <div
+                            class="profile-info"
+                            id="perfil"
+                        >
+
+                            <h2 class="nomeUsuario">
+                                carregando...
+                            </h2>
+
+
+                            <span
+                                class="specialty especialidadeUsuario"
+                                id="especialidadeUsuario"
+                            >
+                                carregando...
+                            </span>
+
+
+                            <p>
+
+                                <i
+                                    class="fa-regular fa-address-card"
+                                ></i>
+
+                                CRM
+
+                                <span
+                                    class="crmUsuario"
+                                    id="crmUsuario"
+                                >
+                                    123.456-SP
+                                </span>
+
+                            </p>
+
+
+                            <p>
+
+                                <i
+                                    class="fa-solid fa-graduation-cap"
+                                ></i>
+
+                                <span
+                                    class="especialidadeUsuario"
+                                    id="especialidadeUsuario2"
+                                >
+                                    carregando...
+                                </span>
+
+                            </p>
+
+
+                            <p>
+
+                                <i
+                                    class="fa-regular fa-envelope"
+                                ></i>
+
+                                <span
+                                    class="emailUsuario"
+                                    id="emailUsuario"
+                                >
+                                    carregando...
+                                </span>
+
+                            </p>
+
+
+                            <p>
+
+                                <i
+                                    class="fa-solid fa-phone"
+                                ></i>
+
+                                <span
+                                    class="telefoneUsuario"
+                                    id="telefoneUsuario"
+                                >
+                                    --
+                                </span>
+
+                            </p>
+
+
+                            <button
+                                class="edit-profile"
+                                type="button"
+                            >
+
+                                <i
+                                    class="fa-regular fa-pen-to-square"
+                                ></i>
+
+                                Editar perfil
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- ESTATÍSTICAS -->
+
+                    <div class="statistics">
+
+
+                        <!-- MEMBRO DESDE -->
+
+                        <div class="stat">
+
+                            <div class="stat-icon">
+
+                                <i
+                                    class="fa-regular fa-calendar"
+                                ></i>
+
+                            </div>
+
+
+                            <div class="stat-label">
+                                Membros desde
+                            </div>
+
+
+                            <div
+                                class="stat-value"
+                                id="statMembroDesde"
+                            >
+                                --
+                            </div>
+
+                        </div>
+
+
+                        <!-- PACIENTES -->
+
+                        <div class="stat">
+
+                            <div class="stat-icon">
+
+                                <i
+                                    class="fa-regular fa-user"
+                                ></i>
+
+                            </div>
+
+
+                            <div class="stat-label">
+                                Pacientes cadastrados
+                            </div>
+
+
+                            <div
+                                class="stat-value"
+                                id="statPacientes"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
+
+                        <!-- CONSULTAS -->
+
+                        <div class="stat">
+
+                            <div class="stat-icon">
+
+                                <i
+                                    class="fa-regular fa-clipboard"
+                                ></i>
+
+                            </div>
+
+
+                            <div class="stat-label">
+                                Consultas realizadas
+                            </div>
+
+
+                            <div
+                                class="stat-value"
+                                id="statConsultas"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
+
+                        <!-- ALERTAS -->
+
+                        <div class="stat">
+
+                            <div class="stat-icon">
+
+                                <i
+                                    class="fa-solid fa-wave-square"
+                                ></i>
+
+                            </div>
+
+
+                            <div class="stat-label">
+                                Alertas não lidos
+                            </div>
+
+
+                            <div
+                                class="stat-value red"
+                                id="statAlertas"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
+
+                        <!-- RELATÓRIOS -->
+
+                        <div class="stat">
+
+                            <div class="stat-icon">
+
+                                <i
+                                    class="fa-regular fa-file-lines"
+                                ></i>
+
+                            </div>
+
+
+                            <div class="stat-label">
+                                Relatórios gerados
+                            </div>
+
+
+                            <div
+                                class="stat-value"
+                                id="statRelatorios"
+                            >
+                                0
+                            </div>
+
+                        </div>
+
+
+                        <!-- ESPAÇO -->
+
+                        <div class="stat"></div>
+
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     CONSULTAS RECENTES
+                ================================================== -->
+
+                <section class="dashboard-card">
+
+
+                    <div class="card-header">
+
+                        <h3>
+                            Consultas recentes
+                        </h3>
+
+
+                        <a href="agenda.html">
+
+                            Ver todas as consultas
+
+                            <i
+                                class="fa-solid fa-arrow-right"
+                            ></i>
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="table-wrapper">
+
+
+                        <table class="consultations-table">
+
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Paciente
+                                    </th>
+
+                                    <th>
+                                        Data
+                                    </th>
+
+                                    <th>
+                                        Última atualização
+                                    </th>
+
+                                    <th>
+                                        Resumo da situação
+                                    </th>
+
+                                    <th>
+                                        Ações
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody
+                                id="consultasRecentes"
+                            >
+
+                                <!--
+                                    As consultas serão
+                                    inseridas automaticamente
+                                    pelo JavaScript.
+                                -->
+
+                            </tbody>
+
+
+                        </table>
+
+                    </div>
+
+                </section>
+
+
+
+                <!-- =================================================
+                     PRÓXIMAS CONSULTAS + BUSCAR PACIENTE
+                ================================================== -->
+
+                <div class="bottom-grid">
+
+
+                    <!-- =================================================
+                         PRÓXIMAS CONSULTAS
+                    ================================================== -->
+
+                    <section class="dashboard-card">
+
+
+                        <div class="card-header">
+
+                            <h3>
+                                Próximas consultas
+                            </h3>
+
+
+                            <a href="agenda.html">
+
+                                Ver agenda completa
+
+                                <i
+                                    class="fa-solid fa-arrow-right"
+                                ></i>
+
+                            </a>
+
+                        </div>
+
+
+                        <div
+                            class="upcoming-list"
+                            id="proximasConsultas"
+                        >
+
+                            <!--
+                                As próximas consultas
+                                serão carregadas automaticamente.
+                            -->
+
+                        </div>
+
+
+                        <button
+                            class="agenda-button"
+                            type="button"
+                            onclick="window.location.href='agenda.html'"
+                        >
+
+                            Ir para agenda
+
+                            <i
+                                class="fa-regular fa-calendar"
+                            ></i>
+
+                        </button>
+
+                    </section>
+
+
+
+                    <!-- =================================================
+                         BUSCAR PACIENTE
+                    ================================================== -->
+
+                    <section class="dashboard-card">
+
+
+                        <div class="card-header">
+
+                            <h3>
+                                Buscar paciente
+                            </h3>
+
+                        </div>
+
+
+                        <div class="search-patient-content">
+
+
+                            <label
+                                class="search-label"
+                                for="patientSearch"
+                            >
+
+                                Pesquise pelo nome do paciente
+                                para acessar o prontuário.
+
+                            </label>
+
+
+                            <div class="search-input">
+
+
+                                <input
+                                    type="text"
+                                    id="patientSearch"
+                                    placeholder="Digite o nome do paciente"
+                                    autocomplete="off"
+                                >
+
+
+                                <i
+                                    class="fa-solid fa-magnifying-glass"
+                                ></i>
+
+
+                            </div>
+
+
+                            <div class="recent-patients-title">
+
+                                Pacientes cadastrados
+
+                            </div>
+
+
+                            <div
+                                id="listaPacientes"
+                            >
+
+                                <!--
+                                    Pacientes cadastrados
+                                    serão inseridos aqui.
+                                -->
+
+                            </div>
+
+
+                            <button
+                                class="patients-button"
+                                type="button"
+                                onclick="window.location.href='busca.html'"
+                            >
+
+                                Ver todos os pacientes
+
+                                <i
+                                    class="fa-solid fa-user-plus"
+                                ></i>
+
+                            </button>
+
+
+                        </div>
+
+                    </section>
+
+
+                </div>
+
+
+            </main>
+
+
+
+            <!-- =====================================================
+                 FOOTER
+            ====================================================== -->
+
+            <footer class="footer">
+
+
+                <span>
+
+                    © 2024 EMPS.
+                    Todos os direitos reservados.
+
+                </span>
+
+
+                <span class="footer-security">
+
+                    <i
+                        class="fa-solid fa-lock"
+                    ></i>
+
+                    Ambiente seguro e criptografado
+
+                </span>
+
+
+            </footer>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================================================
+         SCRIPTS ORIGINAIS
+    ========================================================== -->
+
+    <script src="js/api.js"></script>
+
+    <script src="js/perfil.js"></script>
+
+
+
+    <!-- =========================================================
+         JAVASCRIPT DO DASHBOARD
+    ========================================================== -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+                atualizarDataAtual();
+
+                carregarDashboard();
+
+                configurarBuscaPaciente();
+
+            }
+        );
+
+
+        /* =========================================================
+           BUSCAR CONSULTAS
+        ========================================================== */
+
+        function obterConsultas() {
+
+            try {
+
+                return JSON.parse(
+                    localStorage.getItem(
+                        "empsConsultas"
+                    )
+                ) || [];
+
+            } catch (erro) {
+
+                console.error(
+                    "Erro ao carregar consultas:",
+                    erro
+                );
+
+                return [];
+
+            }
+
+        }
+
+
+        /* =========================================================
+           DATA ATUAL
+        ========================================================== */
+
+        function obterDataAtualISO() {
+
+            const agora =
+                new Date();
+
+
+            const ano =
+                agora.getFullYear();
+
+
+            const mes =
+                String(
+                    agora.getMonth() + 1
+                ).padStart(2, "0");
+
+
+            const dia =
+                String(
+                    agora.getDate()
+                ).padStart(2, "0");
+
+
+            return (
+                ano +
+                "-" +
+                mes +
+                "-" +
+                dia
+            );
+
+        }
+
+
+        /* =========================================================
+           DATA/HORA DA CONSULTA
+        ========================================================== */
+
+        function obterDataHoraConsulta(
+            consulta
+        ) {
+
+            if (
+                !consulta ||
+                !consulta.data ||
+                !consulta.horario
+            ) {
+
+                return new Date(0);
+
+            }
+
+
+            return new Date(
+                consulta.data +
+                "T" +
+                consulta.horario
+            );
+
+        }
+
+
+        /* =========================================================
+           FORMATAR DATA
+        ========================================================== */
+
+        function formatarData(
+            data
+        ) {
+
+            if (!data) {
+
+                return "--";
+
+            }
+
+
+            const partes =
+                data.split("-");
+
+
+            if (
+                partes.length !== 3
+            ) {
+
+                return data;
+
+            }
+
+
+            return (
+                partes[2] +
+                "/" +
+                partes[1] +
+                "/" +
+                partes[0]
+            );
+
+        }
+
+
+        /* =========================================================
+           FORMATAR DATA COMPLETA
+        ========================================================== */
+
+        function formatarDataCompleta(
+            data
+        ) {
+
+            if (!data) {
+
+                return "--";
+
+            }
+
+
+            const dataObj =
+                new Date(
+                    data + "T12:00:00"
+                );
+
+
+            return dataObj.toLocaleDateString(
+                "pt-BR",
+                {
+                    day: "2-digit",
+                    month: "long",
+                    year: "numeric"
+                }
+            );
+
+        }
+
+
+        /* =========================================================
+           INICIAIS DO PACIENTE
+        ========================================================== */
+
+        function obterIniciais(
+            nome
+        ) {
+
+            if (!nome) {
+
+                return "--";
+
+            }
+
+
+            const partes =
+                nome
+                    .trim()
+                    .split(/\s+/)
+                    .filter(Boolean);
+
+
+            if (
+                partes.length === 1
+            ) {
+
+                return partes[0]
+                    .substring(0, 2)
+                    .toUpperCase();
+
+            }
+
+
+            return (
+                partes[0][0] +
+                partes[
+                    partes.length - 1
+                ][0]
+            ).toUpperCase();
+
+        }
+
+
+        /* =========================================================
+           ESCAPAR HTML
+        ========================================================== */
+
+        function escapeHTML(
+            valor
+        ) {
+
+            if (
+                valor === undefined ||
+                valor === null
+            ) {
+
+                return "";
+
+            }
+
+
+            return String(valor)
+                .replace(
+                    /&/g,
+                    "&amp;"
+                )
+                .replace(
+                    /</g,
+                    "&lt;"
+                )
+                .replace(
+                    />/g,
+                    "&gt;"
+                )
+                .replace(
+                    /"/g,
+                    "&quot;"
+                )
+                .replace(
+                    /'/g,
+                    "&#039;"
+                );
+
+        }
+
+
+        /* =========================================================
+           ATUALIZAR DATA DO DASHBOARD
+        ========================================================== */
+
+        function atualizarDataAtual() {
+
+            const elemento =
+                document.getElementById(
+                    "dataAtual"
+                );
+
+
+            if (!elemento) {
+
+                return;
+
+            }
+
+
+            const agora =
+                new Date();
+
+
+            elemento.textContent =
+                agora.toLocaleDateString(
+                    "pt-BR",
+                    {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric"
+                    }
+                );
+
+        }
+
+
+        /* =========================================================
+           CARREGAR DASHBOARD
+        ========================================================== */
+
+        function carregarDashboard() {
+
+            const consultas =
+                obterConsultas();
+
+
+            carregarEstatisticas(
+                consultas
+            );
+
+
+            carregarConsultasRecentes(
+                consultas
+            );
+
+
+            carregarProximasConsultas(
+                consultas
+            );
+
+
+            carregarPacientes(
+                consultas
+            );
+
+        }
+
+
+        /* =========================================================
+           ESTATÍSTICAS
+        ========================================================== */
+
+        function carregarEstatisticas(
+            consultas
+        ) {
+
+            const agora =
+                new Date();
+
+
+            /*
+                Pacientes únicos
+            */
+
+            const pacientes =
+                new Set();
+
+
+            consultas.forEach(
+                function (consulta) {
+
+                    if (
+                        consulta.paciente
+                    ) {
+
+                        pacientes.add(
+                            consulta.paciente
+                                .trim()
+                                .toLowerCase()
+                        );
+
+                    }
+
+                }
+            );
+
+
+            /*
+                Consultas já realizadas
+            */
+
+            const realizadas =
+                consultas.filter(
+                    function (consulta) {
+
+                        return (
+                            obterDataHoraConsulta(
+                                consulta
+                            ) < agora
+                        );
+
+                    }
+                );
+
+
+            const statPacientes =
+                document.getElementById(
+                    "statPacientes"
+                );
+
+
+            const statConsultas =
+                document.getElementById(
+                    "statConsultas"
+                );
+
+
+            const statAlertas =
+                document.getElementById(
+                    "statAlertas"
+                );
+
+
+            const statRelatorios =
+                document.getElementById(
+                    "statRelatorios"
+                );
+
+
+            if (statPacientes) {
+
+                statPacientes.textContent =
+                    pacientes.size;
+
+            }
+
+
+            if (statConsultas) {
+
+                statConsultas.textContent =
+                    realizadas.length;
+
+            }
+
+
+            /*
+                Ainda não existe uma fonte
+                de dados para alertas e
+                relatórios neste fluxo.
+
+                Portanto permanecem em 0,
+                sem dado fictício.
+            */
+
+            if (statAlertas) {
+
+                statAlertas.textContent =
+                    "0";
+
+            }
+
+
+            if (statRelatorios) {
+
+                statRelatorios.textContent =
+                    "0";
+
+            }
+
+        }
+
+
+        /* =========================================================
+           CONSULTAS RECENTES
+        ========================================================== */
+
+        function carregarConsultasRecentes(
+            consultas
+        ) {
+
+            const tabela =
+                document.getElementById(
+                    "consultasRecentes"
+                );
+
+
+            if (!tabela) {
+
+                return;
+
+            }
+
+
+            /*
+                Mais recentes primeiro.
+            */
+
+            const recentes =
+                [...consultas]
+                    .sort(
+                        function (a, b) {
+
+                            return (
+                                obterDataHoraConsulta(b) -
+                                obterDataHoraConsulta(a)
+                            );
+
+                        }
+                    )
+                    .slice(0, 5);
+
+
+            /*
+                Nenhuma consulta
+            */
+
+            if (
+                recentes.length === 0
+            ) {
+
+                tabela.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="5"
+                            class="empty-table"
+                        >
+
+                            Nenhuma consulta
+                            cadastrada.
+
+                        </td>
+
+                    </tr>
+
+                `;
+
+                return;
+
+            }
+
+
+            tabela.innerHTML =
+                recentes
+                    .map(
+                        function (consulta) {
+
+                            const iniciais =
+                                obterIniciais(
+                                    consulta.paciente
+                                );
+
+
+                            const data =
+                                formatarData(
+                                    consulta.data
+                                );
+
+
+                            const dataHora =
+                                obterDataHoraConsulta(
+                                    consulta
+                                );
+
+
+                            const agora =
+                                new Date();
+
+
+                            let status =
+                                "Agendada";
+
+
+                            if (
+                                dataHora < agora
+                            ) {
+
+                                status =
+                                    "Realizada";
+
+                            }
+
+
+                            return `
+
+                                <tr>
+
+                                    <td>
+
+                                        <div
+                                            class="patient-cell"
+                                        >
+
+                                            <div
+                                                class="patient-initials"
+                                            >
+
+                                                ${iniciais}
+
+                                            </div>
+
+
+                                            <div>
+
+                                                <strong>
+
+                                                    ${escapeHTML(
+                                                        consulta.paciente
+                                                    )}
+
+                                                </strong>
+
+
+                                                <small>
+
+                                                    ${escapeHTML(
+                                                        consulta.tipo
+                                                    )}
+
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
+
+                                    <td
+                                        class="date-cell"
+                                    >
+
+                                        ${data}
+
+                                        <br>
+
+                                        ${escapeHTML(
+                                            consulta.horario
+                                        )}
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <span
+                                            class="time-status"
+                                        >
+
+                                            ${status}
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <td
+                                        class="summary"
+                                    >
+
+                                        ${escapeHTML(
+                                            consulta.tipo
+                                        )}
+
+                                        <br>
+
+                                        Consulta registrada
+                                        no sistema.
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <button
+                                            class="view-button"
+                                            type="button"
+                                            onclick="abrirConsulta('${escapeHTML(
+                                                consulta.id
+                                            )}')"
+                                            title="Ver consulta"
+                                        >
+
+                                            <i
+                                                class="fa-regular fa-eye"
+                                            ></i>
+
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+        /* =========================================================
+           PRÓXIMAS CONSULTAS
+        ========================================================== */
+
+        function carregarProximasConsultas(
+            consultas
+        ) {
+
+            const container =
+                document.getElementById(
+                    "proximasConsultas"
+                );
+
+
+            if (!container) {
+
+                return;
+
+            }
+
+
+            const agora =
+                new Date();
+
+
+            /*
+                Pega apenas consultas futuras
+                e organiza:
+
+                1º Data
+                2º Horário
+            */
+
+            const proximas =
+                [...consultas]
+                    .filter(
+                        function (consulta) {
+
+                            return (
+                                obterDataHoraConsulta(
+                                    consulta
+                                ) >= agora
+                            );
+
+                        }
+                    )
+                    .sort(
+                        function (a, b) {
+
+                            return (
+                                obterDataHoraConsulta(a) -
+                                obterDataHoraConsulta(b)
+                            );
+
+                        }
+                    )
+                    .slice(0, 4);
+
+
+            /*
+                Nenhuma consulta futura
+            */
+
+            if (
+                proximas.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div
+                        class="empty-message"
+                    >
+
+                        <i
+                            class="fa-regular fa-calendar-xmark"
+                        ></i>
+
+                        Nenhuma próxima consulta
+                        cadastrada.
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            container.innerHTML =
+                proximas
+                    .map(
+                        function (consulta) {
+
+                            const iniciais =
+                                obterIniciais(
+                                    consulta.paciente
+                                );
+
+
+                            const data =
+                                formatarData(
+                                    consulta.data
+                                );
+
+
+                            return `
+
+                                <div
+                                    class="upcoming-item clickable"
+                                    onclick="abrirConsulta('${escapeHTML(
+                                        consulta.id
+                                    )}')"
+                                >
+
+                                    <div
+                                        class="appointment-time"
+                                    >
+
+                                        <strong>
+
+                                            ${escapeHTML(
+                                                consulta.horario
+                                            )}
+
+                                        </strong>
+
+
+                                        ${data}
+
+                                    </div>
+
+
+                                    <div
+                                        class="appointment-avatar"
+                                    >
+
+                                        ${iniciais}
+
+                                    </div>
+
+
+                                    <div
+                                        class="upcoming-info"
+                                    >
+
+                                        <strong>
+
+                                            ${escapeHTML(
+                                                consulta.paciente
+                                            )}
+
+                                        </strong>
+
+
+                                        <span>
+
+                                            ${escapeHTML(
+                                                consulta.tipo
+                                            )}
+
+                                        </span>
+
+                                    </div>
+
+
+                                    <span
+                                        class="confirmed"
+                                    >
+
+                                        Agendado
+
+                                    </span>
+
+                                </div>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+        /* =========================================================
+           CARREGAR PACIENTES
+        ========================================================== */
+
+        function carregarPacientes(
+            consultas,
+            termo = ""
+        ) {
+
+            const container =
+                document.getElementById(
+                    "listaPacientes"
+                );
+
+
+            if (!container) {
+
+                return;
+
+            }
+
+
+            /*
+                Cria uma lista sem duplicações.
+            */
+
+            const pacientesMap =
+                new Map();
+
+
+            consultas.forEach(
+                function (consulta) {
+
+                    if (
+                        !consulta.paciente
+                    ) {
+
+                        return;
+
+                    }
+
+
+                    const nome =
+                        consulta.paciente
+                            .trim();
+
+
+                    if (!nome) {
+
+                        return;
+
+                    }
+
+
+                    const chave =
+                        nome.toLowerCase();
+
+
+                    if (
+                        !pacientesMap.has(
+                            chave
+                        )
+                    ) {
+
+                        pacientesMap.set(
+                            chave,
+                            nome
+                        );
+
+                    }
+
+                }
+            );
+
+
+            let pacientes =
+                Array.from(
+                    pacientesMap.values()
+                );
+
+
+            /*
+                Pesquisa pelo nome
+            */
+
+            const busca =
+                termo
+                    .trim()
+                    .toLowerCase();
+
+
+            if (busca) {
+
+                pacientes =
+                    pacientes.filter(
+                        function (nome) {
+
+                            return nome
+                                .toLowerCase()
+                                .includes(
+                                    busca
+                                );
+
+                        }
+                    );
+
+            }
+
+
+            /*
+                Ordem alfabética
+            */
+
+            pacientes.sort(
+                function (a, b) {
+
+                    return a.localeCompare(
+                        b,
+                        "pt-BR"
+                    );
+
+                }
+            );
+
+
+            /*
+                Dashboard mostra no máximo 5.
+            */
+
+            pacientes =
+                pacientes.slice(0, 5);
+
+
+            /*
+                Nenhum paciente
+            */
+
+            if (
+                pacientes.length === 0
+            ) {
+
+                container.innerHTML = `
+
+                    <div
+                        class="empty-message"
+                    >
+
+                        <i
+                            class="fa-regular fa-user"
+                        ></i>
+
+                        ${
+                            busca
+                                ? "Nenhum paciente encontrado."
+                                : "Nenhum paciente cadastrado."
+                        }
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            /*
+                Montar lista
+            */
+
+            container.innerHTML =
+                pacientes
+                    .map(
+                        function (nome) {
+
+                            const iniciais =
+                                obterIniciais(
+                                    nome
+                                );
+
+
+                            return `
+
+                                <div
+                                    class="recent-patient"
+                                    onclick="abrirPaciente('${escapeHTML(
+                                        nome
+                                    )}')"
+                                >
+
+                                    <div
+                                        class="initial"
+                                    >
+
+                                        ${iniciais}
+
+                                    </div>
+
+
+                                    <div>
+
+                                        <strong>
+
+                                            ${escapeHTML(
+                                                nome
+                                            )}
+
+                                        </strong>
+
+
+                                        <span>
+
+                                            Paciente cadastrado
+
+                                        </span>
+
+                                    </div>
+
+
+                                    <i
+                                        class="fa-solid fa-arrow-right"
+                                    ></i>
+
+                                </div>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+        /* =========================================================
+           PESQUISA DE PACIENTE
+        ========================================================== */
+
+        function configurarBuscaPaciente() {
+
+            const input =
+                document.getElementById(
+                    "patientSearch"
+                );
+
+
+            if (!input) {
+
+                return;
+
+            }
+
+
+            input.addEventListener(
+                "input",
+                function () {
+
+                    const consultas =
+                        obterConsultas();
+
+
+                    carregarPacientes(
+                        consultas,
+                        this.value
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* =========================================================
+           ABRIR CONSULTA
+        ========================================================== */
+
+        function abrirConsulta(
+            id
+        ) {
+
+            const consultas =
+                obterConsultas();
+
+
+            const consulta =
+                consultas.find(
+                    function (item) {
+
+                        return (
+                            String(item.id) ===
+                            String(id)
+                        );
+
+                    }
+                );
+
+
+            if (!consulta) {
+
+                return;
+
+            }
+
+
+            const data =
+                formatarData(
+                    consulta.data
+                );
+
+
+            alert(
+
+                "Dados da consulta\n\n" +
+
+                "Paciente: " +
+                consulta.paciente +
+
+                "\nData: " +
+                data +
+
+                "\nHorário: " +
+                consulta.horario +
+
+                "\nTipo: " +
+                consulta.tipo
+
+            );
+
+        }
+
+
+        /* =========================================================
+           ABRIR PACIENTE
+        ========================================================== */
+
+        function abrirPaciente(
+            nome
+        ) {
+
+            /*
+                Por enquanto direciona para
+                a página de busca de pacientes.
+
+                O nome é salvo na URL para que,
+                futuramente, a página possa
+                abrir diretamente o paciente.
+            */
+
+            const nomeCodificado =
+                encodeURIComponent(
+                    nome
+                );
+
+
+            window.location.href =
+                "busca.html?nome=" +
+                nomeCodificado;
+
+        }
+
+
+        /* =========================================================
+           LOGOUT
+        ========================================================== */
+
+        function logout() {
+
+            /*
+                Mantém compatibilidade com
+                o fluxo atual do projeto.
+            */
+
+            if (
+                typeof window.logoutOriginal ===
+                "function"
+            ) {
+
+                window.logoutOriginal();
+
+                return;
+
+            }
+
+
+            window.location.href =
+                "login.html";
+
+        }
+
+    </script>
+
+
+</body>
+
+</html>

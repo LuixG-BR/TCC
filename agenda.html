@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EMPS - Agenda</title>
+
+    <!-- FullCalendar -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background: #eef3ff;
+            color: #171a58;
+            min-height: 100vh;
+        }
+
+        /* =========================================
+           SIDEBAR
+        ========================================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 225px;
+            height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid #e7e9f2;
+            padding: 25px 15px;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 0 10px;
+            margin-bottom: 35px;
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, #6030cf, #5520bc);
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .logo span {
+            font-size: 22px;
+            font-weight: 700;
+            color: #171a58;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #70749a;
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+
+        .menu a:hover {
+            background: #f1edff;
+            color: #6030cf;
+        }
+
+        .menu a.active {
+            background: linear-gradient(135deg, #6030cf, #5520bc);
+            color: white;
+            box-shadow: 0 6px 15px rgba(96, 48, 207, 0.22);
+        }
+
+        .menu a i {
+            width: 19px;
+            height: 19px;
+        }
+
+        .alert-menu {
+            position: relative;
+        }
+
+        .alert-badge {
+            position: absolute;
+            right: 12px;
+            background: #ef476f;
+            color: white;
+            font-size: 10px;
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* =========================================
+           TOPBAR
+        ========================================= */
+
+        .topbar {
+            position: fixed;
+            left: 225px;
+            right: 0;
+            top: 0;
+            height: 70px;
+            background: #ffffff;
+            border-bottom: 1px solid #e7e9f2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            z-index: 999;
+        }
+
+        .breadcrumb {
+            font-size: 14px;
+            color: #8b8fab;
+        }
+
+        .breadcrumb strong {
+            color: #171a58;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search {
+            width: 240px;
+            height: 38px;
+            background: #f5f6fb;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            gap: 8px;
+        }
+
+        .search i {
+            color: #8589a8;
+            width: 17px;
+        }
+
+        .search input {
+            border: none;
+            outline: none;
+            background: transparent;
+            width: 100%;
+            color: #171a58;
+            font-size: 13px;
+        }
+
+        .notification {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f5f6fb;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .notification i {
+            width: 19px;
+            color: #5f6389;
+        }
+
+        .notification-dot {
+            position: absolute;
+            right: 8px;
+            top: 7px;
+            width: 7px;
+            height: 7px;
+            background: #ef476f;
+            border-radius: 50%;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile-avatar {
+            width: 38px;
+            height: 38px;
+            background: #ded6ff;
+            color: #6030cf;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-info strong {
+            font-size: 13px;
+            color: #171a58;
+        }
+
+        .profile-info span {
+            font-size: 11px;
+            color: #898da9;
+            margin-top: 2px;
+        }
+
+        /* =========================================
+           MAIN
+        ========================================= */
+
+        .main {
+            margin-left: 225px;
+            padding: 100px 30px 40px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .page-header h1 {
+            font-size: 27px;
+            color: #171a58;
+            margin-bottom: 7px;
+        }
+
+        .page-header p {
+            font-size: 13px;
+            color: #8589a8;
+        }
+
+        .new-appointment {
+            text-decoration: none;
+            background: linear-gradient(135deg, #6030cf, #5520bc);
+            color: white;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 15px rgba(96, 48, 207, 0.2);
+            transition: 0.2s;
+        }
+
+        .new-appointment:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px rgba(96, 48, 207, 0.27);
+        }
+
+        .new-appointment i {
+            width: 17px;
+        }
+
+        /* =========================================
+           STATS
+        ========================================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 15px;
+            padding: 19px;
+            border: 1px solid #e8eaf3;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .stat-icon {
+            width: 43px;
+            height: 43px;
+            border-radius: 12px;
+            background: #f0ebff;
+            color: #6030cf;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-icon i {
+            width: 21px;
+        }
+
+        .stat-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .stat-info span {
+            font-size: 12px;
+            color: #8589a8;
+        }
+
+        .stat-info strong {
+            font-size: 21px;
+            color: #171a58;
+        }
+
+        /* =========================================
+           CALENDAR CARD
+        ========================================= */
+
+        .calendar-card {
+            background: white;
+            border: 1px solid #e8eaf3;
+            border-radius: 17px;
+            padding: 22px;
+            box-shadow: 0 5px 20px rgba(50, 50, 90, 0.03);
+        }
+
+        .calendar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header h2 {
+            font-size: 17px;
+            color: #171a58;
+        }
+
+        .filter-button {
+            border: 1px solid #e2e3ed;
+            background: white;
+            color: #686c8f;
+            border-radius: 9px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .filter-button i {
+            width: 15px;
+        }
+
+        /* =========================================
+           FULLCALENDAR
+        ========================================= */
+
+        #calendar {
+            width: 100%;
+        }
+
+        .fc {
+            font-size: 13px;
+        }
+
+        .fc .fc-toolbar-title {
+            color: #171a58;
+            font-size: 19px;
+            font-weight: 700;
+        }
+
+        .fc .fc-button {
+            background: #6030cf;
+            border-color: #6030cf;
+            font-size: 12px;
+            border-radius: 7px;
+            box-shadow: none;
+        }
+
+        .fc .fc-button:hover {
+            background: #5520bc;
+            border-color: #5520bc;
+        }
+
+        .fc .fc-button:focus {
+            box-shadow: none;
+        }
+
+        .fc .fc-button-primary:not(:disabled).fc-button-active {
+            background: #5520bc;
+            border-color: #5520bc;
+        }
+
+        .fc .fc-daygrid-day-number {
+            color: #5f6389;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .fc .fc-col-header-cell-cushion {
+            color: #777b9a;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .fc .fc-day-today {
+            background: #f6f2ff !important;
+        }
+
+        .fc-event {
+            background: #6030cf !important;
+            border-color: #6030cf !important;
+            border-radius: 6px !important;
+            padding: 3px 5px !important;
+            font-size: 11px !important;
+            cursor: pointer;
+        }
+
+        .fc-event:hover {
+            opacity: 0.88;
+        }
+
+        /* =========================================
+           RESPONSIVIDADE
+        ========================================= */
+
+        @media (max-width: 1100px) {
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .search {
+                width: 190px;
+            }
+        }
+
+        @media (max-width: 950px) {
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .topbar {
+                left: 200px;
+            }
+
+            .main {
+                margin-left: 200px;
+            }
+        }
+
+        @media (max-width: 760px) {
+
+            .sidebar {
+                width: 70px;
+                padding: 20px 8px;
+            }
+
+            .logo {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .logo span {
+                display: none;
+            }
+
+            .menu a {
+                justify-content: center;
+                padding: 13px 8px;
+            }
+
+            .menu a span {
+                display: none;
+            }
+
+            .alert-badge {
+                right: 3px;
+                top: 5px;
+            }
+
+            .topbar {
+                left: 70px;
+                padding: 0 15px;
+            }
+
+            .breadcrumb {
+                display: none;
+            }
+
+            .main {
+                margin-left: 70px;
+                padding: 90px 18px 30px;
+            }
+
+            .profile-info {
+                display: none;
+            }
+
+            .search {
+                width: 180px;
+            }
+
+            .page-header {
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 23px;
+            }
+
+            .new-appointment {
+                white-space: nowrap;
+            }
+
+            .calendar-card {
+                padding: 15px;
+            }
+
+            .fc .fc-toolbar {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+
+            .topbar {
+                height: 62px;
+            }
+
+            .main {
+                padding: 80px 12px 25px;
+            }
+
+            .top-actions {
+                gap: 8px;
+            }
+
+            .search {
+                width: 135px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .page-header {
+                flex-direction: column;
+            }
+
+            .new-appointment {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .calendar-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .filter-button {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .fc .fc-toolbar-title {
+                font-size: 16px;
+            }
+
+            .fc .fc-button {
+                font-size: 10px;
+                padding: 5px 7px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =========================================
+         SIDEBAR
+    ========================================= -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <div class="logo-icon">
+                <i data-lucide="heart-pulse"></i>
+            </div>
+
+            <span>EMPS</span>
+        </div>
+
+        <nav class="menu">
+
+            <a href="dashboard.html">
+                <i data-lucide="layout-dashboard"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <a href="ficha.html">
+                <i data-lucide="file-text"></i>
+                <span>Ficha de pacientes</span>
+            </a>
+
+            <a href="paciente.html">
+                <i data-lucide="search"></i>
+                <span>Buscar paciente</span>
+            </a>
+
+            <a href="agenda.html" class="active">
+                <i data-lucide="calendar-days"></i>
+                <span>Agenda</span>
+            </a>
+
+            <a href="alertas.html" class="alert-menu">
+                <i data-lucide="bell"></i>
+                <span>Alertas</span>
+                <div class="alert-badge">3</div>
+            </a>
+
+            <a href="login.html">
+                <i data-lucide="log-out"></i>
+                <span>Sair</span>
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- =========================================
+         TOPBAR
+    ========================================= -->
+
+    <header class="topbar">
+
+        <div class="breadcrumb">
+            EMPS / <strong>Agenda</strong>
+        </div>
+
+        <div class="top-actions">
+
+            <div class="search">
+                <i data-lucide="search"></i>
+                <input type="text" placeholder="Buscar...">
+            </div>
+
+            <div class="notification">
+                <i data-lucide="bell"></i>
+                <div class="notification-dot"></div>
+            </div>
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    RO
+                </div>
+
+                <div class="profile-info">
+                    <strong>Dr. Rafael Oliveira</strong>
+                    <span>Neurologista</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================================
+         CONTEÚDO
+    ========================================= -->
+
+    <main class="main">
+
+        <div class="page-header">
+
+            <div>
+                <h1>Agenda de consultas</h1>
+                <p>Visualize e gerencie suas consultas.</p>
+            </div>
+
+            <a href="consultas.html" class="new-appointment">
+                <i data-lucide="plus"></i>
+                Nova Consulta
+            </a>
+
+        </div>
+
+
+        <!-- =========================================
+             ESTATÍSTICAS
+        ========================================= -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i data-lucide="calendar-check"></i>
+                </div>
+
+                <div class="stat-info">
+                    <span>Consultas hoje</span>
+                    <strong id="consultasHoje">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i data-lucide="calendar-clock"></i>
+                </div>
+
+                <div class="stat-info">
+                    <span>Próximas consultas</span>
+                    <strong id="proximasConsultas">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i data-lucide="users"></i>
+                </div>
+
+                <div class="stat-info">
+                    <span>Pacientes agendados</span>
+                    <strong id="pacientesAgendados">0</strong>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    <i data-lucide="rotate-ccw"></i>
+                </div>
+
+                <div class="stat-info">
+                    <span>Retornos</span>
+                    <strong id="retornos">0</strong>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================================
+             CALENDÁRIO
+        ========================================= -->
+
+        <section class="calendar-card">
+
+            <div class="calendar-header">
+
+                <h2>Calendário</h2>
+
+                <button class="filter-button" type="button">
+                    <i data-lucide="filter"></i>
+                    Filtros
+                </button>
+
+            </div>
+
+            <div id="calendar"></div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FullCalendar -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+            lucide.createIcons();
+
+            /* =========================================
+               BUSCAR CONSULTAS SALVAS
+            ========================================= */
+
+            const consultasSalvas =
+                JSON.parse(localStorage.getItem('empsConsultas')) || [];
+
+
+            /* =========================================
+               TRANSFORMAR CONSULTAS EM EVENTOS
+            ========================================= */
+
+            const eventos = consultasSalvas.map(function (consulta) {
+
+                return {
+                    id: consulta.id,
+                    title: consulta.tipo + ' - ' + consulta.paciente,
+                    start: consulta.data + 'T' + consulta.horario
+                };
+
+            });
+
+
+            /* =========================================
+               CALENDÁRIO
+            ========================================= */
+
+            const calendarEl =
+                document.getElementById('calendar');
+
+
+            const calendar =
+                new FullCalendar.Calendar(calendarEl, {
+
+                    locale: 'pt-br',
+
+                    initialView: 'dayGridMonth',
+
+                    height: 'auto',
+
+                    headerToolbar: {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                    },
+
+                    buttonText: {
+                        today: 'Hoje',
+                        month: 'Mês',
+                        week: 'Semana',
+                        day: 'Dia'
+                    },
+
+                    events: eventos,
+
+
+                    /* =========================================
+                       CLIQUE NA CONSULTA
+                    ========================================= */
+
+                    eventClick: function (info) {
+
+                        const consulta =
+                            consultasSalvas.find(function (item) {
+                                return item.id === info.event.id;
+                            });
+
+                        if (!consulta) {
+                            return;
+                        }
+
+                        alert(
+                            'Consulta\n\n' +
+                            'Paciente: ' + consulta.paciente + '\n' +
+                            'Data: ' + consulta.data.split('-').reverse().join('/') + '\n' +
+                            'Horário: ' + consulta.horario + '\n' +
+                            'Tipo: ' + consulta.tipo
+                        );
+
+                    }
+
+                });
+
+
+            calendar.render();
+
+
+            /* =========================================
+               ESTATÍSTICAS
+            ========================================= */
+
+            const hoje =
+                new Date().toISOString().split('T')[0];
+
+
+            const consultasHoje =
+                consultasSalvas.filter(function (consulta) {
+
+                    return consulta.data === hoje;
+
+                });
+
+
+            const proximasConsultas =
+                consultasSalvas.filter(function (consulta) {
+
+                    return consulta.data >= hoje;
+
+                });
+
+
+            const pacientes =
+                new Set(
+                    consultasSalvas.map(function (consulta) {
+                        return consulta.paciente.trim().toLowerCase();
+                    })
+                );
+
+
+            const retornos =
+                consultasSalvas.filter(function (consulta) {
+
+                    return consulta.tipo
+                        .toLowerCase()
+                        .includes('retorno');
+
+                });
+
+
+            document.getElementById('consultasHoje').textContent =
+                consultasHoje.length;
+
+
+            document.getElementById('proximasConsultas').textContent =
+                proximasConsultas.length;
+
+
+            document.getElementById('pacientesAgendados').textContent =
+                pacientes.size;
+
+
+            document.getElementById('retornos').textContent =
+                retornos.length;
+
+        });
+    </script>
+
+</body>
+
+</html>

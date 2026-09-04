@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Nova anotação | EMPS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+
+        /* =====================================================
+           CONFIGURAÇÕES GERAIS
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        :root {
+            --roxo: #5432c9;
+            --roxo-principal: #5b35d5;
+            --roxo-claro: #f0edff;
+            --roxo-hover: #4828ba;
+            --texto: #202744;
+            --texto-secundario: #687089;
+            --borda: #e8e9f2;
+            --fundo: #fafbff;
+            --branco: #ffffff;
+            --verde: #28a866;
+            --verde-fundo: #effbf5;
+            --vermelho: #ed5454;
+            --vermelho-fundo: #fff4f4;
+            --amarelo: #f2a51a;
+            --amarelo-fundo: #fffaf0;
+        }
+
+        body {
+            background: var(--fundo);
+            color: var(--texto);
+            min-height: 100vh;
+        }
+
+        button,
+        input,
+        textarea {
+            font-family: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* =====================================================
+           ESTRUTURA PRINCIPAL
+        ===================================================== */
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+            width: 242px;
+            min-width: 242px;
+            min-height: 100vh;
+            background: #ffffff;
+            border-right: 1px solid var(--borda);
+            display: flex;
+            flex-direction: column;
+            padding: 18px 12px 20px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .brand {
+            padding: 0 10px 24px;
+            border-bottom: 1px solid #f1f1f6;
+            margin-bottom: 18px;
+        }
+
+        .brand-top {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .brand-icon {
+            color: var(--roxo-principal);
+            font-size: 35px;
+            display: flex;
+            align-items: center;
+        }
+
+        .brand-name {
+            font-size: 26px;
+            font-weight: 700;
+            color: #4b3c98;
+            letter-spacing: -.8px;
+        }
+
+        .brand-subtitle {
+            font-size: 7px;
+            color: #62697d;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-left: 45px;
+            margin-top: -3px;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .menu a {
+            height: 45px;
+            padding: 0 13px;
+            border-radius: 7px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: #4d556c;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            transition: .25s;
+            position: relative;
+        }
+
+        .menu a i {
+            width: 18px;
+            text-align: center;
+            font-size: 16px;
+            color: #596179;
+        }
+
+        .menu a:hover {
+            background: #f6f4ff;
+            color: var(--roxo-principal);
+        }
+
+        .menu a.active {
+            background: linear-gradient(135deg, #5630c8, #4820b7);
+            color: #fff;
+            box-shadow: 0 6px 16px rgba(83, 48, 200, .2);
+        }
+
+        .menu a.active i {
+            color: #fff;
+        }
+
+        .notification-number {
+            width: 19px;
+            height: 19px;
+            border-radius: 50%;
+            background: var(--roxo-principal);
+            color: #fff;
+            font-size: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            font-weight: 600;
+        }
+
+        .sidebar-bottom {
+            margin-top: auto;
+        }
+
+        .help-box {
+            background: #f6f4ff;
+            border: 1px solid #ece8ff;
+            border-radius: 9px;
+            padding: 13px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .help-box i {
+            font-size: 25px;
+            color: var(--roxo-principal);
+        }
+
+        .help-box strong {
+            display: block;
+            font-size: 10px;
+            color: #52477d;
+        }
+
+        .help-box span {
+            display: block;
+            font-size: 9px;
+            color: #7e8495;
+            margin-top: 2px;
+        }
+
+        .logout {
+            width: 100%;
+            height: 42px;
+            background: transparent;
+            border: none;
+            color: #555e73;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 0 13px;
+            font-size: 12px;
+            transition: .25s;
+            border-radius: 7px;
+        }
+
+        .logout:hover {
+            background: #fff2f2;
+            color: #dc4949;
+        }
+
+        /* =====================================================
+           CONTEÚDO PRINCIPAL
+        ===================================================== */
+
+        .main-content {
+            width: calc(100% - 242px);
+            margin-left: 242px;
+            min-height: 100vh;
+            padding-bottom: 70px;
+        }
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        .topbar {
+            height: 67px;
+            background: #fff;
+            border-bottom: 1px solid var(--borda);
+            padding: 0 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            font-size: 11px;
+            white-space: nowrap;
+        }
+
+        .breadcrumbs span {
+            color: #596176;
+        }
+
+        .breadcrumbs strong {
+            color: #4d3d9d;
+            font-weight: 600;
+        }
+
+        .breadcrumbs i {
+            font-size: 9px;
+            color: #8b91a0;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .search-top {
+            width: 208px;
+            height: 39px;
+            border: 1px solid #e4e5ed;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            background: #fff;
+        }
+
+        .search-top input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 10px;
+            color: var(--texto);
+        }
+
+        .search-top input::placeholder {
+            color: #969cad;
+        }
+
+        .search-top i {
+            color: #4f5780;
+            font-size: 14px;
+        }
+
+        .top-notification {
+            position: relative;
+            color: #4c5675;
+            font-size: 19px;
+        }
+
+        .top-notification span {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--roxo-principal);
+            color: #fff;
+            font-size: 8px;
+            font-weight: 600;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            top: -7px;
+            right: -10px;
+        }
+
+        .doctor {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .doctor-info {
+            text-align: right;
+        }
+
+        .doctor-info strong {
+            display: block;
+            font-size: 10px;
+            color: #30384f;
+        }
+
+        .doctor-info span {
+            font-size: 9px;
+            color: #747b8d;
+        }
+
+        .doctor-avatar {
+            width: 33px;
+            height: 33px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #eee;
+        }
+
+        .doctor-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .doctor-arrow {
+            font-size: 11px;
+            color: #697087;
+        }
+
+        /* =====================================================
+           CABEÇALHO DO PACIENTE
+        ===================================================== */
+
+        .patient-header {
+            background: #fff;
+            padding: 15px 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            border-bottom: 1px solid #f0f0f4;
+        }
+
+        .patient-main {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+        }
+
+        .patient-avatar {
+            width: 68px;
+            height: 68px;
+            min-width: 68px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #eeebff, #e4e2f4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #50429c;
+            font-size: 25px;
+            font-weight: 700;
+        }
+
+        .patient-name-row {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-bottom: 10px;
+        }
+
+        .patient-name-row h1 {
+            font-size: 21px;
+            color: #202741;
+            line-height: 1;
+        }
+
+        .patient-status {
+            background: #e8f8ef;
+            color: #25955b;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .patient-data {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .patient-data span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4e566d;
+            font-size: 11px;
+        }
+
+        .patient-data i {
+            color: #525d81;
+            font-size: 13px;
+        }
+
+        .patient-summary {
+            display: flex;
+            align-self: stretch;
+            margin-left: auto;
+        }
+
+        .summary-item {
+            min-width: 150px;
+            padding: 10px 24px;
+            border-left: 1px solid #ededf3;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .summary-item span {
+            font-size: 10px;
+            color: #697086;
+            margin-bottom: 8px;
+        }
+
+        .summary-item strong {
+            font-size: 11px;
+            color: #38405a;
+        }
+
+        .code {
+            width: max-content;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 8px 12px;
+            border-radius: 7px;
+            background: #f7f5ff;
+            color: #5942b5 !important;
+            border: 1px solid #e7e2ff;
+        }
+
+        .code i {
+            color: var(--roxo-principal);
+        }
+
+        /* =====================================================
+           ÁREA CENTRAL
+        ===================================================== */
+
+        .page-area {
+            padding: 12px 20px;
+        }
+
+        .workspace {
+            background: #fff;
+            border: 1px solid #e9e9f0;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        /* =====================================================
+           ABAS
+        ===================================================== */
+
+        .tabs-row {
+            height: 56px;
+            border-bottom: 1px solid #e9e9f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 17px 0 26px;
+        }
+
+        .tabs {
+            display: flex;
+            align-self: stretch;
+            gap: 32px;
+        }
+
+        .tab {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            border: none;
+            background: transparent;
+            color: #51596f;
+            font-size: 11px;
+            position: relative;
+            padding: 0;
+        }
+
+        .tab.active {
+            color: #5133c3;
+            font-weight: 600;
+        }
+
+        .tab.active::after {
+            content: "";
+            position: absolute;
+            height: 3px;
+            background: var(--roxo-principal);
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .back-button {
+            height: 34px;
+            padding: 0 16px;
+            border: 1px solid #d5cdf9;
+            border-radius: 7px;
+            background: #fff;
+            color: #5a40ba;
+            font-size: 10px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: .2s;
+        }
+
+        .back-button:hover {
+            background: #f6f3ff;
+        }
+
+        /* =====================================================
+           TÍTULO
+        ===================================================== */
+
+        .annotation-header {
+            padding: 19px 25px 15px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .annotation-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .annotation-title-icon {
+            color: var(--roxo-principal);
+            font-size: 30px;
+        }
+
+        .annotation-title h2 {
+            color: #27304d;
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+
+        .annotation-title p {
+            color: #70778c;
+            font-size: 11px;
+        }
+
+        .close-button {
+            background: transparent;
+            border: none;
+            color: #505975;
+            font-size: 17px;
+            padding: 5px;
+        }
+
+        /* =====================================================
+           CONTEÚDO DAS ANOTAÇÕES
+        ===================================================== */
+
+        .annotation-content {
+            display: grid;
+            grid-template-columns: 1.03fr .92fr;
+            gap: 18px;
+            padding: 0 25px 14px;
+        }
+
+        .form-panel,
+        .example-panel {
+            border: 1px solid #e6e7ef;
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        label {
+            display: block;
+            font-size: 10px;
+            font-weight: 600;
+            color: #404963;
+            margin-bottom: 7px;
+        }
+
+        .input-wrapper {
+            height: 36px;
+            border: 1px solid #e0e2ea;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            margin-bottom: 17px;
+            transition: .2s;
+        }
+
+        .input-wrapper:focus-within {
+            border-color: #aa99ed;
+            box-shadow: 0 0 0 3px rgba(91, 53, 213, .05);
+        }
+
+        .input-wrapper i {
+            color: var(--roxo-principal);
+            font-size: 13px;
+            margin-right: 11px;
+        }
+
+        .input-wrapper input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 10px;
+            color: #444c62;
+        }
+
+        .input-wrapper input::placeholder {
+            color: #a2a7b5;
+        }
+
+        /* =====================================================
+           EDITOR
+        ===================================================== */
+
+        .editor {
+            border: 1px solid #dedfe8;
+            border-radius: 9px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .toolbar {
+            height: 35px;
+            border-bottom: 1px solid #e7e8ee;
+            background: #fcfcfe;
+            display: flex;
+            align-items: center;
+            padding: 0 11px;
+            gap: 4px;
+        }
+
+        .toolbar button {
+            width: 32px;
+            height: 30px;
+            border: none;
+            background: transparent;
+            color: #5c657b;
+            border-radius: 5px;
+            font-size: 13px;
+            transition: .2s;
+        }
+
+        .toolbar button:hover {
+            background: #f0edff;
+            color: var(--roxo-principal);
+        }
+
+        .toolbar .separator {
+            width: 1px;
+            height: 17px;
+            background: #e5e6ed;
+            margin: 0 4px;
+        }
+
+        .editor textarea {
+            width: 100%;
+            height: 100px;
+            border: none;
+            resize: none;
+            outline: none;
+            padding: 13px;
+            color: #50576b;
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .editor textarea::placeholder {
+            color: #a0a5b2;
+        }
+
+        /* =====================================================
+           STATUS
+        ===================================================== */
+
+        .status-label {
+            margin-bottom: 8px;
+        }
+
+        .status-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 9px;
+            margin-bottom: 13px;
+        }
+
+        .status-card {
+            min-height: 69px;
+            padding: 10px;
+            border-radius: 9px;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            transition: .2s;
+        }
+
+        .status-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .status-card.green {
+            border: 1px solid #a9e2c1;
+            background: #fbfffc;
+        }
+
+        .status-card.red {
+            border: 1px solid #f3c3c3;
+            background: #fffdfd;
+        }
+
+        .status-card.yellow {
+            border: 1px solid #f0dcac;
+            background: #fffefa;
+        }
+
+        .status-icon {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border-radius: 50%;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+        }
+
+        .green .status-icon {
+            background: #2cab69;
+        }
+
+        .red .status-icon {
+            background: #ec5a5a;
+        }
+
+        .yellow .status-icon {
+            background: #f2ab23;
+        }
+
+        .status-card strong {
+            display: block;
+            font-size: 9px;
+            color: #4a536a;
+            margin-bottom: 3px;
+        }
+
+        .status-card span {
+            display: block;
+            font-size: 8px;
+            line-height: 1.5;
+            color: #858b9b;
+        }
+
+        /* =====================================================
+           AVISO
+        ===================================================== */
+
+        .notice {
+            min-height: 51px;
+            background: linear-gradient(90deg, #f6f5ff, #f1f4ff);
+            border: 1px solid #e3e1f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+        }
+
+        .notice i {
+            width: 19px;
+            height: 19px;
+            border: 1px solid var(--roxo-principal);
+            border-radius: 50%;
+            color: var(--roxo-principal);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        .notice p {
+            color: #586999;
+            font-size: 9px;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        /* =====================================================
+           EXEMPLO MÉDICO
+        ===================================================== */
+
+        .example-panel {
+            padding: 15px 17px 13px;
+        }
+
+        .example-panel h3 {
+            font-size: 11px;
+            color: #513db0;
+            margin-bottom: 10px;
+        }
+
+        .medical-paper {
+            border: 1px solid #e2e3eb;
+            border-radius: 8px;
+            background: #fcfcfe;
+            padding: 15px 13px;
+            min-height: 334px;
+            color: #566078;
+            font-size: 10px;
+            line-height: 1.7;
+        }
+
+        .medical-paper p {
+            margin-bottom: 13px;
+        }
+
+        .medical-paper strong {
+            color: #4f5a77;
+        }
+
+        .signature {
+            margin-top: 17px;
+            padding-top: 11px;
+            border-top: 1px solid #e4e5eb;
+            color: #8a90a0;
+            font-size: 8px;
+        }
+
+        /* =====================================================
+           BOTÕES
+        ===================================================== */
+
+        .form-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 11px;
+            padding: 16px 25px 13px;
+        }
+
+        .btn {
+            height: 39px;
+            border-radius: 8px;
+            padding: 0 25px;
+            font-size: 10px;
+            font-weight: 600;
+            transition: .25s;
+        }
+
+        .cancel-btn {
+            background: #fff;
+            color: #4d566d;
+            border: 1px solid #dedfe7;
+            min-width: 110px;
+        }
+
+        .cancel-btn:hover {
+            background: #f7f7fa;
+        }
+
+        .save-btn {
+            background: linear-gradient(135deg, #5935d1, #4822b9);
+            border: none;
+            color: #fff;
+            min-width: 157px;
+            box-shadow: 0 5px 13px rgba(82, 46, 192, .18);
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(82, 46, 192, .25);
+        }
+
+        .save-btn i {
+            margin-left: 9px;
+        }
+
+        /* =====================================================
+           RODAPÉ
+        ===================================================== */
+
+        .footer {
+            position: fixed;
+            left: 242px;
+            right: 0;
+            bottom: 0;
+            height: 65px;
+            background: #fff;
+            border-top: 1px solid #e9eaf0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+        }
+
+        .footer-content {
+            width: 100%;
+            padding: 0 25px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-center {
+            text-align: center;
+            color: #6f7585;
+            font-size: 8px;
+        }
+
+        .footer-center div {
+            margin-bottom: 4px;
+        }
+
+        .footer-center i {
+            margin-right: 6px;
+            color: #5d6680;
+        }
+
+        .footer-security {
+            position: absolute;
+            right: 25px;
+            color: #667087;
+            font-size: 8px;
+        }
+
+        .footer-security i {
+            margin-right: 6px;
+        }
+
+        /* =====================================================
+           RESPONSIVIDADE
+        ===================================================== */
+
+        @media (max-width: 1200px) {
+
+            .annotation-content {
+                grid-template-columns: 1fr;
+            }
+
+            .patient-summary {
+                display: none;
+            }
+
+        }
+
+        @media (max-width: 900px) {
+
+            .sidebar {
+                width: 70px;
+                min-width: 70px;
+                padding: 15px 8px;
+            }
+
+            .brand-name,
+            .brand-subtitle,
+            .menu a span,
+            .help-box div,
+            .logout span {
+                display: none;
+            }
+
+            .brand {
+                padding: 0 0 20px;
+                display: flex;
+                justify-content: center;
+            }
+
+            .brand-icon {
+                font-size: 30px;
+            }
+
+            .menu a {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .menu a i {
+                width: auto;
+            }
+
+            .notification-number {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+            }
+
+            .help-box {
+                justify-content: center;
+            }
+
+            .logout {
+                justify-content: center;
+                padding: 0;
+            }
+
+            .main-content {
+                margin-left: 70px;
+                width: calc(100% - 70px);
+            }
+
+            .footer {
+                left: 70px;
+            }
+
+        }
+
+        @media (max-width: 700px) {
+
+            .topbar {
+                padding: 0 15px;
+            }
+
+            .breadcrumbs span:not(:last-of-type),
+            .breadcrumbs i {
+                display: none;
+            }
+
+            .search-top {
+                display: none;
+            }
+
+            .doctor-info {
+                display: none;
+            }
+
+            .patient-header {
+                padding: 15px;
+            }
+
+            .patient-data {
+                gap: 10px;
+            }
+
+            .page-area {
+                padding: 10px;
+            }
+
+            .tabs-row {
+                padding-left: 12px;
+                overflow-x: auto;
+            }
+
+            .tabs {
+                gap: 20px;
+                min-width: max-content;
+            }
+
+            .back-button span {
+                display: none;
+            }
+
+            .back-button {
+                padding: 0 11px;
+            }
+
+            .annotation-header,
+            .annotation-content,
+            .form-footer {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .status-options {
+                grid-template-columns: 1fr;
+            }
+
+            .form-footer {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .footer-security {
+                display: none;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- =====================================================
+             SIDEBAR
+        ====================================================== -->
+
+        <aside class="sidebar">
+
+            <div class="brand">
+
+                <div class="brand-top">
+                    <div class="brand-icon">
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+
+                    <div class="brand-name">
+                        EMPS
+                    </div>
+                </div>
+
+                <div class="brand-subtitle">
+                    Sistema de Monitoramento<br>
+                    e Prevenção de Crises Epilépticas
+                </div>
+
+            </div>
+
+
+            <nav class="menu">
+
+                <a href="#">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="#" class="active">
+                    <i class="fa-regular fa-user"></i>
+                    <span>Ficha de pacientes</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Buscar paciente</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>Agenda</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-regular fa-note-sticky"></i>
+                    <span>Consultas</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-chart-column"></i>
+                    <span>Relatórios</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-regular fa-bell"></i>
+                    <span>Alertas</span>
+                    <span class="notification-number">3</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-regular fa-message"></i>
+                    <span>Mensagens</span>
+                    <span class="notification-number">2</span>
+                </a>
+
+                <a href="#">
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Configurações</span>
+                </a>
+
+            </nav>
+
+
+            <div class="sidebar-bottom">
+
+                <div class="help-box">
+                    <i class="fa-solid fa-headset"></i>
+
+                    <div>
+                        <strong>Precisa de ajuda?</strong>
+                        <span>Acesse o suporte</span>
+                    </div>
+                </div>
+
+                <button class="logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span>Sair</span>
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =====================================================
+             CONTEÚDO
+        ====================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 TOPO
+            ================================================== -->
+
+            <header class="topbar">
+
+                <div class="breadcrumbs">
+                    <span>Ficha de pacientes</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                    <span>Maria Silva</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                    <span>Consultas</span>
+                    <i class="fa-solid fa-chevron-right"></i>
+
+                    <strong>Nova anotação</strong>
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <div class="search-top">
+                        <input type="text" placeholder="Buscar paciente...">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+
+
+                    <div class="top-notification">
+                        <i class="fa-regular fa-bell"></i>
+                        <span>3</span>
+                    </div>
+
+
+                    <div class="doctor">
+
+                        <div class="doctor-info">
+                            <strong>Dr. Rafael Oliveira</strong>
+                            <span>Neurologista</span>
+                        </div>
+
+                        <div class="doctor-avatar">
+                            <img src="img/img03.jfif" alt="Dr. Rafael Oliveira">
+                        </div>
+
+                        <i class="fa-solid fa-chevron-down doctor-arrow"></i>
+
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 INFORMAÇÕES DO PACIENTE
+            ================================================== -->
+
+            <section class="patient-header">
+
+                <div class="patient-main">
+
+                    <div class="patient-avatar">
+                        MS
+                    </div>
+
+
+                    <div>
+
+                        <div class="patient-name-row">
+                            <h1>Maria Silva</h1>
+                            <span class="patient-status">Ativo</span>
+                        </div>
+
+
+                        <div class="patient-data">
+
+                            <span>
+                                <i class="fa-regular fa-calendar"></i>
+                                22 anos (12/04/2002)
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-venus"></i>
+                                Feminino
+                            </span>
+
+                            <span>
+                                <i class="fa-solid fa-phone"></i>
+                                (11) 98765-4321
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="patient-summary">
+
+                    <div class="summary-item">
+
+                        <span>Código do paciente</span>
+
+                        <strong class="code">
+                            PCT-012
+                            <i class="fa-regular fa-copy"></i>
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-item">
+
+                        <span>Última consulta</span>
+                        <strong>09/05/2024</strong>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 ÁREA DA PÁGINA
+            ================================================== -->
+
+            <div class="page-area">
+
+                <section class="workspace">
+
+
+                    <!-- =============================================
+                         ABAS
+                    ============================================== -->
+
+                    <div class="tabs-row">
+
+                        <div class="tabs">
+
+                            <button class="tab">
+                                Histórico clínico
+                            </button>
+
+                            <button class="tab active">
+                                Consultas
+                            </button>
+
+                            <button class="tab">
+                                Relatórios
+                            </button>
+
+                            <button class="tab">
+                                Dispositivos
+                            </button>
+
+                            <button class="tab">
+                                Documentos
+                            </button>
+
+                        </div>
+
+
+                        <button class="back-button">
+                            <i class="fa-solid fa-arrow-left"></i>
+                            <span>Voltar para consultas</span>
+                        </button>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         TÍTULO
+                    ============================================== -->
+
+                    <div class="annotation-header">
+
+                        <div class="annotation-title">
+
+                            <div class="annotation-title-icon">
+                                <i class="fa-regular fa-clipboard"></i>
+                            </div>
+
+                            <div>
+                                <h2>Anotações da Consulta</h2>
+
+                                <p>
+                                    Registre as informações da consulta de forma organizada
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <button class="close-button">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         FORMULÁRIO E EXEMPLO
+                    ============================================== -->
+
+                    <div class="annotation-content">
+
+
+                        <!-- ESQUERDA -->
+
+                        <div class="form-panel">
+
+                            <label>Nome do paciente</label>
+
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-user"></i>
+
+                                <input
+                                    type="text"
+                                    placeholder="Digite o nome do paciente">
+                            </div>
+
+
+                            <label>Observação de sintomas</label>
+
+
+                            <div class="editor">
+
+                                <div class="toolbar">
+
+                                    <button title="Negrito">
+                                        <strong>B</strong>
+                                    </button>
+
+                                    <button title="Itálico">
+                                        <i class="fa-solid fa-italic"></i>
+                                    </button>
+
+                                    <button title="Sublinhado">
+                                        <i class="fa-solid fa-underline"></i>
+                                    </button>
+
+                                    <div class="separator"></div>
+
+                                    <button>
+                                        <i class="fa-solid fa-list"></i>
+                                    </button>
+
+                                    <button>
+                                        <i class="fa-solid fa-list-ol"></i>
+                                    </button>
+
+                                    <button>
+                                        <i class="fa-solid fa-list-ul"></i>
+                                    </button>
+
+                                    <div class="separator"></div>
+
+                                    <button>
+                                        <i class="fa-solid fa-link"></i>
+                                    </button>
+
+                                    <button>
+                                        <i class="fa-regular fa-image"></i>
+                                    </button>
+
+                                    <button>
+                                        <i class="fa-solid fa-arrow-rotate-left"></i>
+                                    </button>
+
+                                    <button>
+                                        <i class="fa-solid fa-arrow-rotate-right"></i>
+                                    </button>
+
+                                    <button>
+                                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                                    </button>
+
+                                </div>
+
+
+                                <textarea
+                                    placeholder="Descreva os sintomas que o paciente vem sentindo..."></textarea>
+
+                            </div>
+
+
+                            <label class="status-label">
+                                Andamento do paciente
+                            </label>
+
+
+                            <div class="status-options">
+
+
+                                <div class="status-card green">
+
+                                    <div class="status-icon">
+                                        <i class="fa-solid fa-check"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>Houve melhora</strong>
+
+                                        <span>
+                                            O paciente apresentou
+                                            evolução positiva
+                                        </span>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="status-card red">
+
+                                    <div class="status-icon">
+                                        <i class="fa-solid fa-xmark"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>Não houve melhora</strong>
+
+                                        <span>
+                                            O paciente não apresentou
+                                            evolução
+                                        </span>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="status-card yellow">
+
+                                    <div class="status-icon">
+                                        <i class="fa-solid fa-minus"></i>
+                                    </div>
+
+                                    <div>
+                                        <strong>Sem alterações</strong>
+
+                                        <span>
+                                            O quadro permaneceu
+                                            estável
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="notice">
+
+                                <i class="fa-solid fa-info"></i>
+
+                                <p>
+                                    Mantenha as anotações sempre atualizadas para garantir
+                                    um acompanhamento seguro e eficaz do paciente com epilepsia.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- DIREITA -->
+
+                        <div class="example-panel">
+
+                            <h3>Exemplo de anotação médica</h3>
+
+
+                            <div class="medical-paper">
+
+                                <p>
+                                    Paciente com epilepsia em acompanhamento regular.<br>
+                                    Relata episódios convulsivos reduzidos em frequência.<br>
+                                    Última crise há 15 dias e curta duração.
+                                </p>
+
+                                <p>
+                                    Queixa-se de fadiga e sonolência excessiva ao longo do dia.<br>
+                                    Nega outros sintomas associados.
+                                </p>
+
+                                <p>
+                                    Mantém uso regular da medicação prescrita.<br>
+                                    Orientado a manter rotina de sono e evitar gatilhos.
+                                </p>
+
+                                <p>
+                                    <strong>Plano:</strong><br>
+                                    - Manter medicação atual.<br>
+                                    - Retorno em 30 dias.<br>
+                                    - Realizar exames de controle.
+                                </p>
+
+
+                                <div class="signature">
+                                    Assinatura do médico
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- =============================================
+                         BOTÕES
+                    ============================================== -->
+
+                    <div class="form-footer">
+
+                        <button class="btn cancel-btn">
+                            Cancelar
+                        </button>
+
+                        <button class="btn save-btn">
+                            Salvar anotações
+                            <i class="fa-regular fa-floppy-disk"></i>
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- =====================================================
+         RODAPÉ
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <div class="footer-content">
+
+            <div class="footer-center">
+
+                <div>
+                    <i class="fa-solid fa-lock"></i>
+                    Ambiente seguro e criptografado
+                </div>
+
+                <span>
+                    © 2024 EMPS. Todos os direitos reservados.
+                </span>
+
+            </div>
+
+
+            <div class="footer-security">
+                <i class="fa-solid fa-lock"></i>
+                Ambiente seguro e criptografado
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script>
+
+        /* =====================================================
+           SELEÇÃO DAS ABAS
+        ===================================================== */
+
+        const tabs = document.querySelectorAll(".tab");
+
+        tabs.forEach(tab => {
+
+            tab.addEventListener("click", function () {
+
+                tabs.forEach(item => {
+                    item.classList.remove("active");
+                });
+
+                this.classList.add("active");
+
+            });
+
+        });
+
+
+        /* =====================================================
+           SELEÇÃO DO ANDAMENTO DO PACIENTE
+        ===================================================== */
+
+        const statusCards = document.querySelectorAll(".status-card");
+
+        statusCards.forEach(card => {
+
+            card.addEventListener("click", function () {
+
+                statusCards.forEach(item => {
+
+                    item.style.boxShadow = "none";
+                    item.style.transform = "";
+
+                });
+
+                this.style.boxShadow =
+                    "0 0 0 2px rgba(91, 53, 213, .18)";
+
+            });
+
+        });
+
+
+        /* =====================================================
+           BOTÃO FECHAR
+        ===================================================== */
+
+        document.querySelector(".close-button")
+            .addEventListener("click", function () {
+
+                document.querySelector(".workspace").style.opacity = "0";
+
+                setTimeout(() => {
+                    document.querySelector(".workspace").style.opacity = "1";
+                }, 300);
+
+            });
+
+
+        /* =====================================================
+           BOTÃO VOLTAR
+        ===================================================== */
+
+        document.querySelector(".back-button")
+            .addEventListener("click", function () {
+
+                window.history.back();
+
+            });
+
+
+        /* =====================================================
+           CANCELAR
+        ===================================================== */
+
+        document.querySelector(".cancel-btn")
+            .addEventListener("click", function () {
+
+                const textarea = document.querySelector(".editor textarea");
+                const input = document.querySelector(".input-wrapper input");
+
+                textarea.value = "";
+                input.value = "";
+
+            });
+
+
+        /* =====================================================
+           SALVAR
+        ===================================================== */
+
+        document.querySelector(".save-btn")
+            .addEventListener("click", function () {
+
+                const button = this;
+                const original = button.innerHTML;
+
+                button.innerHTML =
+                    '<i class="fa-solid fa-check"></i> Anotações salvas';
+
+                setTimeout(() => {
+                    button.innerHTML = original;
+                }, 2000);
+
+            });
+
+    </script>
+
+</body>
+
+</html>

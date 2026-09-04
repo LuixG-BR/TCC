@@ -1,0 +1,1953 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EMPS</title>
+
+    <!-- FONTES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+        /* =========================================
+           CONFIGURAÇÕES GERAIS
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            width: 100%;
+            min-width: 0;
+
+            font-family: "Roboto", Arial, sans-serif;
+
+            background: #ffffff;
+            color: #171717;
+
+            overflow-x: hidden;
+        }
+
+
+        /* =========================================
+           HERO / PRIMEIRA TELA
+        ========================================= */
+
+        .hero {
+
+            width: 100%;
+            min-height: 720px;
+
+            padding: 35px 5% 0;
+
+            background:
+                radial-gradient(
+                    circle at 50% 65%,
+                    #ad85d5 0%,
+                    #8e68ba 35%,
+                    #654795 70%,
+                    #4c347c 100%
+                );
+
+        }
+
+
+        /* =========================================
+           MENU
+        ========================================= */
+
+        .topo {
+
+            width: 100%;
+            max-width: 1400px;
+
+            min-height: 75px;
+
+            margin: 0 auto;
+
+            padding: 0 45px;
+
+            background: rgba(255, 255, 255, 0.85);
+
+            border-radius: 50px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 70px;
+
+        }
+
+
+        .logo {
+
+            flex: 0 0 auto;
+
+            font-family: "Oswald", sans-serif;
+
+            font-size: 25px;
+            font-weight: 700;
+
+            color: #111;
+
+            white-space: nowrap;
+
+        }
+
+
+        .menu {
+
+            display: flex;
+            align-items: center;
+
+            gap: 55px;
+
+            flex: 1;
+
+        }
+
+
+        .menu a {
+
+            color: #252525;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 500;
+
+            transition: 0.2s;
+
+            white-space: nowrap;
+
+        }
+
+
+        .menu a:hover {
+            opacity: 0.55;
+        }
+
+
+        /* =========================================
+           CORAÇÃO
+        ========================================= */
+
+        .hero-content {
+
+            width: 100%;
+
+            min-height: 610px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+
+        .coracao {
+
+            width: 450px;
+            max-width: 75vw;
+            max-height: 65vh;
+
+            object-fit: contain;
+
+            filter:
+                drop-shadow(
+                    0 30px 25px rgba(255, 115, 110, 0.25)
+                )
+                drop-shadow(
+                    0 0 35px rgba(255, 169, 126, 0.25)
+                );
+
+        }
+
+
+        /* =========================================
+           SOBRE O EMPS
+        ========================================= */
+
+        .sobre {
+
+            width: 100%;
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+            padding: 110px 7%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 100px;
+
+        }
+
+
+        .sobre-texto {
+
+            flex: 1;
+            min-width: 0;
+
+            max-width: 600px;
+
+        }
+
+
+        .sobre-texto h1 {
+
+            font-family: "Oswald", sans-serif;
+
+            font-size: 52px;
+            line-height: 1;
+
+            margin-bottom: 40px;
+
+        }
+
+
+        .sobre-texto p {
+
+            font-size: 14px;
+            line-height: 1.6;
+
+            margin-bottom: 18px;
+
+            color: #333;
+
+        }
+
+
+        .sobre-imagem {
+
+            flex: 1;
+            min-width: 0;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+
+        .sobre-imagem img {
+
+            width: 480px;
+            max-width: 100%;
+            height: auto;
+
+            object-fit: contain;
+
+        }
+
+
+        /* =========================================
+           PROFISSIONAIS
+        ========================================= */
+
+        .profissionais {
+
+            width: 100%;
+
+            padding: 100px 6% 80px;
+
+            text-align: center;
+
+            background: #fff;
+
+        }
+
+
+        .profissionais h2 {
+
+            font-family: "Oswald", sans-serif;
+
+            font-size: 46px;
+            font-weight: 600;
+
+            color: #111;
+
+            margin-bottom: 15px;
+
+            text-decoration: none !important;
+
+            border: none !important;
+            border-bottom: none !important;
+
+        }
+
+
+        .profissionais h2::after {
+
+            display: none !important;
+            content: none !important;
+
+        }
+
+
+        .descricao-profissionais {
+
+            width: 100%;
+            max-width: 850px;
+
+            margin: 0 auto 65px;
+
+            font-size: 13px;
+            line-height: 1.5;
+
+            color: #444;
+
+        }
+
+
+        /* =========================================
+           CARDS DOS PROFISSIONAIS
+        ========================================= */
+
+        .cards {
+
+            width: 100%;
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+
+            gap: 65px;
+
+        }
+
+
+        .card {
+
+            width: 100%;
+            height: 230px;
+
+            overflow: hidden;
+
+            border-radius: 22px;
+
+            background: #eee;
+
+        }
+
+
+        .card img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: transform 0.3s ease;
+
+        }
+
+
+        .card:hover img {
+            transform: scale(1.05);
+        }
+
+
+        /* =========================================
+           BENEFÍCIOS
+        ========================================= */
+
+        .beneficios {
+
+            width: 100%;
+
+            padding: 80px 6% 100px;
+
+            text-align: center;
+
+            background: #fff;
+
+        }
+
+
+        .beneficios h2 {
+
+            font-family: "Oswald", sans-serif;
+
+            font-size: 48px;
+            font-weight: 600;
+
+            margin-bottom: 25px;
+
+        }
+
+
+        .beneficios-descricao {
+
+            width: 100%;
+            max-width: 1050px;
+
+            margin: 0 auto 60px;
+
+            font-size: 14px;
+            line-height: 1.6;
+
+            color: #444;
+
+        }
+
+
+        .beneficios-grid {
+
+            width: 100%;
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 70px;
+
+        }
+
+
+        .beneficio-card {
+
+            width: 100%;
+            min-height: 180px;
+
+            padding: 38px 32px;
+
+            text-align: left;
+
+            background: #dba8eb;
+
+            border-radius: 18px;
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+
+        }
+
+
+        .beneficio-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 30px rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        .beneficio-card h3 {
+
+            font-family: "Oswald", sans-serif;
+
+            font-size: 20px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .beneficio-card p {
+
+            font-size: 13px;
+            line-height: 1.5;
+
+            color: #333;
+
+        }
+
+
+        /* =========================================
+           FAÇA PARTE DA EMPS
+        ========================================= */
+
+        .equipe {
+
+            width: 100%;
+            max-width: 1400px;
+
+            margin: 0 auto;
+
+            padding: 80px 7% 120px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            gap: 100px;
+
+        }
+
+
+        .equipe-texto {
+
+            flex: 1;
+            min-width: 0;
+
+            max-width: 600px;
+
+        }
+
+
+        .seta {
+
+            font-size: 35px;
+
+            margin-bottom: 20px;
+
+        }
+
+
+        .equipe-texto h2 {
+
+            font-family: "Oswald", sans-serif;
+
+            font-size: 48px;
+            line-height: 1.1;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .equipe-texto p {
+
+            font-size: 14px;
+            line-height: 1.6;
+
+            margin-bottom: 18px;
+
+            color: #333;
+
+        }
+
+
+        /* =========================================
+           BOTÃO CONECTAR
+        ========================================= */
+
+        .btn-equipe {
+
+            width: 100%;
+
+            margin-top: 25px;
+
+            padding: 17px 30px;
+
+            display: block;
+
+            text-align: center;
+
+            text-decoration: none;
+
+            font-family: "Oswald", sans-serif;
+
+            font-size: 18px;
+            font-weight: 600;
+
+            color: #181818;
+
+            background: #e5b8ee;
+
+            border-radius: 12px;
+
+            transition:
+                transform 0.2s ease,
+                background 0.2s ease;
+
+        }
+
+
+        .btn-equipe:hover {
+
+            background: #d79ce5;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =========================================
+           IMAGEM DO SISTEMA
+        ========================================= */
+
+        .equipe-imagem {
+
+            flex: 1;
+            min-width: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+
+        .equipe-imagem img {
+
+            width: 550px;
+            max-width: 100%;
+            height: auto;
+
+            object-fit: contain;
+
+        }
+
+
+        /* =========================================
+           RODAPÉ
+        ========================================= */
+
+        footer {
+
+            width: 100%;
+
+            padding: 35px 20px;
+
+            text-align: center;
+
+            background: #151515;
+
+            color: #fff;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================
+           NOTEBOOK / TELAS MÉDIAS
+           1001px - 1200px
+        ========================================= */
+
+        @media (max-width: 1200px) {
+
+            .hero {
+                padding-left: 4%;
+                padding-right: 4%;
+            }
+
+
+            .topo {
+
+                padding: 0 30px;
+
+                gap: 35px;
+
+            }
+
+
+            .menu {
+
+                gap: 28px;
+
+            }
+
+
+            .menu a {
+
+                font-size: 12px;
+
+            }
+
+
+            .sobre {
+
+                padding-left: 5%;
+                padding-right: 5%;
+
+                gap: 55px;
+
+            }
+
+
+            .sobre-texto h1 {
+
+                font-size: 46px;
+
+            }
+
+
+            .cards {
+
+                gap: 35px;
+
+            }
+
+
+            .beneficios-grid {
+
+                gap: 35px;
+
+            }
+
+
+            .equipe {
+
+                padding-left: 5%;
+                padding-right: 5%;
+
+                gap: 55px;
+
+            }
+
+        }
+
+
+        /* =========================================
+           TABLET / NOTEBOOK PEQUENO
+           751px - 1000px
+        ========================================= */
+
+        @media (max-width: 1000px) {
+
+            .hero {
+
+                min-height: 680px;
+
+                padding-top: 25px;
+
+            }
+
+
+            .topo {
+
+                min-height: 70px;
+
+                padding: 15px 25px;
+
+                gap: 25px;
+
+            }
+
+
+            .menu {
+
+                gap: 20px;
+
+                justify-content: flex-end;
+
+            }
+
+
+            .menu a {
+
+                font-size: 11px;
+
+            }
+
+
+            .hero-content {
+
+                min-height: 570px;
+
+            }
+
+
+            .coracao {
+
+                width: 400px;
+                max-width: 65vw;
+
+            }
+
+
+            /* SOBRE */
+
+            .sobre {
+
+                padding-top: 80px;
+                padding-bottom: 80px;
+
+                gap: 45px;
+
+            }
+
+
+            .sobre-texto h1 {
+
+                font-size: 42px;
+
+                margin-bottom: 30px;
+
+            }
+
+
+            .sobre-texto p {
+
+                font-size: 13px;
+
+            }
+
+
+            .sobre-imagem img {
+
+                width: 420px;
+
+            }
+
+
+            /* PROFISSIONAIS */
+
+            .profissionais {
+
+                padding-top: 80px;
+
+            }
+
+
+            .profissionais h2 {
+
+                font-size: 42px;
+
+            }
+
+
+            .descricao-profissionais {
+
+                margin-bottom: 45px;
+
+            }
+
+
+            .cards {
+
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+
+                max-width: 700px;
+
+                gap: 30px;
+
+            }
+
+
+            .card {
+
+                height: 220px;
+
+            }
+
+
+            /* BENEFÍCIOS */
+
+            .beneficios {
+
+                padding-top: 70px;
+
+                padding-bottom: 80px;
+
+            }
+
+
+            .beneficios h2 {
+
+                font-size: 44px;
+
+            }
+
+
+            .beneficios-grid {
+
+                gap: 25px;
+
+            }
+
+
+            .beneficio-card {
+
+                padding: 30px 25px;
+
+            }
+
+
+            /* EQUIPE */
+
+            .equipe {
+
+                padding-top: 70px;
+                padding-bottom: 90px;
+
+                gap: 45px;
+
+            }
+
+
+            .equipe-texto h2 {
+
+                font-size: 42px;
+
+            }
+
+
+            .equipe-imagem img {
+
+                width: 450px;
+
+            }
+
+        }
+
+
+        /* =========================================
+           CELULAR
+           ATÉ 750px
+        ========================================= */
+
+        @media (max-width: 750px) {
+
+            .hero {
+
+                min-height: auto;
+
+                padding: 15px;
+
+            }
+
+
+            /* MENU */
+
+            .topo {
+
+                width: 100%;
+
+                min-height: auto;
+
+                padding: 20px;
+
+                border-radius: 25px;
+
+                flex-direction: column;
+
+                align-items: center;
+
+                justify-content: center;
+
+                gap: 18px;
+
+            }
+
+
+            .logo {
+
+                font-size: 27px;
+
+            }
+
+
+            .menu {
+
+                width: 100%;
+
+                flex: none;
+
+                display: flex;
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+
+                align-items: center;
+
+                gap: 12px 20px;
+
+            }
+
+
+            .menu a {
+
+                font-size: 11px;
+
+                text-align: center;
+
+            }
+
+
+            /* HERO */
+
+            .hero-content {
+
+                width: 100%;
+
+                min-height: 430px;
+
+                padding: 30px 0;
+
+            }
+
+
+            .coracao {
+
+                width: 330px;
+
+                max-width: 80vw;
+
+                max-height: 55vh;
+
+            }
+
+
+            /* SOBRE */
+
+            .sobre {
+
+                width: 100%;
+
+                padding: 70px 8%;
+
+                flex-direction: column;
+
+                text-align: center;
+
+                gap: 45px;
+
+            }
+
+
+            .sobre-texto {
+
+                width: 100%;
+
+                max-width: 650px;
+
+            }
+
+
+            .sobre-texto h1 {
+
+                font-size: 42px;
+
+                line-height: 1.05;
+
+                margin-bottom: 30px;
+
+            }
+
+
+            .sobre-texto p {
+
+                font-size: 14px;
+
+                line-height: 1.6;
+
+            }
+
+
+            .sobre-imagem {
+
+                width: 100%;
+
+            }
+
+
+            .sobre-imagem img {
+
+                width: 350px;
+
+                max-width: 90vw;
+
+            }
+
+
+            /* PROFISSIONAIS */
+
+            .profissionais {
+
+                padding: 70px 8%;
+
+            }
+
+
+            .profissionais h2 {
+
+                font-size: 38px;
+
+                line-height: 1.1;
+
+            }
+
+
+            .descricao-profissionais {
+
+                font-size: 13px;
+
+                margin-bottom: 45px;
+
+            }
+
+
+            .cards {
+
+                width: 100%;
+
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+
+                gap: 20px;
+
+            }
+
+
+            .card {
+
+                width: 100%;
+
+                height: 190px;
+
+                border-radius: 17px;
+
+            }
+
+
+            /* BENEFÍCIOS */
+
+            .beneficios {
+
+                padding: 60px 8% 75px;
+
+            }
+
+
+            .beneficios h2 {
+
+                font-size: 40px;
+
+                line-height: 1.1;
+
+            }
+
+
+            .beneficios-descricao {
+
+                font-size: 13px;
+
+                margin-bottom: 40px;
+
+            }
+
+
+            .beneficios-grid {
+
+                width: 100%;
+
+                grid-template-columns: 1fr;
+
+                gap: 22px;
+
+            }
+
+
+            .beneficio-card {
+
+                width: 100%;
+
+                min-height: auto;
+
+                padding: 30px 25px;
+
+            }
+
+
+            .beneficio-card h3 {
+
+                font-size: 20px;
+
+                margin-bottom: 15px;
+
+            }
+
+
+            .beneficio-card p {
+
+                font-size: 13px;
+
+            }
+
+
+            /* EQUIPE */
+
+            .equipe {
+
+                width: 100%;
+
+                padding: 60px 8% 80px;
+
+                flex-direction: column;
+
+                gap: 45px;
+
+                text-align: center;
+
+            }
+
+
+            .equipe-texto {
+
+                width: 100%;
+
+                max-width: 650px;
+
+            }
+
+
+            .seta {
+
+                font-size: 30px;
+
+                margin-bottom: 15px;
+
+            }
+
+
+            .equipe-texto h2 {
+
+                font-size: 40px;
+
+                line-height: 1.1;
+
+                margin-bottom: 25px;
+
+            }
+
+
+            .equipe-texto p {
+
+                font-size: 14px;
+
+            }
+
+
+            .btn-equipe {
+
+                font-size: 17px;
+
+                padding: 16px 20px;
+
+            }
+
+
+            .equipe-imagem {
+
+                width: 100%;
+
+            }
+
+
+            .equipe-imagem img {
+
+                width: 400px;
+
+                max-width: 90vw;
+
+            }
+
+
+            /* FOOTER */
+
+            footer {
+
+                padding: 28px 15px;
+
+                font-size: 12px;
+
+            }
+
+        }
+
+
+        /* =========================================
+           CELULARES PEQUENOS
+           ATÉ 480px
+        ========================================= */
+
+        @media (max-width: 480px) {
+
+            .hero {
+
+                padding: 10px;
+
+            }
+
+
+            /* MENU */
+
+            .topo {
+
+                padding: 18px 15px;
+
+                border-radius: 20px;
+
+                gap: 15px;
+
+            }
+
+
+            .logo {
+
+                font-size: 24px;
+
+            }
+
+
+            .menu {
+
+                gap: 10px 14px;
+
+            }
+
+
+            .menu a {
+
+                font-size: 10px;
+
+            }
+
+
+            /* HERO */
+
+            .hero-content {
+
+                min-height: 330px;
+
+                padding: 20px 0;
+
+            }
+
+
+            .coracao {
+
+                width: 280px;
+
+                max-width: 85vw;
+
+            }
+
+
+            /* SOBRE */
+
+            .sobre {
+
+                padding: 55px 7%;
+
+                gap: 35px;
+
+            }
+
+
+            .sobre-texto h1 {
+
+                font-size: 34px;
+
+                margin-bottom: 25px;
+
+            }
+
+
+            .sobre-texto p {
+
+                font-size: 13px;
+
+            }
+
+
+            .sobre-imagem img {
+
+                width: 300px;
+
+                max-width: 90vw;
+
+            }
+
+
+            /* PROFISSIONAIS */
+
+            .profissionais {
+
+                padding: 55px 7%;
+
+            }
+
+
+            .profissionais h2 {
+
+                font-size: 32px;
+
+            }
+
+
+            .descricao-profissionais {
+
+                font-size: 12px;
+
+                margin-bottom: 35px;
+
+            }
+
+
+            .cards {
+
+                grid-template-columns: 1fr;
+
+                gap: 18px;
+
+                max-width: 330px;
+
+            }
+
+
+            .card {
+
+                height: 190px;
+
+                border-radius: 15px;
+
+            }
+
+
+            /* BENEFÍCIOS */
+
+            .beneficios {
+
+                padding: 50px 7% 65px;
+
+            }
+
+
+            .beneficios h2 {
+
+                font-size: 34px;
+
+            }
+
+
+            .beneficios-descricao {
+
+                font-size: 12px;
+
+                margin-bottom: 35px;
+
+            }
+
+
+            .beneficio-card {
+
+                padding: 25px 20px;
+
+                border-radius: 15px;
+
+            }
+
+
+            .beneficio-card h3 {
+
+                font-size: 18px;
+
+            }
+
+
+            .beneficio-card p {
+
+                font-size: 12px;
+
+            }
+
+
+            /* EQUIPE */
+
+            .equipe {
+
+                padding: 50px 7% 65px;
+
+                gap: 35px;
+
+            }
+
+
+            .seta {
+
+                font-size: 27px;
+
+            }
+
+
+            .equipe-texto h2 {
+
+                font-size: 33px;
+
+            }
+
+
+            .equipe-texto p {
+
+                font-size: 13px;
+
+            }
+
+
+            .btn-equipe {
+
+                font-size: 16px;
+
+                padding: 15px 18px;
+
+            }
+
+
+            .equipe-imagem img {
+
+                width: 300px;
+
+                max-width: 90vw;
+
+            }
+
+
+            /* FOOTER */
+
+            footer {
+
+                padding: 25px 10px;
+
+                font-size: 11px;
+
+            }
+
+        }
+
+
+        /* =========================================
+           CELULAR MUITO PEQUENO
+           ATÉ 360px
+        ========================================= */
+
+        @media (max-width: 360px) {
+
+            .menu {
+
+                gap: 9px 11px;
+
+            }
+
+
+            .menu a {
+
+                font-size: 9px;
+
+            }
+
+
+            .coracao {
+
+                width: 250px;
+
+            }
+
+
+            .sobre-texto h1 {
+
+                font-size: 31px;
+
+            }
+
+
+            .profissionais h2 {
+
+                font-size: 29px;
+
+            }
+
+
+            .beneficios h2 {
+
+                font-size: 31px;
+
+            }
+
+
+            .equipe-texto h2 {
+
+                font-size: 30px;
+
+            }
+
+
+            .card {
+
+                height: 170px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         HERO
+    ========================================== -->
+
+    <section class="hero" id="inicio">
+
+
+        <!-- MENU -->
+
+        <header class="topo">
+
+            <div class="logo">
+                EMPS
+            </div>
+
+
+            <nav class="menu">
+
+                <a href="#inicio">
+                    INÍCIO
+                </a>
+
+                <a href="#sobre">
+                    SOBRE O EMPS
+                </a>
+
+                <a href="#equipe">
+                    FAÇA PARTE DA NOSSA EQUIPE
+                </a>
+
+                <a href="#suporte">
+                    SUPORTE
+                </a>
+
+            </nav>
+
+        </header>
+
+
+        <!-- CORAÇÃO -->
+
+        <div class="hero-content">
+
+            <img
+                src="img/coracao.png"
+                alt="Coração EMPS"
+                class="coracao"
+            >
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================================
+         SOBRE O EMPS
+    ========================================== -->
+
+    <section class="sobre" id="sobre">
+
+
+        <div class="sobre-texto">
+
+            <h1>
+                SOBRE O EMPS
+            </h1>
+
+
+            <p>
+
+                A EMPS é uma solução tecnológica desenvolvida
+                para auxiliar no monitoramento e na prevenção
+                de crises de epilepsia, aproximando pacientes
+                e profissionais de saúde.
+
+            </p>
+
+
+            <p>
+
+                Por meio de uma cinta inteligente e do aplicativo
+                EMPS, é possível acompanhar informações importantes,
+                identificar alterações e enviar alertas em situações
+                de risco.
+
+            </p>
+
+
+            <p>
+
+                Nossa tecnologia busca tornar o acompanhamento
+                mais rápido, seguro e conectado, permitindo que
+                o paciente tenha mais tranquilidade no dia a dia
+                e que os profissionais tenham acesso a informações
+                que podem contribuir para um cuidado mais eficiente
+                e personalizado.
+
+            </p>
+
+        </div>
+
+
+        <div class="sobre-imagem">
+
+            <img
+                src="img/cinta.png"
+                alt="Cinta inteligente EMPS"
+            >
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================================
+         PROFISSIONAIS
+    ========================================== -->
+
+    <section class="profissionais">
+
+
+        <h2>
+            Profissionais Ideais para Você
+        </h2>
+
+
+        <p class="descricao-profissionais">
+
+            Nossa equipe conta com profissionais qualificados,
+            dedicados ao cuidado, monitoramento e bem-estar dos
+            pacientes, unindo tecnologia, responsabilidade e
+            atendimento humanizado.
+
+        </p>
+
+
+        <div class="cards">
+
+
+            <div class="card">
+
+                <img
+                    src="img/img01.jfif"
+                    alt="Profissional da saúde"
+                >
+
+            </div>
+
+
+            <div class="card">
+
+                <img
+                    src="img/img02.jfif"
+                    alt="Profissional da saúde"
+                >
+
+            </div>
+
+
+            <div class="card">
+
+                <img
+                    src="img/img03.jfif"
+                    alt="Profissional da saúde"
+                >
+
+            </div>
+
+
+            <div class="card">
+
+                <img
+                    src="img/img04.jfif"
+                    alt="Profissional da saúde"
+                >
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================================
+         BENEFÍCIOS
+    ========================================== -->
+
+    <section class="beneficios">
+
+
+        <h2>
+            BENEFÍCIOS
+        </h2>
+
+
+        <p class="beneficios-descricao">
+
+            Os benefícios do EMPS estão em tornar o acompanhamento
+            mais seguro, prático e conectado. Com monitoramento
+            contínuo, alertas rápidos e comunicação com profissionais,
+            a tecnologia ajuda a proporcionar mais tranquilidade
+            no dia a dia.
+
+        </p>
+
+
+        <div class="beneficios-grid">
+
+
+            <div class="beneficio-card">
+
+                <h3>
+                    Monitoramento em tempo real
+                </h3>
+
+                <p>
+                    Acompanhe sinais importantes de forma contínua.
+                </p>
+
+            </div>
+
+
+            <div class="beneficio-card">
+
+                <h3>
+                    Alertas rápidos
+                </h3>
+
+                <p>
+                    Receba notificações em situações de atenção.
+                </p>
+
+            </div>
+
+
+            <div class="beneficio-card">
+
+                <h3>
+                    Conexão com profissionais
+                </h3>
+
+                <p>
+                    Facilite a comunicação entre paciente e médico.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================================
+         FAÇA PARTE DA EMPS
+    ========================================== -->
+
+    <section class="equipe" id="equipe">
+
+
+        <div class="equipe-texto">
+
+
+            <div class="seta">
+                →
+            </div>
+
+
+            <h2>
+                FAÇA PARTE DA EMPS
+            </h2>
+
+
+            <p>
+
+                A EMPS foi desenvolvida para aproximar pacientes
+                e profissionais de saúde em uma plataforma moderna,
+                segura e integrada.
+
+            </p>
+
+
+            <p>
+
+                Ao acessar sua conta, você encontra uma experiência
+                personalizada de acordo com o seu perfil, facilitando
+                o acompanhamento de informações, o monitoramento
+                e a comunicação entre quem cuida e quem recebe
+                o cuidado.
+
+            </p>
+
+
+            <a
+                href="login.html"
+                class="btn-equipe"
+            >
+
+                Conectar à EMPS
+
+            </a>
+
+
+        </div>
+
+
+        <div class="equipe-imagem">
+
+            <img
+                src="img/dashboard.png"
+                alt="Sistema EMPS"
+            >
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =========================================
+         RODAPÉ
+    ========================================== -->
+
+    <footer id="suporte">
+
+        <p>
+            EMPS © 2026
+        </p>
+
+    </footer>
+
+
+</body>
+
+</html>
