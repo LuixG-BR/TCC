@@ -13,7 +13,7 @@ def somente_administrador(
     usuario_token = Depends(verificar_token)
 ):
 
-    id_perfil = usuario_token.get("id_perfil")
+    id_perfil = usuario_token.get("perfil")
 
     if id_perfil != 1:
         raise HTTPException(
@@ -28,7 +28,7 @@ def administrador_ou_medico(
     usuario_token = Depends(verificar_token)
 ):
 
-    id_perfil = usuario_token.get("id_perfil")
+    id_perfil = usuario_token.get("perfil")
 
     if id_perfil not in [1, 2]:
         raise HTTPException(

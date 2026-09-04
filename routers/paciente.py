@@ -1,8 +1,9 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from database import conectar
 
+from models.paciente import Paciente
 from schemas.paciente import PacienteCreate, PacienteResponse
 from controllers.paciente import (criar_paciente, listar_pacientes)
 from core.security import criar_hash
@@ -43,4 +44,26 @@ def editar_completo(
 
     usuario_token = Depends(administrador_ou_medico)
 ):
+    paciente = (db.query(Paciente)
+    .filter(
+        Paciente.id_paciente == id_paciente
+    ).first())
     
+    if not paciente:
+        raise HTTPException(
+            status_code=404,
+            detail="Paciente não encontrado"
+        )
+        
+    paciente.cpf = dados.cpf,
+    paciente.cns = dados.cns,
+    paciente.data_nascimento = dados.data_nascimento,
+    paciente.sexo = dados.sexo,
+    paciente.endereco = dados.endereco,
+    paciente.contato_emergencia = dados.contato_emergencia,
+    paciente.tipo_sanguineo = dados.tipo_sanguineo
+    
+    db.commit()
+    db.refresh(paciente)
+    
+    return paciente
