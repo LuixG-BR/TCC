@@ -3,9 +3,9 @@ from sqlalchemy.orm import Session
 
 from database import conectar
 from core.security import verificar_token, criar_hash
-from core.permissions import somente_administrador
+from core.permissions import somente_administrador, usuario_ativo
 
-from schemas.usuario import UsuarioCreate, UsuarioResponse, UsuarioMeResponse
+from schemas.usuario import UsuarioCreate, UsuarioResponse, UsuarioMeResponse, UsuarioStatus
 from controllers.usuario import (criar_usuario, listar_usuarios)
 from models.usuario import Usuario
 from models.medico import Medico
@@ -43,7 +43,7 @@ def buscar_usuarios(
 
 @router.get("/me")
 def usuario_logado(
-    usuario_token = Depends(verificar_token),
+    usuario_token = Depends(usuario_ativo),
     db: Session = Depends(conectar)
 ):
 
@@ -155,6 +155,34 @@ def editar(
     usuario.telefone = dados.telefone
     usuario.id_perfil = dados.id_perfil
     
+    db.commit()
+    db.refresh(usuario)
+
+    return usuario
+
+@router.patch("/{id_usuario}/status", response_model=UsuarioResponse)
+def alterar_status(
+    id_usuario: int,
+    dados: UsuarioStatus,
+    db: Session = Depends(conectar),
+
+    usuario_token = Depends(somente_administrador)
+):
+    usuario = db.query(
+        Usuario
+    ).filter(
+        Usuario.id_usuario == id_usuario
+    ).first()
+
+    if not usuario:
+
+        raise HTTPException(
+            404,
+            "Usuario não encontrado"
+        )
+
+    usuario.status = dados.status
+
     db.commit()
     db.refresh(usuario)
 

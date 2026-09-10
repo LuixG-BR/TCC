@@ -3,16 +3,49 @@ from sqlalchemy.orm import Session
 
 from core.security import verificar_token
 from database import conectar
+
+from models.usuario import Usuario
 from models.paciente import Paciente
 
+
+def usuario_ativo(
+    usuario_token = Depends(verificar_token),
+    db: Session = Depends(conectar)
+):
+
+    id_usuario = int(usuario_token["sub"])
+
+    usuario = (
+        db.query(Usuario)
+        .filter(
+            Usuario.id_usuario == id_usuario
+        )
+        .first()
+    )
+
+    if not usuario:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Usuário não encontrado."
+        )
+
+    if usuario.status is False:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Usuário desativado."
+        )
+
+    return usuario_token
+
+
 def usuario_autenticado(
-    usuario_token = Depends(verificar_token)
+    usuario_token = Depends(usuario_ativo)
 ):
     return usuario_token
 
 
 def somente_administrador(
-    usuario_token = Depends(verificar_token)
+    usuario_token = Depends(usuario_ativo)
 ):
 
     id_perfil = usuario_token.get("perfil")
@@ -27,7 +60,7 @@ def somente_administrador(
 
 
 def administrador_ou_medico(
-    usuario_token = Depends(verificar_token)
+    usuario_token = Depends(usuario_ativo)
 ):
 
     id_perfil = usuario_token.get("perfil")
@@ -40,9 +73,10 @@ def administrador_ou_medico(
 
     return usuario_token
 
+
 def paciente_proprio_ou_admin_medico(
     id_paciente: int,
-    usuario_token = Depends(verificar_token),
+    usuario_token = Depends(usuario_ativo),
     db: Session = Depends(conectar)
 ):
 
@@ -58,13 +92,15 @@ def paciente_proprio_ou_admin_medico(
 
         paciente = (
             db.query(Paciente)
-            .filter(Paciente.id_paciente == id_paciente)
+            .filter(
+                Paciente.id_paciente == id_paciente
+            )
             .first()
         )
 
         if not paciente:
             raise HTTPException(
-                status_code=404,
+                status_code=status.HTTP_404_NOT_FOUND,
                 detail="Paciente não encontrado."
             )
 
