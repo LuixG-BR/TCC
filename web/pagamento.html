@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Finalizar compra | EMPS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        :root {
+            --primary: #5530c9;
+            --primary-dark: #4321aa;
+            --primary-light: #f1edff;
+            --blue: #1877c9;
+            --text: #22243a;
+            --muted: #6d7186;
+            --border: #e2e4ee;
+            --background: #f8f9fd;
+            --card: #ffffff;
+            --green: #299c62;
+        }
+
+        body {
+            min-width: 320px;
+            background: var(--background);
+            color: var(--text);
+        }
+
+        button,
+        input,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+            height: 70px;
+            background: #ffffff;
+            border-top: 4px solid var(--blue);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+        }
+
+        .header-content {
+            width: min(96%, 1600px);
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+            min-width: max-content;
+        }
+
+        .logo i {
+            font-size: 30px;
+        }
+
+        .logo strong {
+            font-size: 23px;
+            line-height: 1;
+        }
+
+        .logo small {
+            display: block;
+            margin-top: 3px;
+            font-size: 7px;
+            color: #5f6170;
+        }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(20px, 3vw, 55px);
+            flex: 1;
+        }
+
+        .main-nav a {
+            color: #303246;
+            text-decoration: none;
+            font-size: 13px;
+            white-space: nowrap;
+            transition: 0.2s;
+        }
+
+        .main-nav a:hover {
+            color: var(--primary);
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #36384b;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .user-menu i {
+            color: var(--primary);
+            font-size: 16px;
+        }
+
+        /* =====================================================
+           CONTAINER
+        ===================================================== */
+
+        .page {
+            width: min(96%, 1600px);
+            margin: 0 auto;
+            padding: 28px 0 20px;
+        }
+
+        /* =====================================================
+           STEPS
+        ===================================================== */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            align-items: start;
+            margin-bottom: 22px;
+        }
+
+        .step {
+            position: relative;
+            text-align: center;
+            color: var(--muted);
+            font-size: 11px;
+        }
+
+        .step::before {
+            content: "";
+            position: absolute;
+            height: 2px;
+            background: #e3e4eb;
+            top: 12px;
+            left: 50%;
+            width: 100%;
+            z-index: 0;
+        }
+
+        .step:last-child::before {
+            display: none;
+        }
+
+        .step-number {
+            width: 26px;
+            height: 26px;
+            margin: 0 auto 7px;
+            border-radius: 50%;
+            background: #eceef4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .step.active {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .step.active .step-number {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 0 5px #f0ecff;
+        }
+
+        .step.active::before {
+            background: var(--primary);
+        }
+
+        /* =====================================================
+           PAGE TITLE
+        ===================================================== */
+
+        .checkout-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 18px;
+        }
+
+        .checkout-title h1 {
+            font-size: clamp(24px, 2vw, 34px);
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        .checkout-title h1 span {
+            color: var(--primary);
+        }
+
+        .secure {
+            margin-top: 5px;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .secure i {
+            color: var(--primary);
+            margin-right: 5px;
+        }
+
+        .back-link {
+            color: var(--primary);
+            border: none;
+            background: transparent;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        .back-link i {
+            margin-right: 7px;
+        }
+
+        /* =====================================================
+           MAIN GRID
+        ===================================================== */
+
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.18fr) minmax(400px, 0.92fr);
+            gap: 20px;
+            align-items: start;
+        }
+
+        .left-column,
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* =====================================================
+           CARDS
+        ===================================================== */
+
+        .checkout-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            box-shadow: 0 5px 18px rgba(45, 42, 80, 0.035);
+        }
+
+        .card-title {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .card-title .title-icon {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            background: var(--primary-light);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .card-title h2 {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .card-title p {
+            color: var(--muted);
+            font-size: 10px;
+            margin-top: 2px;
+        }
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 13px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .field label {
+            color: #565a6d;
+            font-size: 10px;
+            font-weight: 500;
+        }
+
+        .field input,
+        .field select {
+            width: 100%;
+            height: 39px;
+            border: 1px solid #dde0e9;
+            border-radius: 7px;
+            padding: 0 11px;
+            outline: none;
+            color: #35384a;
+            font-size: 11px;
+            background: #fff;
+            transition: 0.2s;
+        }
+
+        .field input:focus,
+        .field select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(85, 48, 201, 0.08);
+        }
+
+        .col-1 {
+            grid-column: span 1;
+        }
+
+        .col-2 {
+            grid-column: span 2;
+        }
+
+        .col-3 {
+            grid-column: span 3;
+        }
+
+        .col-4 {
+            grid-column: span 4;
+        }
+
+        .col-5 {
+            grid-column: span 5;
+        }
+
+        .col-6 {
+            grid-column: span 6;
+        }
+
+        .save-address {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 14px;
+            color: #55586b;
+            font-size: 10px;
+        }
+
+        .save-address input {
+            accent-color: var(--primary);
+        }
+
+        /* =====================================================
+           PAYMENT
+        ===================================================== */
+
+        .payment-main {
+            border: 1px solid #dddfea;
+            border-radius: 9px;
+            padding: 15px;
+        }
+
+        .payment-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 14px;
+        }
+
+        .payment-heading strong {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #414456;
+            font-size: 12px;
+        }
+
+        .payment-heading strong i {
+            color: var(--primary);
+        }
+
+        .payment-brands {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 10px;
+            font-weight: 700;
+            color: #4b4f62;
+        }
+
+        .card-fields {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 0.8fr;
+            gap: 10px;
+        }
+
+        .payment-option {
+            min-height: 46px;
+            padding: 0 15px;
+            margin-top: 10px;
+            border: 1px solid #e1e3eb;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #414456;
+            font-size: 11px;
+            cursor: pointer;
+            transition: 0.2s ease;
+            user-select: none;
+            background: #fff;
+        }
+
+        .payment-option:hover {
+            border-color: var(--primary);
+            background: #faf9ff;
+        }
+
+        .payment-option.selected {
+            border: 1.5px solid var(--primary);
+            background: #f5f1ff;
+            box-shadow: 0 0 0 2px rgba(85, 48, 201, 0.06);
+        }
+
+        .payment-option .payment-check {
+            margin-left: auto;
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid #cfd1da;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .payment-option.selected .payment-check {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .payment-option .payment-check i {
+            display: none;
+            font-size: 9px;
+            color: #fff;
+        }
+
+        .payment-option.selected .payment-check i {
+            display: block;
+        }
+
+        .payment-option i {
+            width: 20px;
+            color: var(--primary);
+            font-size: 15px;
+        }
+
+        .payment-option span:last-child {
+            margin-left: auto;
+            color: var(--muted);
+            font-size: 10px;
+        }
+
+        .protection-box {
+            margin-top: 15px;
+            padding: 15px 18px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, #f6f4ff, #eeebff);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .protection-box h3 {
+            color: var(--primary);
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .protection-box p {
+            color: #707488;
+            font-size: 9px;
+            line-height: 1.5;
+            max-width: 420px;
+        }
+
+        .protection-box i {
+            font-size: 36px;
+            color: var(--primary);
+            opacity: 0.75;
+        }
+
+        /* =====================================================
+           ORDER SUMMARY
+        ===================================================== */
+
+        .product {
+            display: grid;
+            grid-template-columns: 115px 1fr;
+            gap: 18px;
+            align-items: center;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #e8e9ef;
+        }
+
+        .product-image {
+            height: 100px;
+            border-radius: 9px;
+            background: #f6f6fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        .product h3 {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .product p {
+            font-size: 10px;
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-top: 10px;
+            font-size: 11px;
+        }
+
+        .product-price strong {
+            font-size: 13px;
+        }
+
+        .summary-line {
+            display: flex;
+            justify-content: space-between;
+            padding: 9px 0;
+            color: #65697a;
+            font-size: 10px;
+        }
+
+        .summary-line .free {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .summary-total {
+            border-top: 1px solid #e8e9ef;
+            margin-top: 5px;
+            padding-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .summary-total strong {
+            font-size: 20px;
+            color: var(--primary);
+        }
+
+        .benefits {
+            display: grid;
+            gap: 10px;
+            margin-top: 17px;
+        }
+
+        .benefit {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            color: #64687a;
+            font-size: 9px;
+        }
+
+        .benefit i {
+            width: 20px;
+            color: var(--primary);
+        }
+
+        /* =====================================================
+           DELIVERY
+        ===================================================== */
+
+        .delivery-card {
+            min-height: 350px;
+        }
+
+        .delivery-header {
+            margin-bottom: 16px;
+        }
+
+        .delivery-date {
+            text-align: center;
+            padding: 15px;
+            background: #f7f6fb;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .delivery-date span {
+            display: block;
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        .delivery-date strong {
+            display: block;
+            color: var(--primary);
+            font-size: 20px;
+            margin-top: 4px;
+        }
+
+        .delivery-date small {
+            color: #55586a;
+            font-size: 10px;
+        }
+
+        .delivery-content {
+            border: 1px solid #ececf2;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            overflow: hidden;
+        }
+
+        .tracking-map {
+            height: 145px;
+            position: relative;
+            background:
+                linear-gradient(30deg, transparent 48%, rgba(85, 48, 201, .8) 49%, rgba(85, 48, 201, .8) 51%, transparent 52%),
+                linear-gradient(90deg, #eef0f2 1px, transparent 1px),
+                linear-gradient(#eef0f2 1px, transparent 1px),
+                #f6f7f8;
+            background-size: auto, 24px 24px, 24px 24px;
+        }
+
+        .route {
+            position: absolute;
+            width: 45%;
+            height: 2px;
+            background: var(--primary);
+            transform: rotate(25deg);
+            top: 58%;
+            left: 25%;
+        }
+
+        .route::before,
+        .route::after {
+            content: "";
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            background: var(--primary);
+            top: 50%;
+            transform: translateY(-50%);
+            box-shadow: 0 0 0 5px rgba(85, 48, 201, .12);
+        }
+
+        .route::before {
+            left: -8px;
+        }
+
+        .route::after {
+            right: -8px;
+        }
+
+        .tracking-info {
+            padding: 14px;
+            display: flex;
+            gap: 10px;
+            color: #666a7d;
+            font-size: 9px;
+            line-height: 1.5;
+        }
+
+        .tracking-info i {
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        /* =====================================================
+           BOTTOM BENEFITS
+        ===================================================== */
+
+        .bottom-benefits {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            margin-top: 20px;
+            border: 1px solid var(--border);
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .bottom-benefit {
+            padding: 15px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            border-right: 1px solid var(--border);
+        }
+
+        .bottom-benefit:last-child {
+            border-right: none;
+        }
+
+        .bottom-benefit i {
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .bottom-benefit strong {
+            display: block;
+            font-size: 10px;
+        }
+
+        .bottom-benefit span {
+            display: block;
+            color: var(--muted);
+            font-size: 8px;
+            margin-top: 2px;
+        }
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+            width: min(96%, 1600px);
+            margin: 22px auto 0;
+            padding: 18px 0;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            color: var(--muted);
+            font-size: 9px;
+        }
+
+        .footer-center {
+            text-align: center;
+            flex: 1;
+        }
+
+        /* =====================================================
+           RESPONSIVIDADE
+        ===================================================== */
+
+        @media (max-width: 1100px) {
+
+            .checkout-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
+            }
+
+            .main-nav {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 850px) {
+
+            header {
+                height: auto;
+            }
+
+            .header-content {
+                padding: 15px 0;
+                flex-wrap: wrap;
+            }
+
+            .main-nav {
+                order: 3;
+                flex-basis: 100%;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .main-nav a {
+                font-size: 11px;
+            }
+
+            .right-column {
+                grid-template-columns: 1fr;
+            }
+
+            .bottom-benefits {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .bottom-benefit:nth-child(2) {
+                border-right: none;
+            }
+
+            .bottom-benefit:nth-child(-n+2) {
+                border-bottom: 1px solid var(--border);
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .page {
+                width: min(94%, 1600px);
+                padding-top: 20px;
+            }
+
+            .header-content {
+                width: 94%;
+            }
+
+            .main-nav {
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding-bottom: 3px;
+            }
+
+            .user-menu {
+                font-size: 10px;
+            }
+
+            .checkout-title {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .checkout-card {
+                padding: 16px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .col-1,
+            .col-2,
+            .col-3,
+            .col-4,
+            .col-5,
+            .col-6 {
+                grid-column: span 2;
+            }
+
+            .card-fields {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-brands {
+                display: none;
+            }
+
+            .product {
+                grid-template-columns: 90px 1fr;
+            }
+
+            .product-image {
+                height: 85px;
+            }
+
+            .protection-box {
+                align-items: flex-start;
+            }
+
+            .protection-box i {
+                font-size: 28px;
+            }
+
+            .bottom-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .bottom-benefit,
+            .bottom-benefit:nth-child(2) {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .bottom-benefit:last-child {
+                border-bottom: none;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+
+
+        /* =====================================================
+           PAGAMENTO PIX
+        ===================================================== */
+
+        .finish-payment {
+            width: 100%;
+            min-height: 46px;
+            margin-top: 16px;
+            border: none;
+            border-radius: 9px;
+            background: var(--primary);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            font-size: 12px;
+            font-weight: 600;
+            transition: .2s;
+        }
+
+        .finish-payment:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .payment-note {
+            margin-top: 7px;
+            text-align: center;
+            color: var(--muted);
+            font-size: 8px;
+        }
+
+        .result-barcode {
+            margin: 16px auto;
+            padding: 14px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fafaff;
+            font-family: monospace;
+            font-size: 11px;
+            line-height: 1.6;
+            word-break: break-all;
+            text-align: left;
+        }
+
+        .result-copy {
+            width: 100%;
+            min-height: 42px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .result-message {
+            color: #606477;
+            font-size: 10px;
+            line-height: 1.6;
+            margin: 14px 0;
+        }
+
+        .pix-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(25, 22, 45, .58);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 9999;
+        }
+
+        .pix-modal.open {
+            display: flex;
+        }
+
+        .pix-modal-content {
+            position: relative;
+            width: min(100%, 430px);
+            max-height: 92vh;
+            overflow-y: auto;
+            background: #fff;
+            border-radius: 18px;
+            padding: 28px;
+            text-align: center;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, .2);
+        }
+
+        .pix-close {
+            position: absolute;
+            top: 10px;
+            right: 14px;
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: transparent;
+            color: #777;
+            font-size: 26px;
+        }
+
+        .pix-success-icon {
+            width: 48px;
+            height: 48px;
+            margin: 0 auto 10px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 21px;
+        }
+
+        .pix-modal-content h2 {
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+
+        .pix-order {
+            color: var(--muted);
+            font-size: 10px;
+            margin-bottom: 16px;
+        }
+
+        .pix-qr-wrapper {
+            width: 220px;
+            height: 220px;
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+        }
+
+        #pixQrCode img,
+        #pixQrCode canvas {
+            width: 210px !important;
+            height: 210px !important;
+        }
+
+        .pix-instruction {
+            color: #606477;
+            font-size: 10px;
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+
+        .pix-code-box {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pix-code-box textarea {
+            width: 100%;
+            height: 78px;
+            resize: none;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 9px;
+            color: #55586b;
+            background: #fafaff;
+            font-size: 8px;
+            line-height: 1.35;
+            outline: none;
+        }
+
+        .copy-pix {
+            min-height: 40px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .pix-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+            padding-top: 13px;
+            border-top: 1px solid var(--border);
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .pix-total strong {
+            color: var(--primary);
+            font-size: 18px;
+        }
+
+        .pix-warning {
+            margin-top: 13px;
+            padding: 9px;
+            border-radius: 8px;
+            background: #fff8e8;
+            color: #866c32;
+            font-size: 8px;
+            line-height: 1.45;
+        }
+
+        @media (max-width: 600px) {
+            .pix-modal {
+                padding: 12px;
+            }
+
+            .pix-modal-content {
+                padding: 24px 18px 18px;
+            }
+
+            .pix-qr-wrapper {
+                width: 190px;
+                height: 190px;
+            }
+
+            #pixQrCode img,
+            #pixQrCode canvas {
+                width: 180px !important;
+                height: 180px !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header>
+        <div class="header-content">
+
+            <div class="logo">
+                <i class="fa-regular fa-heart"></i>
+
+                <div>
+                    <strong>EMPS</strong>
+                    <small>Sistema de Monitoramento<br>e Prevenção de Crises Epilépticas</small>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <a href="#">Início</a>
+                <a href="#">A Cinta EMPS</a>
+                <a href="#">Aplicativo</a>
+                <a href="#">Como funciona</a>
+                <a href="#">Suporte</a>
+            </nav>
+
+            <div class="user-menu">
+                <i class="fa-regular fa-user"></i>
+                <span>Olá, Maria</span>
+                <i class="fa-solid fa-chevron-down" style="font-size:9px;"></i>
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- =====================================================
+         CONTEÚDO
+    ====================================================== -->
+
+    <main class="page">
+
+        <!-- ETAPAS -->
+
+        <div class="steps">
+
+            <div class="step active">
+                <div class="step-number">1</div>
+                <span>Carrinho</span>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <span>Endereço</span>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <span>Pagamento</span>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <span>Confirmação</span>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <span>Entrega</span>
+            </div>
+
+        </div>
+
+
+        <!-- TÍTULO -->
+
+        <div class="checkout-title">
+
+            <div>
+                <h1>
+                    Finalizar compra da<br>
+                    <span>cinta EMPS</span>
+                </h1>
+
+                <p class="secure">
+                    <i class="fa-solid fa-lock"></i>
+                    Compra 100% segura e criptografada
+                </p>
+            </div>
+
+            <button class="back-link">
+                <i class="fa-solid fa-arrow-left"></i>
+                Voltar para a tela principal
+            </button>
+
+        </div>
+
+
+        <!-- GRID PRINCIPAL -->
+
+        <section class="checkout-grid">
+
+            <!-- =============================================
+                 COLUNA ESQUERDA
+            ============================================== -->
+
+            <div class="left-column">
+
+                <!-- ENDEREÇO -->
+
+                <div class="checkout-card">
+
+                    <div class="card-title">
+                        <div class="title-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+
+                        <div>
+                            <h2>1. Endereço de entrega</h2>
+                            <p>Informe o endereço onde deseja receber sua cinta.</p>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+
+                        <div class="field col-4">
+                            <label>Nome completo</label>
+                            <input id="nome" type="text" placeholder="Maria Silva">
+                        </div>
+
+                        <div class="field col-2">
+                            <label>CPF</label>
+                            <input id="cpf" type="text" placeholder="123.456.789-10">
+                        </div>
+
+                        <div class="field col-2">
+                            <label>CEP</label>
+                            <input id="cep" type="text" placeholder="01000-000">
+                        </div>
+
+                        <div class="field col-4">
+                            <label>Rua</label>
+                            <input id="rua" type="text" placeholder="Rua das Flores">
+                        </div>
+
+                        <div class="field col-2">
+                            <label>Número</label>
+                            <input id="numero" type="text" placeholder="123">
+                        </div>
+
+                        <div class="field col-4">
+                            <label>Complemento (opcional)</label>
+                            <input id="complemento" type="text" placeholder="Apto 45">
+                        </div>
+
+                        <div class="field col-2">
+                            <label>Bairro</label>
+                            <input id="bairro" type="text" placeholder="Centro">
+                        </div>
+
+                        <div class="field col-2">
+                            <label>Cidade</label>
+                            <input id="cidade" type="text" placeholder="São Paulo">
+                        </div>
+
+                        <div class="field col-2">
+                            <label>Estado</label>
+
+                            <select id="estado">
+                                <option>SP</option>
+                                <option>RJ</option>
+                                <option>MG</option>
+                                <option>PR</option>
+                            </select>
+                        </div>
+
+                        <div class="field col-6">
+                            <label>Referência (opcional)</label>
+                            <input id="referencia" type="text" placeholder="Ex: próximo ao metrô">
+                        </div>
+
+                    </div>
+
+                    <label class="save-address">
+                        <input id="salvarEndereco" type="checkbox" checked>
+                        Salvar este endereço para próximas compras
+                    </label>
+
+                </div>
+
+
+                <!-- PAGAMENTO -->
+
+                <div class="checkout-card">
+
+                    <div class="card-title">
+                        <div class="title-icon">
+                            <i class="fa-regular fa-credit-card"></i>
+                        </div>
+
+                        <div>
+                            <h2>2. Pagamento</h2>
+                            <p>Escolha a forma de pagamento.</p>
+                        </div>
+                    </div>
+
+                    <div class="payment-main">
+
+                        <div class="payment-heading">
+
+                            <strong id="paymentHeading">
+                                <i class="fa-solid fa-circle-check"></i>
+                                Cartão de crédito
+                            </strong>
+
+                            <div class="payment-brands">
+                                <span>VISA</span>
+                                <span>Mastercard</span>
+                                <span>elo</span>
+                                <span>AMEX</span>
+                            </div>
+
+                        </div>
+
+                        <div class="card-fields">
+
+                            <div class="field">
+                                <label>Número do cartão</label>
+                                <input id="numeroCartao" type="text" placeholder="0000 0000 0000 0000">
+                            </div>
+
+                            <div class="field">
+                                <label>Validade</label>
+                                <input id="validade" type="text" placeholder="MM/AA">
+                            </div>
+
+                            <div class="field">
+                                <label>CVV</label>
+                                <input id="cvv" type="text" placeholder="123">
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-option selected" data-payment="cartao" tabindex="0" role="button"
+                        aria-pressed="true">
+                        <i class="fa-regular fa-credit-card"></i>
+                        <strong>Cartão de crédito</strong>
+                        <span>Pagamento seguro</span>
+                        <div class="payment-check"><i class="fa-solid fa-check"></i></div>
+                    </div>
+
+                    <div class="payment-option" data-payment="pix" tabindex="0" role="button" aria-pressed="false">
+                        <i class="fa-brands fa-pix"></i>
+                        <strong>PIX</strong>
+                        <span>Aprovação imediata</span>
+                        <div class="payment-check"><i class="fa-solid fa-check"></i></div>
+                    </div>
+
+                    <div class="payment-option" data-payment="boleto" tabindex="0" role="button" aria-pressed="false">
+                        <i class="fa-solid fa-barcode"></i>
+                        <strong>Boleto bancário</strong>
+                        <span>Aprovação em até 1 dia útil</span>
+                        <div class="payment-check"><i class="fa-solid fa-check"></i></div>
+                    </div>
+
+
+
+                    <div class="protection-box">
+                        <div>
+                            <h3>Suas informações estão protegidas</h3>
+                            <p>
+                                Utilizamos criptografia de ponta a ponta para
+                                garantir a segurança dos seus dados.
+                            </p>
+                        </div>
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+
+                    <button type="button" class="finish-payment" id="finishPayment">
+                        <i class="fa-solid fa-lock"></i>
+                        Finalizar compra
+                    </button>
+
+                    <p class="payment-note">Ao finalizar, os dados do pedido serão salvos e a forma de pagamento será
+                        gerada.</p>
+
+                </div>
+
+            </div>
+
+
+            <!-- =============================================
+                 COLUNA DIREITA
+            ============================================== -->
+
+            <div class="right-column">
+
+                <!-- RESUMO -->
+
+                <div class="checkout-card">
+
+                    <div class="card-title">
+                        <div class="title-icon">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+
+                        <div>
+                            <h2>Resumo do pedido</h2>
+                        </div>
+                    </div>
+
+
+                    <div class="product">
+
+                        <div class="product-image">
+                            <!-- Substitua pelo caminho real da imagem da cinta -->
+                            <img src="img/cinta.png" alt="Cinta EMPS" onerror="this.style.display='none'">
+                            <i class="fa-solid fa-heart-pulse" style="font-size:42px;color:#5530c9;"></i>
+                        </div>
+
+                        <div>
+                            <h3>Cinta EMPS</h3>
+
+                            <p>
+                                Monitoramento cardíaco para auxílio
+                                de pessoas com epilepsia.
+                            </p>
+
+                            <div class="product-price">
+                                <span>Qtd: 1</span>
+                                <strong>R$ 249,90</strong>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="summary-line">
+                        <span>Subtotal</span>
+                        <strong>R$ 249,90</strong>
+                    </div>
+
+                    <div class="summary-line">
+                        <span>Frete</span>
+                        <strong class="free">Grátis</strong>
+                    </div>
+
+                    <div class="summary-line">
+                        <span>Desconto</span>
+                        <strong>- R$ 0,00</strong>
+                    </div>
+
+                    <div class="summary-total">
+                        <span>Total</span>
+                        <strong>R$ 249,90</strong>
+                    </div>
+
+
+                    <div class="benefits">
+
+                        <div class="benefit">
+                            <i class="fa-regular fa-shield"></i>
+                            Compra 100% segura
+                        </div>
+
+                        <div class="benefit">
+                            <i class="fa-regular fa-clock"></i>
+                            Garantia de 1 ano
+                        </div>
+
+                        <div class="benefit">
+                            <i class="fa-solid fa-headset"></i>
+                            Suporte especializado
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+        </section>
+
+
+        <!-- BENEFÍCIOS -->
+
+        <section class="bottom-benefits">
+
+            <div class="bottom-benefit">
+                <i class="fa-solid fa-truck-fast"></i>
+
+                <div>
+                    <strong>Entregas para todo o Brasil</strong>
+                    <span>Receba sua cinta com segurança</span>
+                </div>
+            </div>
+
+            <div class="bottom-benefit">
+                <i class="fa-solid fa-arrows-rotate"></i>
+
+                <div>
+                    <strong>30 dias para trocar</strong>
+                    <span>Mais tranquilidade para você</span>
+                </div>
+            </div>
+
+            <div class="bottom-benefit">
+                <i class="fa-solid fa-lock"></i>
+
+                <div>
+                    <strong>Produtos originais</strong>
+                    <span>Com garantia EMPS</span>
+                </div>
+            </div>
+
+            <div class="bottom-benefit">
+                <i class="fa-solid fa-headset"></i>
+
+                <div>
+                    <strong>Suporte especializado</strong>
+                    <span>Estamos sempre aqui para ajudar</span>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="logo">
+            <i class="fa-regular fa-heart"></i>
+
+            <div>
+                <strong>EMPS</strong>
+                <small>Sistema de Monitoramento<br>e Prevenção de Crises Epilépticas</small>
+            </div>
+        </div>
+
+        <div class="footer-center">
+            © 2024 EMPS. Todos os direitos reservados.
+        </div>
+
+        <div>
+            <i class="fa-solid fa-lock"></i>
+            Ambiente seguro e criptografado
+        </div>
+
+    </footer>
+
+
+
+    <!-- MODAL DE PAGAMENTO / RESULTADO -->
+    <div class="pix-modal" id="paymentResultModal" aria-hidden="true">
+
+        <div class="pix-modal-content" role="dialog" aria-modal="true" aria-labelledby="paymentResultTitle">
+            <button type="button" class="pix-close" id="closePaymentResult" aria-label="Fechar">&times;</button>
+            <div class="pix-success-icon"><i class="fa-solid fa-check"></i></div>
+            <h2 id="paymentResultTitle">Pagamento gerado</h2>
+            <p class="pix-order">Pedido <strong id="resultOrderId">-</strong></p>
+            <div id="resultBody"></div>
+            <div class="pix-total"><span>Total do pedido</span><strong id="resultTotal">R$ 249,90</strong></div>
+
+        </div>
+    </div>
+
+    <!-- MODAL DE PAGAMENTO PIX -->
+    <div class="pix-modal" id="pixModal" aria-hidden="true">
+
+        <div class="pix-modal-content" role="dialog" aria-modal="true" aria-labelledby="pixTitle">
+            <button type="button" class="pix-close" id="closePix" aria-label="Fechar">&times;</button>
+            <div class="pix-success-icon"><i class="fa-solid fa-check"></i></div>
+            <h2 id="pixTitle">Pagamento PIX gerado</h2>
+            <p class="pix-order">Pedido <strong id="pixOrderId">-</strong></p>
+            <div class="pix-qr-wrapper">
+                <div id="pixQrCode"></div>
+            </div>
+            <p class="pix-instruction">Escaneie o QR Code no aplicativo do seu banco ou copie o código abaixo.</p>
+            <div class="pix-code-box">
+                <textarea id="pixCopyCode" readonly aria-label="Código PIX copia e cola"></textarea>
+                <button type="button" id="copyPix" class="copy-pix"><i class="fa-regular fa-copy"></i> Copiar
+                    código</button>
+            </div>
+            <div class="pix-total"><span>Total do pedido</span><strong id="pixTotal">R$ 249,90</strong></div>
+            <p class="pix-warning">Para receber um pagamento real, configure a chave PIX da EMPS e conecte o checkout a
+                um backend ou gateway. O código atual é gerado para o protótipo.</p>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        /* =====================================================
+           EMPS - CHECKOUT / PIX
+           Salva o pedido no navegador. Não armazena cartão/CVV.
+        ===================================================== */
+        const EMPS_PIX_CONFIG = {
+            // Troque pela chave PIX REAL da EMPS para pagamentos reais.
+            pixKey: "emps@exemplo.com",
+            merchantName: "EMPS",
+            merchantCity: "SAO PAULO",
+            amount: 249.90
+        };
+
+        const $ = (id) => document.getElementById(id);
+
+        function fieldValue(id) { return ($(id)?.value || "").trim(); }
+
+        function generateOrderId() {
+            return `EMPS-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2, 8).toUpperCase()}`;
+        }
+
+        function generatePixTxid() {
+            return `EMPS${Date.now().toString(36).toUpperCase()}${Math.random().toString(36).slice(2, 7).toUpperCase()}`.slice(0, 25);
+        }
+
+        function sanitizePixText(value, maxLength) {
+            return String(value || "")
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .replace(/[^a-zA-Z0-9 .\-]/g, "")
+                .substring(0, maxLength);
+        }
+
+        function pixField(id, value) {
+            const text = String(value);
+            return id + String(text.length).padStart(2, "0") + text;
+        }
+
+        function crc16(payload) {
+            let crc = 0xFFFF;
+            for (let i = 0; i < payload.length; i++) {
+                crc ^= payload.charCodeAt(i) << 8;
+                for (let j = 0; j < 8; j++) {
+                    crc = (crc & 0x8000) ? ((crc << 1) ^ 0x1021) : (crc << 1);
+                    crc &= 0xFFFF;
+                }
+            }
+            return crc.toString(16).toUpperCase().padStart(4, "0");
+        }
+
+        function createPixPayload(amount, txid) {
+            const merchantAccount =
+                pixField("00", "BR.GOV.BCB.PIX") +
+                pixField("01", EMPS_PIX_CONFIG.pixKey);
+            const additionalData = pixField("05", txid);
+            const payload =
+                pixField("00", "01") +
+                pixField("26", merchantAccount) +
+                pixField("52", "0000") +
+                pixField("53", "986") +
+                pixField("54", Number(amount).toFixed(2)) +
+                pixField("58", "BR") +
+                pixField("59", sanitizePixText(EMPS_PIX_CONFIG.merchantName, 25)) +
+                pixField("60", sanitizePixText(EMPS_PIX_CONFIG.merchantCity, 15)) +
+                pixField("62", additionalData) +
+                "6304";
+            return payload + crc16(payload);
+        }
+
+        function collectOrderData() {
+            return {
+                nome: fieldValue("nome"),
+                cpf: fieldValue("cpf"),
+                cep: fieldValue("cep"),
+                rua: fieldValue("rua"),
+                numero: fieldValue("numero"),
+                complemento: fieldValue("complemento"),
+                bairro: fieldValue("bairro"),
+                cidade: fieldValue("cidade"),
+                estado: fieldValue("estado"),
+                referencia: fieldValue("referencia"),
+                salvarEndereco: $("salvarEndereco")?.checked ?? false
+            };
+        }
+
+        function validateOrder(data) {
+            const required = [
+                ["nome", "Informe seu nome completo."], ["cpf", "Informe seu CPF."],
+                ["cep", "Informe seu CEP."], ["rua", "Informe sua rua."],
+                ["numero", "Informe o número do endereço."], ["bairro", "Informe seu bairro."],
+                ["cidade", "Informe sua cidade."]
+            ];
+            for (const [id, msg] of required) {
+                if (!data[id]) { alert(msg); $(id)?.focus(); return false; }
+            }
+            return true;
+        }
+
+        function getOrders() {
+            try { return JSON.parse(localStorage.getItem("emps_pedidos") || "[]"); }
+            catch { return []; }
+        }
+
+        function saveOrder(order) {
+            const orders = getOrders();
+            orders.push(order);
+            localStorage.setItem("emps_pedidos", JSON.stringify(orders));
+            localStorage.setItem("emps_pedido_atual", JSON.stringify(order));
+        }
+
+        function openPixModal(order) {
+            $("pixOrderId").textContent = order.id;
+            $("pixTotal").textContent = `R$ ${order.amount.toFixed(2).replace(".", ",")}`;
+            $("pixCopyCode").value = order.pixCopyPaste;
+            $("pixQrCode").innerHTML = "";
+            new QRCode($("pixQrCode"), { text: order.pixCopyPaste, width: 210, height: 210, correctLevel: QRCode.CorrectLevel.M });
+            $("pixModal").classList.add("open");
+            $("pixModal").setAttribute("aria-hidden", "false");
+        }
+
+        function closePixModal() {
+            $("pixModal").classList.remove("open");
+            $("pixModal").setAttribute("aria-hidden", "true");
+        }
+
+        let selectedPaymentMethod = "cartao";
+
+        const paymentLabels = {
+            cartao: "Cartão de crédito",
+            pix: "PIX",
+            boleto: "Boleto bancário",
+            paypal: "PayPal"
+        };
+
+        function selectPaymentMethod(method) {
+            selectedPaymentMethod = method;
+
+            document.querySelectorAll(".payment-option").forEach(option => {
+                const selected = option.dataset.payment === method;
+                option.classList.toggle("selected", selected);
+                option.setAttribute("aria-pressed", selected ? "true" : "false");
+            });
+
+            $("paymentHeading").innerHTML = `<i class="fa-solid fa-circle-check"></i> ${paymentLabels[method]}`;
+
+            const cardFields = document.querySelector(".card-fields");
+            const paymentMain = document.querySelector(".payment-main");
+
+            if (method === "cartao") {
+                cardFields.style.display = "grid";
+                paymentMain.style.display = "block";
+                $("finishPayment").innerHTML = '<i class="fa-solid fa-lock"></i> Finalizar compra';
+            } else if (method === "pix") {
+                cardFields.style.display = "none";
+                paymentMain.style.display = "block";
+                $("finishPayment").innerHTML = '<i class="fa-solid fa-qrcode"></i> Gerar pagamento PIX';
+            } else {
+                cardFields.style.display = "none";
+                paymentMain.style.display = "block";
+                $("finishPayment").innerHTML = `<i class="fa-solid fa-arrow-right"></i> Continuar com ${paymentLabels[method]}`;
+            }
+        }
+
+        document.querySelectorAll(".payment-option").forEach(option => {
+            option.addEventListener("click", () => selectPaymentMethod(option.dataset.payment));
+            option.addEventListener("keydown", event => {
+                if (event.key === "Enter" || event.key === " ") {
+                    event.preventDefault();
+                    selectPaymentMethod(option.dataset.payment);
+                }
+            });
+        });
+
+        function createBoletoCode(order) {
+            const seed = `${order.id}${order.createdAt.replace(/\D/g, '')}`;
+            let hash = 0;
+            for (let i = 0; i < seed.length; i++) hash = ((hash << 5) - hash + seed.charCodeAt(i)) | 0;
+            return `00190.00009 01234.567890 ${String(Math.abs(hash)).padStart(10, '0')} 9 ${String(Math.round(order.amount * 100)).padStart(10, '0')}`;
+        }
+
+        function saveAndCreateOrder(customer) {
+            const order = {
+                id: generateOrderId(),
+                createdAt: new Date().toISOString(),
+                status: "aguardando_pagamento",
+                produto: "Cinta EMPS",
+                quantidade: 1,
+                amount: EMPS_PIX_CONFIG.amount,
+                paymentMethod: selectedPaymentMethod.toUpperCase(),
+                cliente: customer
+            };
+
+            if (selectedPaymentMethod === "pix") {
+                order.pixTxid = generatePixTxid();
+                order.pixCopyPaste = createPixPayload(order.amount, order.pixTxid);
+            }
+
+            if (selectedPaymentMethod === "boleto") {
+                order.boletoCode = createBoletoCode(order);
+                order.boletoDueDate = new Date(Date.now() + 3 * 86400000).toISOString().slice(0, 10);
+            }
+
+            if (selectedPaymentMethod === "paypal") {
+                order.paypalReference = `PAYPAL-${Date.now().toString(36).toUpperCase()}-${Math.random().toString(36).slice(2, 7).toUpperCase()}`;
+            }
+
+            saveOrder(order);
+            return order;
+        }
+
+        function openPaymentResult(order) {
+            $("resultOrderId").textContent = order.id;
+            $("resultTotal").textContent = `R$ ${order.amount.toFixed(2).replace(".", ",")}`;
+            const body = $("resultBody");
+
+            if (selectedPaymentMethod === "pix") {
+                body.innerHTML = `
+                    <div class="pix-qr-wrapper"><div id="resultQrCode"></div></div>
+                    <p class="pix-instruction">Escaneie o QR Code no aplicativo do seu banco ou copie o código abaixo.</p>
+                    <div class="pix-code-box">
+                        <textarea id="resultPixCode" readonly aria-label="Código PIX copia e cola">${order.pixCopyPaste}</textarea>
+                        <button type="button" id="resultCopy" class="result-copy"><i class="fa-regular fa-copy"></i> Copiar código PIX</button>
+                    </div>`;
+                new QRCode($("resultQrCode"), { text: order.pixCopyPaste, width: 210, height: 210, correctLevel: QRCode.CorrectLevel.M });
+                $("resultCopy").addEventListener("click", async () => {
+                    try { await navigator.clipboard.writeText(order.pixCopyPaste); } catch { $("resultPixCode").select(); document.execCommand("copy"); }
+                    $("resultCopy").innerHTML = '<i class="fa-solid fa-check"></i> Código copiado';
+                });
+            } else if (selectedPaymentMethod === "boleto") {
+                body.innerHTML = `
+                    <p class="result-message">Boleto gerado com sucesso. Use o código abaixo para pagar pelo aplicativo do seu banco.</p>
+                    <div class="result-barcode">${order.boletoCode}</div>
+                    <button type="button" id="copyBoleto" class="result-copy"><i class="fa-regular fa-copy"></i> Copiar código do boleto</button>
+                    <p class="result-message">Vencimento: <strong>${new Date(order.boletoDueDate + "T12:00:00").toLocaleDateString("pt-BR")}</strong></p>`;
+                $("copyBoleto").addEventListener("click", async () => {
+                    try { await navigator.clipboard.writeText(order.boletoCode); } catch { }
+                    $("copyBoleto").innerHTML = '<i class="fa-solid fa-check"></i> Código copiado';
+                });
+            } else if (selectedPaymentMethod === "paypal") {
+                body.innerHTML = `
+                    <p class="result-message">Pedido preparado para pagamento pelo PayPal.</p>
+                    <div class="result-barcode"><strong>Referência:</strong><br>${order.paypalReference}</div>
+                    <button type="button" class="result-copy" onclick="alert('No protótipo, esta etapa representa o redirecionamento para o PayPal.');"><i class="fa-brands fa-paypal"></i> Continuar com PayPal</button>`;
+            } else {
+                body.innerHTML = `
+                    <p class="result-message">Pedido criado para pagamento com cartão de crédito.</p>
+                    <div class="result-barcode">Pedido: ${order.id}<br>Status: aguardando processamento</div>`;
+            }
+
+            $("paymentResultModal").classList.add("open");
+            $("paymentResultModal").setAttribute("aria-hidden", "false");
+        }
+
+        function closePaymentResult() {
+            $("paymentResultModal").classList.remove("open");
+            $("paymentResultModal").setAttribute("aria-hidden", "true");
+        }
+
+        $("finishPayment").addEventListener("click", () => {
+            const customer = collectOrderData();
+            if (!validateOrder(customer)) return;
+
+            if (selectedPaymentMethod === "cartao") {
+                if (!fieldValue("numeroCartao") || !fieldValue("validade") || !fieldValue("cvv")) {
+                    alert("Preencha os dados do cartão para continuar.");
+                    return;
+                }
+            }
+
+            const order = saveAndCreateOrder(customer);
+            openPaymentResult(order);
+        });
+
+        $("copyPix").addEventListener("click", async () => {
+            const code = $("pixCopyCode").value;
+            try {
+                await navigator.clipboard.writeText(code);
+            } catch {
+                $("pixCopyCode").select();
+                document.execCommand("copy");
+            }
+            $("copyPix").innerHTML = '<i class="fa-solid fa-check"></i> Código copiado';
+            setTimeout(() => $("copyPix").innerHTML = '<i class="fa-regular fa-copy"></i> Copiar código', 1800);
+        });
+
+        $("closePaymentResult").addEventListener("click", closePaymentResult);
+        $("paymentResultModal").addEventListener("click", e => { if (e.target === $("paymentResultModal")) closePaymentResult(); });
+        $("closePix").addEventListener("click", closePixModal);
+        $("pixModal").addEventListener("click", e => { if (e.target === $("pixModal")) closePixModal(); });
+        document.addEventListener("keydown", e => { if (e.key === "Escape") closePixModal(); });
+
+        // Recupera endereço salvo da última compra. Nunca recupera número de cartão ou CVV.
+        try {
+            const last = JSON.parse(localStorage.getItem("emps_pedido_atual") || "null");
+            const saved = last?.cliente;
+            if (saved?.salvarEndereco) {
+                ["nome", "cpf", "cep", "rua", "numero", "complemento", "bairro", "cidade", "referencia"].forEach(id => {
+                    if (saved[id] && $(id)) $(id).value = saved[id];
+                });
+                if (saved.estado && $("estado")) $("estado").value = saved.estado;
+            }
+        } catch { }
+    </script>
+
+</body>
+
+</html>
