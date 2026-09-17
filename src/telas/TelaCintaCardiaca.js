@@ -1,26 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   View,
   Text,
-  StyleSheet,
   TouchableOpacity,
+  StyleSheet,
 } from "react-native";
 
 import {
   Bluetooth,
-  ClipboardList,
-  CheckCircle2,
+  BluetoothConnected,
   BatteryMedium,
   HeartPulse,
   Activity,
+  Play,
+  Unplug,
 } from "lucide-react-native";
 
 import AppShell from "../componentes/AppShell";
-import Card from "../componentes/Card";
-import SectionHeader from "../componentes/SectionHeader";
-import StatusBadge from "../componentes/StatusBadge";
-import PrimaryButton from "../componentes/PrimaryButton";
 
 import { colors } from "../styles/colors";
 import { spacing } from "../styles/spacing";
@@ -29,208 +26,308 @@ export default function TelaCintaCardiaca({
   tela,
   setTela,
 }) {
+  // SIMULAÇÃO
+  // Futuramente esse estado será controlado pelo Bluetooth BLE.
+  const [conectado, setConectado] = useState(false);
+  const [procurando, setProcurando] = useState(false);
+
+  // Dados simulados da cinta
+  const [bateria, setBateria] = useState(84);
+
+  function procurarCinta() {
+    setProcurando(true);
+
+    // Simulação temporária da busca Bluetooth
+    setTimeout(() => {
+      setConectado(true);
+      setProcurando(false);
+    }, 1500);
+  }
+
+  function desconectarCinta() {
+    setConectado(false);
+  }
+
+  function iniciarMonitoramento() {
+    if (!conectado) {
+      return;
+    }
+
+    setTela("monitoramento");
+  }
+
   return (
     <AppShell
       tela={tela}
       setTela={setTela}
-      eyebrow="Dispositivo wearable"
       title="Cinta cardíaca"
-      subtitle="Conecte e acompanhe o dispositivo Bluetooth utilizado pelo paciente."
+      subtitle="Conecte e gerencie sua cinta EMPS."
     >
-      <SectionHeader
-        icon={Bluetooth}
-        title="Status da cinta"
-        subtitle="Acompanhe a conexão e o funcionamento do dispositivo"
-      />
+      {/* CARD PRINCIPAL */}
 
       <View style={styles.deviceCard}>
         <View style={styles.deviceTop}>
-          <View style={styles.bluetoothCircle}>
-            <Bluetooth
-              size={28}
-              color={colors.white}
-            />
+          <View
+            style={[
+              styles.bluetoothIcon,
+              conectado && styles.bluetoothIconConnected,
+            ]}
+          >
+            {conectado ? (
+              <BluetoothConnected
+                size={28}
+                color={colors.primary}
+              />
+            ) : (
+              <Bluetooth
+                size={28}
+                color={colors.textMuted}
+              />
+            )}
           </View>
 
-          <View style={styles.deviceText}>
-            <Text style={styles.deviceLabel}>
-              Dispositivo
+          <View style={styles.deviceInfo}>
+            <Text style={styles.deviceName}>
+              Cinta EMPS
             </Text>
 
-            <Text style={styles.deviceTitle}>
-              Nenhum dispositivo
-            </Text>
-
-            <StatusBadge
-              status="desconectado"
-            />
-          </View>
-        </View>
-
-        <Text style={styles.deviceDescription}>
-          Conecte a cinta EMPS para iniciar o
-          monitoramento dos sinais do paciente.
-        </Text>
-
-        <PrimaryButton
-          title="Conectar cinta cardíaca"
-          icon={Bluetooth}
-          onPress={() => {
-            // conexão será implementada depois
-          }}
-        />
-      </View>
-
-      <SectionHeader
-        icon={Activity}
-        title="Monitoramento"
-        subtitle="Informações do dispositivo conectado"
-      />
-
-      <View style={styles.metricsRow}>
-        <View style={styles.metricCard}>
-          <View style={styles.metricIcon}>
-            <HeartPulse
-              size={21}
-              color={colors.danger}
-            />
-          </View>
-
-          <Text style={styles.metricValue}>
-            --
-          </Text>
-
-          <Text style={styles.metricUnit}>
-            BPM
-          </Text>
-
-          <Text style={styles.metricLabel}>
-            Frequência cardíaca
-          </Text>
-        </View>
-
-        <View style={styles.metricCard}>
-          <View style={styles.metricIcon}>
-            <Activity
-              size={21}
-              color={colors.primary}
-            />
-          </View>
-
-          <Text style={styles.metricValue}>
-            --
-          </Text>
-
-          <Text style={styles.metricUnit}>
-            m/s²
-          </Text>
-
-          <Text style={styles.metricLabel}>
-            Movimento
-          </Text>
-        </View>
-      </View>
-
-      <Card>
-        <SectionHeader
-          icon={BatteryMedium}
-          title="Bateria"
-          subtitle="Nível de carga do wearable"
-        />
-
-        <View style={styles.batteryRow}>
-          <View style={styles.batteryInfo}>
-            <Text style={styles.batteryValue}>
-              --
-            </Text>
-
-            <Text style={styles.batteryLabel}>
-              aguardando dispositivo
+            <Text style={styles.deviceDescription}>
+              Dispositivo de monitoramento
             </Text>
           </View>
 
-          <View style={styles.batteryOuter}>
+          <View
+            style={[
+              styles.statusBadge,
+              conectado
+                ? styles.statusConnected
+                : styles.statusDisconnected,
+            ]}
+          >
             <View
               style={[
-                styles.batteryInner,
-                {
-                  width: "0%",
-                },
+                styles.statusDot,
+                conectado
+                  ? styles.dotConnected
+                  : styles.dotDisconnected,
               ]}
             />
+
+            <Text
+              style={[
+                styles.statusText,
+                conectado
+                  ? styles.textConnected
+                  : styles.textDisconnected,
+              ]}
+            >
+              {conectado
+                ? "Conectada"
+                : "Desconectada"}
+            </Text>
           </View>
         </View>
-      </Card>
 
-      <Card>
-        <SectionHeader
-          icon={ClipboardList}
-          title="Como conectar"
-          subtitle="Siga os passos abaixo para iniciar"
-        />
+        {/* DIVISOR */}
 
-        {[
-          "Ligue a cinta cardíaca e coloque-a no corpo.",
-          "Ative o Bluetooth no celular.",
-          "Clique em conectar e selecione o dispositivo EMPS.",
-        ].map((texto, index) => (
-          <View
-            key={index}
-            style={styles.stepRow}
-          >
-            <View style={styles.stepNumber}>
-              <Text style={styles.stepNumberText}>
-                {index + 1}
-              </Text>
+        <View style={styles.divider} />
+
+        {/* INFORMAÇÕES */}
+
+        {conectado ? (
+          <View style={styles.deviceDetails}>
+            <View style={styles.detailItem}>
+              <View style={styles.detailIcon}>
+                <BatteryMedium
+                  size={21}
+                  color={colors.primary}
+                />
+              </View>
+
+              <View>
+                <Text style={styles.detailLabel}>
+                  Bateria
+                </Text>
+
+                <Text style={styles.detailValue}>
+                  {bateria}%
+                </Text>
+              </View>
             </View>
 
-            <Text style={styles.stepText}>
-              {texto}
+            <View style={styles.detailItem}>
+              <View style={styles.detailIcon}>
+                <HeartPulse
+                  size={21}
+                  color={colors.primary}
+                />
+              </View>
+
+              <View>
+                <Text style={styles.detailLabel}>
+                  Sensor cardíaco
+                </Text>
+
+                <Text style={styles.sensorReady}>
+                  Pronto
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.detailItem}>
+              <View style={styles.detailIcon}>
+                <Activity
+                  size={21}
+                  color={colors.primary}
+                />
+              </View>
+
+              <View>
+                <Text style={styles.detailLabel}>
+                  Movimento
+                </Text>
+
+                <Text style={styles.sensorReady}>
+                  Pronto
+                </Text>
+              </View>
+            </View>
+          </View>
+        ) : (
+          <View style={styles.notConnectedArea}>
+            <Bluetooth
+              size={32}
+              color={colors.textMuted}
+            />
+
+            <Text style={styles.notConnectedTitle}>
+              Nenhuma cinta conectada
             </Text>
 
-            <CheckCircle2
-              size={18}
-              color={colors.lilac}
-            />
+            <Text style={styles.notConnectedText}>
+              Conecte sua cinta EMPS para iniciar
+              um novo monitoramento.
+            </Text>
           </View>
-        ))}
-      </Card>
-
-      <View style={styles.infoBox}>
-        <Bluetooth
-          size={21}
-          color={colors.primary}
-        />
-
-        <Text style={styles.infoText}>
-          Quando a cinta estiver conectada, os dados de
-          frequência cardíaca e movimento serão exibidos aqui.
-        </Text>
+        )}
       </View>
+
+      {/* EXPLICAÇÃO */}
+
+      {/* INFORMAÇÃO */}
+
+{conectado ? (
+  <View style={styles.infoCard}>
+    <Text style={styles.infoTitle}>
+      Tudo pronto para começar
+    </Text>
+
+    <Text style={styles.infoText}>
+      Sua cinta está conectada e os sensores estão
+      preparados para iniciar um novo monitoramento.
+    </Text>
+  </View>
+) : (
+  <View style={styles.infoCard}>
+    <Text style={styles.infoTitle}>
+      Como funciona?
+    </Text>
+
+    <Text style={styles.infoText}>
+      Conecte sua cinta EMPS via Bluetooth para
+      começar a acompanhar os dados dos sensores.
+    </Text>
+  </View>
+)}
+
+      {/* BOTÕES */}
+
+      {!conectado ? (
+        <TouchableOpacity
+          style={[
+            styles.primaryButton,
+            procurando && styles.disabledButton,
+          ]}
+          activeOpacity={0.85}
+          onPress={procurarCinta}
+          disabled={procurando}
+        >
+          <Bluetooth
+            size={21}
+            color={colors.white}
+          />
+
+          <Text style={styles.primaryButtonText}>
+            {procurando
+              ? "Procurando cinta..."
+              : "Procurar cinta"}
+          </Text>
+        </TouchableOpacity>
+      ) : (
+        <>
+          {/* INICIAR MONITORAMENTO */}
+
+          <TouchableOpacity
+            style={styles.primaryButton}
+            activeOpacity={0.85}
+            onPress={iniciarMonitoramento}
+          >
+            <Play
+              size={20}
+              color={colors.white}
+              fill={colors.white}
+            />
+
+            <Text style={styles.primaryButtonText}>
+              Iniciar monitoramento
+            </Text>
+          </TouchableOpacity>
+
+          {/* DESCONECTAR */}
+
+          <TouchableOpacity
+            style={styles.disconnectButton}
+            activeOpacity={0.8}
+            onPress={desconectarCinta}
+          >
+            <Unplug
+              size={18}
+              color={colors.textSecondary}
+            />
+
+            <Text style={styles.disconnectButtonText}>
+              Desconectar cinta
+            </Text>
+          </TouchableOpacity>
+        </>
+      )}
     </AppShell>
   );
 }
 
 const styles = StyleSheet.create({
+  /* CARD PRINCIPAL */
+
   deviceCard: {
-    backgroundColor: colors.primaryDark,
+    backgroundColor: colors.surface,
+    borderRadius: 26,
 
-    borderRadius: 22,
+    padding: spacing.xl,
 
-    padding: spacing.lg,
+    marginBottom: spacing.lg,
 
-    marginBottom: spacing.xxl,
+    borderWidth: 1,
+    borderColor: colors.border,
 
-    shadowColor: colors.primary,
-    shadowOpacity: 0.16,
-    shadowRadius: 14,
-
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 6,
+      height: 8,
     },
+    shadowOpacity: 0.06,
+    shadowRadius: 18,
 
-    elevation: 5,
+    elevation: 4,
   },
 
   deviceTop: {
@@ -238,243 +335,292 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 
-  bluetoothCircle: {
+  bluetoothIcon: {
     width: 58,
     height: 58,
 
-    borderRadius: 18,
-
-    backgroundColor: "rgba(255,255,255,0.14)",
-
     alignItems: "center",
     justifyContent: "center",
 
-    marginRight: spacing.md,
+    borderRadius: 18,
+
+    backgroundColor: colors.background,
+
+    borderWidth: 1,
+    borderColor: colors.border,
   },
 
-  deviceText: {
+  bluetoothIconConnected: {
+    backgroundColor: "#F2EEFF",
+    borderColor: "#DED5FF",
+  },
+
+  deviceInfo: {
     flex: 1,
+    marginLeft: spacing.md,
   },
 
-  deviceLabel: {
-    color: colors.pink,
-
-    fontSize: 10,
-
-    fontWeight: "700",
-  },
-
-  deviceTitle: {
-    color: colors.white,
-
+  deviceName: {
     fontSize: 17,
+    fontWeight: "800",
 
-    fontWeight: "900",
-
-    marginTop: 2,
-    marginBottom: spacing.sm,
+    color: colors.textPrimary,
   },
 
   deviceDescription: {
-    color: "#DDD1F1",
+    marginTop: 4,
 
     fontSize: 11,
 
-    lineHeight: 17,
-
-    marginTop: spacing.lg,
-    marginBottom: spacing.lg,
+    color: colors.textMuted,
   },
 
-  metricsRow: {
+  /* STATUS */
+
+  statusBadge: {
     flexDirection: "row",
+    alignItems: "center",
 
-    gap: spacing.md,
-
-    marginBottom: spacing.xxl,
-  },
-
-  metricCard: {
-    flex: 1,
-
-    backgroundColor: colors.white,
-
-    minHeight: 145,
+    paddingHorizontal: 10,
+    paddingVertical: 7,
 
     borderRadius: 20,
-
-    padding: spacing.lg,
-
-    borderWidth: 1,
-    borderColor: colors.border,
-
-    shadowColor: colors.primary,
-    shadowOpacity: 0.05,
-    shadowRadius: 10,
-
-    shadowOffset: {
-      width: 0,
-      height: 5,
-    },
-
-    elevation: 2,
   },
 
-  metricIcon: {
-    width: 40,
-    height: 40,
-
-    borderRadius: 13,
-
-    backgroundColor: colors.soft,
-
-    alignItems: "center",
-    justifyContent: "center",
-
-    marginBottom: spacing.md,
+  statusConnected: {
+    backgroundColor: "#EAF8F0",
   },
 
-  metricValue: {
-    color: colors.textPrimary,
-
-    fontSize: 22,
-
-    fontWeight: "900",
+  statusDisconnected: {
+    backgroundColor: "#F2F2F4",
   },
 
-  metricUnit: {
-    color: colors.textSecondary,
+  statusDot: {
+    width: 7,
+    height: 7,
 
-    fontSize: 9,
+    borderRadius: 4,
 
-    marginTop: 1,
+    marginRight: 6,
   },
 
-  metricLabel: {
-    color: colors.textMuted,
-
-    fontSize: 10,
-
-    lineHeight: 15,
-
-    marginTop: spacing.sm,
-  },
-
-  batteryRow: {
-    flexDirection: "row",
-    alignItems: "center",
-  },
-
-  batteryInfo: {
-    width: 105,
-  },
-
-  batteryValue: {
-    color: colors.primary,
-
-    fontSize: 24,
-
-    fontWeight: "900",
-  },
-
-  batteryLabel: {
-    color: colors.textMuted,
-
-    fontSize: 9,
-
-    marginTop: 2,
-  },
-
-  batteryOuter: {
-    flex: 1,
-
-    height: 13,
-
-    borderRadius: 999,
-
-    backgroundColor: colors.soft,
-
-    overflow: "hidden",
-  },
-
-  batteryInner: {
-    height: "100%",
-
-    borderRadius: 999,
-
+  dotConnected: {
     backgroundColor: colors.success,
   },
 
-  stepRow: {
+  dotDisconnected: {
+    backgroundColor: colors.textMuted,
+  },
+
+  statusText: {
+    fontSize: 10,
+    fontWeight: "800",
+
+    letterSpacing: 0.2,
+  },
+
+  textConnected: {
+    color: colors.success,
+  },
+
+  textDisconnected: {
+    color: colors.textMuted,
+  },
+
+  /* DIVISOR */
+
+  divider: {
+    height: 1,
+
+    backgroundColor: colors.border,
+
+    marginVertical: spacing.xl,
+  },
+
+  /* DETALHES DA CINTA */
+
+  deviceDetails: {
+    gap: spacing.sm,
+  },
+
+  detailItem: {
+    minHeight: 62,
+
     flexDirection: "row",
     alignItems: "center",
 
-    paddingVertical: spacing.md,
-
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
-  },
-
-  stepNumber: {
-    width: 32,
-    height: 32,
+    paddingHorizontal: spacing.md,
 
     borderRadius: 16,
 
-    backgroundColor: colors.primaryLight,
+    backgroundColor: colors.background,
+  },
+
+  detailIcon: {
+    width: 40,
+    height: 40,
 
     alignItems: "center",
     justifyContent: "center",
 
+    borderRadius: 13,
+
+    backgroundColor: colors.surface,
+
     marginRight: spacing.md,
-  },
-
-  stepNumberText: {
-    color: colors.primary,
-
-    fontSize: 12,
-
-    fontWeight: "900",
-  },
-
-  stepText: {
-    flex: 1,
-
-    color: colors.textSecondary,
-
-    fontSize: 11,
-
-    lineHeight: 16,
-
-    paddingRight: spacing.sm,
-  },
-
-  infoBox: {
-    flexDirection: "row",
-
-    alignItems: "flex-start",
-
-    backgroundColor: colors.primaryLight,
-
-    borderRadius: 18,
-
-    padding: spacing.lg,
 
     borderWidth: 1,
     borderColor: colors.border,
+  },
+
+  detailLabel: {
+    fontSize: 11,
+
+    color: colors.textMuted,
+  },
+
+  detailValue: {
+    marginTop: 2,
+
+    fontSize: 15,
+    fontWeight: "800",
+
+    color: colors.textPrimary,
+  },
+
+  sensorReady: {
+    marginTop: 2,
+
+    fontSize: 14,
+    fontWeight: "700",
+
+    color: colors.success,
+  },
+
+  /* SEM CONEXÃO */
+
+  notConnectedArea: {
+    alignItems: "center",
+
+    paddingVertical: spacing.xxl,
+    paddingHorizontal: spacing.lg,
+  },
+
+  notConnectedTitle: {
+    marginTop: spacing.lg,
+
+    fontSize: 16,
+    fontWeight: "800",
+
+    color: colors.textPrimary,
+  },
+
+  notConnectedText: {
+    marginTop: spacing.sm,
+
+    maxWidth: 260,
+
+    textAlign: "center",
+
+    fontSize: 12,
+    lineHeight: 19,
+
+    color: colors.textMuted,
+  },
+
+  /* CARD DE INFORMAÇÃO */
+
+  infoCard: {
+    padding: spacing.lg,
+
+    backgroundColor: "#F5F2FF",
+
+    borderWidth: 1,
+    borderColor: "#E7E0FF",
+
+    borderRadius: 20,
 
     marginBottom: spacing.xl,
   },
 
+  infoTitle: {
+    fontSize: 14,
+    fontWeight: "800",
+
+    color: colors.primary,
+  },
+
   infoText: {
-    flex: 1,
+    marginTop: 6,
+
+    fontSize: 12,
+    lineHeight: 19,
 
     color: colors.textSecondary,
+  },
 
-    fontSize: 10,
+  /* BOTÃO PRINCIPAL */
 
-    lineHeight: 16,
+  primaryButton: {
+    height: 60,
 
-    marginLeft: spacing.md,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+
+    backgroundColor: colors.primary,
+
+    borderRadius: 19,
+
+    shadowColor: colors.primary,
+    shadowOffset: {
+      width: 0,
+      height: 6,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 12,
+
+    elevation: 5,
+  },
+
+  primaryButtonText: {
+    marginLeft: spacing.sm,
+
+    fontSize: 15,
+    fontWeight: "800",
+
+    letterSpacing: 0.2,
+
+    color: colors.white,
+  },
+
+  disabledButton: {
+    opacity: 0.55,
+  },
+
+  /* DESCONECTAR */
+
+  disconnectButton: {
+    height: 52,
+
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+
+    marginTop: spacing.md,
+    marginBottom: spacing.xxl,
+
+    borderRadius: 16,
+
+    backgroundColor: "transparent",
+  },
+
+  disconnectButtonText: {
+    marginLeft: spacing.sm,
+
+    fontSize: 13,
+    fontWeight: "600",
+
+    color: colors.textMuted,
   },
 });

@@ -9,35 +9,28 @@ import TelaMedicacoes from "../telas/TelaMedicacoes";
 import TelaAnalises from "../telas/TelaAnalises";
 import TelaCintaCardiaca from "../telas/TelaCintaCardiaca";
 import TelaRegistrarCrise from "../telas/TelaRegistrarCrise";
+import TelaMonitoramento from "../telas/TelaMonitoramento";
 
 export default function AppNavigator() {
   const [tela, setTela] = useState(null);
 
   useEffect(() => {
-
     async function verificarLogin() {
+      const token = await authStorage.buscarToken();
 
-        const token = await authStorage.buscarToken();
-
-        if (token) {
-            setTela("inicio");
-        } else {
-            setTela("login");
-        }
-
+      if (token) {
+        setTela("inicio");
+      } else {
+        setTela("login");
+      }
     }
 
     verificarLogin();
-
-}, []);
+  }, []);
 
   switch (tela) {
     case "login":
-    return (
-        <TelaLogin
-            setTela={setTela}
-        />
-    );
+      return <TelaLogin setTela={setTela} />;
 
     case "inicio":
       return (
@@ -87,12 +80,15 @@ export default function AppNavigator() {
         />
       );
 
+      case "monitoramento":
+  return (
+    <TelaMonitoramento
+      tela={tela}
+      setTela={setTela}
+    />
+  );
+
     default:
-      return (
-        <TelaInicio
-          tela="inicio"
-          setTela={setTela}
-        />
-      );
+      return null;
   }
 }
