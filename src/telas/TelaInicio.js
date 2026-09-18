@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import {
   View,
@@ -23,6 +23,8 @@ import SectionHeader from "../componentes/SectionHeader";
 import StatusBadge from "../componentes/StatusBadge";
 import PrimaryButton from "../componentes/PrimaryButton";
 
+import usuarioService from "../services/usuarioService";
+
 import { colors } from "../styles/colors";
 import { spacing } from "../styles/spacing";
 
@@ -30,12 +32,34 @@ export default function TelaInicio({
   tela,
   setTela,
 }) {
+  const [usuario, setUsuario] = useState(null);
+
+  useEffect(() => {
+    async function carregarUsuario() {
+      try {
+        const dados =
+          await usuarioService.buscarUsuarioLogado();
+
+        setUsuario(dados);
+      } catch (erro) {
+        console.error(
+          "Erro ao carregar usuário:",
+          erro
+        );
+      }
+    }
+
+    carregarUsuario();
+  }, []);
+
   return (
     <AppShell
       tela={tela}
       setTela={setTela}
       eyebrow="Seu acompanhamento"
-      title="Olá, Maria"
+      title={`Olá, ${
+        usuario?.nome?.split(" ")[0] || "Paciente"
+      }`}
       subtitle="Acompanhe seus principais indicadores de saúde e o status da sua cinta EMPS."
     >
       {/* STATUS PRINCIPAL */}

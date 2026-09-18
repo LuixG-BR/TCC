@@ -6,6 +6,7 @@ import {
   View,
   Text,
   StyleSheet,
+  TouchableOpacity,
 } from "react-native";
 
 import {
@@ -23,6 +24,7 @@ import AppShell from "../componentes/AppShell";
 import Card from "../componentes/Card";
 import SectionHeader from "../componentes/SectionHeader";
 import StatusBadge from "../componentes/StatusBadge";
+import authStorage from "../storage/authStorage";
 
 import { colors } from "../styles/colors";
 import { spacing } from "../styles/spacing";
@@ -93,6 +95,15 @@ export default function TelaPerfil({
       </AppShell>
     );
   }
+
+  async function handleLogout() {
+  try {
+    await authStorage.removerToken();
+    setTela("login");
+  } catch (erro) {
+    console.error("Erro ao realizar logout:", erro);
+  }
+}
 
   return (
     <AppShell
@@ -244,6 +255,17 @@ export default function TelaPerfil({
           </Text>
         </View>
       </View>
+
+      <TouchableOpacity
+  style={styles.logoutButton}
+  onPress={handleLogout}
+  activeOpacity={0.8}
+>
+  <Text style={styles.logoutButtonText}>
+    Sair da conta
+  </Text>
+</TouchableOpacity>
+
     </AppShell>
   );
 }
@@ -518,4 +540,29 @@ const styles = StyleSheet.create({
 
     marginTop: 3,
   },
+
+  logoutButton: {
+  height: 52,
+
+  alignItems: "center",
+  justifyContent: "center",
+
+  marginTop: spacing.xl,
+  marginBottom: spacing.xxl,
+
+  borderWidth: 1,
+  borderColor: colors.danger,
+
+  borderRadius: 16,
+
+  backgroundColor: colors.dangerBackground,
+},
+
+logoutButtonText: {
+  fontSize: 14,
+  fontWeight: "700",
+
+  color: colors.danger,
+},
+
 });
