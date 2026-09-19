@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 
-from core.security import verificar_senha, criar_token
+from core.security import verificar_senha, criar_token, criar_refresh_token
 from models.usuario import Usuario
 
 
@@ -27,16 +27,18 @@ def login_usuario(email, senha, db):
         detail="Email ou senha inválidos."
     )
 
-    token = criar_token(
-        {
-            "sub": str(usuario.id_usuario),
-            "email": usuario.email,
-            "perfil": usuario.id_perfil
-        }
-    )
+    dados_token = {
+        "sub": str(usuario.id_usuario),
+        "email": usuario.email,
+        "perfil": usuario.id_perfil
+    }     
+
+    access_token = criar_token(dados_token)
+    refresh_token = criar_refresh_token(dados_token)
 
     return {
-        "access_token": token,
+        "access_token": access_token,
+        "refresh_token": refresh_token,
         "token_type": "bearer",
         "usuario": {
             "id": usuario.id_usuario,
@@ -44,4 +46,4 @@ def login_usuario(email, senha, db):
             "email": usuario.email,
             "id_perfil": usuario.id_perfil
         }
-    }
+}
