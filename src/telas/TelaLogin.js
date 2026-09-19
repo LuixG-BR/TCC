@@ -54,11 +54,16 @@ export default function TelaLogin({ setTela }) {
         resposta.access_token
       );
 
+      await authStorage.salvarRefreshToken(
+        resposta.refresh_token
+      );
+
       notificacoes.sucesso(
         "Login realizado com sucesso!"
       );
 
       setTela("inicio");
+
     } catch (erro) {
       if (erro.response?.status === 401) {
         notificacoes.erro(
@@ -217,7 +222,7 @@ export default function TelaLogin({ setTela }) {
                 style={[
                   styles.loginButton,
                   carregando &&
-                    styles.loginButtonDisabled,
+                  styles.loginButtonDisabled,
                 ]}
                 activeOpacity={0.85}
                 onPress={handleLogin}

@@ -25,6 +25,7 @@ import Card from "../componentes/Card";
 import SectionHeader from "../componentes/SectionHeader";
 import StatusBadge from "../componentes/StatusBadge";
 import authStorage from "../storage/authStorage";
+import notificacoes from "../services/notificacoes";
 
 import { colors } from "../styles/colors";
 import { spacing } from "../styles/spacing";
@@ -43,16 +44,13 @@ export default function TelaPerfil({
 
       try {
 
-        const dados =
-          await usuarioService.buscarUsuarioLogado();
-
-        console.log("Dados da API:", dados);
+        const dados = await usuarioService.buscarUsuarioLogado();
 
         setUsuario(dados);
 
       } catch (erro) {
 
-        console.error(
+        notificacoes.erro(
           "Erro ao carregar usuário:",
           erro.response?.data || erro.message
         );
@@ -101,7 +99,7 @@ export default function TelaPerfil({
     await authStorage.removerToken();
     setTela("login");
   } catch (erro) {
-    console.error("Erro ao realizar logout:", erro);
+    notificacoes.erro("Erro ao realizar logout:", erro);
   }
 }
 
