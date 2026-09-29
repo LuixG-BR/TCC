@@ -95,13 +95,13 @@ export default function TelaPerfil({
   }
 
   async function handleLogout() {
-  try {
-    await authStorage.removerToken();
-    setTela("login");
-  } catch (erro) {
-    notificacoes.erro("Erro ao realizar logout:", erro);
+    try {
+      await authStorage.removerToken();
+      setTela("login");
+    } catch (erro) {
+      notificacoes.erro("Erro ao realizar logout:", erro);
+    }
   }
-}
 
   return (
     <AppShell
@@ -150,7 +150,7 @@ export default function TelaPerfil({
         <InfoRow
           icon={CalendarDays}
           label="Data de nascimento"
-          value="15/04/2005"
+          value={usuario?.dados.data_nascimento || ""}
         />
 
         <Separator />
@@ -158,7 +158,7 @@ export default function TelaPerfil({
         <InfoRow
           icon={Droplets}
           label="Tipo sanguíneo"
-          value="O+"
+          value={usuario?.dados.tipo_sanguineo || ""}
         />
 
         <Separator />
@@ -166,7 +166,7 @@ export default function TelaPerfil({
         <InfoRow
           icon={Phone}
           label="Telefone"
-          value="(11) 99999-9999"
+          value={usuario?.telefone || ""}
         />
 
         <Separator />
@@ -174,7 +174,7 @@ export default function TelaPerfil({
         <InfoRow
           icon={MapPin}
           label="Endereço"
-          value="São Paulo - SP"
+          value={usuario?.dados.data_nascimento || ""}
         />
       </Card>
 
@@ -236,10 +236,6 @@ export default function TelaPerfil({
             <Text style={styles.emergencyName}>
               João Silva
             </Text>
-
-            <Text style={styles.emergencyRelation}>
-              Familiar responsável
-            </Text>
           </View>
         </View>
 
@@ -247,22 +243,18 @@ export default function TelaPerfil({
           <Text style={styles.emergencyPhoneLabel}>
             Telefone para contato
           </Text>
-
-          <Text style={styles.emergencyPhone}>
-            (11) 98888-7777
-          </Text>
         </View>
       </View>
 
       <TouchableOpacity
-  style={styles.logoutButton}
-  onPress={handleLogout}
-  activeOpacity={0.8}
->
-  <Text style={styles.logoutButtonText}>
-    Sair da conta
-  </Text>
-</TouchableOpacity>
+        style={styles.logoutButton}
+        onPress={handleLogout}
+        activeOpacity={0.8}
+      >
+        <Text style={styles.logoutButtonText}>
+          Sair da conta
+        </Text>
+      </TouchableOpacity>
 
     </AppShell>
   );
@@ -540,27 +532,27 @@ const styles = StyleSheet.create({
   },
 
   logoutButton: {
-  height: 52,
+    height: 52,
 
-  alignItems: "center",
-  justifyContent: "center",
+    alignItems: "center",
+    justifyContent: "center",
 
-  marginTop: spacing.xl,
-  marginBottom: spacing.xxl,
+    marginTop: spacing.xl,
+    marginBottom: spacing.xxl,
 
-  borderWidth: 1,
-  borderColor: colors.danger,
+    borderWidth: 1,
+    borderColor: colors.danger,
 
-  borderRadius: 16,
+    borderRadius: 16,
 
-  backgroundColor: colors.dangerBackground,
-},
+    backgroundColor: colors.dangerBackground,
+  },
 
-logoutButtonText: {
-  fontSize: 14,
-  fontWeight: "700",
+  logoutButtonText: {
+    fontSize: 14,
+    fontWeight: "700",
 
-  color: colors.danger,
-},
+    color: colors.danger,
+  },
 
 });
