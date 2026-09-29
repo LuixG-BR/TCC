@@ -1,15 +1,13 @@
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import authStorage from "../storage/authStorage";
 
 const api = axios.create({
     baseURL: "https://emps-backend-17ip.onrender.com"
 });
 
-// Coloca o access token automaticamente nas requisições
+
 api.interceptors.request.use(
     async (config) => {
-
         const token = await authStorage.buscarToken();
 
         if (token) {
@@ -24,8 +22,8 @@ api.interceptors.request.use(
     }
 );
 
-// Se o access token expirar, tenta renovar automaticamente
 api.interceptors.response.use(
+
     (response) => {
         return response;
     },
@@ -33,30 +31,27 @@ api.interceptors.response.use(
     async (error) => {
         const requisicaoOriginal = error.config;
 
-        // Verifica se foi erro 401 e se ainda não tentou renovar
         if (
             error.response?.status === 401 &&
             requisicaoOriginal &&
             !requisicaoOriginal._retry
         ) {
+
             requisicaoOriginal._retry = true;
 
             try {
-                const refreshToken =
-                    await AsyncStorage.getItem("refresh_token");
+                console.log("Access token expirado. Tentando renovar...");
 
-                // Se não existe refresh token, não há como renovar
+                const refreshToken = await authStorage.buscarRefreshToken();
+
                 if (!refreshToken) {
-                    await AsyncStorage.multiRemove([
-                        "token",
-                        "refresh_token"
-                    ]);
+                    console.log("Refresh token não encontrado.");
+
+                    await authStorage.limparTokens();
+
                     return Promise.reject(error);
                 }
 
-                // IMPORTANTE:
-                // usamos axios diretamente e NÃO "api"
-                // para evitar o interceptor entrar em loop
                 const resposta = await axios.post(
                     "https://emps-backend-17ip.onrender.com/login/refresh",
                     {
@@ -64,34 +59,45 @@ api.interceptors.response.use(
                     }
                 );
 
-                const novoToken = resposta.data.access_token;
+                const novoAccessToken = resposta.data.access_token;
 
-                // Salva o novo access token
-                await AsyncStorage.setItem(
-                    "token",
-                    novoToken
+                if (!novoAccessToken) {
+                    throw new Error(
+                        "API não retornou novo access token."
+                    );
+                }
+
+                await authStorage.salvarToken(
+                    novoAccessToken
                 );
 
-                // Atualiza a requisição que havia falhado
-                requisicaoOriginal.headers =
-                    requisicaoOriginal.headers || {};
+                if (resposta.data.refresh_token) {
 
-                requisicaoOriginal.headers.Authorization =
-                    `Bearer ${novoToken}`;
+                    await authStorage.salvarRefreshToken(
+                        resposta.data.refresh_token
+                    );
+                }
 
-                // Repete a requisição original
+                console.log("Access token renovado com sucesso.");
+
+                requisicaoOriginal.headers = requisicaoOriginal.headers || {};
+                requisicaoOriginal.headers.Authorization = `Bearer ${novoAccessToken}`;
+
                 return api(requisicaoOriginal);
+
             } catch (erroRefresh) {
+
                 console.log(
-                    "Sessão expirada. Faça login novamente."
+                    "Não foi possível renovar a sessão:",
+                    erroRefresh.response?.data ||
+                    erroRefresh.message
                 );
 
-                // O refresh token também expirou/inválido
-                await AsyncStorage.multiRemove([
-                    "token",
-                    "refresh_token"
-                ]);
-                return Promise.reject(erroRefresh);
+                await authStorage.limparTokens();
+
+                return Promise.reject(
+                    erroRefresh
+                );
             }
         }
 

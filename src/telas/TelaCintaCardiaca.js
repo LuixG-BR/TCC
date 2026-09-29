@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import bleService from "../services/bleService";
+
 import {
   View,
   Text,
@@ -34,18 +36,46 @@ export default function TelaCintaCardiaca({
   // Dados simulados da cinta
   const [bateria, setBateria] = useState(84);
 
-  function procurarCinta() {
-    setProcurando(true);
+  const [dispositivo, setDispositivo] = useState(null);
 
-    // Simulação temporária da busca Bluetooth
-    setTimeout(() => {
+  async function procurarCinta() {
+    try {
+      setProcurando(true);
+
+      console.log("Procurando cinta EMPS...");
+
+      const encontrado = await bleService.procurarCinta();
+
+      console.log(
+        "Cinta encontrada:",
+        encontrado.name
+      );
+
+      const dispositivoConectado = await bleService.conectarCinta(encontrado);
+
+      setDispositivo(dispositivoConectado);
+
       setConectado(true);
+
+      console.log("Cinta EMPS conectada com sucesso.");
+    } catch (erro) {
+      console.log("Erro ao conectar cinta:", erro);
+
+      setConectado(false);
+    } finally {
       setProcurando(false);
-    }, 1500);
+    }
   }
 
-  function desconectarCinta() {
-    setConectado(false);
+  async function desconectarCinta() {
+    try {
+      await bleService.desconectarCinta(dispositivo);
+    } catch (erro) {
+      console.log("Erro ao desconectar:", erro);
+    } finally {
+      setDispositivo(null);
+      setConectado(false);
+    }
   }
 
   function iniciarMonitoramento() {
@@ -216,29 +246,29 @@ export default function TelaCintaCardiaca({
 
       {/* INFORMAÇÃO */}
 
-{conectado ? (
-  <View style={styles.infoCard}>
-    <Text style={styles.infoTitle}>
-      Tudo pronto para começar
-    </Text>
+      {conectado ? (
+        <View style={styles.infoCard}>
+          <Text style={styles.infoTitle}>
+            Tudo pronto para começar
+          </Text>
 
-    <Text style={styles.infoText}>
-      Sua cinta está conectada e os sensores estão
-      preparados para iniciar um novo monitoramento.
-    </Text>
-  </View>
-) : (
-  <View style={styles.infoCard}>
-    <Text style={styles.infoTitle}>
-      Como funciona?
-    </Text>
+          <Text style={styles.infoText}>
+            Sua cinta está conectada e os sensores estão
+            preparados para iniciar um novo monitoramento.
+          </Text>
+        </View>
+      ) : (
+        <View style={styles.infoCard}>
+          <Text style={styles.infoTitle}>
+            Como funciona?
+          </Text>
 
-    <Text style={styles.infoText}>
-      Conecte sua cinta EMPS via Bluetooth para
-      começar a acompanhar os dados dos sensores.
-    </Text>
-  </View>
-)}
+          <Text style={styles.infoText}>
+            Conecte sua cinta EMPS via Bluetooth para
+            começar a acompanhar os dados dos sensores.
+          </Text>
+        </View>
+      )}
 
       {/* BOTÕES */}
 
