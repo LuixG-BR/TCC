@@ -146,37 +146,65 @@ export default function TelaPerfil({
         subtitle="Dados de identificação do paciente"
       />
 
-      <Card>
-        <InfoRow
-          icon={CalendarDays}
-          label="Data de nascimento"
-          value={usuario?.dados.data_nascimento || ""}
-        />
+<Card>
+  <InfoRow
+    icon={CalendarDays}
+    label="Data de nascimento"
+    value={
+      usuario?.dados.data_nascimento
+        ? new Date(
+            usuario.dados.data_nascimento + "T00:00:00"
+          ).toLocaleDateString("pt-BR")
+        : ""
+    }
+  />
 
-        <Separator />
+  <Separator />
 
-        <InfoRow
-          icon={Droplets}
-          label="Tipo sanguíneo"
-          value={usuario?.dados.tipo_sanguineo || ""}
-        />
+  <InfoRow
+    icon={Droplets}
+    label="Tipo sanguíneo"
+    value={usuario?.dados.tipo_sanguineo?.toUpperCase() || ""}
+  />
 
-        <Separator />
+  <Separator />
 
-        <InfoRow
-          icon={Phone}
-          label="Telefone"
-          value={usuario?.telefone || ""}
-        />
+  <InfoRow
+    icon={Phone}
+    label="Telefone"
+    value={
+      usuario?.telefone
+        ? (() => {
+            const telefone = usuario.telefone.replace(/\D/g, "");
 
-        <Separator />
+            if (telefone.length === 11) {
+              return telefone.replace(
+                /(\d{2})(\d{5})(\d{4})/,
+                "($1) $2-$3"
+              );
+            }
 
-        <InfoRow
-          icon={MapPin}
-          label="Endereço"
-          value={usuario?.dados.endereco || ""}
-        />
-      </Card>
+            if (telefone.length === 10) {
+              return telefone.replace(
+                /(\d{2})(\d{4})(\d{4})/,
+                "($1) $2-$3"
+              );
+            }
+
+            return usuario.telefone;
+          })()
+        : ""
+    }
+  />
+
+  <Separator />
+
+  <InfoRow
+    icon={MapPin}
+    label="Endereço"
+    value={usuario?.dados.endereco || ""}
+  />
+</Card>
 
       {/* DADOS MÉDICOS */}
 
@@ -258,7 +286,21 @@ export default function TelaPerfil({
           <Text style={styles.emergencyPhoneLabel}>
             Telefone para contato
             <Text style={styles.emergencyPhone}>
-              {usuario?.dados?.contato_emergencia || "Não cadastrado"}
+             {usuario?.dados?.contato_emergencia
+  ? (() => {
+      const telefone = usuario.dados.contato_emergencia.replace(/\D/g, "");
+
+      if (telefone.length === 11) {
+        return telefone.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+      }
+
+      if (telefone.length === 10) {
+        return telefone.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+      }
+
+      return usuario.dados.contato_emergencia;
+    })()
+  : "Não cadastrado"}
             </Text>
           </Text>
         </View>
