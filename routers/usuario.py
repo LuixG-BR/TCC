@@ -10,6 +10,7 @@ from controllers.usuario import (criar_usuario, listar_usuarios)
 from models.usuario import Usuario
 from models.medico import Medico
 from models.paciente import Paciente
+from models.paciente_medico import PacienteMedico
 
 router = APIRouter(
     prefix="/usuarios",
@@ -112,21 +113,48 @@ def usuario_logado(
             )
             .first()
         )
+
         resposta["tipo"] = "paciente"
 
-        if paciente:
-            resposta["dados"] = {
-                "id_paciente": paciente.id_paciente,
-                "cpf": paciente.cpf,
-                "cns": paciente.cns,
-                "data_nascimento": paciente.data_nascimento,
-                "sexo": paciente.sexo,
-                "contato_emergencia": paciente.contato_emergencia,
-                "tipo_sanguineo": paciente.tipo_sanguineo
-            }
+        medicos = (
+                db.query(Medico, Usuario)
+                .join(
+                    PacienteMedico,
+                    PacienteMedico.id_medico == Medico.id_medico
+                )
+                .join(
+                    Usuario,
+                    Usuario.id_usuario == Medico.id_usuario
+                )
+                .filter(
+                    PacienteMedico.id_paciente == paciente.id_paciente
+                ).all()
+            )
 
-        else:
-            resposta["dados"] = None
+        medicos_responsaveis = []
+
+        for medico, usuario_medico in medicos:
+            medicos_responsaveis.append({
+                "id_medico": medico.id_medico,
+                "nome": usuario_medico.nome,
+                "crm": medico.crm,
+                "especialidade": medico.especialidade
+            })
+
+        resposta["dados"] = {
+            "id_paciente": paciente.id_paciente,
+            "cpf": paciente.cpf,
+            "cns": paciente.cns,
+            "data_nascimento": paciente.data_nascimento,
+            "sexo": paciente.sexo,
+            "contato_emergencia": paciente.contato_emergencia,
+            "tipo_sanguineo": paciente.tipo_sanguineo,
+            "endereco": paciente.endereco,
+            "medicos_responsaveis": medicos_responsaveis
+        }
+
+    else:
+        resposta["dados"] = None
 
     return resposta
 
