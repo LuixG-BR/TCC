@@ -146,37 +146,65 @@ export default function TelaPerfil({
         subtitle="Dados de identificação do paciente"
       />
 
-      <Card>
-        <InfoRow
-          icon={CalendarDays}
-          label="Data de nascimento"
-          value={usuario?.dados.data_nascimento || ""}
-        />
+<Card>
+  <InfoRow
+    icon={CalendarDays}
+    label="Data de nascimento"
+    value={
+      usuario?.dados.data_nascimento
+        ? new Date(
+            usuario.dados.data_nascimento + "T00:00:00"
+          ).toLocaleDateString("pt-BR")
+        : ""
+    }
+  />
 
-        <Separator />
+  <Separator />
 
-        <InfoRow
-          icon={Droplets}
-          label="Tipo sanguíneo"
-          value={usuario?.dados.tipo_sanguineo || ""}
-        />
+  <InfoRow
+    icon={Droplets}
+    label="Tipo sanguíneo"
+    value={usuario?.dados.tipo_sanguineo?.toUpperCase() || ""}
+  />
 
-        <Separator />
+  <Separator />
 
-        <InfoRow
-          icon={Phone}
-          label="Telefone"
-          value={usuario?.telefone || ""}
-        />
+  <InfoRow
+    icon={Phone}
+    label="Telefone"
+    value={
+      usuario?.telefone
+        ? (() => {
+            const telefone = usuario.telefone.replace(/\D/g, "");
 
-        <Separator />
+            if (telefone.length === 11) {
+              return telefone.replace(
+                /(\d{2})(\d{5})(\d{4})/,
+                "($1) $2-$3"
+              );
+            }
 
-        <InfoRow
-          icon={MapPin}
-          label="Endereço"
-          value={usuario?.dados.data_nascimento || ""}
-        />
-      </Card>
+            if (telefone.length === 10) {
+              return telefone.replace(
+                /(\d{2})(\d{4})(\d{4})/,
+                "($1) $2-$3"
+              );
+            }
+
+            return usuario.telefone;
+          })()
+        : ""
+    }
+  />
+
+  <Separator />
+
+  <InfoRow
+    icon={MapPin}
+    label="Endereço"
+    value={usuario?.dados.endereco || ""}
+  />
+</Card>
 
       {/* DADOS MÉDICOS */}
 
@@ -208,16 +236,31 @@ export default function TelaPerfil({
 
         <Separator />
 
-        <InfoRow
-          icon={Stethoscope}
-          label="Médico responsável"
-          value="Dr(a). Maria Santos"
-        />
+        <Text style={styles.medicalLabel}>
+          Médicos responsáveis
+        </Text>
+
+        {usuario?.dados?.medicos_responsaveis?.length > 0 ? (
+          usuario.dados.medicos_responsaveis.map((medico) => (
+            <View
+              key={medico.id_medico}
+              style={styles.medicoCard}
+            >
+              <Text style={styles.nomeMedico}>
+                {medico.nome}
+              </Text>
+            </View>
+          ))
+        ) : (
+          <Text style={styles.semMedico}>
+            Nenhum médico responsável cadastrado.
+          </Text>
+        )}
       </Card>
 
       {/* CONTATO DE EMERGÊNCIA */}
 
-      <SectionHeader
+      < SectionHeader
         icon={ShieldAlert}
         title="Contato de emergência"
         subtitle="Pessoa responsável em situações de atenção"
@@ -234,7 +277,7 @@ export default function TelaPerfil({
 
           <View style={styles.emergencyInfo}>
             <Text style={styles.emergencyName}>
-              João Silva
+              Ramon
             </Text>
           </View>
         </View>
@@ -242,6 +285,23 @@ export default function TelaPerfil({
         <View style={styles.emergencyPhoneBox}>
           <Text style={styles.emergencyPhoneLabel}>
             Telefone para contato
+            <Text style={styles.emergencyPhone}>
+             {usuario?.dados?.contato_emergencia
+  ? (() => {
+      const telefone = usuario.dados.contato_emergencia.replace(/\D/g, "");
+
+      if (telefone.length === 11) {
+        return telefone.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
+      }
+
+      if (telefone.length === 10) {
+        return telefone.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
+      }
+
+      return usuario.dados.contato_emergencia;
+    })()
+  : "Não cadastrado"}
+            </Text>
           </Text>
         </View>
       </View>

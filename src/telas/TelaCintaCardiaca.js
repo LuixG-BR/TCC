@@ -45,19 +45,22 @@ export default function TelaCintaCardiaca({
       console.log("Procurando cinta EMPS...");
 
       const encontrado = await bleService.procurarCinta();
-
-      console.log(
-        "Cinta encontrada:",
-        encontrado.name
-      );
+      console.log("Cinta encontrada:", encontrado.name);
 
       const dispositivoConectado = await bleService.conectarCinta(encontrado);
 
       setDispositivo(dispositivoConectado);
-
       setConectado(true);
-
       console.log("Cinta EMPS conectada com sucesso.");
+
+      bleService.monitorarDados(dispositivoConectado,
+        (mensagem) => {
+          console.log(
+            "DADOS DO ESP32:",
+            mensagem
+          );
+        }
+      );
     } catch (erro) {
       console.log("Erro ao conectar cinta:", erro);
 
