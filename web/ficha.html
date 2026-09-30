@@ -3,3035 +3,3445 @@
 
 <head>
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
 
-<title>EMPS - Lista de Pacientes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
+    <title>EMPS - Lista de pacientes</title>
 
-/* =====================================================
-   RESET
-===================================================== */
+    <link rel="preconnect" href="https://fonts.googleapis.com">
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-html,
-body {
-    width: 100%;
-    min-height: 100%;
-}
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
 
-body {
-    min-height: 100vh;
-    background: #f5f7ff;
-    color: #20245f;
-    overflow-x: hidden;
-}
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
 
-.app {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
+    <style>
 
-.main-area {
-    flex: 1;
-    display: flex;
-    min-height: calc(100vh - 70px);
-}
+        :root {
+            --primary: #5930c8;
+            --primary-dark: #4822b0;
+            --primary-light: #f1edff;
 
+            --text: #29293d;
+            --text-soft: #77778a;
 
-/* =====================================================
-   SIDEBAR
-===================================================== */
+            --border: #e9e8f0;
+            --background: #fafafd;
+            --white: #ffffff;
 
-.sidebar {
-    width: 270px;
-    min-width: 270px;
+            --green: #32a46e;
+            --green-bg: #eaf8ef;
 
-    background: #ffffff;
+            --red: #d95858;
+        }
 
-    border-right: 1px solid #e7e9f2;
 
-    padding: 18px 14px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
 
-    display: flex;
-    flex-direction: column;
 
-    transition: .25s;
-}
+        body {
+            background: var(--background);
+            color: var(--text);
+            min-height: 100vh;
+        }
 
 
-/* =====================================================
-   LOGO
-===================================================== */
+        button,
+        input {
+            font-family: inherit;
+        }
 
-.logo {
-    display: flex;
-    align-items: flex-start;
 
-    gap: 9px;
+        button {
+            cursor: pointer;
+        }
 
-    padding: 0 8px;
 
-    margin-bottom: 40px;
-}
+        a {
+            text-decoration: none;
+        }
 
-.logo-icon {
-    width: 40px;
-    height: 40px;
 
-    color: #6331d2;
+        /* =========================================================
+           ESTRUTURA
+        ========================================================== */
 
-    flex-shrink: 0;
-}
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
 
-.logo-text {
-    display: flex;
-    flex-direction: column;
-}
 
-.logo-text strong {
-    display: block;
+        /* =========================================================
+           SIDEBAR
+        ========================================================== */
 
-    color: #5b2bc8;
+        .sidebar {
 
-    font-size: 25px;
-    line-height: 24px;
+            width: 270px;
 
-    font-weight: 700;
-}
+            min-height: 100vh;
 
-.logo-text span {
-    display: block;
+            background: #ffffff;
 
-    color: #34365e;
+            border-right: 1px solid var(--border);
 
-    font-size: 7px;
-    line-height: 9px;
+            display: flex;
 
-    margin-top: 5px;
+            flex-direction: column;
 
-    max-width: 135px;
-}
+            position: fixed;
 
+            top: 0;
+            left: 0;
+            bottom: 0;
 
-/* =====================================================
-   MENU
-===================================================== */
+            z-index: 100;
+        }
 
-.menu {
-    display: flex;
-    flex-direction: column;
 
-    gap: 7px;
-}
+        /* =========================================================
+           LOGO
+        ========================================================== */
 
-.menu a {
-    height: 46px;
+        .logo {
 
-    display: flex;
-    align-items: center;
+            height: 92px;
 
-    gap: 14px;
+            padding: 0 26px;
 
-    padding: 0 14px;
+            display: flex;
 
-    border-radius: 9px;
+            align-items: center;
 
-    color: #303361;
+            border-bottom: 1px solid #f0eff5;
+        }
 
-    text-decoration: none;
 
-    font-size: 13px;
+        .logo-icon {
 
-    transition: .25s;
+            width: 42px;
+            height: 42px;
 
-    white-space: nowrap;
-}
+            display: flex;
 
-.menu a svg {
-    width: 20px;
-    height: 20px;
+            align-items: center;
+            justify-content: center;
 
-    stroke-width: 1.6;
+            color: #5b42aa;
 
-    flex-shrink: 0;
-}
+            font-size: 35px;
+        }
 
-.menu a:hover {
-    background: #f1edff;
-    color: #5c2dc9;
-}
 
-.menu a.active {
-    background: linear-gradient(
-        135deg,
-        #6330d2,
-        #5420bd
-    );
+        .logo-info {
 
-    color: #ffffff;
+            margin-left: 9px;
+        }
 
-    box-shadow:
-        0 7px 16px rgba(91, 43, 201, .20);
-}
 
-.menu a.active svg {
-    stroke: #ffffff;
-}
+        .logo-info h1 {
 
+            font-size: 27px;
 
-/* =====================================================
-   PARTE INFERIOR DA SIDEBAR
-===================================================== */
+            color: #514088;
 
-.sidebar-bottom {
-    margin-top: auto;
-}
+            font-weight: 800;
 
+            letter-spacing: -0.8px;
+        }
 
-/* =====================================================
-   CAIXA DE AJUDA
-===================================================== */
 
-.help-box {
-    display: flex;
-    align-items: center;
+        .logo-info p {
 
-    gap: 10px;
+            font-size: 7px;
 
-    padding: 14px 12px;
+            color: #777687;
 
-    background: #f3efff;
+            margin-top: 3px;
 
-    border-radius: 9px;
+            line-height: 1.4;
+        }
 
-    margin-bottom: 14px;
 
-    min-height: 78px;
-}
+        /* =========================================================
+           MENU
+        ========================================================== */
 
-.help-icon {
-    width: 27px;
-    height: 27px;
+        .sidebar nav {
 
-    color: #6331d2;
+            padding: 13px 11px;
 
-    flex-shrink: 0;
-}
+            display: flex;
 
-.help-text {
-    flex: 1;
-}
+            flex-direction: column;
 
-.help-text strong {
-    display: block;
+            gap: 4px;
+        }
 
-    color: #5b2bc8;
 
-    font-size: 10px;
+        .sidebar nav a {
 
-    margin-bottom: 4px;
-}
+            min-height: 50px;
 
-.help-text span {
-    display: block;
+            padding: 0 16px;
 
-    color: #5b5e80;
+            display: flex;
 
-    font-size: 8px;
+            align-items: center;
 
-    line-height: 11px;
-}
+            gap: 16px;
 
-.help-arrow {
-    color: #5b2bc8;
+            border-radius: 8px;
 
-    font-size: 21px;
+            color: #656578;
 
-    line-height: 1;
-}
+            font-size: 13px;
 
+            font-weight: 500;
 
-/* =====================================================
-   SAIR
-===================================================== */
+            transition: 0.25s;
 
-.sidebar-bottom > a {
-    height: 42px;
+            position: relative;
+        }
 
-    display: flex;
-    align-items: center;
 
-    gap: 14px;
+        .sidebar nav a i {
 
-    padding: 0 14px;
+            width: 18px;
 
-    border-radius: 9px;
+            text-align: center;
 
-    color: #303361;
+            font-size: 17px;
 
-    text-decoration: none;
+            color: #737386;
+        }
 
-    font-size: 13px;
 
-    transition: .25s;
-}
+        .sidebar nav a:hover {
 
-.sidebar-bottom > a svg {
-    width: 20px;
-    height: 20px;
+            background: #f5f2ff;
 
-    stroke-width: 1.6;
-}
+            color: var(--primary);
+        }
 
-.sidebar-bottom > a:hover {
-    background: #f1edff;
-    color: #5c2dc9;
-}
 
+        .sidebar nav a:hover i {
 
-/* =====================================================
-   CONTEÚDO
-===================================================== */
+            color: var(--primary);
+        }
 
-.content-area {
-    flex: 1;
 
-    min-width: 0;
+        /* ITEM ATIVO */
 
-    display: flex;
-    flex-direction: column;
-}
+        .sidebar nav a.active {
 
+            color: white;
 
-/* =====================================================
-   TOPBAR
-===================================================== */
+            background:
+                linear-gradient(
+                    135deg,
+                    #5124bd,
+                    #6d3bd5
+                );
 
-.topbar {
-    height: 58px;
-    min-height: 58px;
+            box-shadow:
+                0 5px 13px
+                rgba(88, 47, 200, 0.16);
+        }
 
-    background: #ffffff;
 
-    border-bottom: 1px solid #eceef6;
+        .sidebar nav a.active i {
 
-    display: flex;
-    align-items: center;
+            color: white;
+        }
 
-    padding: 0 22px;
 
-    gap: 24px;
-}
+        /* =========================================================
+           ALERTAS
+        ========================================================== */
 
+        .menu-notification {
 
-/* =====================================================
-   BREADCRUMB
-===================================================== */
+            margin-left: auto;
 
-.breadcrumb {
-    flex: 1;
+            color: var(--primary) !important;
 
-    display: flex;
-    align-items: center;
+            font-size: 17px !important;
 
-    gap: 10px;
+            position: relative;
+        }
 
-    font-size: 10px;
 
-    color: #66698a;
-}
+        .menu-notification::after {
 
-.breadcrumb .current {
-    color: #5b2bc8;
-    font-weight: bold;
-}
+            content: "";
 
-.breadcrumb-arrow {
-    color: #aaaec2;
-}
+            position: absolute;
 
+            width: 6px;
+            height: 6px;
 
-/* =====================================================
-   BUSCA DO TOPO
-===================================================== */
+            border-radius: 50%;
 
-.top-search {
-    width: 190px;
-    height: 32px;
+            background: var(--primary);
 
-    border: 1px solid #dfe2ee;
+            top: -2px;
+            right: -3px;
+        }
 
-    border-radius: 7px;
 
-    display: flex;
-    align-items: center;
+        /* =========================================================
+           PARTE INFERIOR
+        ========================================================== */
 
-    padding: 0 11px;
+        .sidebar-bottom {
 
-    gap: 7px;
+            margin-top: auto;
 
-    flex-shrink: 0;
-}
+            padding: 19px 12px 21px;
+        }
 
-.top-search input {
-    width: 100%;
 
-    border: none;
-    outline: none;
+        /* =========================================================
+           SUPORTE
+        ========================================================== */
 
-    font-size: 9px;
+        .support-box {
 
-    color: #444;
+            min-height: 78px;
 
-    background: transparent;
-}
+            background: #f6f3ff;
 
-.top-search input::placeholder {
-    color: #999cb3;
-}
+            border-radius: 8px;
 
-.top-search svg {
-    width: 14px;
-    height: 14px;
+            padding: 15px;
 
-    color: #65698d;
+            display: flex;
 
-    flex-shrink: 0;
-}
+            align-items: center;
 
+            gap: 13px;
 
-/* =====================================================
-   NOTIFICAÇÃO DO TOPO
-===================================================== */
+            margin-bottom: 15px;
 
-.top-notification {
-    width: 27px;
-    height: 32px;
+            cursor: pointer;
 
-    position: relative;
+            transition: 0.2s;
+        }
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-    flex-shrink: 0;
-}
+        .support-box:hover {
 
-.top-notification svg {
-    width: 18px;
-    height: 18px;
+            background: #eee9ff;
 
-    color: #464a72;
-}
+            transform: translateY(-1px);
+        }
 
 
-/* =====================================================
-   PERFIL
-===================================================== */
+        .support-box i {
 
-.profile {
-    display: flex;
-    align-items: center;
+            color: #674fc0;
 
-    gap: 9px;
+            font-size: 28px;
+        }
 
-    flex-shrink: 0;
-}
 
-.profile-info {
-    text-align: right;
-}
+        .support-box strong {
 
-.profile-info strong {
-    display: block;
+            display: block;
 
-    font-size: 9px;
+            color: #5c596f;
 
-    color: #27294f;
-}
+            font-size: 10px;
 
-.profile-info span {
-    display: block;
+            margin-bottom: 4px;
+        }
 
-    font-size: 8px;
 
-    color: #5b31c8;
+        .support-box span {
 
-    margin-top: 2px;
-}
+            color: #9998a8;
 
-.profile-photo {
-    width: 32px;
-    height: 32px;
+            font-size: 9px;
+        }
 
-    border-radius: 50%;
 
-    background: linear-gradient(
-        135deg,
-        #ddd,
-        #999
-    );
+        /* =========================================================
+           SAIR
+        ========================================================== */
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+        .logout {
 
-    color: white;
+            height: 47px;
 
-    flex-shrink: 0;
-}
+            width: 100%;
 
-.profile-photo svg {
-    width: 20px;
-    height: 20px;
-}
+            border: none;
 
-.profile-arrow {
-    width: 14px;
-    height: 14px;
+            background: transparent;
 
-    color: #5b6084;
-}
+            display: flex;
 
+            align-items: center;
 
-/* =====================================================
-   ÁREA DA PÁGINA
-===================================================== */
+            gap: 16px;
 
-.main-content {
-    flex: 1;
+            padding: 0 18px;
 
-    min-width: 0;
+            border-radius: 8px;
 
-    background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(255, 255, 255, .8),
-            transparent 30%
-        ),
-        linear-gradient(
-            115deg,
-            #f5f3ff,
-            #edf3ff
-        );
+            color: #656578;
 
-    padding: 28px 32px 22px;
+            font-size: 13px;
 
-    overflow: auto;
-}
+            transition: 0.25s;
+        }
 
 
-/* =====================================================
-   CABEÇALHO DA PÁGINA
-===================================================== */
+        .logout i {
 
-.page-header {
-    display: flex;
+            width: 18px;
 
-    justify-content: space-between;
+            text-align: center;
+        }
 
-    align-items: center;
 
-    margin-bottom: 20px;
+        .logout:hover {
 
-    gap: 20px;
-}
+            background: #fff0f0;
 
-.page-title h1 {
-    font-size: 25px;
+            color: #ce5050;
+        }
 
-    color: #171b5c;
 
-    margin-bottom: 6px;
-}
+        /* =========================================================
+           ÁREA PRINCIPAL
+        ========================================================== */
 
-.page-title p {
-    font-size: 10px;
+        .main-area {
 
-    color: #6c6f8d;
-}
+            width: calc(100% - 270px);
 
+            margin-left: 270px;
 
-/* =====================================================
-   BOTÃO ADICIONAR
-===================================================== */
+            min-height: 100vh;
 
-.add-btn {
-    height: 38px;
+            display: flex;
 
-    padding: 0 19px;
+            flex-direction: column;
+        }
 
-    border: none;
 
-    border-radius: 8px;
+        /* =========================================================
+           TOPO
+        ========================================================== */
 
-    background: linear-gradient(
-        90deg,
-        #6531d5,
-        #5630c9
-    );
+        .topbar {
 
-    color: white;
+            height: 72px;
 
-    display: flex;
+            background: rgba(255,255,255,0.94);
 
-    align-items: center;
+            border-bottom: 1px solid var(--border);
 
-    gap: 8px;
+            display: flex;
 
-    font-size: 9px;
+            align-items: center;
 
-    cursor: pointer;
+            justify-content: space-between;
 
-    box-shadow:
-        0 6px 15px rgba(91, 43, 201, .18);
+            padding: 0 30px;
+        }
 
-    transition: .25s;
 
-    flex-shrink: 0;
-}
+        .breadcrumb {
 
-.add-btn svg {
-    width: 15px;
-    height: 15px;
-}
+            color: #8d8b9a;
 
-.add-btn:hover {
-    transform: translateY(-2px);
+            font-size: 11px;
+        }
 
-    box-shadow:
-        0 8px 18px rgba(91, 43, 201, .25);
-}
 
+        .breadcrumb strong {
 
-/* =====================================================
-   TABELA
-===================================================== */
+            color: #5e45b3;
 
-.table-container {
-    width: 100%;
+            font-weight: 600;
+        }
 
-    background: white;
 
-    border: 1px solid #edf0f7;
+        .topbar-right {
 
-    border-radius: 13px;
+            display: flex;
 
-    overflow: hidden;
+            align-items: center;
 
-    box-shadow:
-        0 7px 25px rgba(52, 70, 130, .06);
-}
+            gap: 22px;
+        }
 
 
-/* =====================================================
-   BARRA DA TABELA
-===================================================== */
+        .top-notification {
 
-.table-toolbar {
-    min-height: 56px;
+            position: relative;
 
-    display: flex;
+            color: #625f76;
 
-    align-items: center;
+            font-size: 19px;
+        }
 
-    justify-content: space-between;
 
-    padding: 0 16px;
+        .top-notification span {
 
-    border-bottom: 1px solid #f0f1f6;
+            position: absolute;
 
-    gap: 15px;
-}
+            width: 15px;
+            height: 15px;
 
+            top: -8px;
+            right: -8px;
 
-/* =====================================================
-   PESQUISA DA TABELA
-===================================================== */
+            background: var(--primary);
 
-.table-search {
-    width: 215px;
-    height: 32px;
+            color: white;
 
-    border: 1px solid #e3e5ee;
+            border-radius: 50%;
 
-    border-radius: 7px;
+            display: flex;
 
-    display: flex;
+            align-items: center;
+            justify-content: center;
 
-    align-items: center;
+            font-size: 8px;
 
-    padding: 0 11px;
+            font-weight: 700;
+        }
 
-    gap: 7px;
-}
 
-.table-search input {
-    width: 100%;
+        .doctor-mini {
 
-    border: none;
+            display: flex;
 
-    outline: none;
+            align-items: center;
 
-    font-size: 9px;
+            gap: 10px;
 
-    background: transparent;
-}
+            cursor: pointer;
 
-.table-search input::placeholder {
-    color: #a1a4b7;
-}
+            outline: none;
+        }
 
-.table-search svg {
-    width: 14px;
-    height: 14px;
 
-    color: #777b98;
+        .doctor-mini span {
 
-    flex-shrink: 0;
-}
+            font-size: 11px;
 
+            color: #676577;
+        }
 
-/* =====================================================
-   FILTROS
-===================================================== */
 
-.filter-btn {
-    height: 31px;
+        .doctor-mini strong {
 
-    padding: 0 13px;
+            font-weight: 600;
+        }
 
-    background: white;
 
-    border: 1px solid #e1e4ed;
+        .doctor-mini img {
 
-    border-radius: 7px;
+            width: 37px;
+            height: 37px;
 
-    color: #565a7b;
+            border-radius: 50%;
 
-    font-size: 9px;
+            object-fit: cover;
 
-    display: flex;
+            border: 1px solid #eeeeF3;
+        }
 
-    align-items: center;
 
-    gap: 6px;
+        .doctor-mini > i {
 
-    cursor: pointer;
-}
+            color: #9795a5;
 
-.filter-btn svg {
-    width: 14px;
-    height: 14px;
-}
+            font-size: 10px;
+        }
 
 
-/* =====================================================
-   SCROLL DA TABELA
-===================================================== */
+        /* =========================================================
+           CONTEÚDO
+        ========================================================== */
 
-.table-scroll {
-    width: 100%;
+        .content-area {
 
-    overflow-x: auto;
-}
+            flex: 1;
 
+            padding: 30px;
+        }
 
-/* =====================================================
-   TABELA
-===================================================== */
 
-table {
-    width: 100%;
+        .content-header {
 
-    min-width: 850px;
+            display: flex;
 
-    border-collapse: collapse;
-}
+            align-items: flex-end;
 
-thead {
-    background: #fff;
-}
+            justify-content: space-between;
 
-thead th {
-    height: 42px;
+            margin-bottom: 25px;
+        }
 
-    padding: 0 16px;
 
-    text-align: left;
+        .content-header h1 {
 
-    color: #656985;
+            font-size: 25px;
 
-    font-size: 8px;
+            color: #343346;
 
-    font-weight: bold;
+            margin-bottom: 7px;
+        }
 
-    border-bottom: 1px solid #eef0f5;
 
-    white-space: nowrap;
-}
+        .content-header p {
 
-thead th .sort {
-    margin-left: 5px;
+            color: #858394;
 
-    color: #a4a7ba;
-}
+            font-size: 11px;
+        }
 
 
-/* =====================================================
-   LINHAS
-===================================================== */
+        .add-button {
 
-tbody tr {
-    transition: .2s;
-}
+            height: 39px;
 
-tbody tr:hover {
-    background: #fafaff;
-}
+            padding: 0 18px;
 
-tbody td {
-    height: 48px;
+            border: none;
 
-    padding: 0 16px;
+            border-radius: 7px;
 
-    border-bottom: 1px solid #f0f1f6;
+            background:
+                linear-gradient(
+                    135deg,
+                    #5930c8,
+                    #7039dc
+                );
 
-    color: #555a7b;
+            color: white;
 
-    font-size: 9px;
+            font-size: 11px;
 
-    white-space: nowrap;
-}
+            font-weight: 600;
 
-tbody tr:last-child td {
-    border-bottom: none;
-}
+            display: flex;
 
+            align-items: center;
 
-/* =====================================================
-   PACIENTE
-===================================================== */
+            gap: 8px;
 
-.patient-link {
-    text-decoration: none;
+            box-shadow:
+                0 7px 18px
+                rgba(89,48,200,0.16);
+        }
 
-    color: inherit;
-}
 
-.patient {
-    display: flex;
+        .add-button:hover {
 
-    align-items: center;
+            background: var(--primary-dark);
+        }
 
-    gap: 9px;
 
-    color: #292d62;
+        /* =========================================================
+           CARD DE PACIENTES
+        ========================================================== */
 
-    font-weight: bold;
-}
+        .patients-card {
 
-.avatar {
-    width: 30px;
-    height: 30px;
+            background: white;
 
-    border-radius: 50%;
+            border: 1px solid var(--border);
 
-    display: flex;
+            border-radius: 12px;
 
-    align-items: center;
+            box-shadow:
+                0 5px 20px
+                rgba(50,40,100,0.04);
 
-    justify-content: center;
+            overflow: hidden;
+        }
 
-    font-size: 8px;
 
-    font-weight: bold;
+        .patients-toolbar {
 
-    flex-shrink: 0;
-}
+            min-height: 72px;
 
+            padding: 0 20px;
 
-/* =====================================================
-   STATUS
-===================================================== */
+            display: flex;
 
-.status {
-    display: inline-flex;
+            align-items: center;
 
-    align-items: center;
+            justify-content: space-between;
 
-    gap: 5px;
+            gap: 15px;
 
-    padding: 6px 10px;
+            border-bottom: 1px solid #eeeeF3;
+        }
 
-    border-radius: 18px;
 
-    font-size: 8px;
+        .search-box {
 
-    font-weight: bold;
-}
+            position: relative;
 
-.status-dot {
-    width: 6px;
-    height: 6px;
+            width: 310px;
+        }
 
-    border-radius: 50%;
-}
 
-.active-status {
-    background: #e4f8ed;
+        .search-box input {
 
-    color: #159b57;
-}
+            width: 100%;
 
-.active-status .status-dot {
-    background: #18b968;
-}
+            height: 38px;
 
-.inactive-status {
-    background: #ffe8e8;
+            border: 1px solid #e3e1eb;
 
-    color: #e24c4c;
-}
+            border-radius: 7px;
 
-.inactive-status .status-dot {
-    background: #f24c4c;
-}
+            outline: none;
 
-.obs-status {
-    background: #fff2df;
+            padding: 0 38px 0 13px;
 
-    color: #d48600;
-}
+            color: #5c5a6c;
 
-.obs-status .status-dot {
-    background: #f1a21a;
-}
+            font-size: 10px;
+        }
 
 
-/* =====================================================
-   AÇÕES
-===================================================== */
+        .search-box input:focus {
 
-.action-btn {
-    border: none;
+            border-color: var(--primary);
 
-    background: transparent;
+            box-shadow:
+                0 0 0 3px
+                rgba(89,48,200,0.08);
+        }
 
-    color: #4d5278;
 
-    cursor: pointer;
+        .search-box i {
 
-    font-size: 19px;
+            position: absolute;
 
-    line-height: 1;
-}
+            right: 13px;
 
+            top: 50%;
 
-/* =====================================================
-   ESTADO VAZIO
-===================================================== */
+            transform: translateY(-50%);
 
-.empty-state {
-    text-align: center;
+            color: #674fc0;
 
-    padding: 55px 20px;
+            font-size: 12px;
+        }
 
-    color: #777b98;
-}
 
-.empty-state svg {
-    width: 42px;
-    height: 42px;
+        .filter-button {
 
-    color: #6331d2;
+            height: 38px;
 
-    margin-bottom: 12px;
-}
+            padding: 0 14px;
 
-.empty-state strong {
-    display: block;
+            background: white;
 
-    color: #292d62;
+            border: 1px solid #e3e1eb;
 
-    font-size: 13px;
+            border-radius: 7px;
 
-    margin-bottom: 6px;
-}
+            color: #696779;
 
-.empty-state span {
-    display: block;
+            font-size: 10px;
 
-    font-size: 10px;
+            display: flex;
 
-    color: #8589a3;
-}
+            align-items: center;
 
+            gap: 7px;
+        }
 
-/* =====================================================
-   PAGINAÇÃO
-===================================================== */
 
-.pagination {
-    min-height: 48px;
+        .filter-button:hover {
 
-    display: flex;
+            background: #f7f4ff;
 
-    align-items: center;
+            color: var(--primary);
+        }
 
-    justify-content: space-between;
 
-    padding: 0 16px;
+        /* =========================================================
+           TABELA
+        ========================================================== */
 
-    border-top: 1px solid #f0f1f6;
+        .table-wrapper {
 
-    color: #656985;
+            width: 100%;
 
-    font-size: 9px;
-}
+            overflow-x: auto;
+        }
 
-.pagination-side {
-    display: flex;
 
-    align-items: center;
+        table {
 
-    gap: 8px;
-}
+            width: 100%;
 
-.pagination-side.disabled {
-    opacity: .4;
-}
+            min-width: 760px;
 
-.pagination-arrow {
-    color: #626683;
+            border-collapse: collapse;
+        }
 
-    font-size: 15px;
-}
 
-.pages {
-    display: flex;
+        thead th {
 
-    align-items: center;
+            height: 47px;
 
-    gap: 6px;
-}
+            padding: 0 18px;
 
-.page {
-    width: 26px;
-    height: 26px;
+            text-align: left;
 
-    border-radius: 6px;
+            color: #9997a6;
 
-    display: flex;
+            font-size: 9px;
 
-    align-items: center;
+            font-weight: 600;
 
-    justify-content: center;
+            background: #fcfcfe;
 
-    cursor: pointer;
+            border-bottom: 1px solid #eeeeF3;
+        }
 
-    color: #656985;
 
-    font-size: 8px;
-}
+        tbody td {
 
-.page:hover {
-    background: #f1edff;
+            padding: 13px 18px;
 
-    color: #5c2dc9;
-}
+            border-bottom: 1px solid #f0eff4;
 
-.page.active {
-    background: #5d2bc9;
+            color: #686678;
 
-    color: white;
-}
+            font-size: 10px;
+        }
 
 
-/* =====================================================
-   FOOTER
-===================================================== */
+        tbody tr:last-child td {
 
-.footer {
-    height: 70px;
+            border-bottom: none;
+        }
 
-    min-height: 70px;
 
-    background: #fff;
+        tbody tr:hover {
 
-    border-top: 1px solid #edf0f6;
+            background: #fcfbff;
+        }
 
-    display: flex;
 
-    align-items: center;
+        .patient-cell {
 
-    justify-content: space-between;
+            display: flex;
 
-    padding: 0 20px;
-}
+            align-items: center;
 
+            gap: 10px;
+        }
 
-/* =====================================================
-   LOGO FOOTER
-===================================================== */
 
-.footer-logo {
-    display: flex;
+        .patient-avatar {
 
-    align-items: center;
+            width: 35px;
+            height: 35px;
 
-    gap: 7px;
-}
+            border-radius: 50%;
 
-.footer-logo svg {
-    width: 34px;
-    height: 34px;
+            background: #f0edfb;
 
-    color: #6031d2;
-}
+            color: #6753b6;
 
-.footer-logo strong {
-    display: block;
+            display: flex;
 
-    color: #5b2bc8;
+            align-items: center;
+            justify-content: center;
 
-    font-size: 17px;
-}
+            font-size: 10px;
 
-.footer-logo span {
-    display: block;
+            font-weight: 700;
 
-    color: #40436a;
+            flex-shrink: 0;
+        }
 
-    font-size: 6.5px;
 
-    line-height: 8px;
-}
+        .patient-name strong {
 
+            display: block;
 
-/* =====================================================
-   TEXTO FOOTER
-===================================================== */
+            color: #4f4d5e;
 
-.footer-center {
-    display: flex;
+            font-size: 10px;
 
-    flex-direction: column;
+            margin-bottom: 3px;
+        }
 
-    align-items: center;
 
-    gap: 6px;
+        .patient-name small {
 
-    color: #676a87;
+            color: #9997a6;
 
-    font-size: 8px;
-}
+            font-size: 8px;
+        }
 
-.footer-security {
-    display: flex;
 
-    align-items: center;
+        .status {
 
-    gap: 5px;
-}
+            display: inline-flex;
 
-.footer-security svg {
-    width: 12px;
-    height: 12px;
-}
+            align-items: center;
 
-.footer-right {
-    width: 120px;
-}
+            padding: 5px 9px;
 
+            border-radius: 5px;
 
-/* =====================================================
-   NOTEBOOK
-===================================================== */
+            font-size: 8px;
 
-@media(max-width:1200px) {
+            font-weight: 600;
+        }
 
-    .sidebar {
-        width: 235px;
-        min-width: 235px;
-    }
 
-    .logo {
-        margin-bottom: 32px;
-    }
+        .status.active {
 
-    .menu a {
-        height: 43px;
+            color: var(--green);
 
-        font-size: 12px;
-    }
+            background: var(--green-bg);
+        }
 
-    .main-content {
-        padding: 24px 25px 20px;
-    }
 
-    .page-title h1 {
-        font-size: 23px;
-    }
+        .status.inactive {
 
-    .profile-info {
-        display: none;
-    }
+            color: #b16a6a;
 
-    .topbar {
-        padding: 0 18px;
-    }
-}
+            background: #fff0f0;
+        }
 
 
-/* =====================================================
-   TABLET
-===================================================== */
+        .view-button {
 
-@media(max-width:900px) {
+            width: 32px;
+            height: 32px;
 
-    .sidebar {
-        width: 210px;
-        min-width: 210px;
+            border: 1px solid #e5e3eb;
 
-        padding: 16px 11px;
-    }
+            background: white;
 
-    .logo {
-        gap: 7px;
+            border-radius: 6px;
 
-        padding: 0 5px;
+            color: #674fc0;
+        }
 
-        margin-bottom: 27px;
-    }
 
-    .logo-icon {
-        width: 34px;
-        height: 34px;
-    }
+        .view-button:hover {
 
-    .logo-text strong {
-        font-size: 22px;
-    }
+            background: #f5f2ff;
+        }
 
-    .logo-text span {
-        font-size: 6px;
-        line-height: 8px;
-    }
 
-    .menu {
-        gap: 5px;
-    }
+        .empty-row {
 
-    .menu a {
-        height: 41px;
+            text-align: center;
 
-        gap: 11px;
+            padding: 45px !important;
 
-        padding: 0 11px;
+            color: #9997a6 !important;
+        }
 
-        font-size: 11px;
-    }
 
-    .menu a svg {
-        width: 18px;
-        height: 18px;
-    }
+        .empty-row i {
 
-    .help-box {
-        min-height: 70px;
+            display: block;
 
-        padding: 11px 9px;
-    }
+            font-size: 25px;
 
-    .help-icon {
-        width: 23px;
-        height: 23px;
-    }
+            margin-bottom: 10px;
 
-    .main-content {
-        padding: 20px;
-    }
+            color: #b7b3c7;
+        }
 
-    .top-search {
-        width: 160px;
-    }
 
-    .table-container {
-        border-radius: 11px;
-    }
+        /* =========================================================
+           PAGINAÇÃO
+        ========================================================== */
 
-    .footer {
-        height: 62px;
-        min-height: 62px;
-    }
-}
+        .pagination {
 
+            min-height: 62px;
 
-/* =====================================================
-   CELULAR
-===================================================== */
+            padding: 0 20px;
 
-@media(max-width:700px) {
+            display: flex;
 
-    .main-area {
-        flex-direction: column;
+            align-items: center;
 
-        min-height: calc(100vh - 62px);
-    }
+            justify-content: space-between;
 
-    .sidebar {
-        width: 100%;
-        min-width: 100%;
+            border-top: 1px solid #eeeeF3;
+        }
 
-        height: auto;
 
-        padding: 10px 10px 8px;
+        .pagination-info {
 
-        border-right: none;
+            color: #9997a6;
 
-        border-bottom: 1px solid #e7e9f2;
-    }
+            font-size: 9px;
+        }
 
-    .logo {
-        margin-bottom: 10px;
 
-        padding: 0 4px;
-    }
+        .pagination-buttons {
 
-    .logo-icon {
-        width: 34px;
-        height: 34px;
-    }
+            display: flex;
 
-    .logo-text strong {
-        font-size: 21px;
-    }
+            align-items: center;
 
-    .logo-text span {
-        font-size: 6px;
-        line-height: 7px;
-    }
+            gap: 5px;
+        }
 
-    .menu {
-        flex-direction: row;
 
-        overflow-x: auto;
+        .page-button {
 
-        gap: 6px;
+            width: 30px;
+            height: 30px;
 
-        padding-bottom: 3px;
+            border: 1px solid #e5e3eb;
 
-        scrollbar-width: none;
-    }
+            background: white;
 
-    .menu::-webkit-scrollbar {
-        display: none;
-    }
+            border-radius: 5px;
 
-    .menu a {
-        min-width: max-content;
+            color: #777486;
 
-        height: 40px;
+            font-size: 9px;
+        }
 
-        padding: 0 13px;
 
-        border-radius: 8px;
+        .page-button:hover {
 
-        font-size: 11px;
-    }
+            background: #f5f2ff;
 
-    .menu a svg {
-        width: 17px;
-        height: 17px;
-    }
+            color: var(--primary);
+        }
 
-    .sidebar-bottom {
-        display: none;
-    }
 
-    .topbar {
-        height: 52px;
-        min-height: 52px;
+        .page-button.active {
 
-        padding: 0 13px;
+            background: var(--primary);
 
-        gap: 10px;
-    }
+            color: white;
 
-    .breadcrumb {
-        display: none;
-    }
+            border-color: var(--primary);
+        }
 
-    .top-search {
-        width: 150px;
 
-        margin-left: auto;
-    }
+        .page-button:disabled {
 
-    .top-notification {
-        width: 25px;
-    }
+            opacity: 0.45;
 
-    .profile-info {
-        display: none;
-    }
+            cursor: not-allowed;
+        }
 
-    .profile-arrow {
-        display: none;
-    }
 
-    .main-content {
-        padding: 18px 14px;
-    }
+        /* =========================================================
+           FOOTER
+        ========================================================== */
 
-    .page-header {
-        align-items: flex-start;
+        .footer {
 
-        gap: 12px;
+            min-height: 52px;
 
-        margin-bottom: 15px;
-    }
+            padding: 0 30px;
 
-    .page-title h1 {
-        font-size: 20px;
-    }
+            border-top: 1px solid var(--border);
 
-    .page-title p {
-        font-size: 8px;
-        line-height: 12px;
-    }
+            background: white;
 
-    .add-btn {
-        height: 35px;
+            display: flex;
 
-        padding: 0 12px;
+            align-items: center;
 
-        font-size: 8px;
-    }
+            justify-content: space-between;
 
-    .add-btn svg {
-        width: 13px;
-        height: 13px;
-    }
+            color: #9997a6;
 
-    .table-toolbar {
-        min-height: 52px;
+            font-size: 9px;
+        }
 
-        padding: 0 11px;
-    }
 
-    .table-search {
-        width: 180px;
-    }
+        .footer-security {
 
-    .filter-btn {
-        padding: 0 10px;
-    }
+            display: flex;
 
-    .footer {
-        height: auto;
+            align-items: center;
 
-        min-height: 60px;
+            gap: 7px;
+        }
 
-        padding: 11px 14px;
-    }
 
-    .footer-right {
-        display: none;
-    }
-}
+        .footer-security i {
 
+            color: #5f47b3;
+        }
 
-/* =====================================================
-   CELULARES PEQUENOS
-===================================================== */
 
-@media(max-width:480px) {
+        /* =========================================================
+           MODAL DE SUPORTE
+        ========================================================== */
 
-    .logo {
-        margin-bottom: 8px;
-    }
+        .support-overlay {
 
-    .logo-icon {
-        width: 30px;
-        height: 30px;
-    }
+            position: fixed;
 
-    .logo-text strong {
-        font-size: 19px;
-    }
+            inset: 0;
 
-    .logo-text span {
-        font-size: 5.5px;
-        line-height: 7px;
-    }
+            background:
+                rgba(35,29,65,0.52);
 
-    .menu a {
-        height: 38px;
+            display: flex;
 
-        padding: 0 11px;
+            align-items: center;
 
-        font-size: 10px;
+            justify-content: center;
 
-        gap: 8px;
-    }
+            padding: 20px;
 
-    .menu a svg {
-        width: 16px;
-        height: 16px;
-    }
+            opacity: 0;
 
-    .top-search {
-        width: 135px;
-        height: 29px;
-    }
+            visibility: hidden;
 
-    .top-search input {
-        font-size: 8px;
-    }
+            transition: 0.25s;
 
-    .main-content {
-        padding: 15px 10px;
-    }
+            z-index: 9999;
+        }
 
-    .page-header {
-        flex-direction: column;
 
-        align-items: stretch;
-    }
+        .support-overlay.show {
 
-    .page-title h1 {
-        font-size: 19px;
-    }
+            opacity: 1;
 
-    .add-btn {
-        width: 100%;
+            visibility: visible;
+        }
 
-        justify-content: center;
-    }
 
-    .table-toolbar {
-        gap: 8px;
-    }
+        .support-modal {
 
-    .table-search {
-        flex: 1;
+            width: min(650px, 100%);
 
-        width: auto;
-    }
+            max-height: 88vh;
 
-    .filter-btn {
-        flex-shrink: 0;
-    }
+            overflow-y: auto;
 
-    .footer-logo svg {
-        width: 28px;
-        height: 28px;
-    }
+            background: white;
 
-    .footer-logo strong {
-        font-size: 14px;
-    }
+            border-radius: 18px;
 
-    .footer-logo span {
-        font-size: 5px;
-    }
+            box-shadow:
+                0 25px 70px
+                rgba(31,24,65,0.25);
 
-    .footer-center {
-        font-size: 6px;
-    }
-}
+            padding: 28px;
+        }
 
 
-/* =====================================================
-   CELULAR MUITO PEQUENO
-===================================================== */
+        .support-modal-header {
 
-@media(max-width:360px) {
+            display: flex;
 
-    .top-search {
-        width: 120px;
-    }
+            align-items: flex-start;
 
-    .top-notification {
-        display: none;
-    }
+            justify-content: space-between;
 
-    .menu a {
-        padding: 0 10px;
-    }
+            margin-bottom: 22px;
+        }
 
-    .page-title h1 {
-        font-size: 18px;
-    }
-}
 
-</style>
+        .support-modal-title {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+        }
+
+
+        .support-modal-title > i {
+
+            width: 43px;
+            height: 43px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            background: #f0ebff;
+
+            color: #6347bd;
+
+            border-radius: 11px;
+
+            font-size: 20px;
+        }
+
+
+        .support-modal-title h2 {
+
+            color: #363447;
+
+            font-size: 18px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .support-modal-title p {
+
+            color: #8d8a9d;
+
+            font-size: 10px;
+        }
+
+
+        .support-close {
+
+            width: 32px;
+            height: 32px;
+
+            border: none;
+
+            background: #f5f3f8;
+
+            border-radius: 50%;
+
+            color: #777386;
+
+            font-size: 17px;
+        }
+
+
+        .support-close:hover {
+
+            background: #eeeaf7;
+
+            color: #4d3a92;
+        }
+
+
+        .faq-list {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+
+        .faq-item {
+
+            border: 1px solid #eae8f0;
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+
+        .faq-question {
+
+            width: 100%;
+
+            min-height: 48px;
+
+            border: none;
+
+            background: white;
+
+            padding: 0 15px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+
+            text-align: left;
+
+            color: #514e63;
+
+            font-size: 11px;
+
+            font-weight: 600;
+        }
+
+
+        .faq-question i {
+
+            color: #7359c2;
+
+            transition: 0.2s;
+        }
+
+
+        .faq-answer {
+
+            max-height: 0;
+
+            overflow: hidden;
+
+            padding: 0 15px;
+
+            color: #777486;
+
+            font-size: 10px;
+
+            line-height: 1.6;
+
+            transition:
+                max-height 0.25s,
+                padding 0.25s;
+        }
+
+
+        .faq-item.open .faq-answer {
+
+            max-height: 150px;
+
+            padding:
+                0 15px 15px;
+        }
+
+
+        .faq-item.open .faq-question i {
+
+            transform: rotate(180deg);
+        }
+
+
+        .support-contact {
+
+            margin-top: 20px;
+
+            padding: 18px;
+
+            background: #f6f3ff;
+
+            border-radius: 11px;
+        }
+
+
+        .support-contact strong {
+
+            display: block;
+
+            color: #50496a;
+
+            font-size: 12px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .support-contact p {
+
+            color: #858194;
+
+            font-size: 10px;
+
+            line-height: 1.5;
+
+            margin-bottom: 13px;
+        }
+
+
+        .support-email {
+
+            min-height: 36px;
+
+            padding: 0 14px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            border-radius: 7px;
+
+            background: var(--primary);
+
+            color: white;
+
+            font-size: 10px;
+
+            font-weight: 600;
+        }
+
+
+        .support-email:hover {
+
+            background: var(--primary-dark);
+        }
+
+
+        /* =========================================================
+           RESPONSIVIDADE
+        ========================================================== */
+
+        @media (max-width: 1000px) {
+
+            .content-area {
+
+                padding: 25px 20px;
+            }
+
+        }
+
+
+        @media (max-width: 750px) {
+
+            .sidebar {
+
+                width: 72px;
+            }
+
+
+            .logo {
+
+                justify-content: center;
+
+                padding: 0;
+            }
+
+
+            .logo-info,
+            .sidebar nav a span,
+            .support-box div,
+            .logout span {
+
+                display: none;
+            }
+
+
+            .sidebar nav {
+
+                padding:
+                    12px 8px;
+            }
+
+
+            .sidebar nav a {
+
+                min-height: 46px;
+
+                padding: 0;
+
+                justify-content: center;
+            }
+
+
+            .sidebar nav a i {
+
+                width: auto;
+            }
+
+
+            .support-box {
+
+                justify-content: center;
+            }
+
+
+            .logout {
+
+                justify-content: center;
+
+                padding: 0;
+            }
+
+
+            .main-area {
+
+                margin-left: 72px;
+
+                width:
+                    calc(100% - 72px);
+            }
+
+
+            .content-header {
+
+                align-items: flex-start;
+
+                flex-direction: column;
+
+                gap: 15px;
+            }
+
+
+            .patients-toolbar {
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                padding: 15px;
+            }
+
+
+            .search-box {
+
+                width: 100%;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .topbar {
+
+                padding: 0 15px;
+            }
+
+
+            .breadcrumb {
+
+                display: none;
+            }
+
+
+            .doctor-mini span {
+
+                display: none;
+            }
+
+
+            .content-area {
+
+                padding: 20px 15px;
+            }
+
+
+            .footer {
+
+                padding: 0 15px;
+            }
+
+
+            .footer-security {
+
+                display: none;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .sidebar {
+
+                width: 66px;
+            }
+
+
+            .main-area {
+
+                margin-left: 66px;
+
+                width:
+                    calc(100% - 66px);
+            }
+
+
+            .sidebar nav {
+
+                padding:
+                    10px 6px;
+            }
+
+
+            .sidebar-bottom {
+
+                padding:
+                    15px 7px 12px;
+            }
+
+
+            .support-box {
+
+                min-height: 58px;
+
+                padding: 10px;
+
+                margin-bottom: 10px;
+            }
+
+
+            .logout {
+
+                height: 45px;
+            }
+
+
+            .support-modal {
+
+                padding: 20px;
+            }
+
+        }
+
+    </style>
 
 </head>
 
 
 <body>
 
-
 <div class="app">
 
-<div class="main-area">
 
+    <!-- =========================================================
+         MENU LATERAL
+    ========================================================== -->
 
-<!-- =====================================================
-     SIDEBAR
-===================================================== -->
+    <aside class="sidebar">
 
-<aside class="sidebar">
 
+        <div class="logo">
 
-<div class="logo">
+            <div class="logo-icon">
 
-<svg class="logo-icon" viewBox="0 0 40 40" fill="none">
+                <i class="fa-solid fa-brain"></i>
 
-<path
-d="M2 18h8l3-7 5 16 5-11 3 5h12"
-stroke="currentColor"
-stroke-width="2"
-stroke-linecap="round"
-stroke-linejoin="round"/>
+            </div>
 
-<path
-d="M20 36C10 29 4 23 4 15C4 9 8 5 14 5c3 0 5 2 6 4 1-2 3-4 6-4 6 0 10 4 10 10"
-stroke="currentColor"
-stroke-width="2"
-stroke-linecap="round"/>
 
-</svg>
+            <div class="logo-info">
 
+                <h1>EMPS</h1>
 
-<div class="logo-text">
+                <p>
+                    Sistema de Monitoramento<br>
+                    e Prevenção de Crises Epilépticas
+                </p>
 
-<strong>EMPS</strong>
+            </div>
 
-<span>
-Sistema de Monitoramento<br>
-e Prevenção de Crises Epilépticas
-</span>
+        </div>
 
-</div>
 
-</div>
+        <nav>
 
 
-<nav class="menu">
+            <a href="perfil.html">
 
+                <i class="fa-solid fa-house"></i>
 
-<a href="perfil.html">
+                <span>
+                    Dashboard
+                </span>
 
-<svg viewBox="0 0 24 24" fill="none">
+            </a>
 
-<rect x="4" y="4" width="6" height="6"/>
-<rect x="14" y="4" width="6" height="6"/>
-<rect x="4" y="14" width="6" height="6"/>
-<rect x="14" y="14" width="6" height="6"/>
 
-</svg>
+            <a href="ficha.html" class="active">
 
-Dashboard
+                <i class="fa-regular fa-user"></i>
 
-</a>
+                <span>
+                    Ficha de pacientes
+                </span>
 
+            </a>
 
-<a href="ficha.html" class="active">
 
-<svg viewBox="0 0 24 24" fill="none">
+            <a href="busca.html">
 
-<circle cx="12" cy="8" r="3"/>
+                <i class="fa-solid fa-magnifying-glass"></i>
 
-<path
-d="M5 20c.7-3.5 3-5.5 7-5.5s6.3 2 7 5.5"/>
+                <span>
+                    Buscar paciente
+                </span>
 
-<path d="M4 4h16v16H4z"/>
+            </a>
 
-</svg>
 
-Ficha de pacientes
+            <a href="agenda.html">
 
-</a>
+                <i class="fa-regular fa-calendar"></i>
 
+                <span>
+                    Agenda
+                </span>
 
-<a href="busca.html">
+            </a>
 
-<svg viewBox="0 0 24 24" fill="none">
 
-<circle
-cx="10.5"
-cy="10.5"
-r="6.5"/>
+            <a href="alertas.html">
 
-<path d="M16 16l5 5"/>
+                <i class="fa-regular fa-bell"></i>
 
-</svg>
+                <span>
+                    Alertas
+                </span>
 
-Buscar paciente
+                <i class="fa-regular fa-bell menu-notification"></i>
 
-</a>
+            </a>
 
 
-<a href="agenda.html">
+        </nav>
 
-<svg viewBox="0 0 24 24" fill="none">
 
-<rect
-x="4"
-y="5"
-width="16"
-height="15"
-rx="2"/>
+        <div class="sidebar-bottom">
 
-<path d="M8 3v4M16 3v4M4 10h16"/>
 
-</svg>
+            <div
+                class="support-box"
+                onclick="openSupport()"
+                role="button"
+                tabindex="0"
+                onkeydown="
+                    if(event.key==='Enter' || event.key===' ')
+                    openSupport()
+                "
+            >
 
-Agenda
+                <i class="fa-solid fa-headset"></i>
 
-</a>
+                <div>
 
+                    <strong>
+                        Precisa de ajuda?
+                    </strong>
 
-<a href="alertas.html">
+                    <span>
+                        Acesse o suporte
+                    </span>
 
-<svg viewBox="0 0 24 24" fill="none">
+                </div>
 
-<path
-d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+            </div>
 
-<path d="M10 21h4"/>
 
-</svg>
+            <button
+                class="logout"
+                onclick="logout()"
+            >
 
-Alertas
+                <i class="fa-solid fa-arrow-right-from-bracket"></i>
 
-</a>
+                <span>
+                    Sair
+                </span>
 
+            </button>
 
-</nav>
 
+        </div>
 
-<div class="sidebar-bottom">
+    </aside>
 
 
-<div class="help-box">
 
-<svg
-class="help-icon"
-viewBox="0 0 24 24"
-fill="none">
+    <!-- =========================================================
+         ÁREA PRINCIPAL
+    ========================================================== -->
 
-<path d="M4 14a8 8 0 0 1 16 0"/>
+    <div class="main-area">
 
-<path
-d="M4 14v4h3v-5H4M20 14v4h-3v-5h3"/>
 
-<path d="M8 20h4"/>
+        <header class="topbar">
 
-</svg>
 
+            <div class="breadcrumb">
 
-<div class="help-text">
+             
 
-<strong>Precisa de ajuda?</strong>
+            </div>
 
-<span>Acesse o suporte</span>
 
-</div>
+            <div class="topbar-right">
 
 
-<span class="help-arrow">›</span>
+                <div class="top-notification">
 
-</div>
+                    <i class="fa-regular fa-bell"></i>
 
+                    <span>3</span>
 
-<a href="login.html">
+                </div>
 
-<svg viewBox="0 0 24 24" fill="none">
 
-<path d="M10 17l5-5-5-5"/>
-<path d="M15 12H3"/>
-<path d="M20 4v16"/>
+                <div
+                    class="doctor-mini"
+                    onclick="abrirEditarPerfil()"
+                    onkeydown="
+                        if(event.key==='Enter' || event.key===' ')
+                        abrirEditarPerfil()
+                    "
+                    role="button"
+                    tabindex="0"
+                    aria-label="Editar perfil"
+                >
 
-</svg>
+                    <span>
 
-Sair
+                        Olá,
+                        <strong class="nomeUsuario">
+                            carregando...
+                        </strong>
 
-</a>
+                    </span>
 
 
-</div>
+                    <img
+                        id="fotoUsuarioTopo"
+                        src="img/img03.jfif"
+                        alt="Foto do profissional"
+                    >
 
 
-</aside>
+                    <i class="fa-solid fa-chevron-down"></i>
 
+                </div>
 
-<!-- =====================================================
-     ÁREA PRINCIPAL
-===================================================== -->
 
-<section class="content-area">
+            </div>
 
+        </header>
 
-<!-- =====================================================
-     TOPBAR
-===================================================== -->
 
-<header class="topbar">
 
+        <!-- =========================================================
+             CONTEÚDO
+        ========================================================== -->
 
-<div class="breadcrumb">
+        <main class="content-area">
 
-<span>Ficha de pacientes</span>
 
-<span class="breadcrumb-arrow">›</span>
+            <div class="content-header">
 
-<span class="current">
-Lista de pacientes
-</span>
 
-</div>
+                <div>
 
+                    <h1>
+                        Lista de pacientes
+                    </h1>
 
-<div class="top-search">
+                    <p>
+                        Consulte e acompanhe os pacientes cadastrados no EMPS.
+                    </p>
 
-<input
-type="text"
-id="topSearchInput"
-placeholder="Buscar paciente...">
+                </div>
 
-<svg
-viewBox="0 0 24 24"
-fill="none">
 
-<circle
-cx="10.5"
-cy="10.5"
-r="6.5"/>
 
-<path d="M16 16l5 5"/>
 
-</svg>
 
-</div>
+            </div>
 
 
-<div class="top-notification">
 
-<svg
-viewBox="0 0 24 24"
-fill="none">
+            <section class="patients-card">
 
-<path
-d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
 
-<path d="M10 21h4"/>
+                <div class="patients-toolbar">
 
-</svg>
 
-</div>
+                    <div class="search-box">
 
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Pesquisar paciente..."
+                            autocomplete="off"
+                        >
 
-<div class="profile">
+                        <i class="fa-solid fa-magnifying-glass"></i>
 
-<div class="profile-info">
+                    </div>
 
-<strong>
-Dr. Rafael Oliveira
-</strong>
 
-<span>
-Neurologista
-</span>
+                    <button
+                        class="filter-button"
+                        type="button"
+                        onclick="filterPatients()"
+                    >
 
-</div>
+                        <i class="fa-solid fa-filter"></i>
 
+                        Filtrar
 
-<div class="profile-photo">
+                    </button>
 
-<svg
-viewBox="0 0 24 24"
-fill="none">
 
-<circle
-cx="12"
-cy="8"
-r="3"/>
+                </div>
 
-<path
-d="M6 21c.7-4 2.7-6 6-6s5.3 2 6 6"/>
 
-</svg>
 
-</div>
+                <div class="table-wrapper">
 
+                    <table>
 
-<svg
-class="profile-arrow"
-viewBox="0 0 24 24"
-fill="none">
+                        <thead>
 
-<path d="M6 9l6 6 6-6"/>
+                            <tr>
 
-</svg>
+                                <th>
+                                    PACIENTE
+                                </th>
 
-</div>
+                                <th>
+                                    CPF
+                                </th>
 
+                                <th>
+                                    TELEFONE
+                                </th>
 
-</header>
+                                <th>
+                                    DATA DE NASCIMENTO
+                                </th>
 
+                                <th>
+                                    STATUS
+                                </th>
 
-<!-- =====================================================
-     CONTEÚDO
-===================================================== -->
+                                <th>
+                                    AÇÃO
+                                </th>
 
-<main class="main-content">
+                            </tr>
 
+                        </thead>
 
-<div class="page-header">
 
+                        <tbody id="patientTable">
 
-<div class="page-title">
+                        </tbody>
 
-<h1>
-Lista de pacientes
-</h1>
+                    </table>
 
-<p>
-Gerencie e acompanhe os pacientes cadastrados.
-</p>
+                </div>
 
-</div>
 
 
-<button
-class="add-btn"
-onclick="window.location.href='cadastro.html'">
+                <div class="pagination">
 
-<svg
-viewBox="0 0 24 24"
-fill="none">
 
-<path d="M12 5v14"/>
-<path d="M5 12h14"/>
+                    <span
+                        class="pagination-info"
+                        id="paginationInfo"
+                    >
+                        0 pacientes
+                    </span>
 
-</svg>
 
-Adicionar paciente
+                    <div
+                        class="pagination-buttons"
+                        id="paginationButtons"
+                    >
 
-</button>
+                    </div>
 
 
-</div>
+                </div>
 
 
-<!-- =====================================================
-     TABELA
-===================================================== -->
+            </section>
 
-<div class="table-container">
 
+        </main>
 
-<div class="table-toolbar">
 
 
-<div class="table-search">
+        <footer class="footer">
 
-<input
-type="text"
-id="searchInput"
-placeholder="Pesquisar paciente...">
+            <span>
+                © 2024 EMPS. Todos os direitos reservados.
+            </span>
 
-<svg
-viewBox="0 0 24 24"
-fill="none">
 
-<circle
-cx="10.5"
-cy="10.5"
-r="6.5"/>
+            <span class="footer-security">
 
-<path d="M16 16l5 5"/>
+                <i class="fa-solid fa-lock"></i>
 
-</svg>
+                Ambiente seguro e criptografado
+
+            </span>
+
+        </footer>
+
+
+    </div>
 
 </div>
 
 
-<button
-class="filter-btn"
-type="button">
 
-<svg
-viewBox="0 0 24 24"
-fill="none">
-
-<path d="M4 6h16"/>
-<path d="M7 12h10"/>
-<path d="M10 18h4"/>
-
-</svg>
-
-Filtros
-
-</button>
-
-
-</div>
-
-
-<div class="table-scroll">
-
-<table>
-
-<thead>
-
-<tr>
-
-<th>
-Nome do Paciente
-<span class="sort">↕</span>
-</th>
-
-<th>
-ID do Paciente
-<span class="sort">↕</span>
-</th>
-
-<th>
-Telefone
-<span class="sort">↕</span>
-</th>
-
-<th>
-Condição
-<span class="sort">↕</span>
-</th>
-
-<th>
-Status de Tratamento
-<span class="sort">↕</span>
-</th>
-
-<th>
-Ações
-</th>
-
-</tr>
-
-</thead>
-
-
-<tbody id="patientTable">
-
-<!--
-    Os pacientes serão carregados
-    automaticamente pelo JavaScript.
--->
-
-</tbody>
-
-</table>
-
-</div>
-
-
-<!-- =====================================================
-     PAGINAÇÃO
-===================================================== -->
-
-<div class="pagination">
+<!-- =========================================================
+     MODAL DE SUPORTE
+========================================================= -->
 
 <div
-class="pagination-side"
-id="previousPage">
+    class="support-overlay"
+    id="supportOverlay"
+    aria-hidden="true"
+>
 
-<span class="pagination-arrow">
-‹
-</span>
 
-<span>
-Anterior
-</span>
+    <div class="support-modal">
+
+
+        <div class="support-modal-header">
+
+
+            <div class="support-modal-title">
+
+
+                <i class="fa-solid fa-headset"></i>
+
+
+                <div>
+
+                    <h2>
+                        Central de suporte
+                    </h2>
+
+                    <p>
+                        Encontre respostas para as dúvidas mais comuns.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+            <button
+                class="support-close"
+                onclick="closeSupport()"
+                aria-label="Fechar suporte"
+            >
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+
+        </div>
+
+
+
+        <div class="faq-list">
+
+
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                >
+
+                    <span>
+                        Como cadastrar um novo paciente?
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    Clique no botão
+                    <strong>“Novo paciente”</strong>
+                    no canto superior da tela.
+                    Você será direcionado para o cadastro,
+                    onde poderá preencher as informações
+                    necessárias do paciente.
+
+                </div>
+
+            </div>
+
+
+
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                >
+
+                    <span>
+                        Como encontrar um paciente cadastrado?
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    Utilize o campo
+                    <strong>“Pesquisar paciente”</strong>
+                    para procurar pelo nome.
+                    Para uma busca mais detalhada,
+                    utilize a opção
+                    <strong>Buscar paciente</strong>
+                    no menu lateral.
+
+                </div>
+
+            </div>
+
+
+
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                >
+
+                    <span>
+                        Como acessar as informações de um paciente?
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    Localize o paciente na tabela
+                    e clique no botão de visualização
+                    correspondente ao cadastro.
+
+                </div>
+
+            </div>
+
+
+
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                >
+
+                    <span>
+                        Como acessar a agenda?
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    Clique em
+                    <strong>Agenda</strong>
+                    no menu lateral para consultar
+                    e acompanhar os horários e consultas
+                    cadastradas.
+
+                </div>
+
+            </div>
+
+
+
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                >
+
+                    <span>
+                        Onde encontro os alertas?
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    Clique em
+                    <strong>Alertas</strong>
+                    no menu lateral para acessar
+                    as notificações do sistema.
+
+                </div>
+
+            </div>
+
+
+
+            <div class="faq-item">
+
+                <button
+                    class="faq-question"
+                    type="button"
+                >
+
+                    <span>
+                        Como alterar meus dados profissionais?
+                    </span>
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                </button>
+
+
+                <div class="faq-answer">
+
+                    Clique no seu nome ou na sua foto
+                    no canto superior direito.
+                    Você será direcionado para a tela
+                    <strong>Editar perfil</strong>.
+                    Depois de salvar, os dados atualizados
+                    serão utilizados pelas outras telas.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="support-contact">
+
+
+            <strong>
+                Não encontrou a solução?
+            </strong>
+
+
+            <p>
+                Entre em contato com nossa equipe de suporte
+                por e-mail e descreva o problema encontrado.
+            </p>
+
+
+            <a
+                class="support-email"
+                href="mailto:suporte@emps.com.br?subject=Suporte%20EMPS"
+            >
+
+                <i class="fa-regular fa-envelope"></i>
+
+                Entrar em contato por e-mail
+
+            </a>
+
+
+        </div>
+
+
+    </div>
 
 </div>
 
 
-<div
-class="pages"
-id="pagesContainer">
-</div>
 
+<script src="js/api.js"></script>
 
-<div
-class="pagination-side"
-id="nextPage">
-
-<span>
-Próximo
-</span>
-
-<span class="pagination-arrow">
-›
-</span>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-</main>
-
-
-</section>
-
-</div>
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer class="footer">
-
-
-<div class="footer-logo">
-
-<svg
-viewBox="0 0 40 40"
-fill="none">
-
-<path
-d="M2 18h8l3-7 5 16 5-11 3 5h12"
-stroke="currentColor"
-stroke-width="2"
-stroke-linecap="round"
-stroke-linejoin="round"/>
-
-<path
-d="M20 36C10 29 4 23 4 15C4 9 8 5 14 5c3 0 5 2 6 4 1-2 3-4 6-4 6 0 10 4 10 10"
-stroke="currentColor"
-stroke-width="2"
-stroke-linecap="round"/>
-
-</svg>
-
-
-<div>
-
-<strong>
-EMPS
-</strong>
-
-<span>
-Sistema de Monitoramento<br>
-e Prevenção de Crises Epilépticas
-</span>
-
-</div>
-
-</div>
-
-
-<div class="footer-center">
-
-
-<div class="footer-security">
-
-<svg
-viewBox="0 0 24 24"
-fill="none">
-
-<rect
-x="5"
-y="10"
-width="14"
-height="10"
-rx="2"/>
-
-<path
-d="M8 10V7a4 4 0 0 1 8 0v3"/>
-
-</svg>
-
-<span>
-Ambiente seguro e criptografado
-</span>
-
-</div>
-
-
-<span>
-© 2024 EMPS. Todos os direitos reservados.
-</span>
-
-</div>
-
-
-<div class="footer-right"></div>
-
-
-</footer>
-
-</div>
+<script src="js/perfil.js"></script>
 
 
 <script>
 
-/* =====================================================
-   CONFIGURAÇÃO
-===================================================== */
-
-const STORAGE_KEY = "empsPacientes";
-
-const PATIENTS_PER_PAGE = 10;
-
-let patients = [];
-
-let filteredPatients = [];
-
-let currentPage = 1;
-
-
-/* =====================================================
-   CARREGAR PACIENTES
-===================================================== */
-
-function loadPatients() {
-
-    try {
-
-        const savedPatients =
-            localStorage.getItem(STORAGE_KEY);
-
-        if (!savedPatients) {
-
-            patients = [];
-
-        } else {
-
-            const parsedPatients =
-                JSON.parse(savedPatients);
-
-            patients =
-                Array.isArray(parsedPatients)
-                    ? parsedPatients
-                    : [];
-
-        }
-
-    } catch (error) {
-
-        console.error(
-            "Erro ao carregar pacientes:",
-            error
-        );
-
-        patients = [];
-
-    }
-
-
-    filteredPatients = [...patients];
-
-    currentPage = 1;
-
-    renderPatients();
-
-}
-
-
-/* =====================================================
-   OBTER VALOR DO PACIENTE
-===================================================== */
-
-function getPatientValue(patient, possibleKeys) {
-
-    for (const key of possibleKeys) {
-
-        if (
-            patient &&
-            patient[key] !== undefined &&
-            patient[key] !== null &&
-            String(patient[key]).trim() !== ""
-        ) {
-
-            return String(patient[key]).trim();
-
-        }
-
-    }
-
-    return "";
-
-}
-
-
-/* =====================================================
-   INICIAIS DO PACIENTE
-===================================================== */
-
-function getInitials(name) {
-
-    if (!name) {
-
-        return "??";
-
-    }
-
-    const parts =
-        name
-            .trim()
-            .split(/\s+/)
-            .filter(Boolean);
-
-    if (parts.length === 1) {
-
-        return parts[0]
-            .substring(0, 2)
-            .toUpperCase();
-
-    }
-
-    return (
-        parts[0][0] +
-        parts[parts.length - 1][0]
-    ).toUpperCase();
-
-}
-
-
-/* =====================================================
-   COR DO AVATAR
-===================================================== */
-
-function getAvatarStyle(index) {
-
-    const styles = [
-
-        {
-            background: "#e9ddff",
-            color: "#6331d2"
-        },
-
-        {
-            background: "#dceaff",
-            color: "#4076cf"
-        },
-
-        {
-            background: "#ddf8e8",
-            color: "#23a865"
-        },
-
-        {
-            background: "#fff0dd",
-            color: "#ef9a25"
-        },
-
-        {
-            background: "#ffe1e6",
-            color: "#eb4f63"
-        },
-
-        {
-            background: "#eee0ff",
-            color: "#7941c9"
-        }
-
-    ];
-
-    return styles[index % styles.length];
-
-}
-
-
-/* =====================================================
-   STATUS DO PACIENTE
-===================================================== */
-
-function getStatusClass(status) {
-
-    const normalized =
-        String(status || "")
-            .toLowerCase()
-            .normalize("NFD")
-            .replace(/[\u0300-\u036f]/g, "");
-
-    if (
-        normalized.includes("observ")
-    ) {
-
-        return "obs-status";
-
-    }
-
-    if (
-        normalized.includes("inativ")
-    ) {
-
-        return "inactive-status";
-
-    }
-
-    return "active-status";
-
-}
-
-
-/* =====================================================
-   TEXTO DO STATUS
-===================================================== */
-
-function getStatusText(status) {
-
-    if (!status) {
-
-        return "Ativo";
-
-    }
-
-    return status;
-
-}
-
-
-/* =====================================================
-   RENDERIZAR PACIENTES
-===================================================== */
-
-function renderPatients() {
-
-    const table =
-        document.getElementById("patientTable");
-
-    const pagesContainer =
-        document.getElementById("pagesContainer");
-
-    table.innerHTML = "";
-
-    pagesContainer.innerHTML = "";
-
-
-    /* ---------------------------------------------
-       NENHUM PACIENTE
-    --------------------------------------------- */
-
-    if (filteredPatients.length === 0) {
-
-        table.innerHTML = `
-
-            <tr>
-
-                <td
-                    colspan="6"
-                    class="empty-state">
-
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="none">
-
-                        <circle
-                            cx="9"
-                            cy="8"
-                            r="3"/>
-
-                        <path
-                            d="M3 20c.6-3.5 2.6-5.5 6-5.5
-                               2.2 0 3.9 1 5 2.8"/>
-
-                        <circle
-                            cx="17"
-                            cy="8"
-                            r="2.5"/>
-
-                        <path
-                            d="M15 14.8c2.7.1 4.5 1.8 5 4.2"/>
-
-                    </svg>
-
-                    <strong>
-                        Nenhum paciente cadastrado
-                    </strong>
-
-                    <span>
-                        Os pacientes cadastrados aparecerão nesta lista.
-                    </span>
-
-                </td>
-
-            </tr>
-
-        `;
-
-        updatePagination();
-
-        return;
-
-    }
-
-
-    /* ---------------------------------------------
-       CALCULAR PAGINAÇÃO
-    --------------------------------------------- */
-
-    const start =
-        (currentPage - 1) *
-        PATIENTS_PER_PAGE;
-
-    const end =
-        start +
-        PATIENTS_PER_PAGE;
-
-    const pagePatients =
-        filteredPatients.slice(
-            start,
-            end
-        );
-
-
-    /* ---------------------------------------------
-       CRIAR LINHAS
-    --------------------------------------------- */
-
-    pagePatients.forEach(
-        (patient, index) => {
-
-            const name =
-                getPatientValue(
-                    patient,
-                    [
-                        "nome",
-                        "name",
-                        "nomePaciente",
-                        "patientName"
-                    ]
-                ) || "Paciente";
-
-            const id =
-                getPatientValue(
-                    patient,
-                    [
-                        "id",
-                        "codigo",
-                        "codigoPaciente",
-                        "patientId"
-                    ]
-                ) || "—";
-
-            const phone =
-                getPatientValue(
-                    patient,
-                    [
-                        "telefone",
-                        "phone",
-                        "celular"
-                    ]
-                ) || "—";
-
-            const condition =
-                getPatientValue(
-                    patient,
-                    [
-                        "condicao",
-                        "condição",
-                        "diagnostico",
-                        "diagnóstico",
-                        "tipoCondicao"
-                    ]
-                ) || "—";
-
-            const status =
-                getPatientValue(
-                    patient,
-                    [
-                        "status",
-                        "statusTratamento",
-                        "tratamento"
-                    ]
-                ) || "Ativo";
-
-            const avatar =
-                getInitials(name);
-
-            const avatarStyle =
-                getAvatarStyle(
-                    start + index
+    /* =========================================================
+       PERFIL
+    ========================================================== */
+
+    function aplicarDadosEditados() {
+
+        try {
+
+            const savedProfile =
+                JSON.parse(
+                    localStorage.getItem(
+                        "empsProfile"
+                    )
                 );
 
-            const patientId =
-                patient.id ||
-                patient.codigo ||
-                patient.codigoPaciente ||
-                "";
 
-            const row =
-                document.createElement("tr");
+            if (!savedProfile) {
 
-            row.innerHTML = `
+                return;
 
-                <td>
-
-                    <a
-                        href="paciente.html${patientId ? "?id=" + encodeURIComponent(patientId) : ""}"
-                        class="patient-link">
-
-                        <div class="patient">
-
-                            <div
-                                class="avatar"
-                                style="
-                                    background:${avatarStyle.background};
-                                    color:${avatarStyle.color};
-                                ">
-
-                                ${avatar}
-
-                            </div>
-
-                            ${escapeHtml(name)}
-
-                        </div>
-
-                    </a>
-
-                </td>
+            }
 
 
-                <td>
-                    ${escapeHtml(id)}
-                </td>
+            if (savedProfile.name) {
+
+                document
+                    .querySelectorAll(
+                        ".nomeUsuario"
+                    )
+                    .forEach(
+                        function(elemento) {
+
+                            elemento.textContent =
+                                savedProfile.name;
+
+                        }
+                    );
+
+            }
 
 
-                <td>
-                    ${escapeHtml(phone)}
-                </td>
+            if (savedProfile.photo) {
+
+                const foto =
+                    document.getElementById(
+                        "fotoUsuarioTopo"
+                    );
 
 
-                <td>
-                    ${escapeHtml(condition)}
-                </td>
+                if (foto) {
+
+                    foto.src =
+                        savedProfile.photo;
+
+                }
+
+            }
+
+        }
+
+        catch (erro) {
+
+            console.error(
+                "Erro ao carregar perfil:",
+                erro
+            );
+
+        }
+
+    }
 
 
-                <td>
 
-                    <span
-                        class="status ${getStatusClass(status)}">
+    function abrirEditarPerfil() {
 
-                        <span class="status-dot"></span>
-
-                        ${escapeHtml(
-                            getStatusText(status)
-                        )}
-
-                    </span>
-
-                </td>
+        const origem =
+            window.location.pathname +
+            window.location.search;
 
 
-                <td>
+        window.location.href =
+            "editar.html?origem=" +
+            encodeURIComponent(
+                origem
+            );
 
-                    <button
-                        class="action-btn"
-                        type="button"
-                        onclick="openPatient('${encodeURIComponent(patientId)}')">
+    }
 
-                        ⋮
 
-                    </button>
 
-                </td>
+    /* =========================================================
+       LOGOUT
+    ========================================================== */
+
+    function logout() {
+
+        if (
+            typeof window.logoutOriginal ===
+            "function"
+        ) {
+
+            window.logoutOriginal();
+
+            return;
+
+        }
+
+
+        window.location.href =
+            "login.html";
+
+    }
+
+
+
+    /* =========================================================
+       PACIENTES
+    ========================================================== */
+
+    const STORAGE_KEY =
+        "empsPacientes";
+
+
+    let pacientes = [];
+
+    let pacientesFiltrados = [];
+
+    let paginaAtual = 1;
+
+    const pacientesPorPagina = 8;
+
+
+
+    function carregarPacientes() {
+
+        try {
+
+            const dados =
+                localStorage.getItem(
+                    STORAGE_KEY
+                );
+
+
+            pacientes =
+                dados
+                    ? JSON.parse(dados)
+                    : [];
+
+
+            if (
+                !Array.isArray(pacientes)
+            ) {
+
+                pacientes = [];
+
+            }
+
+        }
+
+        catch (erro) {
+
+            console.error(
+                "Erro ao carregar pacientes:",
+                erro
+            );
+
+            pacientes = [];
+
+        }
+
+
+        pacientesFiltrados =
+            [...pacientes];
+
+
+        paginaAtual = 1;
+
+
+        renderPatients();
+
+    }
+
+
+
+    function getPatientValue(
+        paciente,
+        chaves
+    ) {
+
+        for (
+            const chave of chaves
+        ) {
+
+            if (
+                paciente &&
+                paciente[chave] !== undefined &&
+                paciente[chave] !== null &&
+                String(
+                    paciente[chave]
+                ).trim() !== ""
+            ) {
+
+                return String(
+                    paciente[chave]
+                );
+
+            }
+
+        }
+
+
+        return "";
+
+    }
+
+
+
+    function getInitials(nome) {
+
+        if (!nome) {
+
+            return "?";
+
+        }
+
+
+        const partes =
+            nome
+                .trim()
+                .split(/\s+/)
+                .filter(Boolean);
+
+
+        if (
+            partes.length === 1
+        ) {
+
+            return partes[0]
+                .substring(0, 2)
+                .toUpperCase();
+
+        }
+
+
+        return (
+            partes[0][0] +
+            partes[partes.length - 1][0]
+        ).toUpperCase();
+
+    }
+
+
+
+    function escapeHtml(valor) {
+
+        return String(
+            valor || ""
+        )
+            .replace(
+                /&/g,
+                "&amp;"
+            )
+            .replace(
+                /</g,
+                "&lt;"
+            )
+            .replace(
+                />/g,
+                "&gt;"
+            )
+            .replace(
+                /"/g,
+                "&quot;"
+            )
+            .replace(
+                /'/g,
+                "&#039;"
+            );
+
+    }
+
+
+
+    function getStatusClass(status) {
+
+        const texto =
+            String(
+                status || ""
+            ).toLowerCase();
+
+
+        if (
+            texto.includes("inativ")
+        ) {
+
+            return "inactive";
+
+        }
+
+
+        return "active";
+
+    }
+
+
+
+    function getStatusText(status) {
+
+        return status || "Ativo";
+
+    }
+
+
+
+    function formatDate(valor) {
+
+        if (!valor) {
+
+            return "-";
+
+        }
+
+
+        const data =
+            new Date(valor);
+
+
+        if (
+            Number.isNaN(
+                data.getTime()
+            )
+        ) {
+
+            return valor;
+
+        }
+
+
+        return data.toLocaleDateString(
+            "pt-BR"
+        );
+
+    }
+
+
+
+    function renderPatients() {
+
+        const tabela =
+            document.getElementById(
+                "patientTable"
+            );
+
+
+        const info =
+            document.getElementById(
+                "paginationInfo"
+            );
+
+
+        if (!tabela) {
+
+            return;
+
+        }
+
+
+        const total =
+            pacientesFiltrados.length;
+
+
+        const totalPaginas =
+            Math.max(
+                1,
+                Math.ceil(
+                    total /
+                    pacientesPorPagina
+                )
+            );
+
+
+        if (
+            paginaAtual >
+            totalPaginas
+        ) {
+
+            paginaAtual =
+                totalPaginas;
+
+        }
+
+
+        const inicio =
+            (
+                paginaAtual - 1
+            ) *
+            pacientesPorPagina;
+
+
+        const fim =
+            inicio +
+            pacientesPorPagina;
+
+
+        const lista =
+            pacientesFiltrados.slice(
+                inicio,
+                fim
+            );
+
+
+        if (
+            lista.length === 0
+        ) {
+
+            tabela.innerHTML = `
+
+                <tr>
+
+                    <td
+                        colspan="6"
+                        class="empty-row"
+                    >
+
+                        <i class="fa-regular fa-user"></i>
+
+                        Nenhum paciente encontrado.
+
+                    </td>
+
+                </tr>
 
             `;
 
-            table.appendChild(row);
+        }
+
+        else {
+
+            tabela.innerHTML =
+                lista
+                    .map(
+                        function(
+                            paciente,
+                            indice
+                        ) {
+
+                            const nome =
+                                getPatientValue(
+                                    paciente,
+                                    [
+                                        "nome",
+                                        "name",
+                                        "nomeCompleto"
+                                    ]
+                                ) ||
+                                "Paciente";
+
+
+                            const cpf =
+                                getPatientValue(
+                                    paciente,
+                                    ["cpf"]
+                                ) ||
+                                "-";
+
+
+                            const telefone =
+                                getPatientValue(
+                                    paciente,
+                                    [
+                                        "telefone",
+                                        "phone",
+                                        "celular"
+                                    ]
+                                ) ||
+                                "-";
+
+
+                            const nascimento =
+                                getPatientValue(
+                                    paciente,
+                                    [
+                                        "dataNascimento",
+                                        "nascimento",
+                                        "data_nascimento"
+                                    ]
+                                );
+
+
+                            const status =
+                                getPatientValue(
+                                    paciente,
+                                    ["status"]
+                                ) ||
+                                "Ativo";
+
+
+                            const indiceReal =
+                                inicio +
+                                indice;
+
+
+                            return `
+
+                                <tr>
+
+                                    <td>
+
+                                        <div class="patient-cell">
+
+                                            <div class="patient-avatar">
+
+                                                ${escapeHtml(
+                                                    getInitials(nome)
+                                                )}
+
+                                            </div>
+
+
+                                            <div class="patient-name">
+
+                                                <strong>
+                                                    ${escapeHtml(nome)}
+                                                </strong>
+
+                                                <small>
+                                                    Paciente EMPS
+                                                </small>
+
+                                            </div>
+
+                                        </div>
+
+                                    </td>
+
+
+                                    <td>
+                                        ${escapeHtml(cpf)}
+                                    </td>
+
+
+                                    <td>
+                                        ${escapeHtml(telefone)}
+                                    </td>
+
+
+                                    <td>
+                                        ${escapeHtml(
+                                            formatDate(
+                                                nascimento
+                                            )
+                                        )}
+                                    </td>
+
+
+                                    <td>
+
+                                        <span
+                                            class="status ${getStatusClass(status)}"
+                                        >
+
+                                            ${escapeHtml(
+                                                getStatusText(status)
+                                            )}
+
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <button
+                                            class="view-button"
+                                            type="button"
+                                            title="Visualizar paciente"
+                                            onclick="openPatient(${indiceReal})"
+                                        >
+
+                                            <i class="fa-regular fa-eye"></i>
+
+                                        </button>
+
+                                    </td>
+
+                                </tr>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+        if (info) {
+
+            if (total === 0) {
+
+                info.textContent =
+                    "0 pacientes";
+
+            }
+
+            else {
+
+                info.textContent =
+                    `${inicio + 1}-${Math.min(
+                        fim,
+                        total
+                    )} de ${total} pacientes`;
+
+            }
+
+        }
+
+
+        renderPagination(
+            totalPaginas
+        );
+
+    }
+
+
+
+    function renderPagination(
+        totalPaginas
+    ) {
+
+        const container =
+            document.getElementById(
+                "paginationButtons"
+            );
+
+
+        if (!container) {
+
+            return;
+
+        }
+
+
+        if (
+            pacientesFiltrados.length === 0
+        ) {
+
+            container.innerHTML =
+                "";
+
+            return;
+
+        }
+
+
+        let html = "";
+
+
+        html += `
+
+            <button
+                class="page-button"
+                type="button"
+                onclick="changePage(${paginaAtual - 1})"
+                ${paginaAtual === 1 ? "disabled" : ""}
+            >
+
+                <i class="fa-solid fa-chevron-left"></i>
+
+            </button>
+
+        `;
+
+
+        for (
+            let pagina = 1;
+            pagina <= totalPaginas;
+            pagina++
+        ) {
+
+            html += `
+
+                <button
+                    class="page-button ${pagina === paginaAtual ? "active" : ""}"
+                    type="button"
+                    onclick="changePage(${pagina})"
+                >
+
+                    ${pagina}
+
+                </button>
+
+            `;
+
+        }
+
+
+        html += `
+
+            <button
+                class="page-button"
+                type="button"
+                onclick="changePage(${paginaAtual + 1})"
+                ${paginaAtual === totalPaginas ? "disabled" : ""}
+            >
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+            </button>
+
+        `;
+
+
+        container.innerHTML =
+            html;
+
+    }
+
+
+
+    function changePage(
+        pagina
+    ) {
+
+        const totalPaginas =
+            Math.max(
+                1,
+                Math.ceil(
+                    pacientesFiltrados.length /
+                    pacientesPorPagina
+                )
+            );
+
+
+        if (
+            pagina < 1 ||
+            pagina > totalPaginas
+        ) {
+
+            return;
+
+        }
+
+
+        paginaAtual =
+            pagina;
+
+
+        renderPatients();
+
+    }
+
+
+
+    function filterPatients() {
+
+        const campo =
+            document.getElementById(
+                "searchInput"
+            );
+
+
+        const termo =
+            campo
+                ? campo.value
+                    .trim()
+                    .toLowerCase()
+                : "";
+
+
+        pacientesFiltrados =
+            pacientes.filter(
+                function(paciente) {
+
+                    const nome =
+                        getPatientValue(
+                            paciente,
+                            [
+                                "nome",
+                                "name",
+                                "nomeCompleto"
+                            ]
+                        );
+
+
+                    const cpf =
+                        getPatientValue(
+                            paciente,
+                            ["cpf"]
+                        );
+
+
+                    const telefone =
+                        getPatientValue(
+                            paciente,
+                            [
+                                "telefone",
+                                "phone",
+                                "celular"
+                            ]
+                        );
+
+
+                    return (
+                        nome
+                            .toLowerCase()
+                            .includes(termo)
+                        ||
+                        cpf
+                            .toLowerCase()
+                            .includes(termo)
+                        ||
+                        telefone
+                            .toLowerCase()
+                            .includes(termo)
+                    );
+
+                }
+            );
+
+
+        paginaAtual = 1;
+
+
+        renderPatients();
+
+    }
+
+
+
+    function openPatient(
+        indice
+    ) {
+
+        const paciente =
+            pacientesFiltrados[
+                indice
+            ];
+
+
+        if (!paciente) {
+
+            return;
+
+        }
+
+
+        const id =
+            getPatientValue(
+                paciente,
+                [
+                    "id",
+                    "pacienteId"
+                ]
+            );
+
+
+        const nome =
+            getPatientValue(
+                paciente,
+                [
+                    "nome",
+                    "name",
+                    "nomeCompleto"
+                ]
+            );
+
+
+        if (id) {
+
+            window.location.href =
+                "busca.html?id=" +
+                encodeURIComponent(id);
+
+            return;
+
+        }
+
+
+        if (nome) {
+
+            window.location.href =
+                "busca.html?nome=" +
+                encodeURIComponent(nome);
+
+        }
+
+    }
+
+
+
+    /* =========================================================
+       SUPORTE
+    ========================================================== */
+
+    function openSupport() {
+
+        const overlay =
+            document.getElementById(
+                "supportOverlay"
+            );
+
+
+        if (!overlay) {
+
+            return;
+
+        }
+
+
+        overlay.classList.add(
+            "show"
+        );
+
+
+        overlay.setAttribute(
+            "aria-hidden",
+            "false"
+        );
+
+
+        document.body.style.overflow =
+            "hidden";
+
+    }
+
+
+
+    function closeSupport() {
+
+        const overlay =
+            document.getElementById(
+                "supportOverlay"
+            );
+
+
+        if (!overlay) {
+
+            return;
+
+        }
+
+
+        overlay.classList.remove(
+            "show"
+        );
+
+
+        overlay.setAttribute(
+            "aria-hidden",
+            "true"
+        );
+
+
+        document.body.style.overflow =
+            "";
+
+    }
+
+
+
+    /* =========================================================
+       INICIALIZAÇÃO
+    ========================================================== */
+
+    document.addEventListener(
+        "DOMContentLoaded",
+        function() {
+
+
+            aplicarDadosEditados();
+
+
+            setTimeout(
+                aplicarDadosEditados,
+                300
+            );
+
+
+            setTimeout(
+                aplicarDadosEditados,
+                800
+            );
+
+
+            carregarPacientes();
+
+
+            const searchInput =
+                document.getElementById(
+                    "searchInput"
+                );
+
+
+            if (searchInput) {
+
+                searchInput.addEventListener(
+                    "input",
+                    filterPatients
+                );
+
+            }
+
+
+            const overlay =
+                document.getElementById(
+                    "supportOverlay"
+                );
+
+
+            if (overlay) {
+
+                overlay.addEventListener(
+                    "click",
+                    function(event) {
+
+                        if (
+                            event.target ===
+                            overlay
+                        ) {
+
+                            closeSupport();
+
+                        }
+
+                    }
+                );
+
+            }
+
+
+            document
+                .querySelectorAll(
+                    ".faq-question"
+                )
+                .forEach(
+                    function(button) {
+
+                        button.addEventListener(
+                            "click",
+                            function() {
+
+                                const item =
+                                    this.closest(
+                                        ".faq-item"
+                                    );
+
+
+                                const aberto =
+                                    item.classList.contains(
+                                        "open"
+                                    );
+
+
+                                document
+                                    .querySelectorAll(
+                                        ".faq-item"
+                                    )
+                                    .forEach(
+                                        function(
+                                            outro
+                                        ) {
+
+                                            outro.classList.remove(
+                                                "open"
+                                            );
+
+                                        }
+                                    );
+
+
+                                if (!aberto) {
+
+                                    item.classList.add(
+                                        "open"
+                                    );
+
+                                }
+
+                            }
+                        );
+
+                    }
+                );
 
         }
     );
 
 
-    updatePagination();
 
-}
+    /* =========================================================
+       ESC
+    ========================================================== */
 
+    document.addEventListener(
+        "keydown",
+        function(event) {
 
-/* =====================================================
-   ESCAPAR TEXTO
-===================================================== */
+            if (
+                event.key === "Escape"
+            ) {
 
-function escapeHtml(value) {
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
-
-
-/* =====================================================
-   ABRIR PACIENTE
-===================================================== */
-
-function openPatient(id) {
-
-    if (!id) {
-
-        window.location.href =
-            "paciente.html";
-
-        return;
-
-    }
-
-    window.location.href =
-        "paciente.html?id=" +
-        id;
-
-}
-
-
-/* =====================================================
-   PESQUISA
-===================================================== */
-
-function filterPatients() {
-
-    const input =
-        document.getElementById(
-            "searchInput"
-        );
-
-    const filter =
-        input.value
-            .trim()
-            .toLowerCase();
-
-
-    filteredPatients =
-        patients.filter(
-            patient => {
-
-                const name =
-                    getPatientValue(
-                        patient,
-                        [
-                            "nome",
-                            "name",
-                            "nomePaciente",
-                            "patientName"
-                        ]
-                    );
-
-                const id =
-                    getPatientValue(
-                        patient,
-                        [
-                            "id",
-                            "codigo",
-                            "codigoPaciente",
-                            "patientId"
-                        ]
-                    );
-
-                const phone =
-                    getPatientValue(
-                        patient,
-                        [
-                            "telefone",
-                            "phone",
-                            "celular"
-                        ]
-                    );
-
-                const condition =
-                    getPatientValue(
-                        patient,
-                        [
-                            "condicao",
-                            "condição",
-                            "diagnostico",
-                            "diagnóstico",
-                            "tipoCondicao"
-                        ]
-                    );
-
-
-                const searchableText =
-                    `
-                    ${name}
-                    ${id}
-                    ${phone}
-                    ${condition}
-                    `
-                    .toLowerCase();
-
-
-                return searchableText
-                    .includes(filter);
+                closeSupport();
 
             }
-        );
+
+        }
+    );
 
 
-    currentPage = 1;
 
-    renderPatients();
+    /* =========================================================
+       ATUALIZAÇÃO DO PERFIL
+    ========================================================== */
 
-}
+    window.addEventListener(
+        "pageshow",
+        function() {
 
+            aplicarDadosEditados();
 
-/* =====================================================
-   PAGINAÇÃO
-===================================================== */
+            carregarPacientes();
 
-function updatePagination() {
-
-    const pagesContainer =
-        document.getElementById(
-            "pagesContainer"
-        );
-
-    const previous =
-        document.getElementById(
-            "previousPage"
-        );
-
-    const next =
-        document.getElementById(
-            "nextPage"
-        );
+        }
+    );
 
 
-    const totalPages =
-        Math.ceil(
-            filteredPatients.length /
-            PATIENTS_PER_PAGE
-        );
+    window.addEventListener(
+        "storage",
+        function(event) {
 
+            if (
+                event.key ===
+                "empsProfile"
+            ) {
 
-    pagesContainer.innerHTML = "";
-
-
-    /* ---------------------------------------------
-       SEM PÁGINAS
-    --------------------------------------------- */
-
-    if (totalPages === 0) {
-
-        previous.classList.add("disabled");
-
-        next.classList.add("disabled");
-
-        return;
-
-    }
-
-
-    /* ---------------------------------------------
-       BOTÃO ANTERIOR
-    --------------------------------------------- */
-
-    if (currentPage <= 1) {
-
-        previous.classList.add("disabled");
-
-    } else {
-
-        previous.classList.remove("disabled");
-
-    }
-
-
-    /* ---------------------------------------------
-       BOTÃO PRÓXIMO
-    --------------------------------------------- */
-
-    if (currentPage >= totalPages) {
-
-        next.classList.add("disabled");
-
-    } else {
-
-        next.classList.remove("disabled");
-
-    }
-
-
-    /* ---------------------------------------------
-       PÁGINAS
-    --------------------------------------------- */
-
-    for (
-        let page = 1;
-        page <= totalPages;
-        page++
-    ) {
-
-        const pageButton =
-            document.createElement("div");
-
-        pageButton.className =
-            "page" +
-            (
-                page === currentPage
-                    ? " active"
-                    : ""
-            );
-
-        pageButton.textContent =
-            page;
-
-        pageButton.addEventListener(
-            "click",
-            function() {
-
-                currentPage =
-                    page;
-
-                renderPatients();
+                aplicarDadosEditados();
 
             }
-        );
-
-        pagesContainer.appendChild(
-            pageButton
-        );
-
-    }
-
-}
 
 
-/* =====================================================
-   BOTÃO ANTERIOR
-===================================================== */
+            if (
+                event.key ===
+                "empsPacientes"
+            ) {
 
-document
-.getElementById("previousPage")
-.addEventListener(
-    "click",
-    function() {
+                carregarPacientes();
 
-        if (currentPage > 1) {
-
-            currentPage--;
-
-            renderPatients();
+            }
 
         }
-
-    }
-);
-
-
-/* =====================================================
-   BOTÃO PRÓXIMO
-===================================================== */
-
-document
-.getElementById("nextPage")
-.addEventListener(
-    "click",
-    function() {
-
-        const totalPages =
-            Math.ceil(
-                filteredPatients.length /
-                PATIENTS_PER_PAGE
-            );
-
-        if (
-            currentPage <
-            totalPages
-        ) {
-
-            currentPage++;
-
-            renderPatients();
-
-        }
-
-    }
-);
-
-
-/* =====================================================
-   PESQUISA ENQUANTO DIGITA
-===================================================== */
-
-document
-.getElementById("searchInput")
-.addEventListener(
-    "input",
-    filterPatients
-);
-
-
-/* =====================================================
-   PESQUISA DO TOPO
-===================================================== */
-
-document
-.getElementById("topSearchInput")
-.addEventListener(
-    "input",
-    function() {
-
-        const searchInput =
-            document.getElementById(
-                "searchInput"
-            );
-
-        searchInput.value =
-            this.value;
-
-        filterPatients();
-
-    }
-);
-
-
-/* =====================================================
-   ATUALIZA AUTOMATICAMENTE QUANDO VOLTAR PARA A PÁGINA
-===================================================== */
-
-window.addEventListener(
-    "pageshow",
-    function() {
-
-        loadPatients();
-
-    }
-);
-
-
-/* =====================================================
-   INICIALIZAÇÃO
-===================================================== */
-
-loadPatients();
+    );
 
 </script>
-
 
 </body>
 

@@ -1016,6 +1016,155 @@
         }
 
         /* =========================================================
+           ELEMENTOS FUNCIONAIS
+        ========================================================= */
+
+        .empty-state {
+            padding: 22px 10px;
+            text-align: center;
+            color: #8a8b9a;
+            font-size: 9px;
+        }
+
+        .empty-state i {
+            display: block;
+            font-size: 20px;
+            color: #8a78cf;
+            margin-bottom: 8px;
+        }
+
+        .document-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-document {
+            border: 1px solid #7461c9;
+            background: white;
+            color: #5a45af;
+            border-radius: 5px;
+            padding: 6px 9px;
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        .add-document:hover {
+            background: #f5f2ff;
+        }
+
+        .document-open {
+            border: none;
+            background: transparent;
+            color: #5c49ad;
+            font-size: 11px;
+        }
+
+        .document-open:hover,
+        .download:hover {
+            color: #43209e;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(35, 28, 80, 0.35);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-card {
+            width: min(430px, 100%);
+            background: white;
+            border-radius: 11px;
+            box-shadow: 0 18px 50px rgba(35, 28, 80, 0.18);
+            padding: 22px;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .modal-header h3 {
+            font-size: 14px;
+            color: #38394b;
+        }
+
+        .modal-close {
+            border: none;
+            background: transparent;
+            color: #77788a;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 9px;
+            color: #555668;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            height: 36px;
+            border: 1px solid #e7e6ee;
+            border-radius: 6px;
+            padding: 0 10px;
+            font-size: 9px;
+            color: #555668;
+            outline: none;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #b7a8eb;
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 18px;
+        }
+
+        .modal-actions button {
+            height: 34px;
+            border-radius: 5px;
+            padding: 0 14px;
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+        .cancel-modal {
+            border: 1px solid #e3e2ea;
+            background: white;
+            color: #666779;
+        }
+
+        .save-document {
+            border: none;
+            background: linear-gradient(135deg, #4e21bd, #6d35d8);
+            color: white;
+        }
+
+        /* =========================================================
            RODAPÉ
         ========================================================= */
 
@@ -1529,9 +1678,6 @@
 
                             <div class="signals-content">
 
-
-                                <!-- CARD FREQUÊNCIA -->
-
                                 <div class="heart-card">
 
                                     <div class="heart-card-top">
@@ -1539,136 +1685,18 @@
                                         <span>Frequência cardíaca média</span>
                                     </div>
 
-                                    <div class="heart-rate">
-                                        72 bpm
-                                    </div>
-
-                                    <div class="heart-status">
-                                        Dentro do normal
-                                    </div>
-
+                                    <div class="heart-rate" id="heartRateValue">-- bpm</div>
+                                    <div class="heart-status" id="heartRateStatus">Aguardando dados do paciente</div>
 
                                     <div class="chart">
-
-                                        <svg
-                                            viewBox="0 0 220 70"
-                                            preserveAspectRatio="none"
-                                        >
-
-                                            <path
-                                                d="M0,52
-                                                   C8,50 10,38 18,43
-                                                   C26,48 28,25 38,33
-                                                   C47,42 52,40 60,24
-                                                   C68,9 74,39 84,37
-                                                   C92,36 95,24 102,28
-                                                   C110,32 115,10 125,18
-                                                   C134,25 138,21 146,27
-                                                   C154,34 161,11 171,13
-                                                   C181,16 184,36 193,28
-                                                   C202,20 208,21 220,4"
-                                                fill="none"
-                                                stroke="#6853c6"
-                                                stroke-width="2"
-                                                stroke-linecap="round"
-                                            />
-
+                                        <svg id="heartChart" viewBox="0 0 220 70" preserveAspectRatio="none">
+                                            <path id="heartChartPath" d="M0,52 C20,52 25,45 40,45 C55,45 60,30 75,38 C90,46 95,25 110,32 C125,39 130,20 145,28 C160,36 170,15 185,24 C200,33 205,18 220,18" fill="none" stroke="#6853c6" stroke-width="2" stroke-linecap="round" />
                                         </svg>
-
                                     </div>
 
                                 </div>
 
-
-                                <!-- LISTA DE SINAIS -->
-
-                                <div class="signal-list">
-
-
-                                    <div class="signal-item">
-
-                                        <div class="signal-icon">
-                                            <i class="fa-regular fa-moon"></i>
-                                        </div>
-
-                                        <span class="signal-name">
-                                            Sono médio
-                                        </span>
-
-                                        <strong class="signal-value">
-                                            7h 20min
-                                        </strong>
-
-                                        <span class="mini-status good">
-                                            Bom
-                                        </span>
-
-                                    </div>
-
-
-                                    <div class="signal-item">
-
-                                        <div class="signal-icon">
-                                            <i class="fa-solid fa-person-walking"></i>
-                                        </div>
-
-                                        <span class="signal-name">
-                                            Atividade física
-                                        </span>
-
-                                        <strong class="signal-value">
-                                            Moderada
-                                        </strong>
-
-                                        <span class="mini-status ideal">
-                                            Ideal
-                                        </span>
-
-                                    </div>
-
-
-                                    <div class="signal-item">
-
-                                        <div class="signal-icon">
-                                            <i class="fa-solid fa-brain"></i>
-                                        </div>
-
-                                        <span class="signal-name">
-                                            Nível de estresse
-                                        </span>
-
-                                        <strong class="signal-value">
-                                            Baixo
-                                        </strong>
-
-                                        <span class="mini-status good">
-                                            Bom
-                                        </span>
-
-                                    </div>
-
-
-                                    <div class="signal-item">
-
-                                        <div class="signal-icon">
-                                            <i class="fa-solid fa-pills"></i>
-                                        </div>
-
-                                        <span class="signal-name">
-                                            Adesão ao tratamento
-                                        </span>
-
-                                        <strong class="signal-value">
-                                            Alta
-                                        </strong>
-
-                                        <span class="mini-status good">
-                                            Boa
-                                        </span>
-
-                                    </div>
-
-                                </div>
+                                <div class="signal-list" id="signalList"></div>
 
                             </div>
 
@@ -1710,143 +1738,7 @@
                                     </thead>
 
 
-                                    <tbody>
-
-                                        <tr>
-
-                                            <td>08/05/2024</td>
-                                            <td>22:15</td>
-                                            <td>1min 20s</td>
-                                            <td>Focal com<br>generalização</td>
-
-                                            <td>
-                                                <span class="intensity moderada">
-                                                    Moderada
-                                                </span>
-                                            </td>
-
-                                            <td>
-                                                Durante o sono.<br>
-                                                Recuperação rápida.
-                                            </td>
-
-                                            <td>
-                                                <button class="eye-button">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </button>
-                                            </td>
-
-                                        </tr>
-
-
-                                        <tr>
-
-                                            <td>02/05/2024</td>
-                                            <td>18:40</td>
-                                            <td>1min 05s</td>
-                                            <td>Focal</td>
-
-                                            <td>
-                                                <span class="intensity leve">
-                                                    Leve
-                                                </span>
-                                            </td>
-
-                                            <td>
-                                                Crise breve. Sem<br>
-                                                generalização.
-                                            </td>
-
-                                            <td>
-                                                <button class="eye-button">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </button>
-                                            </td>
-
-                                        </tr>
-
-
-                                        <tr>
-
-                                            <td>25/04/2024</td>
-                                            <td>07:10</td>
-                                            <td>1min 40s</td>
-                                            <td>Focal com<br>generalização</td>
-
-                                            <td>
-                                                <span class="intensity moderada">
-                                                    Moderada
-                                                </span>
-                                            </td>
-
-                                            <td>
-                                                Ao acordar. Confusão<br>
-                                                pós-ictal leve.
-                                            </td>
-
-                                            <td>
-                                                <button class="eye-button">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </button>
-                                            </td>
-
-                                        </tr>
-
-
-                                        <tr>
-
-                                            <td>18/04/2024</td>
-                                            <td>21:55</td>
-                                            <td>2min 10s</td>
-                                            <td>Focal com<br>generalização</td>
-
-                                            <td>
-                                                <span class="intensity intensa">
-                                                    Intensa
-                                                </span>
-                                            </td>
-
-                                            <td>
-                                                Crise mais intensa.<br>
-                                                Atendimento realizado.
-                                            </td>
-
-                                            <td>
-                                                <button class="eye-button">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </button>
-                                            </td>
-
-                                        </tr>
-
-
-                                        <tr>
-
-                                            <td>10/04/2024</td>
-                                            <td>16:30</td>
-                                            <td>50s</td>
-                                            <td>Focal</td>
-
-                                            <td>
-                                                <span class="intensity leve">
-                                                    Leve
-                                                </span>
-                                            </td>
-
-                                            <td>
-                                                Crise breve durante<br>
-                                                a tarde.
-                                            </td>
-
-                                            <td>
-                                                <button class="eye-button">
-                                                    <i class="fa-regular fa-eye"></i>
-                                                </button>
-                                            </td>
-
-                                        </tr>
-
-                                    </tbody>
+                                    <tbody id="crisisTableBody"></tbody>
 
                                 </table>
 
@@ -1872,65 +1764,12 @@
 
 
                             <div class="notes-content">
+                                <div id="notesList"></div>
 
-
-                                <div class="note">
-
-                                    <div class="note-icon">
-                                        <i class="fa-regular fa-file-lines"></i>
-                                    </div>
-
-                                    <div class="note-info">
-
-                                        <small>
-                                            09/05/2024 - Dr. Rafael Oliveira
-                                        </small>
-
-                                        <p>
-                                            Paciente relata boa adesão ao tratamento e qualidade do sono adequada.
-                                            Mantém rotina de exercícios leves.
-                                        </p>
-
-                                    </div>
-
-                                    <button class="note-menu">
-                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                                    </button>
-
-                                </div>
-
-
-                                <div class="note">
-
-                                    <div class="note-icon">
-                                        <i class="fa-regular fa-file-lines"></i>
-                                    </div>
-
-                                    <div class="note-info">
-
-                                        <small>
-                                            09/05/2024 - Dr. Rafael Oliveira
-                                        </small>
-
-                                        <p>
-                                            Ajuste na dose do medicamento devido à crise ocorrida à noite.
-                                            Monitorar diário de sono e estresse.
-                                        </p>
-
-                                    </div>
-
-                                    <button class="note-menu">
-                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                                    </button>
-
-                                </div>
-
-
-                                <button class="new-note">
+                                <button class="new-note" id="newNoteButton">
                                     <i class="fa-solid fa-plus"></i>
-                                    &nbsp; Nova anotação
+                                    Nova anotação
                                 </button>
-
                             </div>
 
                         </section>
@@ -2082,133 +1921,19 @@
 
                         <!-- DOCUMENTOS -->
 
-                        <section class="panel">
+                        <section class="panel" id="documentsPanel">
 
                             <div class="panel-header">
-
                                 <h3>Documentos</h3>
-
-                                <a href="#" class="view-link">
-                                    Ver todos
-                                    <i class="fa-solid fa-arrow-right"></i>
-                                </a>
-
+                                <div class="document-actions">
+                                    <button class="add-document" id="addDocumentButton">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Adicionar documento
+                                    </button>
+                                </div>
                             </div>
 
-
-                            <div class="documents">
-
-
-                                <div class="document-item">
-
-                                    <div class="document-icon">
-                                        <i class="fa-regular fa-file-lines"></i>
-                                    </div>
-
-                                    <div>
-                                        <div class="document-name">
-                                            Relatório neurológico
-                                        </div>
-                                        <span class="document-date">
-                                            09/05/2024
-                                        </span>
-                                    </div>
-
-                                    <button class="download">
-                                        <i class="fa-solid fa-download"></i>
-                                    </button>
-
-                                </div>
-
-
-                                <div class="document-item">
-
-                                    <div class="document-icon">
-                                        <i class="fa-regular fa-file-lines"></i>
-                                    </div>
-
-                                    <div>
-                                        <div class="document-name">
-                                            Eletroencefalograma
-                                        </div>
-                                        <span class="document-date">
-                                            05/05/2024
-                                        </span>
-                                    </div>
-
-                                    <button class="download">
-                                        <i class="fa-solid fa-download"></i>
-                                    </button>
-
-                                </div>
-
-
-                                <div class="document-item">
-
-                                    <div class="document-icon">
-                                        <i class="fa-regular fa-file-lines"></i>
-                                    </div>
-
-                                    <div>
-                                        <div class="document-name">
-                                            Exame de sangue
-                                        </div>
-                                        <span class="document-date">
-                                            28/04/2024
-                                        </span>
-                                    </div>
-
-                                    <button class="download">
-                                        <i class="fa-solid fa-download"></i>
-                                    </button>
-
-                                </div>
-
-
-                                <div class="document-item">
-
-                                    <div class="document-icon">
-                                        <i class="fa-regular fa-file-lines"></i>
-                                    </div>
-
-                                    <div>
-                                        <div class="document-name">
-                                            Receita médica
-                                        </div>
-                                        <span class="document-date">
-                                            09/05/2024
-                                        </span>
-                                    </div>
-
-                                    <button class="download">
-                                        <i class="fa-solid fa-download"></i>
-                                    </button>
-
-                                </div>
-
-
-                                <div class="document-item">
-
-                                    <div class="document-icon">
-                                        <i class="fa-regular fa-file-lines"></i>
-                                    </div>
-
-                                    <div>
-                                        <div class="document-name">
-                                            Plano terapêutico
-                                        </div>
-                                        <span class="document-date">
-                                            10/02/2024
-                                        </span>
-                                    </div>
-
-                                    <button class="download">
-                                        <i class="fa-solid fa-download"></i>
-                                    </button>
-
-                                </div>
-
-                            </div>
+                            <div class="documents" id="documentsList"></div>
 
                         </section>
 
@@ -2217,6 +1942,50 @@
                 </div>
 
             </main>
+
+
+            <!-- MODAL DE DOCUMENTO -->
+
+            <div class="modal" id="documentModal">
+                <div class="modal-card">
+                    <div class="modal-header">
+                        <h3>Adicionar documento</h3>
+                        <button class="modal-close" id="closeDocumentModal" type="button">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+
+                    <form id="documentForm">
+                        <div class="form-group">
+                            <label for="documentType">Tipo de documento</label>
+                            <select id="documentType" required>
+                                <option value="">Selecione</option>
+                                <option value="Exame de sangue">Exame de sangue</option>
+                                <option value="Eletroencefalograma">Eletroencefalograma</option>
+                                <option value="Relatório neurológico">Relatório neurológico</option>
+                                <option value="Receita médica">Receita médica</option>
+                                <option value="Plano terapêutico">Plano terapêutico</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="documentName">Nome do documento</label>
+                            <input id="documentName" type="text" placeholder="Ex.: Exame de sangue - maio/2024" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="documentFile">Arquivo</label>
+                            <input id="documentFile" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx" required>
+                        </div>
+
+                        <div class="modal-actions">
+                            <button class="cancel-modal" id="cancelDocument" type="button">Cancelar</button>
+                            <button class="save-document" type="submit">Salvar documento</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
 
 
             <!-- =====================================================
@@ -2257,25 +2026,398 @@
     <script>
 
         /* =========================================================
+           DADOS FUNCIONAIS
+           Estes dados estão separados da interface para facilitar a
+           futura troca pelo retorno do PHP/MySQL.
+        ========================================================= */
+
+        const pacienteId = "PCT-0012";
+
+        const dadosSinais = {
+            frequenciaCardiaca: null,
+            sono: null,
+            atividade: null,
+            estresse: null,
+            adesao: null,
+            historicoFrequencia: []
+        };
+
+        const crisesIniciais = [];
+        const consultasIniciais = [];
+        const documentosIniciais = [];
+
+
+        /* =========================================================
+           FUNÇÕES DE DADOS
+        ========================================================= */
+
+        function getLocalData(key, fallback = []) {
+            try {
+                const data = JSON.parse(localStorage.getItem(key));
+                return data ?? fallback;
+            } catch (error) {
+                return fallback;
+            }
+        }
+
+        function saveLocalData(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        /*
+         * relatorios.html poderá salvar os relatórios neste formato:
+         * {
+         *   pacienteId: "PCT-0012",
+         *   data: "09/05/2024",
+         *   medico: "Dr. Rafael Oliveira",
+         *   texto: "Descrição do relatório..."
+         * }
+         *
+         * A tela já está preparada para consumir esses registros.
+         */
+        function getRelatoriosPaciente() {
+            const relatorios = getLocalData("emps_relatorios", []);
+
+            return relatorios.filter(relatorio => {
+                return !relatorio.pacienteId || relatorio.pacienteId === pacienteId;
+            });
+        }
+
+        function getCrisesPaciente() {
+            const crises = getLocalData("emps_crises", crisesIniciais);
+
+            return crises.filter(crise => {
+                return !crise.pacienteId || crise.pacienteId === pacienteId;
+            });
+        }
+
+
+        /* =========================================================
+           ÚLTIMOS SINAIS
+        ========================================================= */
+
+        function renderSignals() {
+            const heartRate = document.getElementById("heartRateValue");
+            const heartStatus = document.getElementById("heartRateStatus");
+            const signalList = document.getElementById("signalList");
+
+            if (dadosSinais.frequenciaCardiaca !== null) {
+                heartRate.textContent = `${dadosSinais.frequenciaCardiaca} bpm`;
+                heartStatus.textContent = dadosSinais.frequenciaCardiaca >= 60 && dadosSinais.frequenciaCardiaca <= 100
+                    ? "Dentro do normal"
+                    : "Fora da faixa de referência";
+            } else {
+                heartRate.textContent = "-- bpm";
+                heartStatus.textContent = "Aguardando dados do paciente";
+            }
+
+            const sinais = [
+                {
+                    icon: "fa-regular fa-moon",
+                    nome: "Sono médio",
+                    valor: dadosSinais.sono ?? "--",
+                    status: dadosSinais.sono ? "Bom" : "Sem dados",
+                    classe: dadosSinais.sono ? "good" : "ideal"
+                },
+                {
+                    icon: "fa-solid fa-person-walking",
+                    nome: "Atividade física",
+                    valor: dadosSinais.atividade ?? "--",
+                    status: dadosSinais.atividade ? "Registrada" : "Sem dados",
+                    classe: dadosSinais.atividade ? "ideal" : "ideal"
+                },
+                {
+                    icon: "fa-solid fa-brain",
+                    nome: "Nível de estresse",
+                    valor: dadosSinais.estresse ?? "--",
+                    status: dadosSinais.estresse ? "Registrado" : "Sem dados",
+                    classe: dadosSinais.estresse ? "good" : "ideal"
+                },
+                {
+                    icon: "fa-solid fa-pills",
+                    nome: "Adesão ao tratamento",
+                    valor: dadosSinais.adesao ?? "--",
+                    status: dadosSinais.adesao ? "Registrada" : "Sem dados",
+                    classe: "good"
+                }
+            ];
+
+            signalList.innerHTML = sinais.map(sinal => `
+                <div class="signal-item">
+                    <div class="signal-icon"><i class="${sinal.icon}"></i></div>
+                    <span class="signal-name">${sinal.nome}</span>
+                    <strong class="signal-value">${sinal.valor}</strong>
+                    <span class="mini-status ${sinal.classe}">${sinal.status}</span>
+                </div>
+            `).join("");
+        }
+
+
+        /* =========================================================
+           HISTÓRICO DE CRISES
+        ========================================================= */
+
+        function renderCrises() {
+            const tbody = document.getElementById("crisisTableBody");
+            const crises = getCrisesPaciente();
+
+            if (!crises.length) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7">
+                            <div class="empty-state">
+                                <i class="fa-regular fa-circle-check"></i>
+                                Nenhuma crise registrada para este paciente.
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = crises.map(crise => {
+                const intensidade = (crise.intensidade || "leve").toLowerCase();
+                const classe = intensidade.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+                return `
+                    <tr>
+                        <td>${crise.data || "--"}</td>
+                        <td>${crise.hora || "--"}</td>
+                        <td>${crise.duracao || "--"}</td>
+                        <td>${crise.tipo || "--"}</td>
+                        <td><span class="intensity ${classe}">${crise.intensidade || "--"}</span></td>
+                        <td>${crise.observacao || crise.descricao || "--"}</td>
+                        <td>
+                            <button class="eye-button" type="button" title="Ver crise" data-crisis-id="${crise.id || ""}">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+        }
+
+
+        /* =========================================================
+           ANOTAÇÕES / RELATÓRIOS
+        ========================================================= */
+
+        function renderNotes() {
+            const container = document.getElementById("notesList");
+            const relatorios = getRelatoriosPaciente();
+
+            if (!relatorios.length) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-regular fa-note-sticky"></i>
+                        Nenhuma anotação registrada ainda.<br>
+                        Os registros feitos em Relatórios aparecerão aqui.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = relatorios.map(relatorio => `
+                <div class="note">
+                    <div class="note-icon">
+                        <i class="fa-regular fa-note-sticky"></i>
+                    </div>
+                    <div class="note-info">
+                        <small>${relatorio.data || "Data não informada"} · ${relatorio.medico || "Profissional não informado"}</small>
+                        <p>${relatorio.texto || relatorio.descricao || relatorio.observacao || "Sem descrição."}</p>
+                    </div>
+                    <button class="note-menu" type="button" title="Opções">
+                        <i class="fa-solid fa-ellipsis-vertical"></i>
+                    </button>
+                </div>
+            `).join("");
+        }
+
+
+        /* =========================================================
+           DOCUMENTOS
+           IndexedDB permite guardar o arquivo localmente durante o
+           protótipo. Depois, o mesmo fluxo pode ser ligado ao PHP/MySQL.
+        ========================================================= */
+
+        const DB_NAME = "empsDocumentosDB";
+        const DB_VERSION = 1;
+        const STORE_NAME = "documentos";
+
+        function openDocumentDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+                request.onupgradeneeded = event => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains(STORE_NAME)) {
+                        db.createObjectStore(STORE_NAME, { keyPath: "id", autoIncrement: true });
+                    }
+                };
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        async function saveDocument(documento) {
+            const db = await openDocumentDB();
+
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(STORE_NAME, "readwrite");
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.add(documento);
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        async function getDocuments() {
+            const db = await openDocumentDB();
+
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(STORE_NAME, "readonly");
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.getAll();
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        async function getDocument(id) {
+            const db = await openDocumentDB();
+
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(STORE_NAME, "readonly");
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.get(Number(id));
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        function formatDocumentDate(date) {
+            return new Intl.DateTimeFormat("pt-BR").format(date);
+        }
+
+        async function renderDocuments() {
+            const container = document.getElementById("documentsList");
+            const documentos = await getDocuments();
+            const documentosDoPaciente = documentos.filter(documento => {
+                return !documento.pacienteId || documento.pacienteId === pacienteId;
+            });
+
+            if (!documentosDoPaciente.length) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-regular fa-folder-open"></i>
+                        Nenhum documento adicionado ainda.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = documentosDoPaciente.map(documento => `
+                <div class="document-item">
+                    <div class="document-icon">
+                        <i class="fa-regular fa-file-lines"></i>
+                    </div>
+                    <div>
+                        <div class="document-name">${documento.nome}</div>
+                        <span class="document-date">${documento.tipo} · ${documento.data}</span>
+                    </div>
+                    <button class="document-open" type="button" title="Abrir documento" data-document-id="${documento.id}">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+                </div>
+            `).join("");
+        }
+
+        async function openDocument(id) {
+            const documento = await getDocument(id);
+            if (!documento || !documento.arquivo) return;
+
+            const url = URL.createObjectURL(documento.arquivo);
+            window.open(url, "_blank");
+
+            setTimeout(() => URL.revokeObjectURL(url), 60000);
+        }
+
+
+        /* =========================================================
+           MODAL DE DOCUMENTOS
+        ========================================================= */
+
+        const documentModal = document.getElementById("documentModal");
+        const documentForm = document.getElementById("documentForm");
+
+        function closeDocumentModal() {
+            documentModal.classList.remove("show");
+            documentForm.reset();
+        }
+
+        document.getElementById("addDocumentButton").addEventListener("click", () => {
+            documentModal.classList.add("show");
+        });
+
+        document.getElementById("closeDocumentModal").addEventListener("click", closeDocumentModal);
+        document.getElementById("cancelDocument").addEventListener("click", closeDocumentModal);
+
+        documentModal.addEventListener("click", event => {
+            if (event.target === documentModal) closeDocumentModal();
+        });
+
+        documentForm.addEventListener("submit", async event => {
+            event.preventDefault();
+
+            const fileInput = document.getElementById("documentFile");
+            const file = fileInput.files[0];
+
+            if (!file) return;
+
+            const documento = {
+                pacienteId,
+                tipo: document.getElementById("documentType").value,
+                nome: document.getElementById("documentName").value.trim(),
+                arquivo: file,
+                data: formatDocumentDate(new Date()),
+                nomeArquivo: file.name,
+                tamanho: file.size,
+                tipoArquivo: file.type
+            };
+
+            try {
+                await saveDocument(documento);
+                await renderDocuments();
+                closeDocumentModal();
+            } catch (error) {
+                alert("Não foi possível salvar o documento neste momento.");
+                console.error(error);
+            }
+        });
+
+        document.getElementById("documentsList").addEventListener("click", async event => {
+            const button = event.target.closest("[data-document-id]");
+            if (!button) return;
+            await openDocument(button.dataset.documentId);
+        });
+
+
+        /* =========================================================
            MENU LATERAL
         ========================================================= */
 
         const menuItems = document.querySelectorAll(".menu a");
 
         menuItems.forEach(item => {
-
             item.addEventListener("click", function(event) {
-
                 event.preventDefault();
-
-                menuItems.forEach(link => {
-                    link.classList.remove("active");
-                });
-
+                menuItems.forEach(link => link.classList.remove("active"));
                 this.classList.add("active");
-
             });
-
         });
 
 
@@ -2286,17 +2428,24 @@
         const tabs = document.querySelectorAll(".tab");
 
         tabs.forEach(tab => {
-
             tab.addEventListener("click", function() {
-
-                tabs.forEach(item => {
-                    item.classList.remove("active");
-                });
-
+                tabs.forEach(item => item.classList.remove("active"));
                 this.classList.add("active");
 
-            });
+                const nome = this.textContent.trim();
 
+                if (nome === "Relatórios") {
+                    document.getElementById("notesList").scrollIntoView({ behavior: "smooth", block: "center" });
+                } else if (nome === "Consultas") {
+                    document.querySelector(".appointment-list").scrollIntoView({ behavior: "smooth", block: "center" });
+                } else if (nome === "Documentos") {
+                    document.getElementById("documentsPanel").scrollIntoView({ behavior: "smooth", block: "center" });
+                } else if (nome === "Histórico clínico") {
+                    document.querySelector(".dashboard-grid").scrollIntoView({ behavior: "smooth", block: "start" });
+                } else if (nome === "Dispositivos") {
+                    document.querySelector(".signals-content").scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+            });
         });
 
 
@@ -2306,22 +2455,26 @@
 
         const copyButton = document.querySelector(".code-box button");
 
-        copyButton.addEventListener("click", () => {
-
-            navigator.clipboard.writeText("PCT-0012");
+        copyButton.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(pacienteId);
+            } catch (error) {
+                const textarea = document.createElement("textarea");
+                textarea.value = pacienteId;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand("copy");
+                textarea.remove();
+            }
 
             const icon = copyButton.querySelector("i");
-
             icon.classList.remove("fa-copy");
             icon.classList.add("fa-check");
 
             setTimeout(() => {
-
                 icon.classList.remove("fa-check");
                 icon.classList.add("fa-copy");
-
             }, 1500);
-
         });
 
 
@@ -2332,6 +2485,26 @@
         document.querySelector(".back-button").addEventListener("click", () => {
             window.history.back();
         });
+
+
+        /* =========================================================
+           NOVA ANOTAÇÃO
+           O cadastro principal será feito em relatorios.html.
+        ========================================================= */
+
+        document.getElementById("newNoteButton").addEventListener("click", () => {
+            window.location.href = "relatorios.html";
+        });
+
+
+        /* =========================================================
+           INICIALIZAÇÃO
+        ========================================================= */
+
+        renderSignals();
+        renderCrises();
+        renderNotes();
+        renderDocuments();
 
     </script>
 

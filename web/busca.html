@@ -7,6 +7,8 @@
 
     <title>EMPS - Buscar Paciente</title>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
     <style>
 
         * {
@@ -111,10 +113,11 @@
             transition: .25s;
         }
 
-        .menu-item svg {
+        .menu-item svg,
+        .menu-item > i {
             width: 17px;
             height: 17px;
-            stroke-width: 1.6;
+            font-size: 17px;
             flex-shrink: 0;
         }
 
@@ -137,8 +140,10 @@
             box-shadow: 0 5px 12px rgba(91, 43, 207, .18);
         }
 
-        .menu-item.active svg {
+        .menu-item.active svg,
+        .menu-item.active > i {
             stroke: white;
+            color: white;
         }
 
         .menu-item .notification {
@@ -1661,93 +1666,39 @@
             <nav class="menu">
 
                 <a href="perfil.html" class="menu-item">
-
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <path d="M3 11.5L12 4l9 7.5"/>
-                        <path d="M5 10v10h14V10"/>
-                        <path d="M9 20v-6h6v6"/>
-                    </svg>
-
+                    <i class="fa-solid fa-house"></i>
                     <span>Dashboard</span>
-
                 </a>
-
 
                 <a href="ficha.html" class="menu-item">
-
-                    <svg viewBox="0 0 24 24" fill="none">
-                        <circle cx="12" cy="8" r="3.5"/>
-                        <path d="M5 20c.7-3.6 3.1-5.5 7-5.5s6.3 1.9 7 5.5"/>
-                        <path d="M4 4h16v16H4z"/>
-                    </svg>
-
+                    <i class="fa-regular fa-user"></i>
                     <span>Ficha de pacientes</span>
-
                 </a>
-
-
-                <!-- BUSCAR PACIENTE ATIVO -->
 
                 <a href="buscar.html" class="menu-item active">
-
-                    <svg viewBox="0 0 24 24" fill="none">
-
-                        <circle cx="10.5" cy="10.5" r="6.5"/>
-
-                        <path d="M16 16l5 5"/>
-
-                    </svg>
-
+                    <i class="fa-solid fa-magnifying-glass"></i>
                     <span>Buscar paciente</span>
-
                 </a>
-
 
                 <a href="agenda.html" class="menu-item">
-
-                    <svg viewBox="0 0 24 24" fill="none">
-
-                        <rect x="4" y="5" width="16" height="15" rx="2"/>
-
-                        <path d="M8 3v4M16 3v4M4 10h16"/>
-
-                    </svg>
-
+                    <i class="fa-regular fa-calendar"></i>
                     <span>Agenda</span>
-
                 </a>
-
 
                 <a href="alertas.html" class="menu-item">
-
-                    <svg viewBox="0 0 24 24" fill="none">
-
-                        <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
-
-                        <path d="M10 21h4"/>
-
-                    </svg>
-
+                    <i class="fa-regular fa-bell"></i>
                     <span>Alertas</span>
-
                     <span class="notification">3</span>
-
                 </a>
+
+            </nav>
 
 
             <div class="sidebar-bottom">
 
                 <div class="help-box">
 
-                    <svg class="help-icon" viewBox="0 0 24 24" fill="none">
-
-                        <path d="M4 14a8 8 0 0 1 16 0"/>
-
-                        <path d="M4 14v4h3v-5H4M20 14v4h-3v-5h3"/>
-
-                        <path d="M8 20h4"/>
-
-                    </svg>
+                    <i class="fa-solid fa-headset help-icon"></i>
 
                     <div class="help-text">
 
