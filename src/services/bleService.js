@@ -5,7 +5,10 @@ import { decode as decodeBase64 } from "base-64";
 import notificacoes from "./notificacoes";
 
 // Instância única do gerenciador BLE
-const bleManager = new BleManager();
+const bleManager =
+    Platform.OS === "web"
+        ? null
+        : new BleManager();
 
 // Nome anunciado pelo ESP32
 const NOME_ESP32 = "EMPS_ESP32";
@@ -55,25 +58,23 @@ async function solicitarPermissoes() {
 }
 
 async function verificarBluetooth() {
+    if (!bleManager) {
+        return false;
+    }
+
     const estado = await bleManager.state();
-
     console.log("Estado Bluetooth:", estado);
-
     return estado === State.PoweredOn;
 }
 
 async function procurarCinta() {
-    console.log("Solicitando permissões BLE...");
-
-    const permitido = await solicitarPermissoes();
-
-    if (!permitido) {
+    if (!bleManager) {
         throw new Error(
-            "Permissões Bluetooth não concedidas."
+            "Bluetooth não está disponível no navegador."
         );
     }
 
-    console.log("Permissões BLE concedidas.");
+    console.log("Solicitando permissões BLE...");
 
     const bluetoothLigado =
         await verificarBluetooth();
