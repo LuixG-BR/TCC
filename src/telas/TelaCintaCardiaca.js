@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import bleService from "../services/bleService";
 import monitoramentoService from "../services/monitoramentoService";
+import monitoramentoApiService from "../services/monitoramentoApiService";
 
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Bluetooth, BluetoothConnected, BatteryMedium, HeartPulse, Activity, Unplug } from "lucide-react-native";
@@ -12,6 +13,9 @@ import { colors } from "../styles/colors";
 import { spacing } from "../styles/spacing";
 
 export default function TelaCintaCardiaca({ tela, setTela }) {
+  const ID_PACIENTE = 3;
+  const ID_DISPOSITIVO = 3;
+
   const [conectado, setConectado] = useState(false);
   const [procurando, setProcurando] = useState(false);
 
@@ -88,26 +92,75 @@ export default function TelaCintaCardiaca({ tela, setTela }) {
       setConectado(false);
     }
   }
-
   useEffect(() => {
 
     if (!conectado) {
       return;
     }
 
-    const intervalo = setInterval(() => {
-      const medias = monitoramentoService.finalizarPeriodo();
+    const intervalo = setInterval(
+      async () => {
 
-      if (!medias) {
-        console.log("Sem amostras para enviar.");
-        return;
-      }
+        const medias =
+          monitoramentoService
+            .calcularMedias();
 
-      console.log("MÉDIA DE 1 MINUTO:", medias);
+        if (!medias) {
 
-      // Depois chamaremos a API aqui.
+          console.log(
+            "Sem amostras para enviar."
+          );
 
-    }, 10000);
+          return;
+        }
+
+
+        console.log(
+          "Média calculada:",
+          medias
+        );
+
+
+        try {
+
+          const resposta =
+            await monitoramentoApiService
+              .enviarMedia({
+
+                idPaciente: ID_PACIENTE,
+
+                idDispositivo:
+                  ID_DISPOSITIVO,
+
+                frequenciaCardiaca:
+                  medias.frequencia_cardiaca,
+
+                movimento:
+                  medias.movimento,
+
+              });
+
+
+          console.log(
+            "Resultado da análise:",
+            resposta
+          );
+
+
+          // API recebeu com sucesso.
+          monitoramentoService
+            .limparAmostras();
+        } catch (erro) {
+          console.log(
+            "Falha no envio. " +
+            "Amostras serão mantidas."
+          );
+        }
+      },
+
+      // TESTE: 10 segundos
+      10000
+    );
 
     return () => {
       clearInterval(intervalo);
