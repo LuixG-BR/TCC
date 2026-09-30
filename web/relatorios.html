@@ -1,63 +1,63 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Nova anotação | EMPS</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Ficha do Paciente | EMPS</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
     <style>
-
-        /* =====================================================
+        /* =========================================================
            CONFIGURAÇÕES GERAIS
-        ===================================================== */
+        ========================================================= */
+
+        :root {
+            --primary: #5b31c9;
+            --primary-dark: #43209e;
+            --primary-light: #f0ecff;
+
+            --blue: #5f7cff;
+
+            --text: #25263a;
+            --text-soft: #74758a;
+            --text-light: #9b9caf;
+
+            --border: #e9e9f1;
+            --background: #fafafd;
+            --white: #ffffff;
+
+            --green: #31a46d;
+            --green-bg: #eaf8f0;
+
+            --yellow: #c88b1c;
+            --yellow-bg: #fff7e6;
+
+            --red: #dc6464;
+            --red-bg: #fff0f0;
+
+            --shadow: 0 4px 20px rgba(35, 28, 80, 0.045);
+        }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: "Poppins", sans-serif;
-        }
-
-        :root {
-            --roxo: #5432c9;
-            --roxo-principal: #5b35d5;
-            --roxo-claro: #f0edff;
-            --roxo-hover: #4828ba;
-            --texto: #202744;
-            --texto-secundario: #687089;
-            --borda: #e8e9f2;
-            --fundo: #fafbff;
-            --branco: #ffffff;
-            --verde: #28a866;
-            --verde-fundo: #effbf5;
-            --vermelho: #ed5454;
-            --vermelho-fundo: #fff4f4;
-            --amarelo: #f2a51a;
-            --amarelo-fundo: #fffaf0;
+            font-family: "Inter", sans-serif;
         }
 
         body {
-            background: var(--fundo);
-            color: var(--texto);
-            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            overflow-x: hidden;
         }
 
         button,
-        input,
-        textarea {
+        input {
             font-family: inherit;
         }
 
@@ -65,287 +65,292 @@
             cursor: pointer;
         }
 
-        /* =====================================================
+        /* =========================================================
            ESTRUTURA PRINCIPAL
-        ===================================================== */
+        ========================================================= */
 
         .app {
-            display: flex;
             min-height: 100vh;
+            display: flex;
         }
 
-        /* =====================================================
+        /* =========================================================
            SIDEBAR
-        ===================================================== */
+        ========================================================= */
 
         .sidebar {
-            width: 242px;
-            min-width: 242px;
+            width: 210px;
             min-height: 100vh;
             background: #ffffff;
-            border-right: 1px solid var(--borda);
+            border-right: 1px solid var(--border);
             display: flex;
             flex-direction: column;
-            padding: 18px 12px 20px;
             position: fixed;
-            top: 0;
             left: 0;
-            z-index: 10;
+            top: 0;
+            bottom: 0;
+            z-index: 20;
         }
 
-        .brand {
-            padding: 0 10px 24px;
-            border-bottom: 1px solid #f1f1f6;
-            margin-bottom: 18px;
-        }
-
-        .brand-top {
+        .sidebar-logo {
+            height: 112px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            padding: 24px 26px;
+            border-bottom: 1px solid #f2f2f7;
         }
 
-        .brand-icon {
-            color: var(--roxo-principal);
-            font-size: 35px;
+        .logo-icon {
+            width: 43px;
+            height: 43px;
             display: flex;
             align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 34px;
         }
 
-        .brand-name {
-            font-size: 26px;
-            font-weight: 700;
-            color: #4b3c98;
-            letter-spacing: -.8px;
+        .logo-text {
+            margin-left: 8px;
         }
 
-        .brand-subtitle {
-            font-size: 7px;
-            color: #62697d;
-            font-weight: 600;
-            line-height: 1.5;
-            margin-left: 45px;
-            margin-top: -3px;
+        .logo-text h1 {
+            font-size: 25px;
+            line-height: 1;
+            color: #4c4388;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .logo-text p {
+            font-size: 6px;
+            color: #6d6d7d;
+            line-height: 1.4;
+            margin-top: 5px;
+            width: 105px;
         }
 
         .menu {
+            padding: 18px 10px;
             display: flex;
             flex-direction: column;
-            gap: 5px;
+            gap: 4px;
         }
 
         .menu a {
-            height: 45px;
-            padding: 0 13px;
+            height: 43px;
+            padding: 0 16px;
             border-radius: 7px;
             display: flex;
             align-items: center;
-            gap: 15px;
-            color: #4d556c;
+            gap: 14px;
             text-decoration: none;
+            color: #65667a;
             font-size: 12px;
             font-weight: 500;
-            transition: .25s;
+            transition: 0.25s ease;
             position: relative;
         }
 
         .menu a i {
-            width: 18px;
+            width: 17px;
+            font-size: 15px;
             text-align: center;
-            font-size: 16px;
-            color: #596179;
+            color: #7a7b8c;
         }
 
         .menu a:hover {
-            background: #f6f4ff;
-            color: var(--roxo-principal);
+            background: #f6f3ff;
+            color: var(--primary);
+        }
+
+        .menu a:hover i {
+            color: var(--primary);
         }
 
         .menu a.active {
-            background: linear-gradient(135deg, #5630c8, #4820b7);
-            color: #fff;
-            box-shadow: 0 6px 16px rgba(83, 48, 200, .2);
+            color: white;
+            background: linear-gradient(135deg,
+                    #4e21bd,
+                    #6d35d8);
+            box-shadow: 0 5px 14px rgba(91, 49, 201, 0.2);
         }
 
         .menu a.active i {
-            color: #fff;
+            color: white;
         }
 
-        .notification-number {
-            width: 19px;
-            height: 19px;
+        .menu-badge {
+            margin-left: auto;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
-            background: var(--roxo-principal);
-            color: #fff;
-            font-size: 10px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-left: auto;
-            font-weight: 600;
+            background: var(--primary);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
         }
 
         .sidebar-bottom {
             margin-top: auto;
+            padding: 14px 10px 20px;
         }
 
-        .help-box {
-            background: #f6f4ff;
-            border: 1px solid #ece8ff;
-            border-radius: 9px;
-            padding: 13px;
+        .support-box {
+            background: #f7f5ff;
+            border-radius: 8px;
+            padding: 16px;
             display: flex;
             align-items: center;
             gap: 12px;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
-        .help-box i {
+        .support-box i {
             font-size: 25px;
-            color: var(--roxo-principal);
+            color: #6251b4;
         }
 
-        .help-box strong {
+        .support-box strong {
             display: block;
             font-size: 10px;
-            color: #52477d;
+            color: #4f4f62;
+            margin-bottom: 3px;
         }
 
-        .help-box span {
-            display: block;
+        .support-box span {
             font-size: 9px;
-            color: #7e8495;
-            margin-top: 2px;
+            color: #888899;
         }
 
         .logout {
             width: 100%;
             height: 42px;
-            background: transparent;
             border: none;
-            color: #555e73;
+            background: transparent;
             display: flex;
             align-items: center;
-            gap: 15px;
-            padding: 0 13px;
+            padding: 0 18px;
+            gap: 14px;
+            color: #65667a;
             font-size: 12px;
-            transition: .25s;
             border-radius: 7px;
+            transition: 0.25s;
         }
 
         .logout:hover {
-            background: #fff2f2;
-            color: #dc4949;
+            background: #fff0f0;
+            color: #cf4e4e;
         }
 
-        /* =====================================================
-           CONTEÚDO PRINCIPAL
-        ===================================================== */
+        /* =========================================================
+           ÁREA PRINCIPAL
+        ========================================================= */
 
-        .main-content {
-            width: calc(100% - 242px);
-            margin-left: 242px;
+        .content {
+            margin-left: 210px;
+            width: calc(100% - 210px);
             min-height: 100vh;
-            padding-bottom: 70px;
         }
 
-        /* =====================================================
+        /* =========================================================
            HEADER
-        ===================================================== */
+        ========================================================= */
 
-        .topbar {
-            height: 67px;
-            background: #fff;
-            border-bottom: 1px solid var(--borda);
-            padding: 0 25px;
+        .header {
+            height: 62px;
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 20px;
+            padding: 0 26px 0 34px;
         }
 
-        .breadcrumbs {
+        .breadcrumb {
             display: flex;
             align-items: center;
-            gap: 13px;
-            font-size: 11px;
-            white-space: nowrap;
-        }
-
-        .breadcrumbs span {
-            color: #596176;
-        }
-
-        .breadcrumbs strong {
-            color: #4d3d9d;
-            font-weight: 600;
-        }
-
-        .breadcrumbs i {
-            font-size: 9px;
-            color: #8b91a0;
-        }
-
-        .topbar-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .search-top {
-            width: 208px;
-            height: 39px;
-            border: 1px solid #e4e5ed;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            padding: 0 12px;
-            background: #fff;
-        }
-
-        .search-top input {
-            width: 100%;
-            border: none;
-            outline: none;
+            gap: 12px;
             font-size: 10px;
-            color: var(--texto);
+            color: #858698;
         }
 
-        .search-top input::placeholder {
-            color: #969cad;
-        }
-
-        .search-top i {
-            color: #4f5780;
-            font-size: 14px;
-        }
-
-        .top-notification {
-            position: relative;
-            color: #4c5675;
-            font-size: 19px;
-        }
-
-        .top-notification span {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            background: var(--roxo-principal);
-            color: #fff;
-            font-size: 8px;
+        .breadcrumb strong {
+            color: #4c4d60;
             font-weight: 600;
-            border-radius: 50%;
+        }
+
+        .breadcrumb i {
+            font-size: 8px;
+            color: #aaaaba;
+        }
+
+        .header-right {
             display: flex;
             align-items: center;
+            gap: 22px;
+        }
+
+        .search {
+            width: 175px;
+            height: 36px;
+            position: relative;
+        }
+
+        .search input {
+            width: 100%;
+            height: 100%;
+            border: 1px solid #ececf2;
+            background: #fafafd;
+            border-radius: 7px;
+            padding: 0 35px 0 13px;
+            font-size: 10px;
+            outline: none;
+            color: #454557;
+        }
+
+        .search input:focus {
+            border-color: #b7a8eb;
+        }
+
+        .search i {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #707186;
+            font-size: 12px;
+        }
+
+        .notification {
+            position: relative;
+            color: #55566b;
+            font-size: 17px;
+        }
+
+        .notification span {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            font-size: 7px;
+            display: flex;
             justify-content: center;
+            align-items: center;
             top: -7px;
-            right: -10px;
+            right: -7px;
+            font-weight: 700;
         }
 
         .doctor {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 11px;
         }
 
         .doctor-info {
@@ -355,198 +360,228 @@
         .doctor-info strong {
             display: block;
             font-size: 10px;
-            color: #30384f;
+            color: #363647;
         }
 
         .doctor-info span {
-            font-size: 9px;
-            color: #747b8d;
+            display: block;
+            font-size: 8px;
+            color: #8b8b9a;
+            margin-top: 3px;
         }
 
-        .doctor-avatar {
-            width: 33px;
-            height: 33px;
+        .doctor-photo {
+            width: 34px;
+            height: 34px;
             border-radius: 50%;
-            overflow: hidden;
-            background: #eee;
-        }
-
-        .doctor-avatar img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
+            border: 2px solid #f0eff7;
         }
 
         .doctor-arrow {
-            font-size: 11px;
-            color: #697087;
+            color: #8a8a99;
+            font-size: 9px;
         }
 
-        /* =====================================================
-           CABEÇALHO DO PACIENTE
-        ===================================================== */
+        /* =========================================================
+           MAIN
+        ========================================================= */
 
-        .patient-header {
-            background: #fff;
-            padding: 15px 28px;
+        main {
+            padding: 26px 22px 34px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .page-title {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 25px;
-            border-bottom: 1px solid #f0f0f4;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .back-button {
+            width: 35px;
+            height: 35px;
+            border: none;
+            background: transparent;
+            color: #57586b;
+            font-size: 15px;
+            border-radius: 7px;
+            transition: 0.2s;
+        }
+
+        .back-button:hover {
+            background: #f1eff8;
+            color: var(--primary);
+        }
+
+        .page-title h2 {
+            font-size: 21px;
+            font-weight: 700;
+            color: #2c2d3e;
+        }
+
+        /* =========================================================
+           CARD PADRÃO
+        ========================================================= */
+
+        .panel {
+            background: white;
+            border: 1px solid #ededf2;
+            border-radius: 11px;
+            box-shadow: var(--shadow);
+        }
+
+        /* =========================================================
+           FICHA DO PACIENTE
+        ========================================================= */
+
+        .patient-card {
+            min-height: 210px;
+            display: grid;
+            grid-template-columns: 1fr 220px;
+            padding: 25px 28px;
+            margin-bottom: 22px;
         }
 
         .patient-main {
             display: flex;
-            align-items: center;
-            gap: 17px;
+            align-items: flex-start;
+            gap: 22px;
         }
 
         .patient-avatar {
-            width: 68px;
-            height: 68px;
-            min-width: 68px;
+            min-width: 80px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #eeebff, #e4e2f4);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #50429c;
-            font-size: 25px;
+            background: linear-gradient(135deg, #e9e3ff, #d9e5ff);
+            color: #51428f;
+            font-size: 24px;
             font-weight: 700;
         }
 
-        .patient-name-row {
+        .patient-data {
+            flex: 1;
+        }
+
+        .patient-name {
             display: flex;
             align-items: center;
-            gap: 11px;
-            margin-bottom: 10px;
+            gap: 14px;
+            margin-bottom: 18px;
         }
 
-        .patient-name-row h1 {
-            font-size: 21px;
-            color: #202741;
-            line-height: 1;
+        .patient-name h1 {
+            font-size: 20px;
+            color: #303143;
         }
 
-        .patient-status {
-            background: #e8f8ef;
-            color: #25955b;
-            padding: 4px 10px;
-            border-radius: 15px;
+        .status-active {
+            background: #eaf8f0;
+            color: #35986b;
+            border-radius: 4px;
+            padding: 5px 10px;
             font-size: 9px;
             font-weight: 600;
         }
 
-        .patient-data {
-            display: flex;
-            gap: 25px;
-            flex-wrap: wrap;
+        .patient-details {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(190px, 1fr));
+            gap: 14px 30px;
         }
 
-        .patient-data span {
+        .detail {
             display: flex;
             align-items: center;
-            gap: 8px;
-            color: #4e566d;
-            font-size: 11px;
+            gap: 9px;
+            font-size: 9px;
+            color: #626375;
         }
 
-        .patient-data i {
-            color: #525d81;
-            font-size: 13px;
+        .detail i {
+            color: #6d6e81;
+            width: 12px;
+            text-align: center;
         }
 
-        .patient-summary {
-            display: flex;
-            align-self: stretch;
-            margin-left: auto;
-        }
-
-        .summary-item {
-            min-width: 150px;
-            padding: 10px 24px;
-            border-left: 1px solid #ededf3;
+        .patient-code {
+            border-left: 1px solid #eeeeF3;
+            padding-left: 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        .summary-item span {
-            font-size: 10px;
-            color: #697086;
-            margin-bottom: 8px;
+        .code-label,
+        .patient-code small {
+            font-size: 9px;
+            color: #77788a;
         }
 
-        .summary-item strong {
-            font-size: 11px;
-            color: #38405a;
-        }
-
-        .code {
-            width: max-content;
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            padding: 8px 12px;
-            border-radius: 7px;
-            background: #f7f5ff;
-            color: #5942b5 !important;
-            border: 1px solid #e7e2ff;
-        }
-
-        .code i {
-            color: var(--roxo-principal);
-        }
-
-        /* =====================================================
-           ÁREA CENTRAL
-        ===================================================== */
-
-        .page-area {
-            padding: 12px 20px;
-        }
-
-        .workspace {
-            background: #fff;
-            border: 1px solid #e9e9f0;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-
-        /* =====================================================
-           ABAS
-        ===================================================== */
-
-        .tabs-row {
-            height: 56px;
-            border-bottom: 1px solid #e9e9f0;
+        .code-box {
+            margin: 9px 0 17px;
+            width: 95px;
+            height: 36px;
+            border-radius: 5px;
+            background: #f7f6fb;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 17px 0 26px;
+            padding: 0 10px;
+            color: #55566b;
+            font-size: 10px;
         }
 
+        .code-box button {
+            border: none;
+            background: transparent;
+            color: var(--primary);
+            font-size: 12px;
+        }
+
+        .code-info {
+            margin-bottom: 16px;
+        }
+
+        .code-info strong {
+            display: block;
+            margin-top: 6px;
+            font-size: 9px;
+            color: #525365;
+            font-weight: 500;
+        }
+
+        /* =========================================================
+           ABAS
+        ========================================================= */
+
         .tabs {
+            height: 52px;
             display: flex;
-            align-self: stretch;
-            gap: 32px;
+            align-items: flex-end;
+            gap: 8px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 25px;
         }
 
         .tab {
-            height: 100%;
-            display: flex;
-            align-items: center;
+            height: 52px;
+            padding: 0 17px;
             border: none;
             background: transparent;
-            color: #51596f;
-            font-size: 11px;
+            color: #717286;
+            font-size: 10px;
             position: relative;
-            padding: 0;
         }
 
         .tab.active {
-            color: #5133c3;
+            color: #4735a0;
             font-weight: 600;
         }
 
@@ -554,446 +589,708 @@
             content: "";
             position: absolute;
             height: 3px;
-            background: var(--roxo-principal);
             left: 0;
             right: 0;
-            bottom: 0;
-            border-radius: 5px 5px 0 0;
+            bottom: -1px;
+            background: var(--primary);
+            border-radius: 4px 4px 0 0;
         }
 
-        .back-button {
-            height: 34px;
-            padding: 0 16px;
-            border: 1px solid #d5cdf9;
-            border-radius: 7px;
-            background: #fff;
-            color: #5a40ba;
-            font-size: 10px;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: .2s;
-        }
+        /* =========================================================
+           GRID PRINCIPAL
+        ========================================================= */
 
-        .back-button:hover {
-            background: #f6f3ff;
-        }
-
-        /* =====================================================
-           TÍTULO
-        ===================================================== */
-
-        .annotation-header {
-            padding: 19px 25px 15px;
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-        }
-
-        .annotation-title {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-        }
-
-        .annotation-title-icon {
-            color: var(--roxo-principal);
-            font-size: 30px;
-        }
-
-        .annotation-title h2 {
-            color: #27304d;
-            font-size: 20px;
-            margin-bottom: 2px;
-        }
-
-        .annotation-title p {
-            color: #70778c;
-            font-size: 11px;
-        }
-
-        .close-button {
-            background: transparent;
-            border: none;
-            color: #505975;
-            font-size: 17px;
-            padding: 5px;
-        }
-
-        /* =====================================================
-           CONTEÚDO DAS ANOTAÇÕES
-        ===================================================== */
-
-        .annotation-content {
+        .dashboard-grid {
             display: grid;
-            grid-template-columns: 1.03fr .92fr;
+            grid-template-columns: minmax(0, 1fr) 260px;
             gap: 18px;
-            padding: 0 25px 14px;
         }
 
-        .form-panel,
-        .example-panel {
-            border: 1px solid #e6e7ef;
-            border-radius: 10px;
-            padding: 16px;
-        }
+        /* =========================================================
+           CONTEÚDO DAS ABAS
+        ========================================================= */
 
-        label {
-            display: block;
-            font-size: 10px;
-            font-weight: 600;
-            color: #404963;
-            margin-bottom: 7px;
-        }
-
-        .input-wrapper {
-            height: 36px;
-            border: 1px solid #e0e2ea;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            padding: 0 12px;
-            margin-bottom: 17px;
-            transition: .2s;
-        }
-
-        .input-wrapper:focus-within {
-            border-color: #aa99ed;
-            box-shadow: 0 0 0 3px rgba(91, 53, 213, .05);
-        }
-
-        .input-wrapper i {
-            color: var(--roxo-principal);
-            font-size: 13px;
-            margin-right: 11px;
-        }
-
-        .input-wrapper input {
-            border: none;
-            outline: none;
+        .tab-panel {
             width: 100%;
-            font-size: 10px;
-            color: #444c62;
         }
 
-        .input-wrapper input::placeholder {
-            color: #a2a7b5;
+        .tab-panel.hidden {
+            display: none;
         }
 
-        /* =====================================================
-           EDITOR
-        ===================================================== */
-
-        .editor {
-            border: 1px solid #dedfe8;
-            border-radius: 9px;
-            overflow: hidden;
-            margin-bottom: 16px;
+        .consultas-panel {
+            padding: 24px;
         }
 
-        .toolbar {
-            height: 35px;
-            border-bottom: 1px solid #e7e8ee;
-            background: #fcfcfe;
-            display: flex;
-            align-items: center;
-            padding: 0 11px;
-            gap: 4px;
-        }
-
-        .toolbar button {
-            width: 32px;
-            height: 30px;
-            border: none;
-            background: transparent;
-            color: #5c657b;
-            border-radius: 5px;
-            font-size: 13px;
-            transition: .2s;
-        }
-
-        .toolbar button:hover {
-            background: #f0edff;
-            color: var(--roxo-principal);
-        }
-
-        .toolbar .separator {
-            width: 1px;
-            height: 17px;
-            background: #e5e6ed;
-            margin: 0 4px;
-        }
-
-        .editor textarea {
-            width: 100%;
-            height: 100px;
-            border: none;
-            resize: none;
-            outline: none;
-            padding: 13px;
-            color: #50576b;
-            font-size: 10px;
-            line-height: 1.7;
-        }
-
-        .editor textarea::placeholder {
-            color: #a0a5b2;
-        }
-
-        /* =====================================================
-           STATUS
-        ===================================================== */
-
-        .status-label {
-            margin-bottom: 8px;
-        }
-
-        .status-options {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 9px;
-            margin-bottom: 13px;
-        }
-
-        .status-card {
-            min-height: 69px;
-            padding: 10px;
-            border-radius: 9px;
-            background: #fff;
-            cursor: pointer;
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            transition: .2s;
-        }
-
-        .status-card:hover {
-            transform: translateY(-2px);
-        }
-
-        .status-card.green {
-            border: 1px solid #a9e2c1;
-            background: #fbfffc;
-        }
-
-        .status-card.red {
-            border: 1px solid #f3c3c3;
-            background: #fffdfd;
-        }
-
-        .status-card.yellow {
-            border: 1px solid #f0dcac;
-            background: #fffefa;
-        }
-
-        .status-icon {
-            width: 20px;
-            height: 20px;
-            min-width: 20px;
-            border-radius: 50%;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 9px;
-        }
-
-        .green .status-icon {
-            background: #2cab69;
-        }
-
-        .red .status-icon {
-            background: #ec5a5a;
-        }
-
-        .yellow .status-icon {
-            background: #f2ab23;
-        }
-
-        .status-card strong {
-            display: block;
-            font-size: 9px;
-            color: #4a536a;
-            margin-bottom: 3px;
-        }
-
-        .status-card span {
-            display: block;
-            font-size: 8px;
-            line-height: 1.5;
-            color: #858b9b;
-        }
-
-        /* =====================================================
-           AVISO
-        ===================================================== */
-
-        .notice {
-            min-height: 51px;
-            background: linear-gradient(90deg, #f6f5ff, #f1f4ff);
-            border: 1px solid #e3e1f5;
-            border-radius: 8px;
+        .consultas-title {
             display: flex;
             align-items: center;
             gap: 12px;
-            padding: 10px 12px;
+            margin-bottom: 18px;
         }
 
-        .notice i {
-            width: 19px;
-            height: 19px;
-            border: 1px solid var(--roxo-principal);
-            border-radius: 50%;
-            color: var(--roxo-principal);
+        .consultas-title i {
+            color: #5b35d5;
+            font-size: 22px;
+        }
+
+        .consultas-title h2 {
+            font-size: 18px;
+            color: #27304d;
+        }
+
+        .consultas-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .consulta-salva {
+            border: 1px solid #e6e7ef;
+            border-radius: 10px;
+            padding: 15px;
+            background: #fff;
+        }
+
+        .consulta-salva-top {
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 9px;
+        }
+
+        .consulta-salva-data {
+            font-size: 9px;
+            color: #737a8d;
+        }
+
+        .consulta-salva-status {
+            font-size: 9px;
+            font-weight: 600;
+            padding: 4px 9px;
+            border-radius: 12px;
+            background: #f0edff;
+            color: #5737c7;
+        }
+
+        .consulta-salva-paciente {
+            font-size: 11px;
+            font-weight: 600;
+            color: #3d465e;
+            margin-bottom: 7px;
+        }
+
+        .consulta-salva-observacao {
+            font-size: 10px;
+            line-height: 1.7;
+            color: #626a7d;
+        }
+
+        .consulta-vazia {
+            border: 1px dashed #dcddea;
+            border-radius: 10px;
+            padding: 35px 20px;
+            text-align: center;
+            color: #8a90a0;
             font-size: 10px;
         }
 
-        .notice p {
-            color: #586999;
+        .consulta-vazia i {
+            display: block;
+            font-size: 25px;
+            color: #8067d5;
+            margin-bottom: 9px;
+        }
+
+        .left-column,
+        .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        /* =========================================================
+           CABEÇALHOS DOS CARDS
+        ========================================================= */
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px 12px;
+        }
+
+        .panel-header h3 {
+            font-size: 12px;
+            color: #38394b;
+        }
+
+        .view-link {
+            color: #5541aa;
+            text-decoration: none;
+            font-size: 9px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* =========================================================
+           ÚLTIMOS SINAIS
+        ========================================================= */
+
+        .signals-content {
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            gap: 22px;
+            padding: 8px 20px 20px;
+        }
+
+        .heart-card {
+            border: 1px solid #eeeeF4;
+            border-radius: 8px;
+            min-height: 180px;
+            padding: 17px;
+        }
+
+        .heart-card-top {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-size: 9px;
+            color: #4e4f61;
+            font-weight: 600;
+        }
+
+        .heart-card-top i {
+            color: #7863d6;
+            font-size: 17px;
+        }
+
+        .heart-rate {
+            font-size: 19px;
+            color: #333447;
+            margin: 20px 0 5px;
+            font-weight: 700;
+        }
+
+        .heart-status {
+            font-size: 9px;
+            color: #77788a;
+        }
+
+        .chart {
+            height: 65px;
+            margin-top: 16px;
+            position: relative;
+            border-bottom: 1px solid #e9e9ef;
+        }
+
+        .chart svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+        }
+
+        .signal-list {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            gap: 13px;
+            padding: 4px 0;
+        }
+
+        .signal-item {
+            display: grid;
+            grid-template-columns: 25px 1fr auto auto;
+            align-items: center;
+            gap: 10px;
+            font-size: 9px;
+        }
+
+        .signal-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #f5f3fc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7663c5;
+            font-size: 10px;
+        }
+
+        .signal-name {
+            color: #666779;
+        }
+
+        .signal-value {
+            color: #4d4e60;
+            font-weight: 600;
+        }
+
+        .mini-status {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        .mini-status.good {
+            background: var(--green-bg);
+            color: var(--green);
+        }
+
+        .mini-status.ideal {
+            background: #f0ecff;
+            color: #6a54c2;
+        }
+
+        /* =========================================================
+           HISTÓRICO DE CRISES
+        ========================================================= */
+
+        .table-container {
+            padding: 0 20px 12px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        th {
+            text-align: left;
+            padding: 11px 8px;
+            color: #858697;
+            font-size: 8px;
+            font-weight: 500;
+            border-bottom: 1px solid #eeeeF3;
+        }
+
+        td {
+            padding: 13px 8px;
+            font-size: 8px;
+            color: #555668;
+            border-bottom: 1px solid #f1f1f5;
+            line-height: 1.6;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .intensity {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 8px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .intensity.leve {
+            background: var(--green-bg);
+            color: var(--green);
+        }
+
+        .intensity.moderada {
+            background: var(--yellow-bg);
+            color: var(--yellow);
+        }
+
+        .intensity.intensa {
+            background: var(--red-bg);
+            color: var(--red);
+        }
+
+        .eye-button {
+            border: none;
+            background: transparent;
+            color: #6d57c1;
+            font-size: 10px;
+        }
+
+        /* =========================================================
+           ANOTAÇÕES
+        ========================================================= */
+
+        .notes-content {
+            padding: 0 20px 16px;
+        }
+
+        .note {
+            display: grid;
+            grid-template-columns: 35px 1fr 20px;
+            gap: 13px;
+            padding: 14px 0;
+            border-bottom: 1px solid #f0f0f4;
+        }
+
+        .note-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            background: #f5f3fc;
+            color: #725fc0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .note-info small {
+            display: block;
+            color: #77788b;
+            font-size: 8px;
+            margin-bottom: 7px;
+        }
+
+        .note-info p {
+            color: #555668;
             font-size: 9px;
             line-height: 1.7;
+        }
+
+        .note-menu {
+            border: none;
+            background: transparent;
+            color: #77788a;
+            align-self: start;
+        }
+
+        .new-note {
+            width: 100%;
+            height: 32px;
+            margin-top: 10px;
+            border: 1px solid #7461c9;
+            background: white;
+            color: #5a45af;
+            border-radius: 5px;
+            font-size: 9px;
             font-weight: 500;
         }
 
-        /* =====================================================
-           EXEMPLO MÉDICO
-        ===================================================== */
-
-        .example-panel {
-            padding: 15px 17px 13px;
+        .new-note:hover {
+            background: #f5f2ff;
         }
 
-        .example-panel h3 {
+        /* =========================================================
+           CONSULTAS RECENTES
+        ========================================================= */
+
+        .appointment-list {
+            padding: 0 12px 6px;
+        }
+
+        .appointment {
+            display: grid;
+            grid-template-columns: 30px 1fr 12px;
+            gap: 10px;
+            padding: 16px 8px;
+            border-bottom: 1px solid #f0f0f4;
+        }
+
+        .appointment:last-child {
+            border-bottom: none;
+        }
+
+        .appointment-icon {
+            width: 29px;
+            height: 29px;
+            background: #f5f3fc;
+            color: #725fc0;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 11px;
-            color: #513db0;
-            margin-bottom: 10px;
         }
 
-        .medical-paper {
-            border: 1px solid #e2e3eb;
-            border-radius: 8px;
-            background: #fcfcfe;
-            padding: 15px 13px;
-            min-height: 334px;
-            color: #566078;
-            font-size: 10px;
+        .appointment-date {
+            display: flex;
+            justify-content: space-between;
+            gap: 5px;
+            font-size: 8px;
+            color: #666779;
+            margin-bottom: 8px;
+        }
+
+        .appointment-status {
+            color: var(--green);
+            font-size: 8px;
+        }
+
+        .appointment-status::before {
+            content: "●";
+            margin-right: 3px;
+            font-size: 6px;
+        }
+
+        .appointment-title {
+            font-size: 9px;
+            color: #47485a;
+            font-weight: 600;
+            margin-bottom: 7px;
+        }
+
+        .appointment-description {
+            font-size: 8px;
+            color: #77788b;
             line-height: 1.7;
         }
 
-        .medical-paper p {
-            margin-bottom: 13px;
+        .appointment-arrow {
+            color: #8b8b9a;
+            font-size: 9px;
+            align-self: center;
         }
 
-        .medical-paper strong {
-            color: #4f5a77;
+        /* =========================================================
+           DOCUMENTOS
+        ========================================================= */
+
+        .documents {
+            padding: 0 12px 10px;
         }
 
-        .signature {
-            margin-top: 17px;
-            padding-top: 11px;
-            border-top: 1px solid #e4e5eb;
-            color: #8a90a0;
+        .document-item {
+            display: grid;
+            grid-template-columns: 30px 1fr 18px;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 7px;
+            border-bottom: 1px solid #f0f0f4;
+        }
+
+        .document-item:last-child {
+            border-bottom: none;
+        }
+
+        .document-icon {
+            width: 28px;
+            height: 28px;
+            background: #f5f3fc;
+            color: #6f5abe;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        .document-name {
+            font-size: 9px;
+            color: #4d4e60;
+            font-weight: 500;
+        }
+
+        .document-date {
+            display: block;
+            margin-top: 4px;
+            font-size: 7px;
+            color: #9292a1;
+        }
+
+        .download {
+            border: none;
+            background: transparent;
+            color: #5c49ad;
+            font-size: 11px;
+        }
+
+        /* =========================================================
+           ELEMENTOS FUNCIONAIS
+        ========================================================= */
+
+        .empty-state {
+            padding: 22px 10px;
+            text-align: center;
+            color: #8a8b9a;
+            font-size: 9px;
+        }
+
+        .empty-state i {
+            display: block;
+            font-size: 20px;
+            color: #8a78cf;
+            margin-bottom: 8px;
+        }
+
+        .document-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-document {
+            border: 1px solid #7461c9;
+            background: white;
+            color: #5a45af;
+            border-radius: 5px;
+            padding: 6px 9px;
             font-size: 8px;
+            font-weight: 600;
         }
 
-        /* =====================================================
-           BOTÕES
-        ===================================================== */
+        .add-document:hover {
+            background: #f5f2ff;
+        }
 
-        .form-footer {
+        .document-open {
+            border: none;
+            background: transparent;
+            color: #5c49ad;
+            font-size: 11px;
+        }
+
+        .document-open:hover,
+        .download:hover {
+            color: #43209e;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(35, 28, 80, 0.35);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-card {
+            width: min(430px, 100%);
+            background: white;
+            border-radius: 11px;
+            box-shadow: 0 18px 50px rgba(35, 28, 80, 0.18);
+            padding: 22px;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .modal-header h3 {
+            font-size: 14px;
+            color: #38394b;
+        }
+
+        .modal-close {
+            border: none;
+            background: transparent;
+            color: #77788a;
+            font-size: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 9px;
+            color: #555668;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            height: 36px;
+            border: 1px solid #e7e6ee;
+            border-radius: 6px;
+            padding: 0 10px;
+            font-size: 9px;
+            color: #555668;
+            outline: none;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #b7a8eb;
+        }
+
+        .modal-actions {
             display: flex;
             justify-content: flex-end;
-            gap: 11px;
-            padding: 16px 25px 13px;
+            gap: 8px;
+            margin-top: 18px;
         }
 
-        .btn {
-            height: 39px;
-            border-radius: 8px;
-            padding: 0 25px;
-            font-size: 10px;
+        .modal-actions button {
+            height: 34px;
+            border-radius: 5px;
+            padding: 0 14px;
+            font-size: 9px;
             font-weight: 600;
-            transition: .25s;
         }
 
-        .cancel-btn {
-            background: #fff;
-            color: #4d566d;
-            border: 1px solid #dedfe7;
-            min-width: 110px;
+        .cancel-modal {
+            border: 1px solid #e3e2ea;
+            background: white;
+            color: #666779;
         }
 
-        .cancel-btn:hover {
-            background: #f7f7fa;
-        }
-
-        .save-btn {
-            background: linear-gradient(135deg, #5935d1, #4822b9);
+        .save-document {
             border: none;
-            color: #fff;
-            min-width: 157px;
-            box-shadow: 0 5px 13px rgba(82, 46, 192, .18);
+            background: linear-gradient(135deg, #4e21bd, #6d35d8);
+            color: white;
         }
 
-        .save-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(82, 46, 192, .25);
-        }
-
-        .save-btn i {
-            margin-left: 9px;
-        }
-
-        /* =====================================================
+        /* =========================================================
            RODAPÉ
-        ===================================================== */
+        ========================================================= */
 
         .footer {
-            position: fixed;
-            left: 242px;
-            right: 0;
-            bottom: 0;
-            height: 65px;
-            background: #fff;
-            border-top: 1px solid #e9eaf0;
+            margin-top: 28px;
+            min-height: 70px;
+            border-top: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            align-items: center;
+            padding: 14px 24px;
+        }
+
+        .footer-brand {
             display: flex;
             align-items: center;
-            justify-content: center;
-            z-index: 5;
+            gap: 7px;
         }
 
-        .footer-content {
-            width: 100%;
-            padding: 0 25px;
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .footer-brand i {
+            color: #55419f;
+            font-size: 23px;
         }
 
-        .footer-center {
-            text-align: center;
-            color: #6f7585;
-            font-size: 8px;
+        .footer-brand strong {
+            display: block;
+            font-size: 18px;
+            color: #514287;
         }
 
-        .footer-center div {
-            margin-bottom: 4px;
-        }
-
-        .footer-center i {
-            margin-right: 6px;
-            color: #5d6680;
+        .footer-brand small {
+            display: block;
+            font-size: 5px;
+            color: #89899a;
+            margin-top: 3px;
         }
 
         .footer-security {
-            position: absolute;
-            right: 25px;
-            color: #667087;
+            text-align: center;
+            color: #747586;
             font-size: 8px;
         }
 
@@ -1001,46 +1298,50 @@
             margin-right: 6px;
         }
 
-        /* =====================================================
+        .footer-copy {
+            text-align: right;
+            color: #8a8b99;
+            font-size: 8px;
+        }
+
+        /* =========================================================
            RESPONSIVIDADE
-        ===================================================== */
+        ========================================================= */
 
-        @media (max-width: 1200px) {
+        @media (max-width: 1100px) {
 
-            .annotation-content {
+            .dashboard-grid {
                 grid-template-columns: 1fr;
             }
 
-            .patient-summary {
-                display: none;
+            .right-column {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
             }
 
         }
 
-        @media (max-width: 900px) {
+        @media (max-width: 850px) {
 
             .sidebar {
                 width: 70px;
-                min-width: 70px;
-                padding: 15px 8px;
             }
 
-            .brand-name,
-            .brand-subtitle,
+            .sidebar-logo {
+                justify-content: center;
+                padding: 10px;
+            }
+
+            .logo-text,
             .menu a span,
-            .help-box div,
+            .support-box>div,
             .logout span {
                 display: none;
             }
 
-            .brand {
-                padding: 0 0 20px;
-                display: flex;
-                justify-content: center;
-            }
-
-            .brand-icon {
-                font-size: 30px;
+            .menu {
+                padding: 18px 9px;
             }
 
             .menu a {
@@ -1052,14 +1353,15 @@
                 width: auto;
             }
 
-            .notification-number {
+            .menu-badge {
                 position: absolute;
-                top: 5px;
                 right: 5px;
+                top: 6px;
             }
 
-            .help-box {
+            .support-box {
                 justify-content: center;
+                padding: 13px 0;
             }
 
             .logout {
@@ -1067,786 +1369,1760 @@
                 padding: 0;
             }
 
-            .main-content {
+            .content {
                 margin-left: 70px;
                 width: calc(100% - 70px);
             }
 
-            .footer {
-                left: 70px;
+            .patient-card {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .patient-code {
+                border-left: none;
+                border-top: 1px solid var(--border);
+                padding: 20px 0 0;
             }
 
         }
 
-        @media (max-width: 700px) {
+        @media (max-width: 650px) {
 
-            .topbar {
+            .header {
                 padding: 0 15px;
             }
 
-            .breadcrumbs span:not(:last-of-type),
-            .breadcrumbs i {
+            .search,
+            .doctor-info,
+            .doctor-arrow {
                 display: none;
             }
 
-            .search-top {
-                display: none;
+            main {
+                padding: 20px 13px;
             }
 
-            .doctor-info {
-                display: none;
-            }
-
-            .patient-header {
-                padding: 15px;
-            }
-
-            .patient-data {
-                gap: 10px;
-            }
-
-            .page-area {
-                padding: 10px;
-            }
-
-            .tabs-row {
-                padding-left: 12px;
-                overflow-x: auto;
-            }
-
-            .tabs {
-                gap: 20px;
-                min-width: max-content;
-            }
-
-            .back-button span {
-                display: none;
-            }
-
-            .back-button {
-                padding: 0 11px;
-            }
-
-            .annotation-header,
-            .annotation-content,
-            .form-footer {
-                padding-left: 15px;
-                padding-right: 15px;
-            }
-
-            .status-options {
-                grid-template-columns: 1fr;
-            }
-
-            .form-footer {
+            .patient-main {
                 flex-direction: column;
             }
 
-            .btn {
-                width: 100%;
+            .patient-details {
+                grid-template-columns: 1fr;
             }
 
-            .footer-security {
-                display: none;
+            .signals-content {
+                grid-template-columns: 1fr;
+            }
+
+            .right-column {
+                display: flex;
+            }
+
+            .footer {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                text-align: center;
+            }
+
+            .footer-brand {
+                justify-content: center;
+            }
+
+            .footer-copy {
+                text-align: center;
             }
 
         }
+    </style>
+    <style>
+        /* =========================================================
+   RELATÓRIOS — MESMO EDITOR DA PRIMEIRA IDEIA
+========================================================= */
+        .relatorios-integrado {
+            width: 100%;
+            background: #fff;
+        }
 
+        .relatorios-integrado .annotation-header {
+            padding: 19px 25px 15px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+        }
+
+        .relatorios-integrado .annotation-title {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .relatorios-integrado .annotation-title-icon {
+            color: #5b35d5;
+            font-size: 30px;
+        }
+
+        .relatorios-integrado .annotation-title h2 {
+            color: #27304d;
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+
+        .relatorios-integrado .annotation-title p {
+            color: #70778c;
+            font-size: 11px;
+        }
+
+        .relatorios-integrado .close-button {
+            background: transparent;
+            border: none;
+            color: #505975;
+            font-size: 17px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .relatorios-integrado .annotation-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            padding: 0 25px 14px;
+        }
+
+        .relatorios-integrado .form-panel {
+            border: 1px solid #e6e7ef;
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .relatorios-integrado label {
+            display: block;
+            font-size: 10px;
+            font-weight: 600;
+            color: #404963;
+            margin-bottom: 7px;
+        }
+
+        .relatorios-integrado .input-wrapper {
+            height: 36px;
+            border: 1px solid #e0e2ea;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            margin-bottom: 17px;
+            transition: .2s;
+        }
+
+        .relatorios-integrado .input-wrapper:focus-within {
+            border-color: #aa99ed;
+            box-shadow: 0 0 0 3px rgba(91, 53, 213, .05);
+        }
+
+        .relatorios-integrado .input-wrapper i {
+            color: #5b35d5;
+            font-size: 13px;
+            margin-right: 11px;
+        }
+
+        .relatorios-integrado .input-wrapper input {
+            border: none;
+            outline: none;
+            width: 100%;
+            font-size: 10px;
+            color: #444c62;
+            font-family: inherit;
+        }
+
+        .relatorios-integrado .input-wrapper input::placeholder {
+            color: #a2a7b5;
+        }
+
+        .relatorios-integrado .editor {
+            border: 1px solid #dedfe8;
+            border-radius: 9px;
+            overflow: hidden;
+            margin-bottom: 16px;
+        }
+
+        .relatorios-integrado .toolbar {
+            height: 35px;
+            border-bottom: 1px solid #e7e8ee;
+            background: #fcfcfe;
+            display: flex;
+            align-items: center;
+            padding: 0 11px;
+            gap: 4px;
+        }
+
+        .relatorios-integrado .toolbar button {
+            width: 32px;
+            height: 30px;
+            border: none;
+            background: transparent;
+            color: #5c657b;
+            border-radius: 5px;
+            font-size: 13px;
+            transition: .2s;
+            cursor: pointer;
+        }
+
+        .relatorios-integrado .toolbar button:hover {
+            background: #f0edff;
+            color: #5b35d5;
+        }
+
+        .relatorios-integrado .toolbar .separator {
+            width: 1px;
+            height: 17px;
+            background: #e5e6ed;
+            margin: 0 4px;
+        }
+
+        .relatorios-integrado .editor-area {
+            width: 100%;
+            min-height: 100px;
+            max-height: 260px;
+            overflow-y: auto;
+            outline: none;
+            padding: 13px;
+            color: #50576b;
+            font-size: 10px;
+            line-height: 1.7;
+            background: #fff;
+        }
+
+        .relatorios-integrado .editor-area:empty::before {
+            content: attr(data-placeholder);
+            color: #a0a5b2;
+            pointer-events: none;
+        }
+
+        .relatorios-integrado .editor-area img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 8px 0;
+            border-radius: 6px;
+        }
+
+        .relatorios-integrado .status-label {
+            margin-bottom: 8px;
+        }
+
+        .relatorios-integrado .status-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 9px;
+            margin-bottom: 13px;
+        }
+
+        .relatorios-integrado .status-card {
+            min-height: 69px;
+            padding: 10px;
+            border-radius: 9px;
+            background: #fff;
+            cursor: pointer;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            transition: .2s;
+        }
+
+        .relatorios-integrado .status-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .relatorios-integrado .status-card.selected {
+            box-shadow: 0 0 0 2px rgba(91, 53, 213, .18);
+            transform: translateY(-1px);
+        }
+
+        .relatorios-integrado .status-card.green {
+            border: 1px solid #a9e2c1;
+            background: #fbfffc;
+        }
+
+        .relatorios-integrado .status-card.red {
+            border: 1px solid #f3c3c3;
+            background: #fffdfd;
+        }
+
+        .relatorios-integrado .status-card.yellow {
+            border: 1px solid #f0dcac;
+            background: #fffefa;
+        }
+
+        .relatorios-integrado .status-icon {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            border-radius: 50%;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 9px;
+        }
+
+        .relatorios-integrado .green .status-icon {
+            background: #2cab69;
+        }
+
+        .relatorios-integrado .red .status-icon {
+            background: #ec5a5a;
+        }
+
+        .relatorios-integrado .yellow .status-icon {
+            background: #f2ab23;
+        }
+
+        .relatorios-integrado .status-card strong {
+            display: block;
+            font-size: 9px;
+            color: #4a536a;
+            margin-bottom: 3px;
+        }
+
+        .relatorios-integrado .status-card span {
+            display: block;
+            font-size: 8px;
+            line-height: 1.5;
+            color: #858b9b;
+        }
+
+        .relatorios-integrado .notice {
+            min-height: 51px;
+            background: linear-gradient(90deg, #f6f5ff, #f1f4ff);
+            border: 1px solid #e3e1f5;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 12px;
+        }
+
+        .relatorios-integrado .notice i {
+            width: 19px;
+            height: 19px;
+            border: 1px solid #5b35d5;
+            border-radius: 50%;
+            color: #5b35d5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+
+        .relatorios-integrado .notice p {
+            color: #586999;
+            font-size: 9px;
+            line-height: 1.7;
+            font-weight: 500;
+        }
+
+        .relatorios-integrado .form-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 11px;
+            padding: 16px 25px 13px;
+        }
+
+        .relatorios-integrado .btn {
+            height: 39px;
+            border-radius: 8px;
+            padding: 0 25px;
+            font-size: 10px;
+            font-weight: 600;
+            transition: .25s;
+            cursor: pointer;
+        }
+
+        .relatorios-integrado .cancel-btn {
+            background: #fff;
+            color: #4d566d;
+            border: 1px solid #dedfe7;
+            min-width: 110px;
+        }
+
+        .relatorios-integrado .save-btn {
+            background: linear-gradient(135deg, #5935d1, #4822b9);
+            border: none;
+            color: #fff;
+            min-width: 157px;
+            box-shadow: 0 5px 13px rgba(82, 46, 192, .18);
+        }
+
+        .relatorios-integrado .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(82, 46, 192, .25);
+        }
+
+        .relatorios-integrado .save-btn i {
+            margin-left: 9px;
+        }
+
+        /* arquivo salvo em Consultas */
+        .consulta-salva-actions {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .abrir-relatorio {
+            border: 1px solid #d8d0f8;
+            background: #fff;
+            color: #5a40ba;
+            border-radius: 7px;
+            padding: 7px 11px;
+            font-size: 9px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .abrir-relatorio:hover {
+            background: #f6f3ff;
+        }
+
+        .excluir-relatorio {
+            border: 1px solid #f0cfd3;
+            background: #fff;
+            color: #c94b57;
+            border-radius: 7px;
+            padding: 7px 11px;
+            font-size: 9px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .excluir-relatorio:hover {
+            background: #fff4f5;
+        }
+
+        .relatorio-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(35, 28, 80, .35);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            padding: 20px;
+        }
+
+        .relatorio-modal.show {
+            display: flex;
+        }
+
+        .relatorio-modal-card {
+            width: min(720px, 100%);
+            max-height: 85vh;
+            overflow: auto;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 18px 50px rgba(35, 28, 80, .18);
+        }
+
+        .relatorio-modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 20px;
+            border-bottom: 1px solid #ececf2;
+        }
+
+        .relatorio-modal-header h3 {
+            font-size: 14px;
+            color: #30384f;
+        }
+
+        .relatorio-modal-close {
+            border: none;
+            background: transparent;
+            color: #687089;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .relatorio-modal-body {
+            padding: 20px;
+        }
+
+        .relatorio-modal-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 18px;
+            margin-bottom: 16px;
+            color: #697086;
+            font-size: 9px;
+        }
+
+        .relatorio-modal-status {
+            display: inline-flex;
+            padding: 5px 9px;
+            border-radius: 12px;
+            background: #f0edff;
+            color: #5737c7;
+            font-weight: 600;
+        }
+
+        .relatorio-modal-observacao {
+            border: 1px solid #e6e7ef;
+            border-radius: 9px;
+            padding: 16px;
+            color: #50576b;
+            font-size: 10px;
+            line-height: 1.8;
+            background: #fcfcfe;
+        }
+
+        .relatorio-modal-observacao img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+        }
+
+        @media (max-width:700px) {
+            .relatorios-integrado .status-options {
+                grid-template-columns: 1fr;
+            }
+
+            .relatorios-integrado .form-footer {
+                flex-direction: column;
+            }
+
+            .relatorios-integrado .btn {
+                width: 100%;
+            }
+
+            .relatorios-integrado .annotation-header,
+            .relatorios-integrado .annotation-content,
+            .relatorios-integrado .form-footer {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
     </style>
 </head>
 
 <body>
-
     <div class="app">
-
         <!-- =====================================================
              SIDEBAR
         ====================================================== -->
-
         <aside class="sidebar">
-
-            <div class="brand">
-
-                <div class="brand-top">
-                    <div class="brand-icon">
-                        <i class="fa-regular fa-heart"></i>
-                    </div>
-
-                    <div class="brand-name">
-                        EMPS
-                    </div>
+            <div class="sidebar-logo">
+                <div class="logo-icon">
+                    <i class="fa-regular fa-heart"></i>
                 </div>
-
-                <div class="brand-subtitle">
-                    Sistema de Monitoramento<br>
-                    e Prevenção de Crises Epilépticas
+                <div class="logo-text">
+                    <h1>EMPS</h1>
+                    <p>Sistema de Monitoramento<br />e Prevenção de Crises Epilépticas</p>
                 </div>
-
             </div>
-
-
             <nav class="menu">
-
-                <a href="#">
+                <a href="perfil.html">
                     <i class="fa-solid fa-house"></i>
                     <span>Dashboard</span>
                 </a>
-
-                <a href="#" class="active">
+                <a class="active" href="#">
                     <i class="fa-regular fa-user"></i>
                     <span>Ficha de pacientes</span>
                 </a>
-
-                <a href="#">
+                <a href="busca.html">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <span>Buscar paciente</span>
                 </a>
-
-                <a href="#">
+                <a href="agenda.html">
                     <i class="fa-regular fa-calendar"></i>
                     <span>Agenda</span>
-                </a>
 
-                <a href="#">
-                    <i class="fa-regular fa-note-sticky"></i>
-                    <span>Consultas</span>
-                </a>
-
-                <a href="#">
-                    <i class="fa-solid fa-chart-column"></i>
-                    <span>Relatórios</span>
-                </a>
-
-                <a href="#">
-                    <i class="fa-regular fa-bell"></i>
-                    <span>Alertas</span>
-                    <span class="notification-number">3</span>
-                </a>
-
-                <a href="#">
-                    <i class="fa-regular fa-message"></i>
-                    <span>Mensagens</span>
-                    <span class="notification-number">2</span>
-                </a>
-
-                <a href="#">
-                    <i class="fa-solid fa-gear"></i>
-                    <span>Configurações</span>
-                </a>
+                    <a href="#">
+                        <i class="fa-regular fa-bell"></i>
+                        <span>Alertas</span>
+                        <span class="menu-badge">3</span>
+                    </a>
 
             </nav>
-
-
             <div class="sidebar-bottom">
-
-                <div class="help-box">
+                <div class="support-box">
                     <i class="fa-solid fa-headset"></i>
-
                     <div>
                         <strong>Precisa de ajuda?</strong>
                         <span>Acesse o suporte</span>
                     </div>
                 </div>
-
                 <button class="logout">
-                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
                     <span>Sair</span>
                 </button>
-
             </div>
-
         </aside>
-
-
         <!-- =====================================================
              CONTEÚDO
         ====================================================== -->
-
-        <main class="main-content">
-
-
-            <!-- =================================================
-                 TOPO
-            ================================================== -->
-
-            <header class="topbar">
-
-                <div class="breadcrumbs">
+        <div class="content">
+            <!-- HEADER -->
+            <header class="header">
+                <div class="breadcrumb">
                     <span>Ficha de pacientes</span>
                     <i class="fa-solid fa-chevron-right"></i>
-
-                    <span>Maria Silva</span>
-                    <i class="fa-solid fa-chevron-right"></i>
-
-                    <span>Consultas</span>
-                    <i class="fa-solid fa-chevron-right"></i>
-
-                    <strong>Nova anotação</strong>
+                    <strong>Maria Silva</strong>
                 </div>
-
-
-                <div class="topbar-right">
-
-                    <div class="search-top">
-                        <input type="text" placeholder="Buscar paciente...">
+                <div class="header-right">
+                    <div class="search">
+                        <input placeholder="Buscar paciente..." type="text" />
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-
-
-                    <div class="top-notification">
+                    <div class="notification">
                         <i class="fa-regular fa-bell"></i>
-                        <span>3</span>
+                        <span>0</span>
                     </div>
-
-
                     <div class="doctor">
-
                         <div class="doctor-info">
                             <strong>Dr. Rafael Oliveira</strong>
                             <span>Neurologista</span>
                         </div>
-
-                        <div class="doctor-avatar">
-                            <img src="img/img03.jfif" alt="Dr. Rafael Oliveira">
-                        </div>
-
+                        <img alt="Médico" class="doctor-photo" src="img/img05.jfif" />
                         <i class="fa-solid fa-chevron-down doctor-arrow"></i>
-
                     </div>
-
                 </div>
-
             </header>
+            <!-- MAIN -->
 
-
-            <!-- =================================================
-                 INFORMAÇÕES DO PACIENTE
-            ================================================== -->
-
-            <section class="patient-header">
-
-                <div class="patient-main">
-
-                    <div class="patient-avatar">
-                        MS
-                    </div>
-
-
-                    <div>
-
-                        <div class="patient-name-row">
-                            <h1>Maria Silva</h1>
-                            <span class="patient-status">Ativo</span>
+            <main>
+                <div class="page-title">
+                    <button class="back-button" onclick="window.location.href='ficha.html'">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                    <h2>Relatório de Consultas</h2>
+                </div>
+                
+                <!-- =================================================
+                     DADOS PRINCIPAIS DO PACIENTE
+                ================================================== -->
+                <section class="patient-card panel">
+                    <div class="patient-main">
+                        <div class="patient-avatar">
+                            MS
                         </div>
-
-
                         <div class="patient-data">
-
-                            <span>
-                                <i class="fa-regular fa-calendar"></i>
-                                22 anos (12/04/2002)
-                            </span>
-
-                            <span>
-                                <i class="fa-solid fa-venus"></i>
-                                Feminino
-                            </span>
-
-                            <span>
-                                <i class="fa-solid fa-phone"></i>
-                                (11) 98765-4321
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="patient-summary">
-
-                    <div class="summary-item">
-
-                        <span>Código do paciente</span>
-
-                        <strong class="code">
-                            PCT-012
-                            <i class="fa-regular fa-copy"></i>
-                        </strong>
-
-                    </div>
-
-
-                    <div class="summary-item">
-
-                        <span>Última consulta</span>
-                        <strong>09/05/2024</strong>
-
-                    </div>
-
-                </div>
-
-            </section>
-
-
-            <!-- =================================================
-                 ÁREA DA PÁGINA
-            ================================================== -->
-
-            <div class="page-area">
-
-                <section class="workspace">
-
-
-                    <!-- =============================================
-                         ABAS
-                    ============================================== -->
-
-                    <div class="tabs-row">
-
-                        <div class="tabs">
-
-                            <button class="tab">
-                                Histórico clínico
-                            </button>
-
-                            <button class="tab active">
-                                Consultas
-                            </button>
-
-                            <button class="tab">
-                                Relatórios
-                            </button>
-
-                            <button class="tab">
-                                Dispositivos
-                            </button>
-
-                            <button class="tab">
-                                Documentos
-                            </button>
-
-                        </div>
-
-
-                        <button class="back-button">
-                            <i class="fa-solid fa-arrow-left"></i>
-                            <span>Voltar para consultas</span>
-                        </button>
-
-                    </div>
-
-
-                    <!-- =============================================
-                         TÍTULO
-                    ============================================== -->
-
-                    <div class="annotation-header">
-
-                        <div class="annotation-title">
-
-                            <div class="annotation-title-icon">
-                                <i class="fa-regular fa-clipboard"></i>
+                            <div class="patient-name">
+                                <h1>Maria Silva</h1>
+                                <span class="status-active">
+                                    Ativo
+                                </span>
                             </div>
-
-                            <div>
-                                <h2>Anotações da Consulta</h2>
-
-                                <p>
-                                    Registre as informações da consulta de forma organizada
-                                </p>
+                            <div class="patient-details">
+                                <div class="detail">
+                                    <i class="fa-regular fa-calendar"></i>
+                                    <span>22 anos (12/04/2002)</span>
+                                </div>
+                                <div class="detail">
+                                    <i class="fa-solid fa-venus"></i>
+                                    <span>Feminino</span>
+                                </div>
+                                <div class="detail">
+                                    <i class="fa-regular fa-address-card"></i>
+                                    <span>CPF: 123.456.789-10</span>
+                                </div>
+                                <div class="detail">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span>Telefone: (11) 98765-4321</span>
+                                </div>
+                                <div class="detail">
+                                    <i class="fa-regular fa-envelope"></i>
+                                    <span>E-mail: maria.silva@email.com</span>
+                                </div>
+                                <div class="detail">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <span>Rua das Flores, 123 - São Paulo, SP - 01000-000</span>
+                                </div>
                             </div>
-
                         </div>
+                    </div>
+                    <div class="patient-code">
+                        <span class="code-label">
+                            Código do paciente
+                        </span>
+                        <div class="code-box">
+                            <span>PCT-0012</span>
+                            <button title="Copiar código">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                        </div>
+                        <div class="code-info">
+                            <small>Cadastrado em</small>
+                            <strong>10/02/2024</strong>
+                        </div>
+                        <div class="code-info">
+                            <small>Última consulta</small>
+                            <strong>09/05/2024</strong>
+                        </div>
+                    </div>
+                </section>
+                <!-- =================================================
+                     ABAS
+                ================================================== -->
+                <div class="tabs">
 
-
-                        <button class="close-button">
+                    <button class="tab" data-tab="consultas">
+                        Consultas
+                    </button>
+                    <button class="tab active" data-tab="relatorios">
+                        Relatórios
+                    </button>
+                    <button class="tab" data-tab="dispositivos">
+                        Dispositivos
+                    </button>
+                    <button class="tab" data-tab="documentos">
+                        Documentos
+                    </button>
+                </div>
+                <!-- =================================================
+                     RELATÓRIOS
+                ================================================== -->
+                <section class="tab-panel" id="relatoriosPanel">
+                    <div class="relatorios-integrado">
+                        <div class="annotation-header">
+                            <div class="annotation-title">
+                                <div class="annotation-title-icon">
+                                    <i class="fa-regular fa-clipboard"></i>
+                                </div>
+                                <div>
+                                    <h2>Anotações da Consulta</h2>
+                                    <p>
+                                        Registre as informações da consulta de forma organizada
+                                    </p>
+                                </div>
+                            </div>
+                            <button class="close-button">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                        <div class="annotation-content">
+                            <!-- ESQUERDA -->
+                            <div class="form-panel">
+                                <label>Nome do paciente</label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-user"></i>
+                                    <input placeholder="Digite o nome do paciente" type="text" />
+                                </div>
+                                <label>Observação de sintomas</label>
+                                <div class="editor">
+                                    <div class="toolbar">
+                                        <button data-command="bold" title="Negrito" type="button">
+                                            <strong>B</strong>
+                                        </button>
+                                        <button data-command="italic" title="Itálico" type="button">
+                                            <i class="fa-solid fa-italic"></i>
+                                        </button>
+                                        <button data-command="underline" title="Sublinhado" type="button">
+                                            <i class="fa-solid fa-underline"></i>
+                                        </button>
+                                        <div class="separator"></div>
+                                        <button data-command="insertUnorderedList" title="Lista" type="button">
+                                            <i class="fa-solid fa-list"></i>
+                                        </button>
+                                        <button data-command="insertOrderedList" title="Lista numerada" type="button">
+                                            <i class="fa-solid fa-list-ol"></i>
+                                        </button>
+                                        <button data-command="insertUnorderedList" title="Lista com marcadores"
+                                            type="button">
+                                            <i class="fa-solid fa-list-ul"></i>
+                                        </button>
+                                        <div class="separator"></div>
+                                        <button id="linkButton" title="Inserir link" type="button">
+                                            <i class="fa-solid fa-link"></i>
+                                        </button>
+                                        <button id="imagemButton" title="Inserir imagem" type="button">
+                                            <i class="fa-regular fa-image"></i>
+                                        </button>
+                                        <button data-command="undo" title="Desfazer" type="button">
+                                            <i class="fa-solid fa-arrow-rotate-left"></i>
+                                        </button>
+                                        <button data-command="redo" title="Refazer" type="button">
+                                            <i class="fa-solid fa-arrow-rotate-right"></i>
+                                        </button>
+                                        <button id="maisOpcoesButton" title="Mais opções" type="button">
+                                            <i class="fa-solid fa-ellipsis-vertical"></i>
+                                        </button>
+                                    </div>
+                                    <div class="editor-area" contenteditable="true"
+                                        data-placeholder="Descreva os sintomas que o paciente vem sentindo..."
+                                        id="observacaoEditor"></div>
+                                    <input accept="image/*" hidden="" id="imagemInput" type="file" />
+                                </div>
+                                <label class="status-label">
+                                    Andamento do paciente
+                                </label>
+                                <div class="status-options">
+                                    <div class="status-card green">
+                                        <div class="status-icon">
+                                            <i class="fa-solid fa-check"></i>
+                                        </div>
+                                        <div>
+                                            <strong>Houve melhora</strong>
+                                            <span>
+                                                O paciente apresentou
+                                                evolução positiva
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="status-card red">
+                                        <div class="status-icon">
+                                            <i class="fa-solid fa-xmark"></i>
+                                        </div>
+                                        <div>
+                                            <strong>Não houve melhora</strong>
+                                            <span>
+                                                O paciente não apresentou
+                                                evolução
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="status-card yellow">
+                                        <div class="status-icon">
+                                            <i class="fa-solid fa-minus"></i>
+                                        </div>
+                                        <div>
+                                            <strong>Sem alterações</strong>
+                                            <span>
+                                                O quadro permaneceu
+                                                estável
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="notice">
+                                    <i class="fa-solid fa-info"></i>
+                                    <p>
+                                        Mantenha as anotações sempre atualizadas para garantir
+                                        um acompanhamento seguro e eficaz do paciente com epilepsia.
+                                    </p>
+                                </div>
+                            </div>
+                            <!-- DIREITA -->
+                        </div>
+                        <div class="form-footer">
+                            <button class="btn cancel-btn">
+                                Cancelar
+                            </button>
+                            <button class="btn save-btn">
+                                Salvar anotações
+                                <i class="fa-regular fa-floppy-disk"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+                <!-- =================================================
+                     CONSULTAS
+                ================================================== -->
+                <section class="tab-panel hidden" id="consultasPanel">
+                    <div class="consultas-panel">
+                        <div class="consultas-title">
+                            <i class="fa-regular fa-calendar-check"></i>
+                            <h2>Consultas</h2>
+                        </div>
+                        <div class="consultas-list" id="consultasList"></div>
+                    </div>
+                </section>
+                <!-- =================================================
+                     CONTEÚDO EM GRID
+                ================================================== -->
+                <div class="dashboard-grid tab-panel hidden" id="historicoPanel">
+                    <!-- COLUNA ESQUERDA -->
+                    <div class="left-column">
+                        <!-- ÚLTIMOS SINAIS -->
+                        <section class="panel">
+                            <div class="panel-header">
+                                <h3>Últimos sinais e dados</h3>
+                                <a class="view-link" href="#">
+                                    Ver relatório completo
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="signals-content">
+                                <div class="heart-card">
+                                    <div class="heart-card-top">
+                                        <i class="fa-regular fa-heart"></i>
+                                        <span>Frequência cardíaca média</span>
+                                    </div>
+                                    <div class="heart-rate" id="heartRateValue">-- bpm</div>
+                                    <div class="heart-status" id="heartRateStatus">Aguardando dados do paciente</div>
+                                    <div class="chart">
+                                        <svg id="heartChart" preserveaspectratio="none" viewbox="0 0 220 70">
+                                            <path
+                                                d="M0,52 C20,52 25,45 40,45 C55,45 60,30 75,38 C90,46 95,25 110,32 C125,39 130,20 145,28 C160,36 170,15 185,24 C200,33 205,18 220,18"
+                                                fill="none" id="heartChartPath" stroke="#6853c6" stroke-linecap="round"
+                                                stroke-width="2"></path>
+                                        </svg>
+                                    </div>
+                                </div>
+                                <div class="signal-list" id="signalList"></div>
+                            </div>
+                        </section>
+                        <!-- HISTÓRICO DE CRISES -->
+                        <section class="panel">
+                            <div class="panel-header">
+                                <h3>Histórico de crises</h3>
+                                <a class="view-link" href="#">
+                                    Ver todas
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="table-container">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Data</th>
+                                            <th>Hora</th>
+                                            <th>Duração</th>
+                                            <th>Tipo</th>
+                                            <th>Intensidade</th>
+                                            <th>Observações</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="crisisTableBody"></tbody>
+                                </table>
+                            </div>
+                        </section>
+                        <!-- ANOTAÇÕES -->
+                        <section class="panel">
+                            <div class="panel-header">
+                                <h3>Anotações</h3>
+                                <a class="view-link" href="#">
+                                    Ver todas
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="notes-content">
+                                <div id="notesList"></div>
+                                <button class="new-note" id="newNoteButton">
+                                    <i class="fa-solid fa-plus"></i>
+                                    Nova anotação
+                                </button>
+                            </div>
+                        </section>
+                    </div>
+                    <!-- COLUNA DIREITA -->
+                    <div class="right-column">
+                        <!-- CONSULTAS RECENTES -->
+                        <section class="panel">
+                            <div class="panel-header">
+                                <h3>Consultas recentes</h3>
+                                <a class="view-link" href="#">
+                                    Ver todas
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
+                            <div class="appointment-list" id="consultasPreviewList"></div>
+                        </section>
+                        <!-- DOCUMENTOS -->
+                        <section class="panel" id="documentsPanel">
+                            <div class="panel-header">
+                                <h3>Documentos</h3>
+                                <div class="document-actions">
+                                    <button class="add-document" id="addDocumentButton">
+                                        <i class="fa-solid fa-plus"></i>
+                                        Adicionar documento
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="documents" id="documentsList"></div>
+                        </section>
+                    </div>
+                </div>
+            </main>
+            <!-- MODAL DE DOCUMENTO -->
+            <div class="modal" id="documentModal">
+                <div class="modal-card">
+                    <div class="modal-header">
+                        <h3>Adicionar documento</h3>
+                        <button class="modal-close" id="closeDocumentModal" type="button">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
-
                     </div>
-
-
-                    <!-- =============================================
-                         FORMULÁRIO E EXEMPLO
-                    ============================================== -->
-
-                    <div class="annotation-content">
-
-
-                        <!-- ESQUERDA -->
-
-                        <div class="form-panel">
-
-                            <label>Nome do paciente</label>
-
-                            <div class="input-wrapper">
-                                <i class="fa-regular fa-user"></i>
-
-                                <input
-                                    type="text"
-                                    placeholder="Digite o nome do paciente">
-                            </div>
-
-
-                            <label>Observação de sintomas</label>
-
-
-                            <div class="editor">
-
-                                <div class="toolbar">
-
-                                    <button title="Negrito">
-                                        <strong>B</strong>
-                                    </button>
-
-                                    <button title="Itálico">
-                                        <i class="fa-solid fa-italic"></i>
-                                    </button>
-
-                                    <button title="Sublinhado">
-                                        <i class="fa-solid fa-underline"></i>
-                                    </button>
-
-                                    <div class="separator"></div>
-
-                                    <button>
-                                        <i class="fa-solid fa-list"></i>
-                                    </button>
-
-                                    <button>
-                                        <i class="fa-solid fa-list-ol"></i>
-                                    </button>
-
-                                    <button>
-                                        <i class="fa-solid fa-list-ul"></i>
-                                    </button>
-
-                                    <div class="separator"></div>
-
-                                    <button>
-                                        <i class="fa-solid fa-link"></i>
-                                    </button>
-
-                                    <button>
-                                        <i class="fa-regular fa-image"></i>
-                                    </button>
-
-                                    <button>
-                                        <i class="fa-solid fa-arrow-rotate-left"></i>
-                                    </button>
-
-                                    <button>
-                                        <i class="fa-solid fa-arrow-rotate-right"></i>
-                                    </button>
-
-                                    <button>
-                                        <i class="fa-solid fa-ellipsis-vertical"></i>
-                                    </button>
-
-                                </div>
-
-
-                                <textarea
-                                    placeholder="Descreva os sintomas que o paciente vem sentindo..."></textarea>
-
-                            </div>
-
-
-                            <label class="status-label">
-                                Andamento do paciente
-                            </label>
-
-
-                            <div class="status-options">
-
-
-                                <div class="status-card green">
-
-                                    <div class="status-icon">
-                                        <i class="fa-solid fa-check"></i>
-                                    </div>
-
-                                    <div>
-                                        <strong>Houve melhora</strong>
-
-                                        <span>
-                                            O paciente apresentou
-                                            evolução positiva
-                                        </span>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="status-card red">
-
-                                    <div class="status-icon">
-                                        <i class="fa-solid fa-xmark"></i>
-                                    </div>
-
-                                    <div>
-                                        <strong>Não houve melhora</strong>
-
-                                        <span>
-                                            O paciente não apresentou
-                                            evolução
-                                        </span>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="status-card yellow">
-
-                                    <div class="status-icon">
-                                        <i class="fa-solid fa-minus"></i>
-                                    </div>
-
-                                    <div>
-                                        <strong>Sem alterações</strong>
-
-                                        <span>
-                                            O quadro permaneceu
-                                            estável
-                                        </span>
-                                    </div>
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="notice">
-
-                                <i class="fa-solid fa-info"></i>
-
-                                <p>
-                                    Mantenha as anotações sempre atualizadas para garantir
-                                    um acompanhamento seguro e eficaz do paciente com epilepsia.
-                                </p>
-
-                            </div>
-
+                    <form id="documentForm">
+                        <div class="form-group">
+                            <label for="documentType">Tipo de documento</label>
+                            <select id="documentType" required="">
+                                <option value="">Selecione</option>
+                                <option value="Exame de sangue">Exame de sangue</option>
+                                <option value="Eletroencefalograma">Eletroencefalograma</option>
+                                <option value="Relatório neurológico">Relatório neurológico</option>
+                                <option value="Receita médica">Receita médica</option>
+                                <option value="Plano terapêutico">Plano terapêutico</option>
+                                <option value="Outro">Outro</option>
+                            </select>
                         </div>
-
-
-                        <!-- DIREITA -->
-
-                        <div class="example-panel">
-
-                            <h3>Exemplo de anotação médica</h3>
-
-
-                            <div class="medical-paper">
-
-                                <p>
-                                    Paciente com epilepsia em acompanhamento regular.<br>
-                                    Relata episódios convulsivos reduzidos em frequência.<br>
-                                    Última crise há 15 dias e curta duração.
-                                </p>
-
-                                <p>
-                                    Queixa-se de fadiga e sonolência excessiva ao longo do dia.<br>
-                                    Nega outros sintomas associados.
-                                </p>
-
-                                <p>
-                                    Mantém uso regular da medicação prescrita.<br>
-                                    Orientado a manter rotina de sono e evitar gatilhos.
-                                </p>
-
-                                <p>
-                                    <strong>Plano:</strong><br>
-                                    - Manter medicação atual.<br>
-                                    - Retorno em 30 dias.<br>
-                                    - Realizar exames de controle.
-                                </p>
-
-
-                                <div class="signature">
-                                    Assinatura do médico
-                                </div>
-
-                            </div>
-
+                        <div class="form-group">
+                            <label for="documentName">Nome do documento</label>
+                            <input id="documentName" placeholder="Ex.: Exame de sangue - maio/2024" required=""
+                                type="text" />
                         </div>
-
-                    </div>
-
-
-                    <!-- =============================================
-                         BOTÕES
-                    ============================================== -->
-
-                    <div class="form-footer">
-
-                        <button class="btn cancel-btn">
-                            Cancelar
-                        </button>
-
-                        <button class="btn save-btn">
-                            Salvar anotações
-                            <i class="fa-regular fa-floppy-disk"></i>
-                        </button>
-
-                    </div>
-
-                </section>
-
+                        <div class="form-group">
+                            <label for="documentFile">Arquivo</label>
+                            <input accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx" id="documentFile" required=""
+                                type="file" />
+                        </div>
+                        <div class="modal-actions">
+                            <button class="cancel-modal" id="cancelDocument" type="button">Cancelar</button>
+                            <button class="save-document" type="submit">Salvar documento</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-
-        </main>
-
-    </div>
-
-
-    <!-- =====================================================
-         RODAPÉ
-    ====================================================== -->
-
-    <footer class="footer">
-
-        <div class="footer-content">
-
-            <div class="footer-center">
-
-                <div>
+            <!-- =====================================================
+                 RODAPÉ
+            ====================================================== -->
+            <footer class="footer">
+                <div class="footer-brand">
+                    <i class="fa-regular fa-heart"></i>
+                    <div>
+                        <strong>EMPS</strong>
+                        <small>Sistema de Monitoramento<br />e Prevenção de Crises Epilépticas</small>
+                    </div>
+                </div>
+                <div class="footer-security">
                     <i class="fa-solid fa-lock"></i>
                     Ambiente seguro e criptografado
                 </div>
-
-                <span>
+                <div class="footer-copy">
                     © 2024 EMPS. Todos os direitos reservados.
-                </span>
-
-            </div>
-
-
-            <div class="footer-security">
-                <i class="fa-solid fa-lock"></i>
-                Ambiente seguro e criptografado
-            </div>
-
+                </div>
+            </footer>
         </div>
-
-    </footer>
-
-
+    </div>
     <script>
 
-        /* =====================================================
-           SELEÇÃO DAS ABAS
-        ===================================================== */
+        /* =========================================================
+           DADOS FUNCIONAIS
+           Estes dados estão separados da interface para facilitar a
+           futura troca pelo retorno do PHP/MySQL.
+        ========================================================= */
+
+        const pacienteId = "PCT-0012";
+
+        const dadosSinais = {
+            frequenciaCardiaca: null,
+            sono: null,
+            atividade: null,
+            estresse: null,
+            adesao: null,
+            historicoFrequencia: []
+        };
+
+        const crisesIniciais = [];
+        const consultasIniciais = [];
+        const documentosIniciais = [];
+
+
+        /* =========================================================
+           FUNÇÕES DE DADOS
+        ========================================================= */
+
+        function getLocalData(key, fallback = []) {
+            try {
+                const data = JSON.parse(localStorage.getItem(key));
+                return data ?? fallback;
+            } catch (error) {
+                return fallback;
+            }
+        }
+
+        function saveLocalData(key, data) {
+            localStorage.setItem(key, JSON.stringify(data));
+        }
+
+        /*
+         * relatorios.html poderá salvar os relatórios neste formato:
+         * {
+         *   pacienteId: "PCT-0012",
+         *   data: "09/05/2024",
+         *   medico: "Dr. Rafael Oliveira",
+         *   texto: "Descrição do relatório..."
+         * }
+         *
+         * A tela já está preparada para consumir esses registros.
+         */
+        function getRelatoriosPaciente() {
+            const relatorios = getLocalData("emps_relatorios", []);
+
+            return relatorios.filter(relatorio => {
+                return !relatorio.pacienteId || relatorio.pacienteId === pacienteId;
+            });
+        }
+
+        function getCrisesPaciente() {
+            const crises = getLocalData("emps_crises", crisesIniciais);
+
+            return crises.filter(crise => {
+                return !crise.pacienteId || crise.pacienteId === pacienteId;
+            });
+        }
+
+
+        /* =========================================================
+           ÚLTIMOS SINAIS
+        ========================================================= */
+
+        function renderSignals() {
+            const heartRate = document.getElementById("heartRateValue");
+            const heartStatus = document.getElementById("heartRateStatus");
+            const signalList = document.getElementById("signalList");
+
+            if (dadosSinais.frequenciaCardiaca !== null) {
+                heartRate.textContent = `${dadosSinais.frequenciaCardiaca} bpm`;
+                heartStatus.textContent = dadosSinais.frequenciaCardiaca >= 60 && dadosSinais.frequenciaCardiaca <= 100
+                    ? "Dentro do normal"
+                    : "Fora da faixa de referência";
+            } else {
+                heartRate.textContent = "-- bpm";
+                heartStatus.textContent = "Aguardando dados do paciente";
+            }
+
+            const sinais = [
+                {
+                    icon: "fa-regular fa-moon",
+                    nome: "Sono médio",
+                    valor: dadosSinais.sono ?? "--",
+                    status: dadosSinais.sono ? "Bom" : "Sem dados",
+                    classe: dadosSinais.sono ? "good" : "ideal"
+                },
+                {
+                    icon: "fa-solid fa-person-walking",
+                    nome: "Atividade física",
+                    valor: dadosSinais.atividade ?? "--",
+                    status: dadosSinais.atividade ? "Registrada" : "Sem dados",
+                    classe: dadosSinais.atividade ? "ideal" : "ideal"
+                },
+                {
+                    icon: "fa-solid fa-brain",
+                    nome: "Nível de estresse",
+                    valor: dadosSinais.estresse ?? "--",
+                    status: dadosSinais.estresse ? "Registrado" : "Sem dados",
+                    classe: dadosSinais.estresse ? "good" : "ideal"
+                },
+                {
+                    icon: "fa-solid fa-pills",
+                    nome: "Adesão ao tratamento",
+                    valor: dadosSinais.adesao ?? "--",
+                    status: dadosSinais.adesao ? "Registrada" : "Sem dados",
+                    classe: "good"
+                }
+            ];
+
+            signalList.innerHTML = sinais.map(sinal => `
+                <div class="signal-item">
+                    <div class="signal-icon"><i class="${sinal.icon}"></i></div>
+                    <span class="signal-name">${sinal.nome}</span>
+                    <strong class="signal-value">${sinal.valor}</strong>
+                    <span class="mini-status ${sinal.classe}">${sinal.status}</span>
+                </div>
+            `).join("");
+        }
+
+
+        /* =========================================================
+           HISTÓRICO DE CRISES
+        ========================================================= */
+
+        function renderCrises() {
+            const tbody = document.getElementById("crisisTableBody");
+            const crises = getCrisesPaciente();
+
+            if (!crises.length) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7">
+                            <div class="empty-state">
+                                <i class="fa-regular fa-circle-check"></i>
+                                Nenhuma crise registrada para este paciente.
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = crises.map(crise => {
+                const intensidade = (crise.intensidade || "leve").toLowerCase();
+                const classe = intensidade.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+                return `
+                    <tr>
+                        <td>${crise.data || "--"}</td>
+                        <td>${crise.hora || "--"}</td>
+                        <td>${crise.duracao || "--"}</td>
+                        <td>${crise.tipo || "--"}</td>
+                        <td><span class="intensity ${classe}">${crise.intensidade || "--"}</span></td>
+                        <td>${crise.observacao || crise.descricao || "--"}</td>
+                        <td>
+                            <button class="eye-button" type="button" title="Ver crise" data-crisis-id="${crise.id || ""}">
+                                <i class="fa-regular fa-eye"></i>
+                            </button>
+                        </td>
+                    </tr>
+                `;
+            }).join("");
+        }
+
+
+        /* =========================================================
+           ANOTAÇÕES / RELATÓRIOS
+        ========================================================= */
+
+        function renderConsultas() {
+            const container = document.getElementById("consultasList");
+            const preview = document.getElementById("consultasPreviewList");
+            const relatorios = getRelatoriosPaciente();
+
+            const vazio = `
+                <div class="consulta-vazia">
+                    <i class="fa-regular fa-folder-open"></i>
+                    Nenhum relatório salvo ainda.<br>
+                    As anotações feitas em Relatórios aparecerão aqui.
+                </div>
+            `;
+
+            if (!relatorios.length) {
+                container.innerHTML = vazio;
+                if (preview) preview.innerHTML = vazio;
+                return;
+            }
+
+            const html = relatorios.map(relatorio => {
+                const status = relatorio.status || relatorio.andamento || "Sem andamento informado";
+                const dataHora = [relatorio.data, relatorio.hora].filter(Boolean).join(" · ");
+                const observacao = relatorio.observacao || relatorio.texto || relatorio.descricao || "Sem observação.";
+
+                return `
+                    <article class="consulta-salva">
+                        <div class="consulta-salva-top">
+                            <span class="consulta-salva-data"><i class="fa-regular fa-file-lines"></i> ${dataHora || "Data não informada"}</span>
+                            <span class="consulta-salva-status">${status}</span>
+                        </div>
+                        <div class="consulta-salva-paciente">${relatorio.paciente || "Paciente não informado"}</div>
+                        <div class="consulta-salva-observacao">${observacao}</div>
+                        <div class="consulta-salva-actions">
+                            <button type="button" class="abrir-relatorio" data-relatorio-id="${relatorio.id}">
+                                <i class="fa-regular fa-folder-open"></i> Abrir relatório
+                            </button>
+                            <button type="button" class="excluir-relatorio" data-excluir-relatorio-id="${relatorio.id}">
+                                <i class="fa-regular fa-trash-can"></i> Excluir
+                            </button>
+                        </div>
+                    </article>
+                `;
+            }).join("");
+
+            container.innerHTML = html;
+            if (preview) preview.innerHTML = html;
+        }
+
+        function renderNotes() {
+            renderConsultas();
+        }
+
+
+
+        /* =========================================================
+           DOCUMENTOS
+           IndexedDB permite guardar o arquivo localmente durante o
+           protótipo. Depois, o mesmo fluxo pode ser ligado ao PHP/MySQL.
+        ========================================================= */
+
+        const DB_NAME = "empsDocumentosDB";
+        const DB_VERSION = 1;
+        const STORE_NAME = "documentos";
+
+        function openDocumentDB() {
+            return new Promise((resolve, reject) => {
+                const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+                request.onupgradeneeded = event => {
+                    const db = event.target.result;
+                    if (!db.objectStoreNames.contains(STORE_NAME)) {
+                        db.createObjectStore(STORE_NAME, { keyPath: "id", autoIncrement: true });
+                    }
+                };
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        async function saveDocument(documento) {
+            const db = await openDocumentDB();
+
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(STORE_NAME, "readwrite");
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.add(documento);
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        async function getDocuments() {
+            const db = await openDocumentDB();
+
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(STORE_NAME, "readonly");
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.getAll();
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        async function getDocument(id) {
+            const db = await openDocumentDB();
+
+            return new Promise((resolve, reject) => {
+                const transaction = db.transaction(STORE_NAME, "readonly");
+                const store = transaction.objectStore(STORE_NAME);
+                const request = store.get(Number(id));
+
+                request.onsuccess = () => resolve(request.result);
+                request.onerror = () => reject(request.error);
+            });
+        }
+
+        function formatDocumentDate(date) {
+            return new Intl.DateTimeFormat("pt-BR").format(date);
+        }
+
+        async function renderDocuments() {
+            const container = document.getElementById("documentsList");
+            const documentos = await getDocuments();
+            const documentosDoPaciente = documentos.filter(documento => {
+                return !documento.pacienteId || documento.pacienteId === pacienteId;
+            });
+
+            if (!documentosDoPaciente.length) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <i class="fa-regular fa-folder-open"></i>
+                        Nenhum documento adicionado ainda.
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = documentosDoPaciente.map(documento => `
+                <div class="document-item">
+                    <div class="document-icon">
+                        <i class="fa-regular fa-file-lines"></i>
+                    </div>
+                    <div>
+                        <div class="document-name">${documento.nome}</div>
+                        <span class="document-date">${documento.tipo} · ${documento.data}</span>
+                    </div>
+                    <button class="document-open" type="button" title="Abrir documento" data-document-id="${documento.id}">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    </button>
+                </div>
+            `).join("");
+        }
+
+        async function openDocument(id) {
+            const documento = await getDocument(id);
+            if (!documento || !documento.arquivo) return;
+
+            const url = URL.createObjectURL(documento.arquivo);
+            window.open(url, "_blank");
+
+            setTimeout(() => URL.revokeObjectURL(url), 60000);
+        }
+
+
+        /* =========================================================
+           MODAL DE DOCUMENTOS
+        ========================================================= */
+
+        const documentModal = document.getElementById("documentModal");
+        const documentForm = document.getElementById("documentForm");
+
+        function closeDocumentModal() {
+            documentModal.classList.remove("show");
+            documentForm.reset();
+        }
+
+        document.getElementById("addDocumentButton").addEventListener("click", () => {
+            documentModal.classList.add("show");
+        });
+
+        document.getElementById("closeDocumentModal").addEventListener("click", closeDocumentModal);
+        document.getElementById("cancelDocument").addEventListener("click", closeDocumentModal);
+
+        documentModal.addEventListener("click", event => {
+            if (event.target === documentModal) closeDocumentModal();
+        });
+
+        documentForm.addEventListener("submit", async event => {
+            event.preventDefault();
+
+            const fileInput = document.getElementById("documentFile");
+            const file = fileInput.files[0];
+
+            if (!file) return;
+
+            const documento = {
+                pacienteId,
+                tipo: document.getElementById("documentType").value,
+                nome: document.getElementById("documentName").value.trim(),
+                arquivo: file,
+                data: formatDocumentDate(new Date()),
+                nomeArquivo: file.name,
+                tamanho: file.size,
+                tipoArquivo: file.type
+            };
+
+            try {
+                await saveDocument(documento);
+                await renderDocuments();
+                closeDocumentModal();
+            } catch (error) {
+                alert("Não foi possível salvar o documento neste momento.");
+                console.error(error);
+            }
+        });
+
+        document.getElementById("documentsList").addEventListener("click", async event => {
+            const button = event.target.closest("[data-document-id]");
+            if (!button) return;
+            await openDocument(button.dataset.documentId);
+        });
+
+
+        /* =========================================================
+           MENU LATERAL
+        ========================================================= */
+
+        const menuItems = document.querySelectorAll(".menu a");
+
+        menuItems.forEach(item => {
+            item.addEventListener("click", function (event) {
+                event.preventDefault();
+                menuItems.forEach(link => link.classList.remove("active"));
+                this.classList.add("active");
+            });
+        });
+
+
+        /* =========================================================
+           ABAS
+        ========================================================= */
 
         const tabs = document.querySelectorAll(".tab");
+        const relatoriosPanel = document.getElementById("relatoriosPanel");
+        const consultasPanel = document.getElementById("consultasPanel");
+        const historicoPanel = document.getElementById("historicoPanel");
+
+        function mostrarAba(nome) {
+            relatoriosPanel.classList.add("hidden");
+            consultasPanel.classList.add("hidden");
+            historicoPanel.classList.add("hidden");
+
+            if (nome === "relatorios") {
+                relatoriosPanel.classList.remove("hidden");
+                preencherPacienteRelatorio();
+            } else if (nome === "consultas") {
+                consultasPanel.classList.remove("hidden");
+                renderConsultas();
+            } else {
+                historicoPanel.classList.remove("hidden");
+                if (nome === "documentos") {
+                    document.getElementById("documentsPanel").scrollIntoView({ behavior: "smooth", block: "center" });
+                } else if (nome === "dispositivos") {
+                    document.querySelector(".signals-content").scrollIntoView({ behavior: "smooth", block: "center" });
+                } else {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+            }
+        }
 
         tabs.forEach(tab => {
-
             tab.addEventListener("click", function () {
-
-                tabs.forEach(item => {
-                    item.classList.remove("active");
-                });
-
+                tabs.forEach(item => item.classList.remove("active"));
                 this.classList.add("active");
-
+                mostrarAba(this.dataset.tab);
             });
+        });
 
+        /* =========================================================
+           COPIAR CÓDIGO DO PACIENTE
+        ========================================================= */
+
+        const copyButton = document.querySelector(".code-box button");
+
+        copyButton.addEventListener("click", async () => {
+            try {
+                await navigator.clipboard.writeText(pacienteId);
+            } catch (error) {
+                const textarea = document.createElement("textarea");
+                textarea.value = pacienteId;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand("copy");
+                textarea.remove();
+            }
+
+            const icon = copyButton.querySelector("i");
+            icon.classList.remove("fa-copy");
+            icon.classList.add("fa-check");
+
+            setTimeout(() => {
+                icon.classList.remove("fa-check");
+                icon.classList.add("fa-copy");
+            }, 1500);
         });
 
 
-        /* =====================================================
-           SELEÇÃO DO ANDAMENTO DO PACIENTE
-        ===================================================== */
-
-        const statusCards = document.querySelectorAll(".status-card");
-
-        statusCards.forEach(card => {
-
-            card.addEventListener("click", function () {
-
-                statusCards.forEach(item => {
-
-                    item.style.boxShadow = "none";
-                    item.style.transform = "";
-
-                });
-
-                this.style.boxShadow =
-                    "0 0 0 2px rgba(91, 53, 213, .18)";
-
-            });
-
-        });
-
-
-        /* =====================================================
-           BOTÃO FECHAR
-        ===================================================== */
-
-        document.querySelector(".close-button")
-            .addEventListener("click", function () {
-
-                document.querySelector(".workspace").style.opacity = "0";
-
-                setTimeout(() => {
-                    document.querySelector(".workspace").style.opacity = "1";
-                }, 300);
-
-            });
-
-
-        /* =====================================================
+        /* =========================================================
            BOTÃO VOLTAR
-        ===================================================== */
+        ========================================================= */
 
-        document.querySelector(".back-button")
-            .addEventListener("click", function () {
+        document.querySelector(".back-button").addEventListener("click", () => {
+            window.history.back();
+        });
 
-                window.history.back();
 
+        /* =========================================================
+           NOVA ANOTAÇÃO
+           O cadastro principal será feito em relatorios.html.
+        ========================================================= */
+
+        document.getElementById("newNoteButton").addEventListener("click", () => {
+            mostrarAba("relatorios");
+            preencherPacienteRelatorio();
+            tabs.forEach(item => item.classList.remove("active"));
+            document.querySelector('.tab[data-tab="relatorios"]').classList.add("active");
+            limparFormularioRelatorio();
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+
+
+        /* =========================================================
+           RELATÓRIOS DENTRO DA FICHA DO PACIENTE
+        ========================================================= */
+
+        const nomePacienteRelatorio = document.querySelector("#relatoriosPanel .input-wrapper input");
+        const editorRelatorio = document.getElementById("observacaoEditor");
+        const imagemInputRelatorio = document.getElementById("imagemInput");
+        const statusCardsRelatorio = document.querySelectorAll("#relatoriosPanel .status-card");
+        const saveButtonRelatorio = document.querySelector("#relatoriosPanel .save-btn");
+        const cancelButtonRelatorio = document.querySelector("#relatoriosPanel .cancel-btn");
+        const imagemButtonRelatorio = document.getElementById("imagemButton");
+        const linkButtonRelatorio = document.getElementById("linkButton");
+        let andamentoSelecionadoRelatorio = "";
+
+        function preencherPacienteRelatorio() {
+            if (nomePacienteRelatorio && !nomePacienteRelatorio.value.trim()) {
+                const pacienteSalvo = localStorage.getItem("emps_paciente_selecionado");
+                if (pacienteSalvo) {
+                    try {
+                        const paciente = JSON.parse(pacienteSalvo);
+                        if (paciente.nome) nomePacienteRelatorio.value = paciente.nome;
+                    } catch (e) { }
+                }
+                if (!nomePacienteRelatorio.value.trim()) {
+                    nomePacienteRelatorio.value = document.querySelector(".patient-name h1")?.textContent.trim() || "";
+                }
+            }
+        }
+
+        function limparFormularioRelatorio() {
+            if (!nomePacienteRelatorio || !editorRelatorio) return;
+            nomePacienteRelatorio.value = document.querySelector(".patient-name h1")?.textContent.trim() || "";
+            editorRelatorio.innerHTML = "";
+            andamentoSelecionadoRelatorio = "";
+            statusCardsRelatorio.forEach(card => card.classList.remove("selected"));
+            saveButtonRelatorio.innerHTML = 'Salvar anotações <i class="fa-regular fa-floppy-disk"></i>';
+        }
+
+        document.querySelectorAll("#relatoriosPanel .toolbar button[data-command]").forEach(button => {
+            button.addEventListener("mousedown", event => event.preventDefault());
+            button.addEventListener("click", () => {
+                editorRelatorio.focus();
+                document.execCommand(button.dataset.command, false, null);
+            });
+        });
+
+        imagemButtonRelatorio.addEventListener("click", () => imagemInputRelatorio.click());
+
+        linkButtonRelatorio.addEventListener("click", () => {
+            editorRelatorio.focus();
+            const url = prompt("Digite o endereço do link:");
+            if (url) document.execCommand("createLink", false, url);
+        });
+
+        imagemInputRelatorio.addEventListener("change", event => {
+            const arquivo = event.target.files[0];
+            if (!arquivo) return;
+            if (!arquivo.type.startsWith("image/")) {
+                alert("Selecione um arquivo de imagem.");
+                return;
+            }
+            const leitor = new FileReader();
+            leitor.onload = e => {
+                editorRelatorio.focus();
+                document.execCommand("insertHTML", false, `<img src="${e.target.result}" alt="Imagem adicionada à anotação">`);
+            };
+            leitor.readAsDataURL(arquivo);
+            imagemInputRelatorio.value = "";
+        });
+
+        statusCardsRelatorio.forEach(card => {
+            card.addEventListener("click", function () {
+                statusCardsRelatorio.forEach(item => item.classList.remove("selected"));
+                this.classList.add("selected");
+                andamentoSelecionadoRelatorio = this.querySelector("strong")?.textContent.trim() || "";
+            });
+        });
+
+        function salvarRelatorio() {
+            const nome = nomePacienteRelatorio.value.trim();
+            const observacao = editorRelatorio.innerHTML.trim();
+
+            if (!nome) {
+                alert("Informe o nome do paciente.");
+                nomePacienteRelatorio.focus();
+                return;
+            }
+            if (!observacao) {
+                alert("Digite uma observação antes de salvar.");
+                editorRelatorio.focus();
+                return;
+            }
+            if (!andamentoSelecionadoRelatorio) {
+                alert("Selecione o andamento do paciente.");
+                return;
+            }
+
+            const agora = new Date();
+            const relatorios = getLocalData("emps_relatorios", []);
+
+            relatorios.unshift({
+                id: Date.now(),
+                pacienteId: pacienteId,
+                paciente: nome,
+                status: andamentoSelecionadoRelatorio,
+                andamento: andamentoSelecionadoRelatorio,
+                observacao: observacao,
+                data: agora.toLocaleDateString("pt-BR"),
+                hora: agora.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" }),
+                timestamp: agora.toISOString()
             });
 
+            saveLocalData("emps_relatorios", relatorios);
 
-        /* =====================================================
-           CANCELAR
-        ===================================================== */
+            saveButtonRelatorio.innerHTML = '<i class="fa-solid fa-check"></i> Anotação salva';
 
-        document.querySelector(".cancel-btn")
-            .addEventListener("click", function () {
+            setTimeout(() => {
+                renderConsultas();
+                tabs.forEach(item => item.classList.remove("active"));
+                document.querySelector('.tab[data-tab="consultas"]').classList.add("active");
+                mostrarAba("consultas");
+                limparFormularioRelatorio();
+            }, 500);
+        }
 
-                const textarea = document.querySelector(".editor textarea");
-                const input = document.querySelector(".input-wrapper input");
+        saveButtonRelatorio.addEventListener("click", salvarRelatorio);
+        cancelButtonRelatorio.addEventListener("click", limparFormularioRelatorio);
 
-                textarea.value = "";
-                input.value = "";
+        /* Abrir relatório salvo */
+        const relatorioModal = document.getElementById("relatorioModal");
+        const relatorioModalMeta = document.getElementById("relatorioModalMeta");
+        const relatorioModalObservacao = document.getElementById("relatorioModalObservacao");
 
-            });
+        function abrirRelatorio(id) {
+            const relatorio = getRelatoriosPaciente().find(item => String(item.id) === String(id));
+            if (!relatorio) return;
 
+            const status = relatorio.status || relatorio.andamento || "Sem andamento informado";
+            const dataHora = [relatorio.data, relatorio.hora].filter(Boolean).join(" · ");
 
-        /* =====================================================
-           SALVAR
-        ===================================================== */
+            relatorioModalMeta.innerHTML = `
+                <span><strong>Paciente:</strong> ${relatorio.paciente || "--"}</span>
+                <span><strong>Data:</strong> ${dataHora || "--"}</span>
+                <span class="relatorio-modal-status">${status}</span>
+            `;
+            relatorioModalObservacao.innerHTML = relatorio.observacao || relatorio.texto || "Sem observação.";
+            relatorioModal.classList.add("show");
+        }
 
-        document.querySelector(".save-btn")
-            .addEventListener("click", function () {
+        function excluirRelatorio(id) {
+            const relatorios = getLocalData("emps_relatorios", []);
+            const relatorio = relatorios.find(item => String(item.id) === String(id));
+            if (!relatorio) return;
 
-                const button = this;
-                const original = button.innerHTML;
+            const confirmar = confirm("Tem certeza que deseja excluir esta anotação? Esta ação não poderá ser desfeita.");
+            if (!confirmar) return;
 
-                button.innerHTML =
-                    '<i class="fa-solid fa-check"></i> Anotações salvas';
+            const atualizados = relatorios.filter(item => String(item.id) !== String(id));
+            saveLocalData("emps_relatorios", atualizados);
+            renderConsultas();
 
-                setTimeout(() => {
-                    button.innerHTML = original;
-                }, 2000);
+            if (relatorioModal.classList.contains("show")) {
+                relatorioModal.classList.remove("show");
+            }
+        }
 
-            });
+        function tratarCliqueRelatorio(event) {
+            const excluir = event.target.closest("[data-excluir-relatorio-id]");
+            if (excluir) {
+                excluirRelatorio(excluir.dataset.excluirRelatorioId);
+                return;
+            }
+
+            const abrir = event.target.closest("[data-relatorio-id]");
+            if (abrir) abrirRelatorio(abrir.dataset.relatorioId);
+        }
+
+        document.getElementById("consultasList").addEventListener("click", tratarCliqueRelatorio);
+        document.getElementById("consultasPreviewList").addEventListener("click", tratarCliqueRelatorio);
+
+        document.getElementById("fecharRelatorioModal").addEventListener("click", () => {
+            relatorioModal.classList.remove("show");
+        });
+
+        relatorioModal.addEventListener("click", event => {
+            if (event.target === relatorioModal) relatorioModal.classList.remove("show");
+        });
+
+        /* =========================================================
+           INICIALIZAÇÃO
+        ========================================================= */
+
+        renderSignals();
+        renderCrises();
+        renderConsultas();
+        renderDocuments();
+        mostrarAba("relatorios");
 
     </script>
-
+    <div class="relatorio-modal" id="relatorioModal">
+        <div class="relatorio-modal-card">
+            <div class="relatorio-modal-header">
+                <h3>Relatório salvo</h3>
+                <button class="relatorio-modal-close" id="fecharRelatorioModal" type="button"><i
+                        class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="relatorio-modal-body">
+                <div class="relatorio-modal-meta" id="relatorioModalMeta"></div>
+                <div class="relatorio-modal-observacao" id="relatorioModalObservacao"></div>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
