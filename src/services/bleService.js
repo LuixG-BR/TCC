@@ -214,36 +214,76 @@ function monitorarDados(dispositivo, aoReceberDados) {
     console.log("Iniciando monitoramento BLE...");
 
     const subscription = dispositivo.monitorCharacteristicForService(
-            SERVICE_UUID,
-            CHARACTERISTIC_UUID,
+        SERVICE_UUID,
+        CHARACTERISTIC_UUID,
 
-            (erro, characteristic) => {
+        (erro, characteristic) => {
 
-                if (erro) {
-                    console.log("Erro ao receber dados BLE:", erro);
-                    return;
-                }
-
-                if (!characteristic?.value) {
-                    return;
-                }
-
-                try {
-                    const mensagem = decodeBase64(
-                            characteristic.value
-                        );
-                    console.log("Pacote recebido:", mensagem);
-
-                    if (aoReceberDados) {
-                        aoReceberDados(mensagem);
-                    }
-                } catch (erroDecode) {
-                    console.log("Erro ao decodificar pacote BLE:", erroDecode);
-                }
+            if (erro) {
+                console.log("Erro ao receber dados BLE:", erro);
+                return;
             }
-        );
+
+            if (!characteristic?.value) {
+                return;
+            }
+
+            try {
+                const mensagem = decodeBase64(
+                    characteristic.value
+                );
+                console.log("Pacote recebido:", mensagem);
+
+                const dados = processarPacote(mensagem);
+                if (dados && aoReceberDados) {
+                    aoReceberDados(dados);
+                }
+            } catch (erroDecode) {
+                console.log("Erro ao decodificar pacote BLE:", erroDecode);
+            }
+        }
+    );
 
     return subscription;
+}
+
+function processarPacote(mensagem) {
+    try {
+        const campos = mensagem.split("|");
+
+        const dados = {};
+
+        campos.forEach((campo) => {
+            const [chave, valor] = campo.split(":");
+
+            if (chave && valor !== undefined) {
+                dados[chave] = Number(valor);
+            }
+        });
+
+        const pacote = {
+            bpm: dados.BPM,
+            bateria: dados.BAT,
+
+            acelerometro: {
+                x: dados.AX,
+                y: dados.AY,
+                z: dados.AZ,
+            },
+
+            giroscopio: {
+                x: dados.GX,
+                y: dados.GY,
+                z: dados.GZ,
+            },
+        };
+
+        return pacote;
+
+    } catch (erro) {
+        console.log("Erro ao processar pacote BLE:", erro);
+        return null;
+    }
 }
 
 const bleService = {
@@ -252,7 +292,8 @@ const bleService = {
     procurarCinta,
     conectarCinta,
     desconectarCinta,
-    monitorarDados
+    monitorarDados,
+    processarPacote
 };
 
 export default bleService;

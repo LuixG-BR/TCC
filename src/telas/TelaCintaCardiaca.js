@@ -1,40 +1,29 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import bleService from "../services/bleService";
+import monitoramentoService from "../services/monitoramentoService";
 
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-} from "react-native";
-
-import {
-  Bluetooth,
-  BluetoothConnected,
-  BatteryMedium,
-  HeartPulse,
-  Activity,
-  Play,
-  Unplug,
-} from "lucide-react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Bluetooth, BluetoothConnected, BatteryMedium, HeartPulse, Activity, Unplug } from "lucide-react-native";
 
 import AppShell from "../componentes/AppShell";
 
 import { colors } from "../styles/colors";
 import { spacing } from "../styles/spacing";
 
-export default function TelaCintaCardiaca({
-  tela,
-  setTela,
-}) {
-  // SIMULAÇÃO
-  // Futuramente esse estado será controlado pelo Bluetooth BLE.
+export default function TelaCintaCardiaca({ tela, setTela }) {
   const [conectado, setConectado] = useState(false);
   const [procurando, setProcurando] = useState(false);
 
-  // Dados simulados da cinta
-  const [bateria, setBateria] = useState(84);
+  const [bpm, setBpm] = useState(0);
+  const [bateria, setBateria] = useState(0);
+  const [movimento, setMovimento] = useState(0);
+  const [acelerometro, setAcelerometro] = useState({
+    x: 0, y: 0, z: 0
+  });
+  const [giroscopio, setGiroscopio] = useState({
+    x: 0, y: 0, z: 0
+  });
 
   const [dispositivo, setDispositivo] = useState(null);
 
@@ -53,12 +42,31 @@ export default function TelaCintaCardiaca({
       setConectado(true);
       console.log("Cinta EMPS conectada com sucesso.");
 
-      bleService.monitorarDados(dispositivoConectado,
-        (mensagem) => {
-          console.log(
-            "DADOS DO ESP32:",
-            mensagem
+      bleService.monitorarDados(
+        dispositivoConectado,
+        (dados) => {
+          const resultado = monitoramentoService.adicionarAmostra(
+            dados.bpm,
+            dados.acelerometro.x,
+            dados.acelerometro.y,
+            dados.acelerometro.z
           );
+
+          setBpm(dados.bpm);
+          setBateria(dados.bateria);
+          setMovimento(resultado.movimento);
+
+          setAcelerometro({
+            x: dados.acelerometro.x,
+            y: dados.acelerometro.y,
+            z: dados.acelerometro.z,
+          });
+
+          setGiroscopio({
+            x: dados.giroscopio.x,
+            y: dados.giroscopio.y,
+            z: dados.giroscopio.z,
+          });
         }
       );
     } catch (erro) {
@@ -81,13 +89,30 @@ export default function TelaCintaCardiaca({
     }
   }
 
-  function iniciarMonitoramento() {
+  useEffect(() => {
+
     if (!conectado) {
       return;
     }
 
-    setTela("monitoramento");
-  }
+    const intervalo = setInterval(() => {
+      const medias = monitoramentoService.finalizarPeriodo();
+
+      if (!medias) {
+        console.log("Sem amostras para enviar.");
+        return;
+      }
+
+      console.log("MÉDIA DE 1 MINUTO:", medias);
+
+      // Depois chamaremos a API aqui.
+
+    }, 10000);
+
+    return () => {
+      clearInterval(intervalo);
+    };
+  }, [conectado]);
 
   return (
     <AppShell
@@ -202,7 +227,7 @@ export default function TelaCintaCardiaca({
                 </Text>
 
                 <Text style={styles.sensorReady}>
-                  Pronto
+                  {bpm > 0 ? `${bpm} BPM` : "Aguardando..."}
                 </Text>
               </View>
             </View>
@@ -221,7 +246,7 @@ export default function TelaCintaCardiaca({
                 </Text>
 
                 <Text style={styles.sensorReady}>
-                  Pronto
+                  {movimento > 0 ? `${movimento.toFixed(2)} m/s²` : "Aguardando..."}
                 </Text>
               </View>
             </View>
@@ -298,40 +323,7 @@ export default function TelaCintaCardiaca({
         </TouchableOpacity>
       ) : (
         <>
-          {/* INICIAR MONITORAMENTO */}
 
-          <TouchableOpacity
-            style={styles.primaryButton}
-            activeOpacity={0.85}
-            onPress={iniciarMonitoramento}
-          >
-            <Play
-              size={20}
-              color={colors.white}
-              fill={colors.white}
-            />
-
-            <Text style={styles.primaryButtonText}>
-              Iniciar monitoramento
-            </Text>
-          </TouchableOpacity>
-
-          {/* DESCONECTAR */}
-
-          <TouchableOpacity
-            style={styles.disconnectButton}
-            activeOpacity={0.8}
-            onPress={desconectarCinta}
-          >
-            <Unplug
-              size={18}
-              color={colors.textSecondary}
-            />
-
-            <Text style={styles.disconnectButtonText}>
-              Desconectar cinta
-            </Text>
-          </TouchableOpacity>
         </>
       )}
     </AppShell>
