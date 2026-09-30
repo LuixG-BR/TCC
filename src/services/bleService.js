@@ -12,21 +12,14 @@ const NOME_ESP32 = "EMPS_ESP32";
 const SERVICE_UUID = "12345678-1234-1234-1234-1234567890ab";
 const CHARACTERISTIC_UUID = "abcd1234-1234-1234-1234-1234567890ab";
 
-/*
-|--------------------------------------------------------------------------
-| PERMISSÕES
-|--------------------------------------------------------------------------
-*/
 
 async function solicitarPermissoes() {
-    // iOS trata as permissões de forma diferente.
-    // Por enquanto nosso foco é Android.
+
     if (Platform.OS !== "android") {
         return true;
     }
 
     try {
-        // Android 12+
         if (Platform.Version >= 31) {
             const resultado = await PermissionsAndroid.requestMultiple([
                 PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
@@ -46,7 +39,6 @@ async function solicitarPermissoes() {
             return scanPermitido && connectPermitido;
         }
 
-        // Android 11 ou inferior
         const resultado = await PermissionsAndroid.request(
             PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
         );
@@ -62,13 +54,6 @@ async function solicitarPermissoes() {
     }
 }
 
-
-/*
-|--------------------------------------------------------------------------
-| ESTADO DO BLUETOOTH
-|--------------------------------------------------------------------------
-*/
-
 async function verificarBluetooth() {
     const estado = await bleManager.state();
 
@@ -76,13 +61,6 @@ async function verificarBluetooth() {
 
     return estado === State.PoweredOn;
 }
-
-
-/*
-|--------------------------------------------------------------------------
-| PROCURAR ESP32
-|--------------------------------------------------------------------------
-*/
 
 async function procurarCinta() {
     console.log("Solicitando permissões BLE...");
@@ -112,7 +90,6 @@ async function procurarCinta() {
     return new Promise((resolve, reject) => {
         let finalizado = false;
 
-        // Tempo máximo da busca
         const timeout = setTimeout(() => {
             if (finalizado) {
                 return;
@@ -158,7 +135,6 @@ async function procurarCinta() {
                     return;
                 }
 
-                // Útil durante os primeiros testes.
                 if (dispositivo.name) {
                     console.log(
                         "BLE encontrado:",
@@ -177,14 +153,8 @@ async function procurarCinta() {
 
                     bleManager.stopDeviceScan();
 
-                    console.log(
-                        "EMPS_ESP32 encontrado!"
-                    );
-
-                    console.log(
-                        "ID:",
-                        dispositivo.id
-                    );
+                    console.log("EMPS_ESP32 encontrado!");
+                    console.log("ID:", dispositivo.id);
 
                     resolve(dispositivo);
                 }
@@ -193,40 +163,30 @@ async function procurarCinta() {
     });
 }
 
-
-/*
-|--------------------------------------------------------------------------
-| CONECTAR
-|--------------------------------------------------------------------------
-*/
-
 async function conectarCinta(dispositivo) {
     if (!dispositivo) {
         throw new Error(
             "Dispositivo BLE inválido."
         );
     }
+    console.log("Conectando ao EMPS_ESP32...");
 
-    console.log(
-        "Conectando ao EMPS_ESP32..."
-    );
+    const conectado = await dispositivo.connect();
+    console.log("Conexão BLE estabelecida.");
 
-    const conectado =
-        await dispositivo.connect();
+    try {
+        const dispositivoComMTU = await conectado.requestMTU(185);
+        console.log("MTU negociado:", dispositivoComMTU.mtu);
+    } catch (erro) {
+        console.log("Erro ao negociar MTU:", erro);
+    }
 
-    console.log(
-        "Conexão BLE estabelecida."
-    );
 
-    console.log(
-        "Descobrindo serviços..."
-    );
+    console.log("Descobrindo serviços...");
 
     await conectado.discoverAllServicesAndCharacteristics();
 
-    console.log(
-        "Serviços e características encontrados."
-    );
+    console.log("Serviços e características encontrados.");
 
     return conectado;
 }
@@ -238,43 +198,29 @@ async function desconectarCinta(dispositivo) {
 
     try {
         await dispositivo.cancelConnection();
-
-        console.log(
-            "Cinta desconectada."
-        );
+        console.log("Cinta desconectada.");
     } catch (erro) {
-        console.log(
-            "Erro ao desconectar cinta:",
-            erro
-        );
+        console.log("Erro ao desconectar cinta:", erro);
     }
 }
 
 function monitorarDados(dispositivo, aoReceberDados) {
-
     if (!dispositivo) {
         throw new Error(
             "Dispositivo BLE não conectado."
         );
     }
 
-    console.log(
-        "Iniciando monitoramento BLE..."
-    );
+    console.log("Iniciando monitoramento BLE...");
 
-    const subscription =
-        dispositivo.monitorCharacteristicForService(
+    const subscription = dispositivo.monitorCharacteristicForService(
             SERVICE_UUID,
             CHARACTERISTIC_UUID,
 
             (erro, characteristic) => {
 
                 if (erro) {
-                    console.log(
-                        "Erro ao receber dados BLE:",
-                        erro
-                    );
-
+                    console.log("Erro ao receber dados BLE:", erro);
                     return;
                 }
 
@@ -283,22 +229,16 @@ function monitorarDados(dispositivo, aoReceberDados) {
                 }
 
                 try {
-
-                    const mensagem =
-                        decodeBase64(
+                    const mensagem = decodeBase64(
                             characteristic.value
                         );
-
-                    console.log(
-                        "Pacote recebido:",
-                        mensagem
-                    );
+                    console.log("Pacote recebido:", mensagem);
 
                     if (aoReceberDados) {
                         aoReceberDados(mensagem);
                     }
                 } catch (erroDecode) {
-                    notificacoes.erro("Erro ao decodificar pacote BLE:",erroDecode);
+                    console.log("Erro ao decodificar pacote BLE:", erroDecode);
                 }
             }
         );
