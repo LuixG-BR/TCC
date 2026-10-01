@@ -12,6 +12,7 @@ async function enviarMedia({
         id_dispositivo: idDispositivo,
         frequencia_cardiaca: Math.round(frequenciaCardiaca),
         movimento: Number(movimento.toFixed(2)),
+        status: ""
     };
 
     console.log("Enviando média para API:", payload);
