@@ -1704,14 +1704,6 @@
 
             <a href="alertas.html">
 
-                <i class="fa-regular fa-bell"></i>
-
-                <span>
-                    Alertas
-                </span>
-
-                <i class="fa-regular fa-bell menu-notification"></i>
-
             </a>
 
 
@@ -1780,8 +1772,6 @@
 
 
             <div class="breadcrumb">
-
-             
 
             </div>
 
@@ -1859,9 +1849,6 @@
                     </p>
 
                 </div>
-
-
-
 
 
             </div>
@@ -2423,40 +2410,38 @@
 
     function carregarPacientes() {
 
-        try {
+        /*
+         * Cadastro atual do paciente
+         * Luis Gabriel
+         */
 
-            const dados =
-                localStorage.getItem(
-                    STORAGE_KEY
-                );
+        pacientes = [
 
-
-            pacientes =
-                dados
-                    ? JSON.parse(dados)
-                    : [];
-
-
-            if (
-                !Array.isArray(pacientes)
-            ) {
-
-                pacientes = [];
-
+            {
+                id: 1,
+                codigo: "1",
+                nome: "Luis Gabriel",
+                nomeCompleto: "Luis Gabriel",
+                email: "luis.user@email.com",
+                sexo: "Masculino",
+                telefone: "13981893503",
+                cpf: "123456789",
+                dataNascimento: "2009-05-18",
+                status: "Ativo"
             }
 
-        }
+        ];
 
-        catch (erro) {
 
-            console.error(
-                "Erro ao carregar pacientes:",
-                erro
-            );
+        /*
+         * Atualiza o localStorage para retirar
+         * qualquer cadastro anterior, como o da Maria.
+         */
 
-            pacientes = [];
-
-        }
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(pacientes)
+        );
 
 
         pacientesFiltrados =

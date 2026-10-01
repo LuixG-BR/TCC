@@ -1935,16 +1935,12 @@
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <span>Buscar paciente</span>
                 </a>
+
                 <a href="agenda.html">
                     <i class="fa-regular fa-calendar"></i>
                     <span>Agenda</span>
-
-                    <a href="#">
-                        <i class="fa-regular fa-bell"></i>
-                        <span>Alertas</span>
-                        <span class="menu-badge">3</span>
-                    </a>
-
+                 </a>
+                 
             </nav>
             <div class="sidebar-bottom">
                 <div class="support-box">
@@ -2799,21 +2795,6 @@
             const button = event.target.closest("[data-document-id]");
             if (!button) return;
             await openDocument(button.dataset.documentId);
-        });
-
-
-        /* =========================================================
-           MENU LATERAL
-        ========================================================= */
-
-        const menuItems = document.querySelectorAll(".menu a");
-
-        menuItems.forEach(item => {
-            item.addEventListener("click", function (event) {
-                event.preventDefault();
-                menuItems.forEach(link => link.classList.remove("active"));
-                this.classList.add("active");
-            });
         });
 
 

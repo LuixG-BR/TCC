@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,46 +10,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-    <link
-        rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 
     <style>
-
-        /* =========================================================
-           CONFIGURAÇÕES GERAIS
-        ========================================================= */
-
         :root {
             --primary: #5b31c9;
             --primary-dark: #43209e;
             --primary-light: #f0ecff;
-
             --blue: #5f7cff;
-
             --text: #25263a;
             --text-soft: #74758a;
             --text-light: #9b9caf;
-
             --border: #e9e9f1;
             --background: #fafafd;
             --white: #ffffff;
-
             --green: #31a46d;
             --green-bg: #eaf8f0;
-
             --yellow: #c88b1c;
             --yellow-bg: #fff7e6;
-
             --red: #dc6464;
             --red-bg: #fff0f0;
-
             --shadow: 0 4px 20px rgba(35, 28, 80, 0.045);
         }
 
@@ -74,18 +57,10 @@
             cursor: pointer;
         }
 
-        /* =========================================================
-           ESTRUTURA PRINCIPAL
-        ========================================================= */
-
         .app {
             min-height: 100vh;
             display: flex;
         }
-
-        /* =========================================================
-           SIDEBAR
-        ========================================================= */
 
         .sidebar {
             width: 210px;
@@ -179,11 +154,7 @@
 
         .menu a.active {
             color: white;
-            background: linear-gradient(
-                135deg,
-                #4e21bd,
-                #6d35d8
-            );
+            background: linear-gradient(135deg, #4e21bd, #6d35d8);
             box-shadow: 0 5px 14px rgba(91, 49, 201, 0.2);
         }
 
@@ -257,19 +228,11 @@
             color: #cf4e4e;
         }
 
-        /* =========================================================
-           ÁREA PRINCIPAL
-        ========================================================= */
-
         .content {
             margin-left: 210px;
             width: calc(100% - 210px);
             min-height: 100vh;
         }
-
-        /* =========================================================
-           HEADER
-        ========================================================= */
 
         .header {
             height: 62px;
@@ -394,10 +357,6 @@
             font-size: 9px;
         }
 
-        /* =========================================================
-           MAIN
-        ========================================================= */
-
         main {
             padding: 26px 22px 34px;
             max-width: 1500px;
@@ -433,20 +392,12 @@
             color: #2c2d3e;
         }
 
-        /* =========================================================
-           CARD PADRÃO
-        ========================================================= */
-
         .panel {
             background: white;
             border: 1px solid #ededf2;
             border-radius: 11px;
             box-shadow: var(--shadow);
         }
-
-        /* =========================================================
-           FICHA DO PACIENTE
-        ========================================================= */
 
         .patient-card {
             min-height: 210px;
@@ -568,10 +519,6 @@
             font-weight: 500;
         }
 
-        /* =========================================================
-           ABAS
-        ========================================================= */
-
         .tabs {
             height: 52px;
             display: flex;
@@ -607,10 +554,6 @@
             border-radius: 4px 4px 0 0;
         }
 
-        /* =========================================================
-           GRID PRINCIPAL
-        ========================================================= */
-
         .dashboard-grid {
             display: grid;
             grid-template-columns: minmax(0, 1fr) 260px;
@@ -623,10 +566,6 @@
             flex-direction: column;
             gap: 18px;
         }
-
-        /* =========================================================
-           CABEÇALHOS DOS CARDS
-        ========================================================= */
 
         .panel-header {
             display: flex;
@@ -649,10 +588,6 @@
             align-items: center;
             gap: 8px;
         }
-
-        /* =========================================================
-           ÚLTIMOS SINAIS
-        ========================================================= */
 
         .signals-content {
             display: grid;
@@ -761,10 +696,6 @@
             color: #6a54c2;
         }
 
-        /* =========================================================
-           HISTÓRICO DE CRISES
-        ========================================================= */
-
         .table-container {
             padding: 0 20px 12px;
             overflow-x: auto;
@@ -827,10 +758,6 @@
             font-size: 10px;
         }
 
-        /* =========================================================
-           ANOTAÇÕES
-        ========================================================= */
-
         .notes-content {
             padding: 0 20px 16px;
         }
@@ -890,10 +817,6 @@
         .new-note:hover {
             background: #f5f2ff;
         }
-
-        /* =========================================================
-           CONSULTAS RECENTES
-        ========================================================= */
 
         .appointment-list {
             padding: 0 12px 6px;
@@ -962,10 +885,6 @@
             align-self: center;
         }
 
-        /* =========================================================
-           DOCUMENTOS
-        ========================================================= */
-
         .documents {
             padding: 0 12px 10px;
         }
@@ -1014,10 +933,6 @@
             color: #5c49ad;
             font-size: 11px;
         }
-
-        /* =========================================================
-           ELEMENTOS FUNCIONAIS
-        ========================================================= */
 
         .empty-state {
             padding: 22px 10px;
@@ -1164,10 +1079,6 @@
             color: white;
         }
 
-        /* =========================================================
-           RODAPÉ
-        ========================================================= */
-
         .footer {
             margin-top: 28px;
             min-height: 70px;
@@ -1218,12 +1129,7 @@
             font-size: 8px;
         }
 
-        /* =========================================================
-           RESPONSIVIDADE
-        ========================================================= */
-
         @media (max-width: 1100px) {
-
             .dashboard-grid {
                 grid-template-columns: 1fr;
             }
@@ -1233,11 +1139,9 @@
                 grid-template-columns: 1fr 1fr;
                 align-items: start;
             }
-
         }
 
         @media (max-width: 850px) {
-
             .sidebar {
                 width: 70px;
             }
@@ -1249,18 +1153,21 @@
 
             .logo-text,
             .menu a span,
-            .support-box > div,
+            .support-box>div,
             .logout span {
                 display: none;
             }
 
             .menu {
-                padding: 18px 9px;
+                position: relative;
+                z-index: 9999;
             }
 
             .menu a {
-                justify-content: center;
-                padding: 0;
+                position: relative;
+                z-index: 10000;
+                pointer-events: auto;
+                cursor: pointer;
             }
 
             .menu a i {
@@ -1298,11 +1205,9 @@
                 border-top: 1px solid var(--border);
                 padding: 20px 0 0;
             }
-
         }
 
         @media (max-width: 650px) {
-
             .header {
                 padding: 0 15px;
             }
@@ -1346,19 +1251,13 @@
             .footer-copy {
                 text-align: center;
             }
-
         }
-
     </style>
 </head>
 
 <body>
 
     <div class="app">
-
-        <!-- =====================================================
-             SIDEBAR
-        ====================================================== -->
 
         <aside class="sidebar">
 
@@ -1375,36 +1274,29 @@
 
             </div>
 
-
             <nav class="menu">
 
-                <a href="#">
+                <a href="perfil.html">
                     <i class="fa-solid fa-house"></i>
                     <span>Dashboard</span>
                 </a>
 
-                <a href="#" class="active">
+                <a href="ficha.html" class="active">
                     <i class="fa-regular fa-user"></i>
                     <span>Ficha de pacientes</span>
                 </a>
 
-                <a href="#">
+                <a href="busca.html">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <span>Buscar paciente</span>
                 </a>
 
-                <a href="#">
+                <a href="agenda.html">
                     <i class="fa-regular fa-calendar"></i>
                     <span>Agenda</span>
                 </a>
 
-                <a href="#">
-                    <i class="fa-regular fa-bell"></i>
-                    <span>Alertas</span>
-                    <span class="menu-badge">3</span>
-                </a>
             </nav>
-
 
             <div class="sidebar-bottom">
 
@@ -1429,52 +1321,36 @@
         </aside>
 
 
-        <!-- =====================================================
-             CONTEÚDO
-        ====================================================== -->
-
         <div class="content">
-
-            <!-- HEADER -->
 
             <header class="header">
 
                 <div class="breadcrumb">
                     <span>Ficha de pacientes</span>
                     <i class="fa-solid fa-chevron-right"></i>
-                    <strong>Maria Silva</strong>
+                    <strong>Luis Gabriel Azevedo da Silva</strong>
                 </div>
-
 
                 <div class="header-right">
 
                     <div class="search">
-                        <input
-                            type="text"
-                            placeholder="Buscar paciente..."
-                        >
+                        <input type="text" placeholder="Buscar paciente...">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </div>
-
 
                     <div class="notification">
                         <i class="fa-regular fa-bell"></i>
                         <span>0</span>
                     </div>
 
-
                     <div class="doctor">
 
                         <div class="doctor-info">
-                            <strong>Dr. Rafael Oliveira</strong>
+                            <strong>Dr Luis Gabriel Azevedo</strong>
                             <span>Neurologista</span>
                         </div>
 
-                        <img
-                            class="doctor-photo"
-                            src="img/img05.jfif"
-                            alt="Médico"
-                        >
+                        <img class="doctor-photo" src="img/img02.jfif" alt="Médico">
 
                         <i class="fa-solid fa-chevron-down doctor-arrow"></i>
 
@@ -1484,8 +1360,6 @@
 
             </header>
 
-
-            <!-- MAIN -->
 
             <main>
 
@@ -1500,24 +1374,19 @@
                 </div>
 
 
-                <!-- =================================================
-                     DADOS PRINCIPAIS DO PACIENTE
-                ================================================== -->
-
                 <section class="patient-card panel">
 
                     <div class="patient-main">
 
                         <div class="patient-avatar">
-                            MS
+                            LG
                         </div>
-
 
                         <div class="patient-data">
 
                             <div class="patient-name">
 
-                                <h1>Maria Silva</h1>
+                                <h1>Luis Gabriel Azevedo da Silva</h1>
 
                                 <span class="status-active">
                                     Ativo
@@ -1525,37 +1394,36 @@
 
                             </div>
 
-
                             <div class="patient-details">
 
                                 <div class="detail">
                                     <i class="fa-regular fa-calendar"></i>
-                                    <span>22 anos (12/04/2002)</span>
+                                    <span>17 anos (18/05/2009)</span>
                                 </div>
 
                                 <div class="detail">
-                                    <i class="fa-solid fa-venus"></i>
-                                    <span>Feminino</span>
+                                    <i class="fa-solid fa-mars"></i>
+                                    <span>Masculino</span>
                                 </div>
 
                                 <div class="detail">
                                     <i class="fa-regular fa-address-card"></i>
-                                    <span>CPF: 123.456.789-10</span>
+                                    <span>CPF: 123.456.789</span>
                                 </div>
 
                                 <div class="detail">
                                     <i class="fa-solid fa-phone"></i>
-                                    <span>Telefone: (11) 98765-4321</span>
+                                    <span>Telefone: (13) 98189-3503</span>
                                 </div>
 
                                 <div class="detail">
                                     <i class="fa-regular fa-envelope"></i>
-                                    <span>E-mail: maria.silva@email.com</span>
+                                    <span>E-mail: luis.user@email.com</span>
                                 </div>
 
                                 <div class="detail">
-                                    <i class="fa-solid fa-location-dot"></i>
-                                    <span>Rua das Flores, 123 - São Paulo, SP - 01000-000</span>
+                                    <i class="fa-solid fa-calendar-days"></i>
+                                    <span>Data de nascimento: 18/05/2009</span>
                                 </div>
 
                             </div>
@@ -1581,7 +1449,6 @@
 
                         </div>
 
-
                         <div class="code-info">
                             <small>Cadastrado em</small>
                             <strong>10/02/2024</strong>
@@ -1596,10 +1463,6 @@
 
                 </section>
 
-
-                <!-- =================================================
-                     ABAS
-                ================================================== -->
 
                 <div class="tabs">
 
@@ -1626,19 +1489,11 @@
                 </div>
 
 
-                <!-- =================================================
-                     CONTEÚDO EM GRID
-                ================================================== -->
-
                 <div class="dashboard-grid">
 
 
-                    <!-- COLUNA ESQUERDA -->
-
                     <div class="left-column">
 
-
-                        <!-- ÚLTIMOS SINAIS -->
 
                         <section class="panel">
 
@@ -1652,7 +1507,6 @@
                                 </a>
 
                             </div>
-
 
                             <div class="signals-content">
 
@@ -1668,7 +1522,9 @@
 
                                     <div class="chart">
                                         <svg id="heartChart" viewBox="0 0 220 70" preserveAspectRatio="none">
-                                            <path id="heartChartPath" d="M0,52 C20,52 25,45 40,45 C55,45 60,30 75,38 C90,46 95,25 110,32 C125,39 130,20 145,28 C160,36 170,15 185,24 C200,33 205,18 220,18" fill="none" stroke="#6853c6" stroke-width="2" stroke-linecap="round" />
+                                            <path id="heartChartPath"
+                                                d="M0,52 C20,52 25,45 40,45 C55,45 60,30 75,38 C90,46 95,25 110,32 C125,39 130,20 145,28 C160,36 170,15 185,24 C200,33 205,18 220,18"
+                                                fill="none" stroke="#6853c6" stroke-width="2" stroke-linecap="round" />
                                         </svg>
                                     </div>
 
@@ -1680,8 +1536,6 @@
 
                         </section>
 
-
-                        <!-- HISTÓRICO DE CRISES -->
 
                         <section class="panel">
 
@@ -1695,7 +1549,6 @@
                                 </a>
 
                             </div>
-
 
                             <div class="table-container">
 
@@ -1715,7 +1568,6 @@
 
                                     </thead>
 
-
                                     <tbody id="crisisTableBody"></tbody>
 
                                 </table>
@@ -1724,8 +1576,6 @@
 
                         </section>
 
-
-                        <!-- ANOTAÇÕES -->
 
                         <section class="panel">
 
@@ -1740,14 +1590,15 @@
 
                             </div>
 
-
                             <div class="notes-content">
+
                                 <div id="notesList"></div>
 
                                 <button class="new-note" id="newNoteButton">
                                     <i class="fa-solid fa-plus"></i>
                                     Nova anotação
                                 </button>
+
                             </div>
 
                         </section>
@@ -1755,12 +1606,8 @@
                     </div>
 
 
-                    <!-- COLUNA DIREITA -->
-
                     <div class="right-column">
 
-
-                        <!-- CONSULTAS RECENTES -->
 
                         <section class="panel">
 
@@ -1768,13 +1615,12 @@
 
                                 <h3>Consultas recentes</h3>
 
-                                <a href="#" class="view-link">
+                                <a href="" class="view-link">
                                     Ver todas
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </a>
 
                             </div>
-
 
                             <div class="appointment-list">
 
@@ -1897,18 +1743,21 @@
                         </section>
 
 
-                        <!-- DOCUMENTOS -->
-
                         <section class="panel" id="documentsPanel">
 
                             <div class="panel-header">
+
                                 <h3>Documentos</h3>
+
                                 <div class="document-actions">
+
                                     <button class="add-document" id="addDocumentButton">
                                         <i class="fa-solid fa-plus"></i>
                                         Adicionar documento
                                     </button>
+
                                 </div>
+
                             </div>
 
                             <div class="documents" id="documentsList"></div>
@@ -1922,53 +1771,116 @@
             </main>
 
 
-            <!-- MODAL DE DOCUMENTO -->
-
             <div class="modal" id="documentModal">
+
                 <div class="modal-card">
+
                     <div class="modal-header">
+
                         <h3>Adicionar documento</h3>
+
                         <button class="modal-close" id="closeDocumentModal" type="button">
                             <i class="fa-solid fa-xmark"></i>
                         </button>
+
                     </div>
 
                     <form id="documentForm">
+
                         <div class="form-group">
-                            <label for="documentType">Tipo de documento</label>
+
+                            <label for="documentType">
+                                Tipo de documento
+                            </label>
+
                             <select id="documentType" required>
-                                <option value="">Selecione</option>
-                                <option value="Exame de sangue">Exame de sangue</option>
-                                <option value="Eletroencefalograma">Eletroencefalograma</option>
-                                <option value="Relatório neurológico">Relatório neurológico</option>
-                                <option value="Receita médica">Receita médica</option>
-                                <option value="Plano terapêutico">Plano terapêutico</option>
-                                <option value="Outro">Outro</option>
+
+                                <option value="">
+                                    Selecione
+                                </option>
+
+                                <option value="Exame de sangue">
+                                    Exame de sangue
+                                </option>
+
+                                <option value="Eletroencefalograma">
+                                    Eletroencefalograma
+                                </option>
+
+                                <option value="Relatório neurológico">
+                                    Relatório neurológico
+                                </option>
+
+                                <option value="Receita médica">
+                                    Receita médica
+                                </option>
+
+                                <option value="Plano terapêutico">
+                                    Plano terapêutico
+                                </option>
+
+                                <option value="Outro">
+                                    Outro
+                                </option>
+
                             </select>
+
                         </div>
 
-                        <div class="form-group">
-                            <label for="documentName">Nome do documento</label>
-                            <input id="documentName" type="text" placeholder="Ex.: Exame de sangue - maio/2024" required>
-                        </div>
 
                         <div class="form-group">
-                            <label for="documentFile">Arquivo</label>
-                            <input id="documentFile" type="file" accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx" required>
+
+                            <label for="documentName">
+                                Nome do documento
+                            </label>
+
+                            <input
+                                id="documentName"
+                                type="text"
+                                placeholder="Ex.: Exame de sangue - maio/2024"
+                                required>
+
                         </div>
+
+
+                        <div class="form-group">
+
+                            <label for="documentFile">
+                                Arquivo
+                            </label>
+
+                            <input
+                                id="documentFile"
+                                type="file"
+                                accept=".pdf,.png,.jpg,.jpeg,.webp,.doc,.docx"
+                                required>
+
+                        </div>
+
 
                         <div class="modal-actions">
-                            <button class="cancel-modal" id="cancelDocument" type="button">Cancelar</button>
-                            <button class="save-document" type="submit">Salvar documento</button>
+
+                            <button
+                                class="cancel-modal"
+                                id="cancelDocument"
+                                type="button">
+                                Cancelar
+                            </button>
+
+                            <button
+                                class="save-document"
+                                type="submit">
+                                Salvar documento
+                            </button>
+
                         </div>
+
                     </form>
+
                 </div>
+
             </div>
 
-
-            <!-- =====================================================
-                 RODAPÉ
-            ====================================================== -->
 
             <footer class="footer">
 
@@ -1977,16 +1889,24 @@
                     <i class="fa-regular fa-heart"></i>
 
                     <div>
+
                         <strong>EMPS</strong>
-                        <small>Sistema de Monitoramento<br>e Prevenção de Crises Epilépticas</small>
+
+                        <small>
+                            Sistema de Monitoramento<br>
+                            e Prevenção de Crises Epilépticas
+                        </small>
+
                     </div>
 
                 </div>
 
 
                 <div class="footer-security">
+
                     <i class="fa-solid fa-lock"></i>
                     Ambiente seguro e criptografado
+
                 </div>
 
 
@@ -2005,8 +1925,6 @@
 
         /* =========================================================
            DADOS FUNCIONAIS
-           Estes dados estão separados da interface para facilitar a
-           futura troca pelo retorno do PHP/MySQL.
         ========================================================= */
 
         const pacienteId = "PCT-0012";
@@ -2030,43 +1948,57 @@
         ========================================================= */
 
         function getLocalData(key, fallback = []) {
+
             try {
+
                 const data = JSON.parse(localStorage.getItem(key));
+
                 return data ?? fallback;
+
             } catch (error) {
+
                 return fallback;
+
             }
+
         }
+
 
         function saveLocalData(key, data) {
+
             localStorage.setItem(key, JSON.stringify(data));
+
         }
 
-        /*
-         * relatorios.html poderá salvar os relatórios neste formato:
-         * {
-         *   pacienteId: "PCT-0012",
-         *   data: "09/05/2024",
-         *   medico: "Dr. Rafael Oliveira",
-         *   texto: "Descrição do relatório..."
-         * }
-         *
-         * A tela já está preparada para consumir esses registros.
-         */
+
         function getRelatoriosPaciente() {
+
             const relatorios = getLocalData("emps_relatorios", []);
 
             return relatorios.filter(relatorio => {
-                return !relatorio.pacienteId || relatorio.pacienteId === pacienteId;
+
+                return !relatorio.pacienteId ||
+                    relatorio.pacienteId === pacienteId;
+
             });
+
         }
 
+
         function getCrisesPaciente() {
-            const crises = getLocalData("emps_crises", crisesIniciais);
+
+            const crises = getLocalData(
+                "emps_crises",
+                crisesIniciais
+            );
 
             return crises.filter(crise => {
-                return !crise.pacienteId || crise.pacienteId === pacienteId;
+
+                return !crise.pacienteId ||
+                    crise.pacienteId === pacienteId;
+
             });
+
         }
 
 
@@ -2075,59 +2007,101 @@
         ========================================================= */
 
         function renderSignals() {
-            const heartRate = document.getElementById("heartRateValue");
-            const heartStatus = document.getElementById("heartRateStatus");
-            const signalList = document.getElementById("signalList");
+
+            const heartRate =
+                document.getElementById("heartRateValue");
+
+            const heartStatus =
+                document.getElementById("heartRateStatus");
+
+            const signalList =
+                document.getElementById("signalList");
+
 
             if (dadosSinais.frequenciaCardiaca !== null) {
-                heartRate.textContent = `${dadosSinais.frequenciaCardiaca} bpm`;
-                heartStatus.textContent = dadosSinais.frequenciaCardiaca >= 60 && dadosSinais.frequenciaCardiaca <= 100
-                    ? "Dentro do normal"
-                    : "Fora da faixa de referência";
+
+                heartRate.textContent =
+                    `${dadosSinais.frequenciaCardiaca} bpm`;
+
+                heartStatus.textContent =
+                    dadosSinais.frequenciaCardiaca >= 60 &&
+                    dadosSinais.frequenciaCardiaca <= 100
+                        ? "Dentro do normal"
+                        : "Fora da faixa de referência";
+
             } else {
+
                 heartRate.textContent = "-- bpm";
-                heartStatus.textContent = "Aguardando dados do paciente";
+
+                heartStatus.textContent =
+                    "Aguardando dados do paciente";
+
             }
 
+
             const sinais = [
-                {
-                    icon: "fa-regular fa-moon",
-                    nome: "Sono médio",
-                    valor: dadosSinais.sono ?? "--",
-                    status: dadosSinais.sono ? "Bom" : "Sem dados",
-                    classe: dadosSinais.sono ? "good" : "ideal"
-                },
+
                 {
                     icon: "fa-solid fa-person-walking",
                     nome: "Atividade física",
                     valor: dadosSinais.atividade ?? "--",
-                    status: dadosSinais.atividade ? "Registrada" : "Sem dados",
-                    classe: dadosSinais.atividade ? "ideal" : "ideal"
+                    status: dadosSinais.atividade
+                        ? "Registrada"
+                        : "Sem dados",
+                    classe: dadosSinais.atividade
+                        ? "ideal"
+                        : "ideal"
                 },
+
                 {
                     icon: "fa-solid fa-brain",
                     nome: "Nível de estresse",
                     valor: dadosSinais.estresse ?? "--",
-                    status: dadosSinais.estresse ? "Registrado" : "Sem dados",
-                    classe: dadosSinais.estresse ? "good" : "ideal"
+                    status: dadosSinais.estresse
+                        ? "Registrado"
+                        : "Sem dados",
+                    classe: dadosSinais.estresse
+                        ? "good"
+                        : "ideal"
                 },
+
                 {
                     icon: "fa-solid fa-pills",
                     nome: "Adesão ao tratamento",
                     valor: dadosSinais.adesao ?? "--",
-                    status: dadosSinais.adesao ? "Registrada" : "Sem dados",
+                    status: dadosSinais.adesao
+                        ? "Registrada"
+                        : "Sem dados",
                     classe: "good"
                 }
+
             ];
 
+
             signalList.innerHTML = sinais.map(sinal => `
+
                 <div class="signal-item">
-                    <div class="signal-icon"><i class="${sinal.icon}"></i></div>
-                    <span class="signal-name">${sinal.nome}</span>
-                    <strong class="signal-value">${sinal.valor}</strong>
-                    <span class="mini-status ${sinal.classe}">${sinal.status}</span>
+
+                    <div class="signal-icon">
+                        <i class="${sinal.icon}"></i>
+                    </div>
+
+                    <span class="signal-name">
+                        ${sinal.nome}
+                    </span>
+
+                    <strong class="signal-value">
+                        ${sinal.valor}
+                    </strong>
+
+                    <span class="mini-status ${sinal.classe}">
+                        ${sinal.status}
+                    </span>
+
                 </div>
+
             `).join("");
+
         }
 
 
@@ -2136,43 +2110,102 @@
         ========================================================= */
 
         function renderCrises() {
-            const tbody = document.getElementById("crisisTableBody");
+
+            const tbody =
+                document.getElementById("crisisTableBody");
+
             const crises = getCrisesPaciente();
 
+
             if (!crises.length) {
+
                 tbody.innerHTML = `
+
                     <tr>
+
                         <td colspan="7">
+
                             <div class="empty-state">
+
                                 <i class="fa-regular fa-circle-check"></i>
+
                                 Nenhuma crise registrada para este paciente.
+
                             </div>
+
                         </td>
+
                     </tr>
+
                 `;
+
                 return;
+
             }
 
+
             tbody.innerHTML = crises.map(crise => {
-                const intensidade = (crise.intensidade || "leve").toLowerCase();
-                const classe = intensidade.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
+                const intensidade =
+                    (crise.intensidade || "leve").toLowerCase();
+
+                const classe =
+                    intensidade.normalize("NFD")
+                        .replace(/[\u0300-\u036f]/g, "");
+
 
                 return `
+
                     <tr>
-                        <td>${crise.data || "--"}</td>
-                        <td>${crise.hora || "--"}</td>
-                        <td>${crise.duracao || "--"}</td>
-                        <td>${crise.tipo || "--"}</td>
-                        <td><span class="intensity ${classe}">${crise.intensidade || "--"}</span></td>
-                        <td>${crise.observacao || crise.descricao || "--"}</td>
+
                         <td>
-                            <button class="eye-button" type="button" title="Ver crise" data-crisis-id="${crise.id || ""}">
-                                <i class="fa-regular fa-eye"></i>
-                            </button>
+                            ${crise.data || "--"}
                         </td>
+
+                        <td>
+                            ${crise.hora || "--"}
+                        </td>
+
+                        <td>
+                            ${crise.duracao || "--"}
+                        </td>
+
+                        <td>
+                            ${crise.tipo || "--"}
+                        </td>
+
+                        <td>
+                            <span class="intensity ${classe}">
+                                ${crise.intensidade || "--"}
+                            </span>
+                        </td>
+
+                        <td>
+                            ${crise.observacao ||
+                            crise.descricao ||
+                            "--"}
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="eye-button"
+                                type="button"
+                                title="Ver crise"
+                                data-crisis-id="${crise.id || ""}">
+
+                                <i class="fa-regular fa-eye"></i>
+
+                            </button>
+
+                        </td>
+
                     </tr>
+
                 `;
+
             }).join("");
+
         }
 
 
@@ -2181,147 +2214,310 @@
         ========================================================= */
 
         function renderNotes() {
-            const container = document.getElementById("notesList");
-            const relatorios = getRelatoriosPaciente();
+
+            const container =
+                document.getElementById("notesList");
+
+            const relatorios =
+                getRelatoriosPaciente();
+
 
             if (!relatorios.length) {
+
                 container.innerHTML = `
+
                     <div class="empty-state">
+
                         <i class="fa-regular fa-note-sticky"></i>
+
                         Nenhuma anotação registrada ainda.<br>
+
                         Os registros feitos em Relatórios aparecerão aqui.
+
                     </div>
+
                 `;
+
                 return;
+
             }
 
+
             container.innerHTML = relatorios.map(relatorio => `
+
                 <div class="note">
+
                     <div class="note-icon">
                         <i class="fa-regular fa-note-sticky"></i>
                     </div>
+
                     <div class="note-info">
-                        <small>${relatorio.data || "Data não informada"} · ${relatorio.medico || "Profissional não informado"}</small>
-                        <p>${relatorio.texto || relatorio.descricao || relatorio.observacao || "Sem descrição."}</p>
+
+                        <small>
+                            ${relatorio.data || "Data não informada"}
+                            ·
+                            ${relatorio.medico ||
+                            "Profissional não informado"}
+                        </small>
+
+                        <p>
+                            ${relatorio.texto ||
+                            relatorio.descricao ||
+                            relatorio.observacao ||
+                            "Sem descrição."}
+                        </p>
+
                     </div>
-                    <button class="note-menu" type="button" title="Opções">
+
+                    <button
+                        class="note-menu"
+                        type="button"
+                        title="Opções">
+
                         <i class="fa-solid fa-ellipsis-vertical"></i>
+
                     </button>
+
                 </div>
+
             `).join("");
+
         }
 
 
         /* =========================================================
            DOCUMENTOS
-           IndexedDB permite guardar o arquivo localmente durante o
-           protótipo. Depois, o mesmo fluxo pode ser ligado ao PHP/MySQL.
         ========================================================= */
 
         const DB_NAME = "empsDocumentosDB";
         const DB_VERSION = 1;
         const STORE_NAME = "documentos";
 
+
         function openDocumentDB() {
+
             return new Promise((resolve, reject) => {
-                const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+                const request =
+                    indexedDB.open(DB_NAME, DB_VERSION);
+
 
                 request.onupgradeneeded = event => {
+
                     const db = event.target.result;
+
                     if (!db.objectStoreNames.contains(STORE_NAME)) {
-                        db.createObjectStore(STORE_NAME, { keyPath: "id", autoIncrement: true });
+
+                        db.createObjectStore(
+                            STORE_NAME,
+                            {
+                                keyPath: "id",
+                                autoIncrement: true
+                            }
+                        );
+
                     }
+
                 };
 
-                request.onsuccess = () => resolve(request.result);
-                request.onerror = () => reject(request.error);
+
+                request.onsuccess = () =>
+                    resolve(request.result);
+
+                request.onerror = () =>
+                    reject(request.error);
+
             });
+
         }
+
 
         async function saveDocument(documento) {
+
             const db = await openDocumentDB();
 
             return new Promise((resolve, reject) => {
-                const transaction = db.transaction(STORE_NAME, "readwrite");
-                const store = transaction.objectStore(STORE_NAME);
-                const request = store.add(documento);
 
-                request.onsuccess = () => resolve(request.result);
-                request.onerror = () => reject(request.error);
+                const transaction =
+                    db.transaction(STORE_NAME, "readwrite");
+
+                const store =
+                    transaction.objectStore(STORE_NAME);
+
+                const request =
+                    store.add(documento);
+
+
+                request.onsuccess = () =>
+                    resolve(request.result);
+
+                request.onerror = () =>
+                    reject(request.error);
+
             });
+
         }
+
 
         async function getDocuments() {
+
             const db = await openDocumentDB();
 
             return new Promise((resolve, reject) => {
-                const transaction = db.transaction(STORE_NAME, "readonly");
-                const store = transaction.objectStore(STORE_NAME);
-                const request = store.getAll();
 
-                request.onsuccess = () => resolve(request.result);
-                request.onerror = () => reject(request.error);
+                const transaction =
+                    db.transaction(STORE_NAME, "readonly");
+
+                const store =
+                    transaction.objectStore(STORE_NAME);
+
+                const request =
+                    store.getAll();
+
+
+                request.onsuccess = () =>
+                    resolve(request.result);
+
+                request.onerror = () =>
+                    reject(request.error);
+
             });
+
         }
+
 
         async function getDocument(id) {
+
             const db = await openDocumentDB();
 
             return new Promise((resolve, reject) => {
-                const transaction = db.transaction(STORE_NAME, "readonly");
-                const store = transaction.objectStore(STORE_NAME);
-                const request = store.get(Number(id));
 
-                request.onsuccess = () => resolve(request.result);
-                request.onerror = () => reject(request.error);
+                const transaction =
+                    db.transaction(STORE_NAME, "readonly");
+
+                const store =
+                    transaction.objectStore(STORE_NAME);
+
+                const request =
+                    store.get(Number(id));
+
+
+                request.onsuccess = () =>
+                    resolve(request.result);
+
+                request.onerror = () =>
+                    reject(request.error);
+
             });
+
         }
+
 
         function formatDocumentDate(date) {
-            return new Intl.DateTimeFormat("pt-BR").format(date);
+
+            return new Intl.DateTimeFormat("pt-BR")
+                .format(date);
+
         }
+
 
         async function renderDocuments() {
-            const container = document.getElementById("documentsList");
-            const documentos = await getDocuments();
-            const documentosDoPaciente = documentos.filter(documento => {
-                return !documento.pacienteId || documento.pacienteId === pacienteId;
-            });
+
+            const container =
+                document.getElementById("documentsList");
+
+            const documentos =
+                await getDocuments();
+
+
+            const documentosDoPaciente =
+                documentos.filter(documento => {
+
+                    return !documento.pacienteId ||
+                        documento.pacienteId === pacienteId;
+
+                });
+
 
             if (!documentosDoPaciente.length) {
+
                 container.innerHTML = `
+
                     <div class="empty-state">
+
                         <i class="fa-regular fa-folder-open"></i>
+
                         Nenhum documento adicionado ainda.
+
                     </div>
+
                 `;
+
                 return;
+
             }
 
-            container.innerHTML = documentosDoPaciente.map(documento => `
-                <div class="document-item">
-                    <div class="document-icon">
-                        <i class="fa-regular fa-file-lines"></i>
+
+            container.innerHTML =
+                documentosDoPaciente.map(documento => `
+
+                    <div class="document-item">
+
+                        <div class="document-icon">
+
+                            <i class="fa-regular fa-file-lines"></i>
+
+                        </div>
+
+                        <div>
+
+                            <div class="document-name">
+                                ${documento.nome}
+                            </div>
+
+                            <span class="document-date">
+                                ${documento.tipo} · ${documento.data}
+                            </span>
+
+                        </div>
+
+                        <button
+                            class="document-open"
+                            type="button"
+                            title="Abrir documento"
+                            data-document-id="${documento.id}">
+
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        </button>
+
                     </div>
-                    <div>
-                        <div class="document-name">${documento.nome}</div>
-                        <span class="document-date">${documento.tipo} · ${documento.data}</span>
-                    </div>
-                    <button class="document-open" type="button" title="Abrir documento" data-document-id="${documento.id}">
-                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                    </button>
-                </div>
-            `).join("");
+
+                `).join("");
+
         }
 
+
         async function openDocument(id) {
-            const documento = await getDocument(id);
+
+            const documento =
+                await getDocument(id);
+
             if (!documento || !documento.arquivo) return;
 
-            const url = URL.createObjectURL(documento.arquivo);
+
+            const url =
+                URL.createObjectURL(documento.arquivo);
+
             window.open(url, "_blank");
 
-            setTimeout(() => URL.revokeObjectURL(url), 60000);
+
+            setTimeout(() => {
+
+                URL.revokeObjectURL(url);
+
+            }, 60000);
+
         }
 
 
@@ -2329,101 +2525,226 @@
            MODAL DE DOCUMENTOS
         ========================================================= */
 
-        const documentModal = document.getElementById("documentModal");
-        const documentForm = document.getElementById("documentForm");
+        const documentModal =
+            document.getElementById("documentModal");
+
+        const documentForm =
+            document.getElementById("documentForm");
+
 
         function closeDocumentModal() {
+
             documentModal.classList.remove("show");
+
             documentForm.reset();
+
         }
 
-        document.getElementById("addDocumentButton").addEventListener("click", () => {
-            documentModal.classList.add("show");
-        });
 
-        document.getElementById("closeDocumentModal").addEventListener("click", closeDocumentModal);
-        document.getElementById("cancelDocument").addEventListener("click", closeDocumentModal);
+        document
+            .getElementById("addDocumentButton")
+            .addEventListener("click", () => {
+
+                documentModal.classList.add("show");
+
+            });
+
+
+        document
+            .getElementById("closeDocumentModal")
+            .addEventListener(
+                "click",
+                closeDocumentModal
+            );
+
+
+        document
+            .getElementById("cancelDocument")
+            .addEventListener(
+                "click",
+                closeDocumentModal
+            );
+
 
         documentModal.addEventListener("click", event => {
-            if (event.target === documentModal) closeDocumentModal();
-        });
 
-        documentForm.addEventListener("submit", async event => {
-            event.preventDefault();
+            if (event.target === documentModal) {
 
-            const fileInput = document.getElementById("documentFile");
-            const file = fileInput.files[0];
-
-            if (!file) return;
-
-            const documento = {
-                pacienteId,
-                tipo: document.getElementById("documentType").value,
-                nome: document.getElementById("documentName").value.trim(),
-                arquivo: file,
-                data: formatDocumentDate(new Date()),
-                nomeArquivo: file.name,
-                tamanho: file.size,
-                tipoArquivo: file.type
-            };
-
-            try {
-                await saveDocument(documento);
-                await renderDocuments();
                 closeDocumentModal();
-            } catch (error) {
-                alert("Não foi possível salvar o documento neste momento.");
-                console.error(error);
+
             }
-        });
 
-        document.getElementById("documentsList").addEventListener("click", async event => {
-            const button = event.target.closest("[data-document-id]");
-            if (!button) return;
-            await openDocument(button.dataset.documentId);
         });
 
 
-        /* =========================================================
-           MENU LATERAL
-        ========================================================= */
+        documentForm.addEventListener(
+            "submit",
+            async event => {
 
-        const menuItems = document.querySelectorAll(".menu a");
-
-        menuItems.forEach(item => {
-            item.addEventListener("click", function(event) {
                 event.preventDefault();
-                menuItems.forEach(link => link.classList.remove("active"));
-                this.classList.add("active");
-            });
-        });
+
+
+                const fileInput =
+                    document.getElementById("documentFile");
+
+                const file =
+                    fileInput.files[0];
+
+
+                if (!file) return;
+
+
+                const documento = {
+
+                    pacienteId,
+
+                    tipo:
+                        document.getElementById(
+                            "documentType"
+                        ).value,
+
+                    nome:
+                        document.getElementById(
+                            "documentName"
+                        ).value.trim(),
+
+                    arquivo: file,
+
+                    data:
+                        formatDocumentDate(
+                            new Date()
+                        ),
+
+                    nomeArquivo:
+                        file.name,
+
+                    tamanho:
+                        file.size,
+
+                    tipoArquivo:
+                        file.type
+
+                };
+
+
+                try {
+
+                    await saveDocument(documento);
+
+                    await renderDocuments();
+
+                    closeDocumentModal();
+
+                } catch (error) {
+
+                    alert(
+                        "Não foi possível salvar o documento neste momento."
+                    );
+
+                    console.error(error);
+
+                }
+
+            }
+        );
+
+
+        document
+            .getElementById("documentsList")
+            .addEventListener(
+                "click",
+                async event => {
+
+                    const button =
+                        event.target.closest(
+                            "[data-document-id]"
+                        );
+
+                    if (!button) return;
+
+                    await openDocument(
+                        button.dataset.documentId
+                    );
+
+                }
+            );
 
 
         /* =========================================================
            ABAS
         ========================================================= */
 
-        const tabs = document.querySelectorAll(".tab");
+        const tabs =
+            document.querySelectorAll(".tab");
+
 
         tabs.forEach(tab => {
-            tab.addEventListener("click", function() {
-                tabs.forEach(item => item.classList.remove("active"));
-                this.classList.add("active");
 
-                const nome = this.textContent.trim();
+            tab.addEventListener(
+                "click",
+                function () {
 
-                if (nome === "Relatórios") {
-                    document.getElementById("notesList").scrollIntoView({ behavior: "smooth", block: "center" });
-                } else if (nome === "Consultas") {
-                    document.querySelector(".appointment-list").scrollIntoView({ behavior: "smooth", block: "center" });
-                } else if (nome === "Documentos") {
-                    document.getElementById("documentsPanel").scrollIntoView({ behavior: "smooth", block: "center" });
-                } else if (nome === "Histórico clínico") {
-                    document.querySelector(".dashboard-grid").scrollIntoView({ behavior: "smooth", block: "start" });
-                } else if (nome === "Dispositivos") {
-                    document.querySelector(".signals-content").scrollIntoView({ behavior: "smooth", block: "center" });
+                    tabs.forEach(item =>
+                        item.classList.remove("active")
+                    );
+
+                    this.classList.add("active");
+
+
+                    const nome =
+                        this.textContent.trim();
+
+
+                    if (nome === "Relatórios") {
+
+                        document
+                            .getElementById("notesList")
+                            .scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                            });
+
+                    } else if (nome === "Consultas") {
+
+                        document
+                            .querySelector(".appointment-list")
+                            .scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                            });
+
+                    } else if (nome === "Documentos") {
+
+                        document
+                            .getElementById("documentsPanel")
+                            .scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                            });
+
+                    } else if (nome === "Histórico clínico") {
+
+                        document
+                            .querySelector(".dashboard-grid")
+                            .scrollIntoView({
+                                behavior: "smooth",
+                                block: "start"
+                            });
+
+                    } else if (nome === "Dispositivos") {
+
+                        document
+                            .querySelector(".signals-content")
+                            .scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                            });
+
+                    }
+
                 }
-            });
+            );
+
         });
 
 
@@ -2431,48 +2752,101 @@
            COPIAR CÓDIGO DO PACIENTE
         ========================================================= */
 
-        const copyButton = document.querySelector(".code-box button");
+        const copyButton =
+            document.querySelector(".code-box button");
 
-        copyButton.addEventListener("click", async () => {
-            try {
-                await navigator.clipboard.writeText(pacienteId);
-            } catch (error) {
-                const textarea = document.createElement("textarea");
-                textarea.value = pacienteId;
-                document.body.appendChild(textarea);
-                textarea.select();
-                document.execCommand("copy");
-                textarea.remove();
+
+        copyButton.addEventListener(
+            "click",
+            async () => {
+
+                try {
+
+                    await navigator.clipboard.writeText(
+                        pacienteId
+                    );
+
+                } catch (error) {
+
+                    const textarea =
+                        document.createElement("textarea");
+
+                    textarea.value =
+                        pacienteId;
+
+                    document.body.appendChild(
+                        textarea
+                    );
+
+                    textarea.select();
+
+                    document.execCommand("copy");
+
+                    textarea.remove();
+
+                }
+
+
+                const icon =
+                    copyButton.querySelector("i");
+
+
+                icon.classList.remove(
+                    "fa-copy"
+                );
+
+                icon.classList.add(
+                    "fa-check"
+                );
+
+
+                setTimeout(() => {
+
+                    icon.classList.remove(
+                        "fa-check"
+                    );
+
+                    icon.classList.add(
+                        "fa-copy"
+                    );
+
+                }, 1500);
+
             }
-
-            const icon = copyButton.querySelector("i");
-            icon.classList.remove("fa-copy");
-            icon.classList.add("fa-check");
-
-            setTimeout(() => {
-                icon.classList.remove("fa-check");
-                icon.classList.add("fa-copy");
-            }, 1500);
-        });
+        );
 
 
         /* =========================================================
            BOTÃO VOLTAR
         ========================================================= */
 
-        document.querySelector(".back-button").addEventListener("click", () => {
-            window.history.back();
-        });
+        document
+            .querySelector(".back-button")
+            .addEventListener(
+                "click",
+                () => {
+
+                    window.history.back();
+
+                }
+            );
 
 
         /* =========================================================
            NOVA ANOTAÇÃO
-           O cadastro principal será feito em relatorios.html.
         ========================================================= */
 
-        document.getElementById("newNoteButton").addEventListener("click", () => {
-            window.location.href = "relatorios.html";
-        });
+        document
+            .getElementById("newNoteButton")
+            .addEventListener(
+                "click",
+                () => {
+
+                    window.location.href =
+                        "relatorios.html";
+
+                }
+            );
 
 
         /* =========================================================
@@ -2487,4 +2861,5 @@
     </script>
 
 </body>
+
 </html>
