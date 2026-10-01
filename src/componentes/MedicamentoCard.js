@@ -9,7 +9,7 @@ import {
 import {
   Pill,
   Clock3,
-  Stethoscope,
+  FileText,
 } from "lucide-react-native";
 
 import Card from "./Card";
@@ -19,10 +19,11 @@ import { spacing } from "../styles/spacing";
 
 export default function MedicamentoCard({
   nome,
-  dose,
-  hora1,
-  hora2,
-  medico,
+  dosagem,
+  frequencia,
+  horario,
+  observacao,
+  status,
 }) {
   return (
     <Card>
@@ -40,7 +41,9 @@ export default function MedicamentoCard({
           </Text>
 
           <Text style={styles.dose}>
-            {dose}
+            {[dosagem, frequencia]
+              .filter(Boolean)
+              .join(" • ")}
           </Text>
         </View>
       </View>
@@ -59,27 +62,33 @@ export default function MedicamentoCard({
           </Text>
 
           <Text style={styles.infoValue}>
-            {hora1} • {hora2}
+            {horario || "Não informado"}
           </Text>
         </View>
       </View>
 
-      <View style={styles.infoRow}>
-        <Stethoscope
-          size={17}
-          color={colors.primary}
-        />
+      {Boolean(observacao) && (
+        <View style={styles.infoRow}>
+          <FileText
+            size={17}
+            color={colors.primary}
+          />
 
-        <View style={styles.infoText}>
-          <Text style={styles.infoLabel}>
-            Prescrito por
-          </Text>
+          <View style={styles.infoText}>
+            <Text style={styles.infoLabel}>
+              Observação
+            </Text>
 
-          <Text style={styles.infoValue}>
-            {medico}
-          </Text>
+            <Text style={styles.infoValue}>
+              {observacao}
+            </Text>
+          </View>
         </View>
-      </View>
+      )}
+
+      <Text style={styles.dose}>
+        {status ? "Ativo" : "Inativo"}
+      </Text>
     </Card>
   );
 }
@@ -93,14 +102,10 @@ const styles = StyleSheet.create({
   icon: {
     width: 48,
     height: 48,
-
     borderRadius: 15,
-
     backgroundColor: colors.soft,
-
     alignItems: "center",
     justifyContent: "center",
-
     marginRight: spacing.md,
   },
 
