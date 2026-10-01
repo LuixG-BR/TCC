@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import bleService from "../services/bleService";
 import monitoramentoService from "../services/monitoramentoService";
 import monitoramentoApiService from "../services/monitoramentoApiService";
+import usuarioService from "../services/usuarioService";
 
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Bluetooth, BluetoothConnected, BatteryMedium, HeartPulse, Activity, Unplug } from "lucide-react-native";
@@ -13,7 +14,7 @@ import { colors } from "../styles/colors";
 import { spacing } from "../styles/spacing";
 
 export default function TelaCintaCardiaca({ tela, setTela }) {
-  const ID_PACIENTE = 3;
+  const [idPaciente, setIdPaciente] = useState(null)
   const ID_DISPOSITIVO = 3;
 
   const [conectado, setConectado] = useState(false);
@@ -92,9 +93,41 @@ export default function TelaCintaCardiaca({ tela, setTela }) {
       setConectado(false);
     }
   }
+
+  useEffect(() => {
+    async function carregarPaciente() {
+      try {
+        const usuario =
+          await usuarioService.buscarUsuarioLogado();
+
+        if (
+          usuario.tipo !== "paciente" ||
+          !usuario.dados?.id_paciente
+        ) {
+          console.log("Paciente não encontrado no usuário autenticado.");
+          return;
+        }
+
+        const id = usuario.dados.id_paciente;
+
+        setIdPaciente(id);
+
+        console.log("ID paciente obtido:", id);
+
+      } catch (erro) {
+        console.log(
+          "Erro ao buscar paciente:",
+          erro.response?.data || erro.message
+        );
+      }
+    }
+
+    carregarPaciente();
+  }, []);
+
   useEffect(() => {
 
-    if (!conectado) {
+    if (!conectado || !idPaciente) {
       return;
     }
 
@@ -126,30 +159,16 @@ export default function TelaCintaCardiaca({ tela, setTela }) {
           const resposta =
             await monitoramentoApiService
               .enviarMedia({
-
-                idPaciente: ID_PACIENTE,
-
-                idDispositivo:
-                  ID_DISPOSITIVO,
-
-                frequenciaCardiaca:
-                  medias.frequencia_cardiaca,
-
-                movimento:
-                  medias.movimento,
-
+                idPaciente: idPaciente,
+                idDispositivo: ID_DISPOSITIVO,
+                frequenciaCardiaca: medias.frequencia_cardiaca,
+                movimento: medias.movimento,
               });
 
-
-          console.log(
-            "Resultado da análise:",
-            resposta
-          );
-
+          console.log("Resultado da análise:", resposta);
 
           // API recebeu com sucesso.
-          monitoramentoService
-            .limparAmostras();
+          monitoramentoService.limparAmostras();
         } catch (erro) {
           console.log(
             "Falha no envio. " +
@@ -165,7 +184,7 @@ export default function TelaCintaCardiaca({ tela, setTela }) {
     return () => {
       clearInterval(intervalo);
     };
-  }, [conectado]);
+  }, [conectado, idPaciente]);
 
   return (
     <AppShell
@@ -376,7 +395,22 @@ export default function TelaCintaCardiaca({ tela, setTela }) {
         </TouchableOpacity>
       ) : (
         <>
+          {/* ENCERRAR MONITORAMENTO */}
 
+          <TouchableOpacity
+            style={styles.disconnectButton}
+            activeOpacity={0.8}
+            onPress={desconectarCinta}
+          >
+            <Unplug
+              size={18}
+              color={colors.textSecondary}
+            />
+
+            <Text style={styles.disconnectButtonText}>
+              Encerrar monitoramento
+            </Text>
+          </TouchableOpacity>
         </>
       )}
     </AppShell>
