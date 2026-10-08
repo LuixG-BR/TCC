@@ -240,36 +240,6 @@ export default function TelaInicio({
         </TouchableOpacity>
       </Card>
 
-      {/* REGISTRAR CRISE */}
-
-      <View style={styles.emergencyCard}>
-        <View style={styles.emergencyIcon}>
-          <AlertTriangle
-            size={25}
-            color={colors.danger}
-          />
-        </View>
-
-        <View style={styles.emergencyText}>
-          <Text style={styles.emergencyTitle}>
-            Teve uma crise?
-          </Text>
-
-          <Text style={styles.emergencyDescription}>
-            Registre as informações para
-            manter seu histórico atualizado.
-          </Text>
-        </View>
-      </View>
-
-      <PrimaryButton
-        title="Registrar uma crise"
-        icon={AlertTriangle}
-        onPress={() =>
-          setTela("registrarCrise")
-        }
-      />
-
       {/* SEGURANÇA */}
 
       <View style={styles.security}>
