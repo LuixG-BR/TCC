@@ -1,6 +1,7 @@
 
 from collections import Counter
 from datetime import datetime, timedelta, timezone
+import unicodedata
 
 from sqlalchemy.orm import Session
 
@@ -8,9 +9,11 @@ from models.monitoramento import Monitoramento
 
 
 def classificar_status(status):
-    texto = (status or "").strip().lower()
+    texto = unicodedata.normalize(
+        "NFKD", status or ""
+    ).encode("ascii", "ignore").decode("ascii").lower()
 
-    if "emergência" in texto or "emergencia" in texto:
+    if "emergencia" in texto:
         return "emergencia"
 
     if "alerta" in texto or "movimento intenso" in texto:
@@ -41,7 +44,6 @@ def gerar_relatorio_paciente(db: Session, id_paciente: int):
         if r.data_hora >= inicio_30_dias
     ]
 
-    # Distribuição por classificação
     contagem = Counter(
         classificar_status(r.status)
         for r in registros_30_dias
@@ -51,7 +53,7 @@ def gerar_relatorio_paciente(db: Session, id_paciente: int):
 
     def percentual(quantidade):
         return round(
-            (quantidade / total) * 100, 1
+            quantidade / total * 100, 1
         ) if total else 0
 
     distribuicao = {
@@ -60,18 +62,16 @@ def gerar_relatorio_paciente(db: Session, id_paciente: int):
         "outros": percentual(contagem["outros"])
     }
 
-    # Tendência das últimas 7 semanas
+    # Tendência semanal: últimos 7 períodos de 7 dias
     tendencia = []
 
     for indice in range(7):
-        inicio_semana = (
-            inicio_7_semanas + timedelta(weeks=indice)
-        )
-        fim_semana = inicio_semana + timedelta(weeks=1)
+        inicio = inicio_7_semanas + timedelta(weeks=indice)
+        fim = inicio + timedelta(weeks=1)
 
         quantidade = sum(
             1 for r in registros
-            if inicio_semana <= r.data_hora < fim_semana
+            if inicio <= r.data_hora < fim
         )
 
         tendencia.append({
@@ -79,7 +79,7 @@ def gerar_relatorio_paciente(db: Session, id_paciente: int):
             "quantidade": quantidade
         })
 
-    # Horários dos registros nos últimos 30 dias
+    # Horários dos registros: últimos 30 dias
     horarios = []
 
     for hora in range(0, 24, 4):
